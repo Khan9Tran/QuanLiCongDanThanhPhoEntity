@@ -40,6 +40,7 @@
             this.picTimKiem = new System.Windows.Forms.PictureBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
+            this.btnLoc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvHoKhau)).BeginInit();
             this.cmnusMenu.SuspendLayout();
             this.flpnlPhanLoai.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             // flpnlPhanLoai
             // 
+            this.flpnlPhanLoai.Controls.Add(this.btnLoc);
             this.flpnlPhanLoai.Controls.Add(this.btnTatCa);
             this.flpnlPhanLoai.Controls.Add(this.btnSoTV);
             this.flpnlPhanLoai.Location = new System.Drawing.Point(20, 123);
@@ -108,7 +110,7 @@
             this.btnTatCa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTatCa.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTatCa.ForeColor = System.Drawing.Color.Black;
-            this.btnTatCa.Location = new System.Drawing.Point(3, 3);
+            this.btnTatCa.Location = new System.Drawing.Point(41, 3);
             this.btnTatCa.Name = "btnTatCa";
             this.btnTatCa.Size = new System.Drawing.Size(125, 40);
             this.btnTatCa.TabIndex = 4;
@@ -123,7 +125,7 @@
             this.btnSoTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSoTV.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnSoTV.ForeColor = System.Drawing.Color.Black;
-            this.btnSoTV.Location = new System.Drawing.Point(134, 3);
+            this.btnSoTV.Location = new System.Drawing.Point(172, 3);
             this.btnSoTV.Name = "btnSoTV";
             this.btnSoTV.Size = new System.Drawing.Size(125, 40);
             this.btnSoTV.TabIndex = 5;
@@ -188,6 +190,18 @@
             0});
             this.nudPage.ValueChanged += new System.EventHandler(this.nudPage_ValueChanged);
             // 
+            // btnLoc
+            // 
+            this.btnLoc.FlatAppearance.BorderSize = 0;
+            this.btnLoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.dots__2_;
+            this.btnLoc.Location = new System.Drawing.Point(3, 3);
+            this.btnLoc.Name = "btnLoc";
+            this.btnLoc.Size = new System.Drawing.Size(32, 40);
+            this.btnLoc.TabIndex = 60;
+            this.btnLoc.UseVisualStyleBackColor = true;
+            this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
+            // 
             // FDanhSachHoKhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -229,5 +243,6 @@
         private ToolStripMenuItem cmnusMenuTachGop;
         private Button btnThem;
         private NumericUpDown nudPage;
+        private Button btnLoc;
     }
 }

@@ -28,6 +28,7 @@ namespace QuanLiCongDanThanhPho
         private void FDanhSachThue_Load(object sender, EventArgs e)
         {
             txtTimKiem_TextChanged(txtTimKiem, null);
+            flpnPhanLoai.Width = 45;
         }
       
 
@@ -153,6 +154,14 @@ namespace QuanLiCongDanThanhPho
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
             LoadDanhSach();
+        }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            if (flpnPhanLoai.Width > 50)
+                flpnPhanLoai.Width = 45;
+            else
+                flpnPhanLoai.Width = 800;
         }
     }
 }

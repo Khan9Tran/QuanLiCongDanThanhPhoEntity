@@ -30,6 +30,7 @@ namespace QuanLiCongDanThanhPho
         private void FDanhSachHoKhau_Load(object sender, EventArgs e)
         {
             txtTimKiem_TextChanged(txtTimKiem, null);
+            flpnlPhanLoai.Width = 45;
         }
 
         private void gvHoKhau_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -110,6 +111,14 @@ namespace QuanLiCongDanThanhPho
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            if (flpnlPhanLoai.Width > 50)
+                flpnlPhanLoai.Width = 45;
+            else
+                flpnlPhanLoai.Width = 800;
         }
     }
 }
