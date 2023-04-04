@@ -41,6 +41,7 @@
             this.cmnusMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmnusMenuXoa = new System.Windows.Forms.ToolStripMenuItem();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
+            this.btnLoc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvTVTT)).BeginInit();
             this.flpnlPhanLoai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTimKiem)).BeginInit();
@@ -77,6 +78,7 @@
             // 
             // flpnlPhanLoai
             // 
+            this.flpnlPhanLoai.Controls.Add(this.btnLoc);
             this.flpnlPhanLoai.Controls.Add(this.btnTatCa);
             this.flpnlPhanLoai.Controls.Add(this.btnTV);
             this.flpnlPhanLoai.Controls.Add(this.btnTT);
@@ -93,7 +95,7 @@
             this.btnTatCa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTatCa.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTatCa.ForeColor = System.Drawing.Color.Black;
-            this.btnTatCa.Location = new System.Drawing.Point(3, 3);
+            this.btnTatCa.Location = new System.Drawing.Point(41, 3);
             this.btnTatCa.Name = "btnTatCa";
             this.btnTatCa.Size = new System.Drawing.Size(125, 40);
             this.btnTatCa.TabIndex = 4;
@@ -108,7 +110,7 @@
             this.btnTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTV.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTV.ForeColor = System.Drawing.Color.Black;
-            this.btnTV.Location = new System.Drawing.Point(134, 3);
+            this.btnTV.Location = new System.Drawing.Point(172, 3);
             this.btnTV.Name = "btnTV";
             this.btnTV.Size = new System.Drawing.Size(125, 40);
             this.btnTV.TabIndex = 5;
@@ -123,7 +125,7 @@
             this.btnTT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTT.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTT.ForeColor = System.Drawing.Color.Black;
-            this.btnTT.Location = new System.Drawing.Point(265, 3);
+            this.btnTT.Location = new System.Drawing.Point(303, 3);
             this.btnTT.Name = "btnTT";
             this.btnTT.Size = new System.Drawing.Size(144, 40);
             this.btnTT.TabIndex = 6;
@@ -138,7 +140,7 @@
             this.btnQuaHan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQuaHan.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnQuaHan.ForeColor = System.Drawing.Color.Black;
-            this.btnQuaHan.Location = new System.Drawing.Point(415, 3);
+            this.btnQuaHan.Location = new System.Drawing.Point(453, 3);
             this.btnQuaHan.Name = "btnQuaHan";
             this.btnQuaHan.Size = new System.Drawing.Size(144, 40);
             this.btnQuaHan.TabIndex = 61;
@@ -212,6 +214,18 @@
             0});
             this.nudPage.ValueChanged += new System.EventHandler(this.nudPage_ValueChanged);
             // 
+            // btnLoc
+            // 
+            this.btnLoc.FlatAppearance.BorderSize = 0;
+            this.btnLoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.dots__2_;
+            this.btnLoc.Location = new System.Drawing.Point(3, 3);
+            this.btnLoc.Name = "btnLoc";
+            this.btnLoc.Size = new System.Drawing.Size(32, 40);
+            this.btnLoc.TabIndex = 62;
+            this.btnLoc.UseVisualStyleBackColor = true;
+            this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
+            // 
             // FDanhSachTamTruTamVang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -254,5 +268,6 @@
         private ToolStripMenuItem cmnusMenuXoa;
         private Button btnQuaHan;
         private NumericUpDown nudPage;
+        private Button btnLoc;
     }
 }

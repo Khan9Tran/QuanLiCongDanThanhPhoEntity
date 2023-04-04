@@ -33,8 +33,10 @@ namespace QuanLiCongDanThanhPho
         }
         public DataTable LayDanhSachXepTheoSoTV(string tu)
         {
-            string sqlStr = string.Format($"SELECT HOKHAU.MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ' FROM HOKHAU INNER JOIN (SELECT MaHK, count(CCCD) as SL FROM CONGDAN GROUP BY MaHK) AS CONGDAN ON HOKHAU.MaHK = CONGDAN.MAHK WHERE DiaChi like N'%{tu}%' OR CCCDChuHo like '%{tu}%' OR HOKHAU.MaHK like '%{tu}%' ORDER BY SL ASC EXCEPT SELECT MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ' FROM HOKHAU WHERE MaHK like '00000A' OR MaHK like '00000B'");
-            return conn.LayDanhSach(sqlStr);
+            string sqlStr = string.Format($"SELECT HOKHAU.MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ', SL FROM (SELECT * FROM HOKHAU EXCEPT SELECT * FROM HOKHAU WHERE MaHK like '00000A' OR MaHK like '00000B') as HOKHAU INNER JOIN (SELECT MaHK, count(CCCD) as SL FROM CONGDAN GROUP BY MaHK) as SLCONGDAN ON HOKHAU.MaHK = SLCONGDAN.MaHK WHERE DiaChi like N'%{tu}%' OR CCCDChuHo like '%{tu}%' OR HOKHAU.MaHK like '%{tu}%' ORDER BY SL ASC");
+            DataTable ds = conn.LayDanhSach(sqlStr);
+            ds.Columns.Remove("SL");
+            return ds;
         }
         public void CapNhatHoKhau(HoKhau hK)
         {
