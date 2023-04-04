@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
 namespace QuanLiCongDanThanhPho
 {
@@ -56,48 +57,97 @@ namespace QuanLiCongDanThanhPho
             string strSql = string.Format("UPDATE CONGDAN SET MaHK = '{0}' , QuanHeVoiChuHo = N'Vừa nhập hộ' WHERE CCCD = '{1}'", cD.MaHoKhau, cD.CCCD);
             conn.ThucThi(strSql, "Nhập hộ thành công");
         }
-        public DataTable LayDanhSach()
+        public List<Congdan> LayDanhSach()
         {
-            return conn.LayDanhSach("SELECT CCCD, Ten as 'Họ và tên', SDT as 'Số điện thoại', NgheNghiep as 'Nghề nghiệp', TonGiao as 'Tôn giáo' FROM CONGDAN");
+           using (var conn = new QuanlitpContext()) 
+            {
+                var cDs = from q in conn.Congdans
+                          select q;
+                return cDs.ToList();
+           }
         }
-        public DataTable LayDanhSachTheoHoKhau(string maHK)
+        public List<Congdan> LayDanhSachTheoHoKhau(string maHK)
         {
-            return conn.LayDanhSach($"SELECT CCCD, Ten as 'Họ và tên', SDT as 'Số điện thoại', NgheNghiep as 'Nghề nghiệp', QuanHeVoiChuHo as 'Quan hệ với chủ hộ' FROM CONGDAN WHERE MaHK = '{maHK}'");
+            using (var conn = new QuanlitpContext())
+            {
+                var cDs = from q in conn.Congdans
+                          where q.MaHk.Contains(maHK)
+                          select q;
+                return cDs.ToList();
+            }
         }
         public CongDan LayThongTin(string maCCCD)
         {
             string strSql = string.Format("SELECT * FROM CONGDAN WHERE CCCD = '{0}'", maCCCD);
             return conn.LayThongTinCongDan(strSql);
         }
-        public DataTable LayDanhSachCongDanNam(string tu)
+        public List<Congdan> LayDanhSachCongDanNam(string tu)
         {
-            string strSql = string.Format($"SELECT distinct CONGDAN.CCCD, CONGDAN.Ten as 'Họ và tên', CONGDAN.SDT as 'Số điện thoại', CONGDAN.NgheNghiep as 'Nghề nghiệp', CONGDAN.TonGiao as 'Tôn giáo' FROM CONGDAN INNER JOIN KHAISINH ON CONGDAN.CCCD = KHAISINH.MaKS AND KHAISINH.GioiTinh like 'm' WHERE CONGDAN.Ten like N'%{tu}%' OR CCCD like '%{tu}%' OR SDT like '%{tu}%' OR NgheNghiep like N'%{tu}%' OR TonGiao like N'%{tu}%'");
-            return conn.LayDanhSach(strSql);
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Congdans
+                           join p in conn.Khaisinhs
+                           on q.Cccd equals p.MaKs
+                           where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "m")
+                           select q;
+                return list.ToList();
+            }   
+           
         }
-        public DataTable LayDanhSachCongDanNu(string tu)
+        public List<Congdan> LayDanhSachCongDanNu(string tu)
         {
-            string strSql = string.Format($"SELECT distinct CONGDAN.CCCD, CONGDAN.Ten as 'Họ và tên', CONGDAN.SDT as 'Số điện thoại', CONGDAN.NgheNghiep as 'Nghề nghiệp', CONGDAN.TonGiao as 'Tôn giáo' FROM CONGDAN INNER JOIN KHAISINH ON CONGDAN.CCCD = KHAISINH.MaKS AND KHAISINH.GioiTinh like 'f' WHERE CONGDAN.Ten like N'%{tu}%' OR CCCD like '%{tu}%' OR SDT like '%{tu}%' OR NgheNghiep like N'%{tu}%' OR TonGiao like N'%{tu}%'");
-            return conn.LayDanhSach(strSql);
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Congdans
+                           join p in conn.Khaisinhs
+                           on q.Cccd equals p.MaKs
+                           where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "f")
+                           select q;
+                return list.ToList();
+            }
         }
-        public DataTable LayDanhSachDaKetHon(string tu)
-        { 
-            string strSql = string.Format($"SELECT distinct CONGDAN.CCCD, CONGDAN.Ten as 'Họ và tên', CONGDAN.SDT as 'Số điện thoại', CONGDAN.NgheNghiep as 'Nghề nghiệp', CONGDAN.TonGiao as 'Tôn giáo' FROM CONGDAN INNER JOIN HONNHAN ON CONGDAN.CCCD = HONNHAN.CCCDNam OR CONGDAN.CCCD = HONNHAN.CCCDNu WHERE CONGDAN.Ten like N'%{tu}%' OR CCCD like '%{tu}%' OR SDT like '%{tu}%' OR NgheNghiep like N'%{tu}%' OR TonGiao like N'%{tu}%'");
-            return conn.LayDanhSach(strSql);
-        }
-        public DataTable LayDanhSachChuaKetHon(string tu)
+        public List<Congdan> LayDanhSachDaKetHon(string tu)
         {
-            string strSql = string.Format($"SELECT CONGDAN.CCCD, CONGDAN.Ten as 'Họ và tên', CONGDAN.SDT as 'Số điện thoại', CONGDAN.NgheNghiep as 'Nghề nghiệp', CONGDAN.TonGiao as 'Tôn giáo' FROM (SELECT CD.CCCD, CD.Ten, CD.SDT, CD.NgheNghiep, CD.TonGiao FROM CONGDAN AS CD EXCEPT SELECT CONGDAN.CCCD, CONGDAN.Ten, CONGDAN.SDT, CONGDAN.NgheNghiep, CONGDAN.TonGiao FROM CONGDAN, HONNHAN WHERE CONGDAN.CCCD = HONNHAN.CCCDNam OR CONGDAN.CCCD = HONNHAN.CCCDNu) as CONGDAN WHERE  CONGDAN.Ten like N'%{tu}%' OR CCCD like '%{tu}%' OR SDT like '%{tu}%' OR NgheNghiep like N'%{tu}%' OR TonGiao like N'%{tu}%'");
-            return conn.LayDanhSach(strSql);
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Congdans
+                           where ((from p in conn.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() > 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+                           select q;
+                return list.ToList();
+            }
         }
-        public DataTable LayDanhSachTuoiXepTuBeDenLon(string tu)
+        public List<Congdan> LayDanhSachChuaKetHon(string tu)
         {
-            string strSql = string.Format($"SELECT CONGDAN.CCCD, CONGDAN.Ten as 'Họ và tên', CONGDAN.SDT as 'Số điện thoại', CONGDAN.NgheNghiep as 'Nghề nghiệp', CONGDAN.TonGiao as 'Tôn giáo' FROM CONGDAN INNER JOIN KHAISINH ON CONGDAN.CCCD = KHAISINH.MaKS WHERE CONGDAN.Ten like N'%{tu}%' OR CCCD like '%{tu}%' OR SDT like '%{tu}%' OR NgheNghiep like N'%{tu}%' OR TonGiao like N'%{tu}%' ORDER BY NgaySinh DESC");
-            return conn.LayDanhSach(strSql);
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Congdans
+                           where ((from p in conn.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() == 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+                           select q;
+                return list.ToList();
+            }
         }
-        public DataTable LayDanhSachChuaTu(string tu)
+        public List<Congdan> LayDanhSachTuoiXepTuBeDenLon(string tu)
         {
-            string strSql = string.Format($"SELECT CONGDAN.CCCD, CONGDAN.Ten as 'Họ và tên', CONGDAN.SDT as 'Số điện thoại', CONGDAN.NgheNghiep as 'Nghề nghiệp', CONGDAN.TonGiao as 'Tôn giáo' FROM CONGDAN WHERE Ten like N'%{tu}%' OR CCCD like '%{tu}%' OR SDT like '%{tu}%' OR NgheNghiep like N'%{tu}%' OR TonGiao like N'%{tu}%'");
-            return conn.LayDanhSach(strSql);
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Congdans
+                           join p in conn.Khaisinhs
+                           on q.Cccd equals p.MaKs
+                           where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+                           orderby p.NgaySinh
+                           select q;
+                return list.ToList();
+            }
+        }
+        public List<Congdan> LayDanhSachChuaTu(string tu)
+        {
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Congdans
+                           where (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu))
+                           select q;
+                return list.ToList();
+            }
         }
         public int LaySoLuongCongDan()
         {

@@ -187,7 +187,7 @@
             this.fpnlPhanLoai.Controls.Add(this.btnKetHon);
             this.fpnlPhanLoai.Location = new System.Drawing.Point(12, 64);
             this.fpnlPhanLoai.Name = "fpnlPhanLoai";
-            this.fpnlPhanLoai.Size = new System.Drawing.Size(799, 47);
+            this.fpnlPhanLoai.Size = new System.Drawing.Size(843, 47);
             this.fpnlPhanLoai.TabIndex = 8;
             // 
             // btnLoc
@@ -224,7 +224,7 @@
             this.btnKetHon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKetHon.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnKetHon.ForeColor = System.Drawing.Color.Black;
-            this.btnKetHon.Location = new System.Drawing.Point(3, 49);
+            this.btnKetHon.Location = new System.Drawing.Point(696, 3);
             this.btnKetHon.Name = "btnKetHon";
             this.btnKetHon.Size = new System.Drawing.Size(125, 40);
             this.btnKetHon.TabIndex = 9;

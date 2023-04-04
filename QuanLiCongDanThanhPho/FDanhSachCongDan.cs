@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCongDanThanhPho.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,13 +15,13 @@ namespace QuanLiCongDanThanhPho
     {
         CongDanDAO cdDao;
         private string luaChon;
-        private DataTable ds;
+        private List<Congdan> ds;
         public FDanhSachCongDan()
         {
 
             InitializeComponent();
             cdDao = new CongDanDAO();
-            ds = new DataTable();
+            ds = new List<Congdan>();
             StackForm.Add(this);
             luaChon = "tat ca";
         }
@@ -60,7 +61,7 @@ namespace QuanLiCongDanThanhPho
         //Tải danh sách lên datagridview
         private void LoadDanhSach()
         {
-            gvDanhSachCongDan.DataSource = NgatTrang(ds,15); 
+            gvDanhSachCongDan.DataSource = NgatTrang(ds,15);   
         }
 
 
@@ -166,9 +167,9 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Phân trang cho datagridview
-        private DataTable NgatTrang(DataTable ds, int recordNum)
+        private List<Congdan> NgatTrang(List<Congdan> ds, int recordNum)
         {
-            int totalRecord = ds.Rows.Count;
+            int totalRecord = ds.Count;
             if (totalRecord <= 0)
                 return ds;
             if (totalRecord % recordNum != 0)
@@ -176,7 +177,7 @@ namespace QuanLiCongDanThanhPho
             else
                 nudPage.Maximum =  totalRecord / recordNum;
             int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page -1)* recordNum).Take(recordNum).CopyToDataTable();
+            return ds.AsEnumerable().Skip((page -1)* recordNum).Take(recordNum).ToList();
         }
 
         //Đóng mở các nút lọc
@@ -188,7 +189,7 @@ namespace QuanLiCongDanThanhPho
             }    
             else 
             {
-                fpnlPhanLoai.Width = 800;
+                fpnlPhanLoai.Width = 900;
             }
         }
 

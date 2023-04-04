@@ -46,9 +46,9 @@ namespace QuanLiCongDanThanhPho
                 CongDan chuHo = cdDAO.LayThongTin(hk.CCCDChuHo);
                 txtTenChuHo.Text = chuHo.Ten.ToString();
                 //---Quan he voi chu ho---//
-                DataTable dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
+                var dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
                 gvQuanHeVoiChuHo.DataSource = dsNguoiTrongHo;
-                lblTong.Text = "Tổng thành viên: " + dsNguoiTrongHo.Rows.Count.ToString();
+                lblTong.Text = "Tổng thành viên: " + dsNguoiTrongHo.Count.ToString();
             }
         }
         private void CapNhatHoKhau()
