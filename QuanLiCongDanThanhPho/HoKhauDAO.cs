@@ -1,4 +1,6 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,26 +19,52 @@ namespace QuanLiCongDanThanhPho
             string sqlStr = string.Format($"INSERT INTO HOKHAU(MaHK,DiaChi,CCCDChuHo) VALUES('{hK.MaHoKhau}',N'{hK.DiaChi.toString()}', '{hK.CCCDChuHo}');");
             conn.ThucThi(sqlStr, "Tạo hộ khẩu mới thành công");
         }
-        public DataTable LayDanhSach()
+        public List<Hokhau> LayDanhSach()
         {
-            return conn.LayDanhSach("SELECT MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ' FROM HOKHAU EXCEPT SELECT MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ' FROM HOKHAU WHERE MaHK like '00000A' OR MaHK like '00000B'");
+            using (var conn = new QuanlitpContext())
+            {
+                var Hks = from q in conn.Hokhaus
+                          select q;
+                return Hks.ToList();
+            }
         }
         public HoKhau LayThongTin(string maHoKhau)
         {
+
             string sqlStr = string.Format("SELECT * FROM HOKHAU WHERE MaHK = '{0}'", maHoKhau);
             return conn.LayThongTinHoKhau(sqlStr);
         }
-        public DataTable LayDanhSachChuaTu(string tu)
+        public List<Hokhau> LayDanhSachChuaTu(string tu)
         {
-            string sqlStr = string.Format($"SELECT MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ' FROM HOKHAU WHERE DiaChi like N'%{tu}%' OR CCCDChuHo like '%{tu}%' OR MaHK like '%{tu}%' EXCEPT SELECT MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ' FROM HOKHAU WHERE MaHK like '00000A' OR MaHK like '00000B'");
-            return conn.LayDanhSach(sqlStr);
+            using (var conn = new QuanlitpContext())
+            {
+                var Hks = from q in conn.Hokhaus
+                          where (q.MaHk.Contains(tu) || q.DiaChi.Contains(tu) || q.CccdchuHo.Contains(tu)) && (q.MaHk != "00000A" && q.MaHk != "00000B")
+                          select q;
+                return Hks.ToList();
+            }
         }
-        public DataTable LayDanhSachXepTheoSoTV(string tu)
+        public List<Hokhau> LayDanhSachXepTheoSoTV(string tu)
         {
-            string sqlStr = string.Format($"SELECT HOKHAU.MaHK as 'Mã hộ khẩu', DiaChi as 'Địa chỉ', CCCDChuHo as 'CCCD của chủ hộ', SL FROM (SELECT * FROM HOKHAU EXCEPT SELECT * FROM HOKHAU WHERE MaHK like '00000A' OR MaHK like '00000B') as HOKHAU INNER JOIN (SELECT MaHK, count(CCCD) as SL FROM CONGDAN GROUP BY MaHK) as SLCONGDAN ON HOKHAU.MaHK = SLCONGDAN.MaHK WHERE DiaChi like N'%{tu}%' OR CCCDChuHo like '%{tu}%' OR HOKHAU.MaHK like '%{tu}%' ORDER BY SL ASC");
-            DataTable ds = conn.LayDanhSach(sqlStr);
-            ds.Columns.Remove("SL");
-            return ds;
+            using (var conn = new QuanlitpContext())
+            {
+                var result = (from h in conn.Hokhaus
+                              where !(h.MaHk == "00000A" || h.MaHk == "00000B")
+                              join c in (from cong in conn.Congdans
+                                         group cong by cong.MaHk into g
+                                         select new { MaHK = g.Key, SL = g.Count() })
+                              on h.MaHk equals c.MaHK
+                              where h.DiaChi.Contains(tu) || h.CccdchuHo.Contains(tu) || h.MaHk.Contains(tu)
+                              orderby c.SL ascending
+                              select new Hokhau
+                              {
+                                  MaHk = h.MaHk,
+                                  DiaChi = h.DiaChi,
+                                  CccdchuHo = h.CccdchuHo,
+                                  
+                              });
+                return result.ToList();
+            }
         }
         public void CapNhatHoKhau(HoKhau hK)
         {
@@ -48,10 +76,45 @@ namespace QuanLiCongDanThanhPho
             string sqlStr = string.Format($"DELETE HOKHAU WHERE MaHK = '{hK.MaHoKhau}'");
             conn.ThucThi(sqlStr, "Đã xóa hộ không còn thành viên");
         }
-        public DataTable TimHoNhieuNguoiNhat()
+        public List<object> TimHoNhieuNguoiNhat()
         {
             string sqlStr = string.Format("SELECT MaHK as 'Mã hộ', count(CCCD) as 'Số lượng' FROM CONGDAN GROUP BY MaHK HAVING count(CCCD) = (SELECT max(SL) FROM (SELECT count(CCCD) as SL FROM CONGDAN WHERE MaHK != '00000B' AND MaHK != '00000A' GROUP BY MaHK) as A)");
-            return conn.LayDanhSach(sqlStr);
+            using (var conn = new QuanlitpContext()) {
+                //var result = (from c in conn.Congdans
+                //              where c.MaHk != "00000A" && c.MaHk != "00000B"
+                //              group c by c.MaHk into g
+                //              let count = g.Count()
+                //              group count by g.Key into g2
+                //              where g2.Count() > 0 && g2.Max() == (from c2 in conn.Congdans
+                //                                                   where c2.MaHk != "00000A" && c2.MaHk != "00000B"
+                //                                                   group c2 by c2.MaHk into g3
+                //                                                   select g3.Count()).Max()
+                //              select new 
+                //              {
+                //                  MaHk = g2.Key,
+                //                  SoLuong = g2.Max()
+                //              }).Cast<object>();
+                var subquery = conn.Congdans
+                    .Where(c => c.MaHk != "00000A" && c.MaHk != "00000B")
+                    .GroupBy(c => c.MaHk)
+                    .Select(g => g.Count());
+
+                var result = conn.Congdans
+                    .Where(c => c.MaHk != "00000A" && c.MaHk != "00000B")
+                    .GroupBy(c => c.MaHk)
+                    .Select(g => new {
+                        MaHk = g.Key,
+                        SoLuong = g.Count()
+                    })
+                    .Where(x => x.SoLuong == subquery.Max())
+                    .Select(x => new {
+                        x.MaHk,
+                        x.SoLuong
+                    })
+                    .Cast<object>()
+                    .ToList();
+                return result.ToList();
+            }
         }
     }
 }

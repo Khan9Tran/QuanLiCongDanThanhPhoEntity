@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCongDanThanhPho.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,12 +15,12 @@ namespace QuanLiCongDanThanhPho
     {
         HoKhauDAO hkDao = new HoKhauDAO();
         private string luaChon;
-        private DataTable ds;
+        private List<Hokhau> ds;
         public FDanhSachHoKhau()
         {
             InitializeComponent();
             StackForm.Add(this);
-            ds = new DataTable();
+            ds = new List<Hokhau>();
             luaChon = "tat ca";
         }
 
@@ -55,9 +56,9 @@ namespace QuanLiCongDanThanhPho
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
             if (luaChon == "tat ca")
-               ds = hkDao.LayDanhSachChuaTu(txtTimKiem.Text);
+                ds = hkDao.LayDanhSachChuaTu(txtTimKiem.Text);
             else if (luaChon == "sotv")
-               ds = hkDao.LayDanhSachXepTheoSoTV(txtTimKiem.Text);
+                ds = hkDao.LayDanhSachXepTheoSoTV(txtTimKiem.Text);
             nudPage.Value = 1;
             LayDanhSach();
         }
@@ -95,9 +96,9 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Tạo ngắt trang
-        private DataTable NgatTrang(DataTable ds, int recordNum)
+        private List<Hokhau> NgatTrang(List<Hokhau> ds, int recordNum)
         {
-            int totalRecord = ds.Rows.Count;
+            int totalRecord = ds.Count;
             if (totalRecord <= 0)
                 return ds;
             if (totalRecord % recordNum != 0)
@@ -105,7 +106,7 @@ namespace QuanLiCongDanThanhPho
             else
                 nudPage.Maximum = totalRecord / recordNum;
             int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).CopyToDataTable();
+            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).ToList();
         }
 
         private void nudPage_ValueChanged(object sender, EventArgs e)
