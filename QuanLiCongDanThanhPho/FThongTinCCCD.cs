@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinCCCD : Form
     {
-        CongDan congDan;
+        Congdan congDan;
 
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
@@ -24,7 +24,7 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
         }
-        public FThongTinCCCD(CongDan congDan)
+        public FThongTinCCCD(Congdan congDan)
         {
             InitializeComponent();
             StackForm.Add(this);
@@ -32,7 +32,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void HienThiThongTin()
         {
-            lblCCCD.Text = congDan.CCCD;
+            lblCCCD.Text = congDan.Cccd;
             lblTen.Text = congDan.Ten.ToUpper();
             KhaiSinhDAO khaiSinhDAO = new KhaiSinhDAO();
             KhaiSinh ks = khaiSinhDAO.LayThongTin(lblCCCD.Text);
@@ -43,10 +43,10 @@ namespace QuanLiCongDanThanhPho
             lblQueQuan.Text = ks.QueQuan.toString();
             lblQuocTich.Text = ks.QuocTich;
             HoKhauDAO hoKhauDAO = new HoKhauDAO();
-            Hokhau hk = hoKhauDAO.LayThongTin(congDan.MaHoKhau);
+            Hokhau hk = hoKhauDAO.LayThongTin(congDan.MaHk);
             lblDiaChi.Text = hk.DiaChi;
             CCCDDAO cCCDDAO = new CCCDDAO();
-            CCCD cCCD =cCCDDAO.LayThongTin(new CCCD(congDan.CCCD, DateTime.Now, "unknow"));
+            CCCD cCCD =cCCDDAO.LayThongTin(new CCCD(congDan.Cccd, DateTime.Now, "unknow"));
             lblNgayCap.Text = cCCD.NgayCap.ToShortDateString();
             lblDDNhanDang.Text = cCCD.DacDiem;
 

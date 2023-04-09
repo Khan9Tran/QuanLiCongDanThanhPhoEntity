@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FKhaiTu : Form
@@ -27,8 +27,8 @@ namespace QuanLiCongDanThanhPho
 
         private bool KiemTraThongTin()
         {
-            CongDan cD = congDanDAO.LayThongTin(txtCCCD.Text);
-            if (!KiemTraDuLieuNhap.isCCCD(txtCCCD.Text) || cD.CCCD == null)
+            Congdan cD = congDanDAO.LayThongTin(txtCCCD.Text);
+            if (!KiemTraDuLieuNhap.isCCCD(txtCCCD.Text) || cD.Cccd == null)
             {
                 MessageBox.Show("CCCD không chính xác");
                 txtCCCD.Focus();
@@ -45,7 +45,11 @@ namespace QuanLiCongDanThanhPho
         }
         private void XoaCongDan()
         {
-            CongDan cD = new CongDan(txtCCCD.Text, txtTen.Text);
+            Congdan cD = new Congdan()
+            {
+                Cccd = txtCCCD.Text,
+                Ten = txtTen.Text,
+            };
             congDanDAO.XoaCongDan(cD);
         }
         private void Reset()

@@ -143,11 +143,11 @@ namespace QuanLiCongDanThanhPho
         //Lấy ảnh công dân hiện lên picturebox
         private void LayCongDan()
         {
-            CongDan cd = cdDAO.LayThongTin(MaCCCD);
-            txtCCCD.Text = cd.CCCD;
+            Congdan cd = cdDAO.LayThongTin(MaCCCD);
+            txtCCCD.Text = cd.Cccd;
             txtHoVaTen.Text = cd.Ten;
-            txtMaHoKhau.Text = cd.MaHoKhau;
-            txtSDT.Text = cd.SDT;
+            txtMaHoKhau.Text = cd.MaHk;
+            txtSDT.Text = cd.Sdt;
             txtTonGiao.Text = cd.TonGiao;
             txtNgheNghiep.Text = cd.NgheNghiep;
             txtQuanHeVoiChuHo.Text = cd.QuanHeVoiChuHo;
@@ -189,8 +189,8 @@ namespace QuanLiCongDanThanhPho
 
         private void LayHoKhau()
         {
-            CongDan cd = cdDAO.LayThongTin(MaCCCD);
-            Hokhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
+            Congdan cd = cdDAO.LayThongTin(MaCCCD);
+            Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
             txtDiaChi.Text = hk.DiaChi;
         }
 
@@ -260,8 +260,8 @@ namespace QuanLiCongDanThanhPho
 
         private void btnHoKhau_Click(object sender, EventArgs e)
         {
-            CongDan cd = cdDAO.LayThongTin(maCCCD);
-            FThongTinHoKhau tTHK = new FThongTinHoKhau(cd.MaHoKhau);
+            Congdan cd = cdDAO.LayThongTin(maCCCD);
+            FThongTinHoKhau tTHK = new FThongTinHoKhau(cd.MaHk);
             tTHK.ShowDialog();
         }
 
@@ -357,9 +357,9 @@ namespace QuanLiCongDanThanhPho
 
         private void CapNhatCongDan()
         {
-            CongDan cd = cdDAO.LayThongTin(MaCCCD);
+            Congdan cd = cdDAO.LayThongTin(MaCCCD);
             cd.Ten = txtHoVaTen.Text;
-            cd.SDT = txtSDT.Text;
+            cd.Sdt = txtSDT.Text;
             cd.NgheNghiep = txtNgheNghiep.Text;
             cd.TonGiao = txtTonGiao.Text;
             cd.QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text;
@@ -376,7 +376,7 @@ namespace QuanLiCongDanThanhPho
                 Hokhau hoKhau = hKDAO.LayThongTin(txtMaHoKhau.Text);
                 if (hoKhau.CccdchuHo != txtCCCD.Text)
                 {
-                    CongDan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
+                    Congdan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
                     cD.QuanHeVoiChuHo = "Unknow";
                     cdDAO.CapNhatCongDan(cD);
                     hoKhau.CccdchuHo = txtCCCD.Text;

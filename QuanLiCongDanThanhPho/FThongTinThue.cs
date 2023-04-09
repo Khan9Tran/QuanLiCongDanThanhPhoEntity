@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinThue : Form
@@ -100,12 +100,12 @@ namespace QuanLiCongDanThanhPho
             if (MaCCCD != null)
             {
                 Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
-                CongDan cd = cdDAO.LayThongTin(MaCCCD);
-                Hokhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
+                Congdan cd = cdDAO.LayThongTin(MaCCCD);
+                Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
                 txtMaSoThue.Text = thue.MaThue;
                 txtTen.Text = cd.Ten;
-                txtCCCD.Text = cd.CCCD;
-                txtSdt.Text = cd.SDT;
+                txtCCCD.Text = cd.Cccd;
+                txtSdt.Text = cd.Sdt;
                 txtDiaChi.Text = hk.DiaChi;
                 txtSoTienCanNop.Text = DinhDangTienTe(thue.SoTienCanNop);
                 txtSoTienDaNop.Text = DinhDangTienTe(thue.SoTienDaNop);

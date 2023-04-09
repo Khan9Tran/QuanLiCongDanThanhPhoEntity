@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinHoKhau : Form
@@ -44,7 +44,7 @@ namespace QuanLiCongDanThanhPho
                 txtMaHoKhau.Text = hk.MaHk;
                 txtDiaChi.Text = hk.DiaChi;
                 //---Thong tin chu ho---//
-                CongDan chuHo = cdDAO.LayThongTin(hk.CccdchuHo);
+                Congdan chuHo = cdDAO.LayThongTin(hk.CccdchuHo);
                 txtTenChuHo.Text = chuHo.Ten.ToString();
                 //---Quan he voi chu ho---//
                 var dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
