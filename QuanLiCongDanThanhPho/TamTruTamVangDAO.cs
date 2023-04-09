@@ -5,89 +5,122 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
+using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
 namespace QuanLiCongDanThanhPho
 {
     internal class TamTruTamVangDAO
     {
         DBConnection conn = new DBConnection();
-
-        public DataTable LayDanhSach()
+        public List<Tamtrutamvang> LayDanhSachTamTru(string tu)
         {
-            return conn.LayDanhSach("SELECT MaTTTV as 'Mã tạm trú/tạm vắng', CCCD, DiaChi as 'Địa chỉ', NgayBD as 'Ngày bắt đầu', NgayKT as 'Ngày kết thúc', TrangThai as 'Trạng thái', LiDo as 'Lí do' FROM TAMTRUTAMVANG");
+            var list = from q in LayDanhSachChuaTu(tu)
+                       where q.TrangThai == "Tạm trú"
+                       select q;
+            return list.ToList();
         }
-        public string ChuoiLayDanhSachTheoTu(string tu)
+        public List<Tamtrutamvang> LayDanhSachTamVang(string tu)
         {
-            string str = string.Format($"SELECT MaTTTV as 'Mã', CCCD, DiaChi as 'Địa chỉ', NgayBD as 'Ngày bắt đầu', NgayKT as 'Ngày kết thúc', TrangThai as 'Trạng thái', LiDo as 'Lí do' FROM TAMTRUTAMVANG WHERE (MaTTTV like '%{tu}%' OR CCCD like '%{tu}%' OR DiaChi like N'%{tu}%' OR Convert(varchar,Format(NgayBD, 'dd/MM/yyyy')) like '%{tu}%' OR Convert(varchar,Format(NgayKT, 'dd/MM/yyyy')) like '%{tu}%' OR TrangThai like N'%{tu}%' OR LiDo like N'%{tu}%')");
-            return str;
+            var list = from q in LayDanhSachChuaTu(tu)
+                       where q.TrangThai == "Tạm vắng"
+                       select q;
+            return list.ToList();
         }
-        public string ChuoiDemSoLuong()
+        public void ThemTamTruTamVang(Tamtrutamvang tTTV)
         {
-            string str = string.Format("SELECT COUNT(*) as COUNT FROM TAMTRUTAMVANG");
-            return str;
-        }
-        public DataTable LayDanhSachTamTru(string tu)
-        {
-            string sqlStr = ChuoiLayDanhSachTheoTu(tu) + " AND TrangThai = N'Tạm trú'";
-            return conn.LayDanhSach(sqlStr);
-        }
-        public DataTable LayDanhSachTamVang(string tu)
-        {
-            string sqlStr = ChuoiLayDanhSachTheoTu(tu) + " AND TrangThai = N'Tạm vắng'";
-            return conn.LayDanhSach(sqlStr);
-        }
-        public void ThemTamTruTamVang(TamTruTamVang tTTV)
-        {
-            string sqlStr = string.Format($"INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('{tTTV.MaSo}','{tTTV.CCCD}',N'{tTTV.DiaChi.toString()}' ,'{tTTV.NgayBatDau}', '{tTTV.NgayKetThuc}', N'{tTTV.TrangThai}', N'{tTTV.LyDo}' );");
-            conn.ThucThi(sqlStr, "Thêm tạm vắng/tạm trú thành công");   
+            using (var conn = new QuanlitpContext()) 
+            {
+                conn.Tamtrutamvangs.Add(tTTV);
+                conn.SaveChanges();
+            }
         }
         public void XoaTamTruTamVang(string canCuoc)
         {
-            string sqlStr = string.Format($"DELETE FROM TAMTRUTAMVANG WHERE CCCD = '{canCuoc}'");
-            conn.ThucThi(sqlStr, "Xóa tạm vắng/tạm trú thành công");
+            using (var conn = new QuanlitpContext())
+            {
+                Tamtrutamvang tTTV = conn.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).SingleOrDefault();
+                conn.Tamtrutamvangs.Remove(tTTV);
+                conn.SaveChanges();
+            }
         }
         public Boolean KiemTraTamTruTamVang(string maCCCD)
         {
-            string sqlStr = ChuoiDemSoLuong() + $" WHERE CCCD = '{maCCCD}'"; //string.Format("SELECT COUNT(*) as COUNT FROM TAMTRUTAMVANG WHERE CCCD = '{0}'", maCCCD);
-            return conn.KiemTraCoKhong(sqlStr);
+            return LayThongTin(maCCCD) != null;
         }
-        public TamTruTamVang LayThongTin(string maCCCD)
+        public Tamtrutamvang LayThongTin(string maCCCD)
         {
-            string sqlStr = string.Format("SELECT * FROM TAMTRUTAMVANG WHERE CCCD = {0}", maCCCD);
-            return conn.LayThongTinTamTruTamVang(sqlStr);
+            using (var conn = new QuanlitpContext())
+            {
+                var tTTV = conn.Tamtrutamvangs.First(q => q.Cccd == maCCCD);
+                return tTTV;
+            }
+        } 
+
+        public List<Tamtrutamvang> LayDanhSachChuaTu(string tu)
+        {
+            using (var conn = new QuanlitpContext()) 
+            {
+                var list = from q in conn.Tamtrutamvangs
+                           where q.LiDo.Contains(tu) ||q.DiaChi.Contains(tu) || q.TrangThai.Contains(tu) || q.MaTttv.Contains(tu)
+                           select q;
+                return list.ToList();
+            }
+                
         }
-        public DataTable LayDanhSachChuaTu(string tu)
+        public List<Tamtrutamvang> LayDanhSachTheoTrangThai(string trangthai)
         {
-            string sqlStr = ChuoiLayDanhSachTheoTu(tu);
-            return conn.LayDanhSach(sqlStr);
+            var list = from q in LayDanhSach()
+                       where q.TrangThai == trangthai
+                       select q;
+            return list.ToList();
         }
         public int LaySoLuongTamTru()
         {
-            return LaySoLuong(ChuoiDemSoLuong() + " WHERE TrangThai = N'Tạm trú'");
+            var list = LayDanhSachTheoTrangThai("Tạm trú");
+            return list.Count;
         }
         public int LaySoLuongTamVang()
         {
-            return LaySoLuong(ChuoiDemSoLuong() + " WHERE TrangThai = N'Tạm vắng'");
+            var list = LayDanhSachTheoTrangThai("Tạm vắng");
+            return list.Count;
         }
-        public DataTable LayDanhSachQuaHan(string tu)
+
+        public List<Tamtrutamvang> LayDanhSachQuaHan(string tu)
         {
-            string sqlStr = ChuoiLayDanhSachTheoTu(tu) + " AND GETDATE() > NgayKT";
-            return conn.LayDanhSach(sqlStr);
+            var list = from q in LayDanhSachChuaTu(tu)
+                       where q.NgayKt < DateTime.Now
+                       select q;
+            return list.ToList();
         }
         public int LaySoLuongQuaHanTamTru()
         {
-            return LaySoLuong(ChuoiDemSoLuong() + " WHERE TrangThai = N'Tạm trú' AND GETDATE() > NgayKT");
+            var list = from q in LayDanhSachTheoTrangThai("Tạm trú")
+                       where q.NgayKt < DateTime.Now
+                       select q;
+            return list.ToList().Count;
      
         }
         public int LaySoLuongQuaHanTamVang()
         {
-            return LaySoLuong(ChuoiDemSoLuong() + " WHERE TrangThai = N'Tạm vắng' AND GETDATE() > NgayKT");
+            var list = from q in LayDanhSachTheoTrangThai("Tạm vắng")
+                       where q.NgayKt < DateTime.Now
+                       select q;
+            return list.ToList().Count;
+
         }
-        public int LaySoLuong(string sqlStr)
+        public List<Tamtrutamvang> LayDanhSach()
         {
-            DataTable dt = conn.LayDanhSach(sqlStr);
-            int count = dt.Rows[0].Field<int>("COUNT");
-            return count;
+            using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Tamtrutamvangs
+                           select q;
+                return list.ToList();
+            }
+        }
+        public int LaySoLuong()
+        {
+            var list = LayDanhSach();
+            return list.Count;
         }
     }
 }

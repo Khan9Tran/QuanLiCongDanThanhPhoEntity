@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,12 +16,12 @@ namespace QuanLiCongDanThanhPho
     {
         TamTruTamVangDAO tttvDao;
         private string luaChon;
-        private DataTable ds;
+        private List<Tamtrutamvang> ds;
         public FDanhSachTamTruTamVang()
         {
             InitializeComponent();
             StackForm.Add(this);
-            ds = new DataTable();
+            ds = new List<Tamtrutamvang>();
             tttvDao = new TamTruTamVangDAO();
             luaChon = "tat ca";
         }
@@ -110,9 +111,9 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Ngắt trang
-        private DataTable NgatTrang(DataTable ds, int recordNum)
+        private List<Tamtrutamvang> NgatTrang(List<Tamtrutamvang> ds, int recordNum)
         {
-            int totalRecord = ds.Rows.Count;
+            int totalRecord = ds.Count;
             if (totalRecord <= 0)
                 return ds;
             if (totalRecord % recordNum != 0)
@@ -120,7 +121,7 @@ namespace QuanLiCongDanThanhPho
             else
                 nudPage.Maximum = totalRecord / recordNum;
             int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).CopyToDataTable();
+            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).ToList();
         }
 
         private void nudPage_ValueChanged(object sender, EventArgs e)

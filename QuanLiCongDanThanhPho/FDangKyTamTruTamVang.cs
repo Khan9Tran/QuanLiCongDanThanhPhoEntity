@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
 namespace QuanLiCongDanThanhPho
 {
@@ -73,7 +74,17 @@ namespace QuanLiCongDanThanhPho
                     CongDanDAO cDTamTruDAO = new CongDanDAO();
                     cDTamTruDAO.ThemCongDan(cDTamTru);
                 }
-                TamTruTamVang tTTV = new TamTruTamVang(txtMaSo.Text, txtCCCD.Text, rdoTamTru.Checked.ToString(), dtpNgayBatDau.Value, dtpNgayKetThuc.Value, txtDiaChi.Text, txtLiDo.Text);
+                Tamtrutamvang tTTV = new Tamtrutamvang()
+                {
+                    Cccd = txtCCCD.Text,
+                    TrangThai = txtLiDo.Text,
+                    MaTttv = txtMaSo.Text,
+                    NgayBd = dtpNgayBatDau.Value,
+                    NgayKt = dtpNgayKetThuc.Value,
+                    LiDo = txtLiDo.Text,
+                    DiaChi = txtDiaChi.Text,
+
+                };
                 tTTVDAO.ThemTamTruTamVang(tTTV);
             }
         }

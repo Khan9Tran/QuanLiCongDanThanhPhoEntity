@@ -5,6 +5,7 @@ namespace QuanLiCongDanThanhPho.Model;
 
 public partial class Tamtrutamvang
 {
+
     public string? MaTttv { get; set; }
 
     public string Cccd { get; set; } = null!;
@@ -20,4 +21,5 @@ public partial class Tamtrutamvang
     public string? LiDo { get; set; }
 
     public virtual Cccd CccdNavigation { get; set; } = null!;
+
 }

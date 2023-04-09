@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -167,7 +168,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayThue()
         {
-            Thue thue = thueDAO.LayThongTin(MaCCCD);
+            Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
             if (thue.MaThue == null || thue.MaThue == "")
                 btnThue.Enabled = false;
             txtMaThue.Text = thue.MaThue;
@@ -195,7 +196,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayTamTruTamVang()
         {
-            TamTruTamVang tttv = new TamTruTamVang();
+           Tamtrutamvang tttv = new Tamtrutamvang();
             if (!tttvDAO.KiemTraTamTruTamVang(MaCCCD))
                 txtGhiChu.Text = "Không có ghi chú";
             else
