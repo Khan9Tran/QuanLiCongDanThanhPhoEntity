@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyKhaiSinh : Form
@@ -139,7 +139,11 @@ namespace QuanLiCongDanThanhPho
             if (KiemTraThongTin() && KiemTraChaMe())
             { 
                 CongDanDAO cDDAO = new CongDanDAO();
-                CongDan congDan = new CongDan(txtCccd.Text, txtTen.Text);
+                Congdan congDan = new Congdan()
+                {
+                    Ten = txtTen.Text,
+                    Cccd = txtCccd.Text
+                };
                 cDDAO.ThemCongDan(congDan);
                 KhaiSinh kS = new KhaiSinh(txtCccd.Text, txtTen.Text, rdoNam.Checked.ToString(), cboQuocTich.SelectedItem.ToString(), cboDanToc.SelectedItem.ToString(), dtmNgaySinh.Value, dtmNgayDangKy.Value, txtNoiSinh.Text, txtQueQuan.Text, txtCccdCha.Text, txtTenCha.Text, txtCccdMe.Text, txtTenMe.Text);
                 kSDAO.ThemKhaSinh(kS);

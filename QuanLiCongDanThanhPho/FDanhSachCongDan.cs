@@ -151,7 +151,7 @@ namespace QuanLiCongDanThanhPho
             string maCCCD = GetCCCD();
             if (maCCCD != "")
             {
-                CongDan cd = cdDao.LayThongTin(maCCCD);
+                Congdan cd = cdDao.LayThongTin(maCCCD);
                 cdDao.XoaCongDan(cd);
                 txtTimKiem_TextChanged(txtTimKiem, null);
             }

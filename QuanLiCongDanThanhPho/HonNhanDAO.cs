@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     internal class HonNhanDAO
@@ -46,11 +46,15 @@ namespace QuanLiCongDanThanhPho
             }
 
             //Thêm công dân chưa có vào tạm trong hệ thống
-            CongDan congDan;
+            Congdan congDan;
             KhaiSinh khaiSinh;
             if (tenChong == "unknow")
             {
-                congDan = new CongDan(hN.CCCDChong, hN.TenChong);
+                congDan = new Congdan()
+                {   
+                    Cccd = hN.CCCDChong,
+                    Ten =hN.TenChong
+                };
                 khaiSinh = new KhaiSinh(hN.CCCDChong, hN.TenChong);
                 MessageBox.Show("Thông chồng đã được tạo, nếu sống trong khu vực hãy bổ sung thông tin");
                 congDanDAO.ThemCongDan(congDan);
@@ -58,7 +62,11 @@ namespace QuanLiCongDanThanhPho
             }
             if (tenVo == "unknow")
             {
-                congDan = new CongDan(hN.CCCDVo, hN.TenVo);
+                congDan = new Congdan()
+                {
+                    Cccd = hN.CCCDVo,
+                    Ten = hN.TenVo
+                };
                 khaiSinh = new KhaiSinh(hN.CCCDVo, hN.TenVo);
                 MessageBox.Show("Thông tin vợ đã được tạo, nếu sống trong khu vực hãy bổ sung thông tin");
                 congDanDAO.ThemCongDan(congDan);

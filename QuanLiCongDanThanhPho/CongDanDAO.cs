@@ -12,50 +12,71 @@ namespace QuanLiCongDanThanhPho
     {
         DBConnection conn = new DBConnection();
         public CongDanDAO() { }
-        public void ThemCongDan(CongDan cD)
-        {
-            string strSql = string.Format($"INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('{cD.CCCD}' , N'{cD.Ten}', N'{cD.NgheNghiep}', '{cD.SDT}', N'{cD.TonGiao}', '{cD.MaHoKhau}', N'{cD.QuanHeVoiChuHo}');");
-            conn.ThucThi(strSql, "Công dân hợp lệ");
-            CCCD cCCD = new CCCD(cD.CCCD);
+        public void ThemCongDan(Congdan cD)
+        {   
+            using (var conn = new QuanlitpContext())
+            {
+                conn.Congdans.Add(cD);
+                conn.SaveChanges();
+            }    
+            CCCD cCCD = new CCCD(cD.Cccd);
             CCCDDAO cCCDDAO = new CCCDDAO();
             cCCDDAO.ThemCCCD(cCCD);
         }
-        public void XoaCongDan(CongDan cD)
+        public void XoaCongDan(Congdan cD)
         {
             ThueDAO thueDAO = new ThueDAO();
             KhaiSinhDAO ksDAO = new KhaiSinhDAO();
             TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
             HonNhanDAO hnDAO = new HonNhanDAO();
             CCCDDAO cCCCDAO = new CCCDDAO();
-            thueDAO.XoaThue(cD.CCCD);
-            ksDAO.XoaKhaiSinh(cD.CCCD);
-            if (tTTTVDAO.KiemTraTamTruTamVang(cD.CCCD))
+            thueDAO.XoaThue(cD.Cccd);
+            ksDAO.XoaKhaiSinh(cD.Cccd);
+            if (tTTTVDAO.KiemTraTamTruTamVang(cD.Cccd))
             {
-                tTTTVDAO.XoaTamTruTamVang(cD.CCCD);
+                tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
             }
-            if (hnDAO.KiemTraHonNhan(cD.CCCD))
+            if (hnDAO.KiemTraHonNhan(cD.Cccd))
             {
-                HonNhan hn = hnDAO.LayThongTin(cD.CCCD);
+                HonNhan hn = hnDAO.LayThongTin(cD.Cccd);
                 hnDAO.Xoa(hn);
             }
-            cCCCDAO.XoaCCCD(cD.CCCD);
-            string strSql = string.Format($"DELETE FROM CONGDAN WHERE CCCD = '{cD.CCCD}'");
-            conn.ThucThi(strSql, "Xóa công dân thành công");
+            cCCCDAO.XoaCCCD(cD.Cccd);
+            using (var conn = new QuanlitpContext())
+            {
+                Congdan congdan = conn.Congdans.Find(cD.Cccd);
+                conn.Congdans.Remove(congdan);
+                conn.SaveChanges();
+            }    
         }
-        public void CapNhatCongDan(CongDan cD )
+        public void CapNhatCongDan(Congdan cD )
         {
-            string strSql = string.Format($"UPDATE CONGDAN SET Ten = N'{cD.Ten}', NgheNghiep = N'{cD.NgheNghiep}', TonGiao = N'{cD.TonGiao}', SDT = '{cD.SDT}', MaHK = '{cD.MaHoKhau}', QuanHeVoiChuHo = N'{cD.QuanHeVoiChuHo}' WHERE CCCD = '{cD.CCCD}'");
-            conn.ThucThi(strSql, "Cập nhật thông tin thành công");
+           using (var conn = new QuanlitpContext())
+           {
+                Congdan congDan = conn.Congdans.Find(cD.Cccd);
+                congDan = cD;
+                conn.SaveChanges();
+           }    
         }
-        public void ThayDoiHoKhau(CongDan cD)
+        public void ThayDoiHoKhau(Congdan cD)
         {
-            string strSql = string.Format("UPDATE CONGDAN SET MaHK = '{0}' , QuanHeVoiChuHo = N'{1}' WHERE CCCD = '{2}'", cD.MaHoKhau, cD.QuanHeVoiChuHo, cD.CCCD);
-            conn.ThucThi(strSql, "Thêm thành viên thành công");
+           using (var conn = new QuanlitpContext())
+           {
+                Congdan congDan = conn.Congdans.Find(cD.Cccd);
+                congDan.MaHk = cD.MaHk;
+                congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
+                conn.SaveChanges();
+           }    
         }
-        public void NhapHoKhau(CongDan cD)
+        public void NhapHoKhau(Congdan cD)
         {
-            string strSql = string.Format("UPDATE CONGDAN SET MaHK = '{0}' , QuanHeVoiChuHo = N'Vừa nhập hộ' WHERE CCCD = '{1}'", cD.MaHoKhau, cD.CCCD);
-            conn.ThucThi(strSql, "Nhập hộ thành công");
+            using (var conn = new QuanlitpContext())
+            {
+                Congdan congDan = conn.Congdans.Find(cD.Cccd);
+                congDan.MaHk = cD.MaHk;
+                congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
+                conn.SaveChanges();
+            }
         }
         public List<Congdan> LayDanhSach()
         {
@@ -76,10 +97,13 @@ namespace QuanLiCongDanThanhPho
                 return cDs.ToList();
             }
         }
-        public CongDan LayThongTin(string maCCCD)
+        public Congdan LayThongTin(string maCCCD)
         {
-            string strSql = string.Format("SELECT * FROM CONGDAN WHERE CCCD = '{0}'", maCCCD);
-            return conn.LayThongTinCongDan(strSql);
+            using (var conn = new QuanlitpContext())
+            {
+                Congdan congDan = conn.Congdans.Where(q => q.Cccd == maCCCD).FirstOrDefault();
+                return congDan;
+            }    
         }
         public List<Congdan> LayDanhSachCongDanNam(string tu)
         {
@@ -151,10 +175,7 @@ namespace QuanLiCongDanThanhPho
         }
         public int LaySoLuongCongDan()
         {
-            string strSql = string.Format("SELECT COUNT(*) as 'SoLuong' FROM CONGDAN");
-            DataTable dt = conn.LayDanhSach(strSql);
-            int count = dt.Rows[0].Field<int>("SoLuong");
-            return count;
+            return LayDanhSach().Count;
         }
         // Hàm tương tự như group by và count 1 cột nhưng cho DataTable
         private DataTable GroupByVaCountChoDataTable(DataTable dt, string tenCot1, string tenCot2)

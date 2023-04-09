@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinThue : Form
@@ -98,13 +98,13 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaCCCD != null)
             {
-                Thue thue = thueDAO.LayThongTin(MaCCCD);
-                CongDan cd = cdDAO.LayThongTin(MaCCCD);
-                HoKhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
+                Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
+                Congdan cd = cdDAO.LayThongTin(MaCCCD);
+                HoKhau hk = hkDAO.LayThongTin(cd.MaHk);
                 txtMaSoThue.Text = thue.MaThue;
                 txtTen.Text = cd.Ten;
-                txtCCCD.Text = cd.CCCD;
-                txtSdt.Text = cd.SDT;
+                txtCCCD.Text = cd.Cccd;
+                txtSdt.Text = cd.Sdt;
                 txtDiaChi.Text = hk.DiaChi.toString();
                 txtSoTienCanNop.Text = DinhDangTienTe(thue.SoTienCanNop);
                 txtSoTienDaNop.Text = DinhDangTienTe(thue.SoTienDaNop);
@@ -125,7 +125,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void CapNhatThue()
         {
-            Thue thue = thueDAO.LayThongTin(MaCCCD);
+            Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
             if (txtMaSoThue.Text != "")
             {
                 thue.CCCD = txtCCCD.Text;

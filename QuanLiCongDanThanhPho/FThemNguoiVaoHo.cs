@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThemNguoiVaoHo : Form
@@ -35,7 +35,13 @@ namespace QuanLiCongDanThanhPho
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            CongDan congDan= new CongDan(txtCCCD.Text,txtTen.Text,"","","",txtMaHo.Text,txtQuanHeVoiChuHo.Text,"u,u,u,u,u");
+            Congdan congDan = new Congdan() 
+            {
+                Cccd = txtCCCD.Text,
+                Ten = txtTen.Text,
+                MaHk = txtMaHo.Text,
+                QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text
+            };
             CongDanDAO cDDAO = new CongDanDAO();
             cDDAO.ThayDoiHoKhau(congDan);
             LoadDanhSachChuaHoKhau();

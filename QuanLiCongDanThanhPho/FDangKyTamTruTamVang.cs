@@ -70,7 +70,15 @@ namespace QuanLiCongDanThanhPho
             {
                 if (rdoTamTru.Checked == true)
                 {
-                    CongDan cDTamTru = new CongDan(txtCCCD.Text, txtTen.Text, txtSDT.Text);
+                    Congdan cDTamTru = new Congdan()
+                    {
+                        Cccd = txtCCCD.Text,
+                        Ten = txtTen.Text,
+                        Sdt = txtSDT.Text,
+                        MaHk = "00000B",
+                        QuanHeVoiChuHo = "Tạm trú tại địa phương"
+                    };
+
                     CongDanDAO cDTamTruDAO = new CongDanDAO();
                     cDTamTruDAO.ThemCongDan(cDTamTru);
                 }

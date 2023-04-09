@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLiCongDanThanhPho.Models;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyCongDan : Form
@@ -45,13 +45,27 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                CongDan cD = new CongDan(txtCCCD.Text, txtTen.Text, txtNgheNghiep.Text, txtSoDT.Text, cboTonGiao.SelectedItem.ToString(), txtHoKhau.Text, cboQuanHe.SelectedItem.ToString(), txtDiaChi.Text);
+                if (cboQuanHe.SelectedItem.ToString() == "Chủ hộ")
+                {
+                    HoKhauDAO hoKhauDAO = new HoKhauDAO();
+                    hoKhauDAO.ThemHoKhau(new Models.HoKhau(txtHoKhau.Text, txtDiaChi.Text, txtCCCD.Text));
+                }
+                Congdan cD = new Congdan()
+                {
+                    Cccd = txtCCCD.Text,
+                    Ten = txtTen.Text, 
+                    NgheNghiep = txtNgheNghiep.Text,
+                    Sdt = txtSoDT.Text,
+                    TonGiao = cboTonGiao.SelectedItem.ToString(),
+                    MaHk = txtHoKhau.Text,
+                    QuanHeVoiChuHo = cboQuanHe.SelectedItem.ToString(),
+                };
                 cdDAO.ThemCongDan(cD);
 
                 KhaiSinh kS = new KhaiSinh(txtCCCD.Text, txtTen.Text, rdoNam.Checked.ToString(), cboQuocTich.SelectedItem.ToString(), cboDanToc.SelectedItem.ToString(), dtmNgaySinh.Value, dtmDKKhaiSinh.Value, txtNoiSinh.Text, txtQueQuan.Text, txtCCCDCha.Text, txtTenCha.Text, txtCCCDMe.Text, txtTenMe.Text);
                 kSDAO.ThemKhaSinh(kS);
 
-                Thue thue = new Thue(txtThue.Text, txtCCCD.Text);
+                Models.Thue thue = new Models.Thue(txtThue.Text, txtCCCD.Text);
                 thueDAO.ThemThue(thue);
 
                 if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")

@@ -11,13 +11,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLiCongDanThanhPho.Models;
+using QuanLiCongDanThanhPho.Model;
+
 namespace QuanLiCongDanThanhPho
 {
     public partial class FTachGopHo : Form
     {
         private CongDanDAO cDDAO;
         private bool isTach = false;
-        private CongDan cD;
+        private Congdan cD;
         public FTachGopHo()
         {
             InitializeComponent();
@@ -42,8 +44,10 @@ namespace QuanLiCongDanThanhPho
                 int index = gvHoTach.CurrentCell.RowIndex;
                     if (index >= 0)
                     {
-                        cD = new CongDan();
-                        cD.CCCD = gvHoTach.Rows[index].Cells[0].Value.ToString();
+                        cD = new Congdan()
+                        {
+                            Cccd = gvHoTach.Rows[index].Cells[0].Value.ToString()
+                        };
                         isTach = true;
                     }
             }
@@ -74,10 +78,10 @@ namespace QuanLiCongDanThanhPho
         {
             //Kiểm tra 
             HoKhauDAO hKDAO = new HoKhauDAO();
-            HoKhau hK = new HoKhau(txtMaHoGop.Text, "unknow, unknow, unknow,uknow", cD.CCCD);
+            HoKhau hK = new HoKhau(txtMaHoGop.Text, "unknow, unknow, unknow,uknow", cD.Cccd);
             hKDAO.ThemHoKhau(hK);
             cD.QuanHeVoiChuHo = "Chủ hộ";
-            cD.MaHoKhau = txtMaHoGop.Text;
+            cD.MaHk = txtMaHoGop.Text;
             cDDAO.ThayDoiHoKhau(cD);
             LoadHoTach();
             LoadHoGop();
@@ -94,7 +98,7 @@ namespace QuanLiCongDanThanhPho
                     {
                         MessageBox.Show("Hộ đã tồn tại");
                     }
-                    else if (cD.MaHoKhau == txtMaHoGop.Text)
+                    else if (cD.MaHk == txtMaHoGop.Text)
                     {
                         MessageBox.Show("Đây là một hộ duy nhất!");
                     }
@@ -111,7 +115,7 @@ namespace QuanLiCongDanThanhPho
         {
 
             HoKhauDAO hKDAO = new HoKhauDAO();
-            HoKhau hK = new HoKhau(txtMaHoTach.Text, "unknow, unknow, unknow,uknow", cD.CCCD);
+            HoKhau hK = new HoKhau(txtMaHoTach.Text, "unknow, unknow, unknow,uknow", cD.Cccd);
             if (gvHoTach.Rows.Count <=1)
             {
                 hKDAO.XoaHoKhau(hK);
@@ -119,7 +123,7 @@ namespace QuanLiCongDanThanhPho
         }
         public void ThemVaoHo()
         {
-            cD.MaHoKhau = txtMaHoGop.Text;
+            cD.MaHk = txtMaHoGop.Text;
             cDDAO.NhapHoKhau(cD);   
             LoadHoTach();
             LoadHoGop();
@@ -134,7 +138,7 @@ namespace QuanLiCongDanThanhPho
                     {
                         MessageBox.Show("Hộ không tồn tại");
                     }
-                    else if (cD.MaHoKhau == txtMaHoGop.Text)
+                    else if (cD.MaHk == txtMaHoGop.Text)
                     {
                         MessageBox.Show("Đây là một hộ duy nhất!");
                     }
