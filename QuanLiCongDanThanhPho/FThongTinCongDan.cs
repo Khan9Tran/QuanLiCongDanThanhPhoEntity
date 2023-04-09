@@ -176,7 +176,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayHonNhan()
         {
-            HonNhan hn = new HonNhan();
+            Honnhan hn = new Honnhan();
             hn = hnDAO.LayThongTin(MaCCCD);
             if (!hnDAO.KiemTraHonNhan(MaCCCD))
             {
@@ -184,7 +184,7 @@ namespace QuanLiCongDanThanhPho
                 btnHonNhan.Enabled = false;
             }
             else
-                txtHonNhan.Text = hn.MaSo;
+                txtHonNhan.Text = hn.MaHonNhan;
         }
 
         private void LayHoKhau()
@@ -393,11 +393,11 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtHonNhan.Text != "Chưa có hôn nhân" && txtHonNhan.Text != "")
             {
-                HonNhan hn = hnDAO.LayThongTin(MaCCCD);
-                if (txtCCCD.Text == hn.CCCDChong)
-                    hn.TenChong = txtHoVaTen.Text;  
+                Honnhan hn = hnDAO.LayThongTin(MaCCCD);
+                if (txtCCCD.Text == hn.Cccdnam)
+                    hn.TenNam = txtHoVaTen.Text;  
                 else
-                    hn.TenVo = txtHoVaTen.Text;
+                    hn.TenNu = txtHoVaTen.Text;
                 hnDAO.CapNhatHonNhan(hn);
             }
         }

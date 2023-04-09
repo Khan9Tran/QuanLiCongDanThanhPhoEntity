@@ -73,11 +73,10 @@ namespace QuanLiCongDanThanhPho
         {
             using (var conn = new QuanlitpContext())
             {
-                var hK = conn.Hokhaus.FirstOrDefault(q => q.MaHk == hoKhau.MaHk);
+                var hK = conn.Hokhaus.Find(hoKhau.MaHk);
                 if (hK != null)
                 {
-                    hK.DiaChi = hoKhau.DiaChi.ToString();
-                    hK.CccdchuHo = hoKhau.CccdchuHo;
+                    hK = hoKhau;
                     conn.SaveChanges();
                     MessageBox.Show("Cập nhật hộ khẩu thành công");
                 }
@@ -91,7 +90,7 @@ namespace QuanLiCongDanThanhPho
         {
             using (var conn = new QuanlitpContext())
             {
-                var hkToDelete = conn.Hokhaus.FirstOrDefault(hk => hk.MaHk == hK.MaHoKhau);
+                var hkToDelete = conn.Hokhaus.Find(hK.MaHoKhau);
                 if (hkToDelete != null)
                 {
                     conn.Hokhaus.Remove(hkToDelete);

@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,13 +55,13 @@ namespace QuanLiCongDanThanhPho
         {
             if (maCCCD != null)
             {
-                HonNhan hn = hnDAO.LayThongTin(maCCCD);
-                txtTenChong.Text = hn.TenChong;
-                txtTenVo.Text = hn.TenVo;
-                txtCCCDChong.Text = hn.CCCDChong;
-                txtCCCDVo.Text = hn.CCCDVo;
-                txtNoiDangKy.Text = hn.NoiDangKy.toString();
-                dtmNgayDangKy.Value = hn.NgayDangKy;
+                Honnhan hn = hnDAO.LayThongTin(maCCCD);
+                txtTenChong.Text = hn.TenNam;
+                txtTenVo.Text = hn.TenNu;
+                txtCCCDChong.Text = hn.Cccdnam;
+                txtCCCDVo.Text = hn.Cccdnu;
+                txtNoiDangKy.Text = hn.NoiDangKy;
+                dtmNgayDangKy.Value = hn.NgayDangKy.Value;
             }
         }    
         private void FThongTinHonNhan_Load(object sender, EventArgs e)
@@ -115,8 +116,8 @@ namespace QuanLiCongDanThanhPho
         }    
         public void CapNhatHonNhan()
         {
-            HonNhan hN = hnDAO.LayThongTin(maCCCD);
-            hN.NoiDangKy.DinhDang(txtNoiDangKy.Text);
+            Honnhan hN = hnDAO.LayThongTin(maCCCD);
+            hN.NoiDangKy = txtNoiDangKy.Text;
             hN.NgayDangKy = dtmNgayDangKy.Value;
             hnDAO.CapNhatHonNhan(hN);
         }

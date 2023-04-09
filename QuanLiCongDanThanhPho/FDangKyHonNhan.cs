@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +29,16 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                HonNhan hN = new HonNhan(txtMaHonNhan.Text, txtCCCDChong.Text, txtTenChong.Text, txtCCCDVo.Text, txtTenVo.Text, txtNoiDK.Text, dtpNgayDangKy.Value);
+                Honnhan hN = new Honnhan()
+                {
+                    MaHonNhan = txtMaHonNhan.Text,
+                    Cccdnam = txtCCCDChong.Text,
+                    TenNam = txtTenChong.Text,
+                    Cccdnu = txtCCCDVo.Text,
+                    TenNu = txtTenVo.Text,
+                    NoiDangKy = txtNoiDK.Text,
+                    NgayDangKy = dtpNgayDangKy.Value,
+                };
                 hNDAO.ThemHonNhan(hN);
             }
         }
@@ -62,7 +72,16 @@ namespace QuanLiCongDanThanhPho
         //Li hôn
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            HonNhan hN = new HonNhan(txtMaHonNhan.Text, txtCCCDChong.Text, txtTenChong.Text, txtCCCDVo.Text, txtCCCDChong.Text, txtNoiDK.Text, dtpNgayDangKy.Value);
+            Honnhan hN = new Honnhan()
+            {
+                MaHonNhan = txtMaHonNhan.Text,
+                Cccdnam = txtCCCDChong.Text,
+                TenNam = txtTenChong.Text,
+                Cccdnu = txtCCCDVo.Text,
+                TenNu = txtTenVo.Text,
+                NoiDangKy = txtNoiDK.Text,
+                NgayDangKy = dtpNgayDangKy.Value,
+            };
             hNDAO.Xoa(hN);
             Reset();
         }
@@ -113,7 +132,7 @@ namespace QuanLiCongDanThanhPho
                 txtTenVo.Focus();
                 return false;
             }
-            if (hNDAO.LayThongTin(txtCCCDChong.Text).TenChong != null)
+            if (hNDAO.LayThongTin(txtCCCDChong.Text).TenNam != null)
             {
                 MessageBox.Show("Người chồng đã kết hôn");
                 return false;
@@ -123,7 +142,7 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Người chồng sai giới tính");
                 return false;
             }    
-            if (hNDAO.LayThongTin(txtCCCDChong.Text).TenChong != null)
+            if (hNDAO.LayThongTin(txtCCCDChong.Text).TenNam != null)
             {
                 MessageBox.Show("Người vợ đã kết hôn");
                 return false;
@@ -151,14 +170,14 @@ namespace QuanLiCongDanThanhPho
         //Tải thông tin hôn nhân lên
         private void LoadHonNhan()
         {
-            HonNhan hn = hNDAO.LayThongTinTheoMaSo(txtMaHonNhan.Text);
-            txtCCCDChong.Text = hn.CCCDChong;
-            txtCCCDVo.Text = hn.CCCDVo;
-            txtTenChong.Text = hn.TenChong;
-            txtTenVo.Text = hn.TenVo;
-            txtNoiDK.Text = hn.NoiDangKy.toString();
-            dtpNgayDangKy.Value = hn.NgayDangKy;
-            if (hn.CCCDChong != null)
+            Honnhan hn = hNDAO.LayThongTinTheoMaSo(txtMaHonNhan.Text);
+            txtCCCDChong.Text = hn.Cccdnam;
+            txtCCCDVo.Text = hn.Cccdnu;
+            txtTenChong.Text = hn.TenNam;
+            txtTenVo.Text = hn.TenNu;
+            txtNoiDK.Text = hn.NoiDangKy;
+            dtpNgayDangKy.Value = hn.NgayDangKy.Value;
+            if (hn.Cccdnam != null)
                 ChoPhepLiHon();
             else
                 ChoPhepDangKy();

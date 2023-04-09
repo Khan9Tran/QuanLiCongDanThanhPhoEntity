@@ -48,7 +48,13 @@ namespace QuanLiCongDanThanhPho
                 if (cboQuanHe.SelectedItem.ToString() == "Chủ hộ")
                 {
                     HoKhauDAO hoKhauDAO = new HoKhauDAO();
-                    hoKhauDAO.ThemHoKhau(new Models.HoKhau(txtHoKhau.Text, txtDiaChi.Text, txtCCCD.Text));
+                    Hokhau hK = new Hokhau()
+                    {
+                        MaHk = txtHoKhau.Text,
+                        DiaChi = txtDiaChi.Text,
+                        CccdchuHo = txtCCCD.Text,
+                    };
+                    hoKhauDAO.ThemHoKhau(hK);
                 }
                 Congdan cD = new Congdan()
                 {
@@ -70,8 +76,23 @@ namespace QuanLiCongDanThanhPho
 
                 if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")
                 {
-
-                    HonNhan hN = new HonNhan(txtMaHonNhan.Text, txtCCCD.Text, txtTen.Text, txtCCCDVoChong.Text, txtTenVoChong.Text, "", DateTime.Now, rdoNam.ToString());
+                    Honnhan hN = new Honnhan()
+                    {
+                        MaHonNhan = txtMaHonNhan.Text,
+                        Cccdnam = txtCCCD.Text,
+                        TenNam = txtTen.Text,
+                        Cccdnu = txtCCCDVoChong.Text,
+                        TenNu = txtTenVoChong.Text,
+                        NoiDangKy = "",
+                        NgayDangKy = DateTime.Now,
+                    };
+                    if (rdoNam.ToString() == "False")
+                    {
+                        hN.TenNam = txtTenVoChong.Text;
+                        hN.Cccdnam = txtCCCDVoChong.Text;
+                        hN.TenNu = txtTen.Text;
+                        hN.Cccdnu = txtCCCD.Text;
+                    }
                     hNDAO.ThemHonNhan(hN);
                 }
                 if (ptcHinhDaiDien.Image != null) 
