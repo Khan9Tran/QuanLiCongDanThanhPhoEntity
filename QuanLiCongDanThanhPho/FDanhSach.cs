@@ -19,18 +19,6 @@ namespace QuanLiCongDanThanhPho
             StackForm.Add(this);
         }
 
-        private void cmbLuaChon_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbLuaChon.SelectedItem == "Công dân")
-                OpenChildForm(new FDanhSachCongDan());
-            else if (cmbLuaChon.SelectedItem == "Thuế")
-                OpenChildForm(new FDanhSachThue());
-            else if (cmbLuaChon.SelectedItem == "Tạm Trú/Tạm Vắng")
-                OpenChildForm(new FDanhSachTamTruTamVang());
-            else if (cmbLuaChon.SelectedItem == "Hộ khẩu")
-                OpenChildForm(new FDanhSachHoKhau());
-
-        }
         public void OpenChildForm(Form childForm)
         {
             if (currentChildForm != null)
@@ -45,6 +33,39 @@ namespace QuanLiCongDanThanhPho
             pnlHienThiDanhSach.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        private void btnLoc_Click(object sender, EventArgs e)
+        {
+            if (flpnlPhanLoai.Width > 50)
+                flpnlPhanLoai.Width = 45;
+            else
+                flpnlPhanLoai.Width = 800;
+        }
+
+        private void FDanhSach_Load(object sender, EventArgs e)
+        {
+            flpnlPhanLoai.Width = 45;
+        }
+
+        private void btnCongDan_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FDanhSachCongDan());
+        }
+
+        private void btnThue_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FDanhSachThue());
+        }
+
+        private void btnHoKhau_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FDanhSachHoKhau());
+        }
+
+        private void btnTTTV_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FDanhSachTamTruTamVang());
         }
     }
 }

@@ -80,20 +80,6 @@ namespace QuanLiCongDanThanhPho
         {
             string sqlStr = string.Format("SELECT MaHK as 'Mã hộ', count(CCCD) as 'Số lượng' FROM CONGDAN GROUP BY MaHK HAVING count(CCCD) = (SELECT max(SL) FROM (SELECT count(CCCD) as SL FROM CONGDAN WHERE MaHK != '00000B' AND MaHK != '00000A' GROUP BY MaHK) as A)");
             using (var conn = new QuanlitpContext()) {
-                //var result = (from c in conn.Congdans
-                //              where c.MaHk != "00000A" && c.MaHk != "00000B"
-                //              group c by c.MaHk into g
-                //              let count = g.Count()
-                //              group count by g.Key into g2
-                //              where g2.Count() > 0 && g2.Max() == (from c2 in conn.Congdans
-                //                                                   where c2.MaHk != "00000A" && c2.MaHk != "00000B"
-                //                                                   group c2 by c2.MaHk into g3
-                //                                                   select g3.Count()).Max()
-                //              select new 
-                //              {
-                //                  MaHk = g2.Key,
-                //                  SoLuong = g2.Max()
-                //              }).Cast<object>();
                 var subquery = conn.Congdans
                     .Where(c => c.MaHk != "00000A" && c.MaHk != "00000B")
                     .GroupBy(c => c.MaHk)
