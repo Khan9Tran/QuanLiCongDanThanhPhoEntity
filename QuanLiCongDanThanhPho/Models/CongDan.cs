@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +41,13 @@ namespace QuanLiCongDanThanhPho
                 DiaChi dC = new DiaChi();
                 dC.DinhDang(diaChi);
                 HoKhauDAO hoKhauDAO = new HoKhauDAO();
-                hoKhauDAO.ThemHoKhau(new Models.HoKhau(MaHoKhau,dC.toString(),CCCD));
+                Hokhau hK = new Hokhau()
+                {
+                    MaHk = MaHoKhau,
+                    DiaChi = dC.toString(),
+                    CccdchuHo = CCCD,
+                };
+                hoKhauDAO.ThemHoKhau(hK);
             }
         }
         public CongDan(string cCCD, string ten)

@@ -190,8 +190,8 @@ namespace QuanLiCongDanThanhPho
         private void LayHoKhau()
         {
             CongDan cd = cdDAO.LayThongTin(MaCCCD);
-            HoKhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
-            txtDiaChi.Text = hk.DiaChi.toString();
+            Hokhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
+            txtDiaChi.Text = hk.DiaChi;
         }
 
         private void LayTamTruTamVang()
@@ -373,13 +373,13 @@ namespace QuanLiCongDanThanhPho
             if (txtQuanHeVoiChuHo.Text == "Chủ hộ")
             {
                 HoKhauDAO hKDAO = new HoKhauDAO();
-                HoKhau hoKhau = hKDAO.LayThongTin(txtMaHoKhau.Text);
-                if (hoKhau.CCCDChuHo != txtCCCD.Text)
+                Hokhau hoKhau = hKDAO.LayThongTin(txtMaHoKhau.Text);
+                if (hoKhau.CccdchuHo != txtCCCD.Text)
                 {
-                    CongDan cD = cdDAO.LayThongTin(hoKhau.CCCDChuHo);
+                    CongDan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
                     cD.QuanHeVoiChuHo = "Unknow";
                     cdDAO.CapNhatCongDan(cD);
-                    hoKhau.CCCDChuHo = txtCCCD.Text;
+                    hoKhau.CccdchuHo = txtCCCD.Text;
                     hKDAO.CapNhatHoKhau(hoKhau);
                 }    
             }    

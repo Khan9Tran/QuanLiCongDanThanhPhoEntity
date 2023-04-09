@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
 namespace QuanLiCongDanThanhPho
 {
@@ -36,22 +37,22 @@ namespace QuanLiCongDanThanhPho
         private void btnTach_Click(object sender, EventArgs e)
         {
             if (KiemTraThongTin())
-            try 
-            { 
+                try
+                {
 
-                int index = gvHoTach.CurrentCell.RowIndex;
+                    int index = gvHoTach.CurrentCell.RowIndex;
                     if (index >= 0)
                     {
                         cD = new CongDan();
                         cD.CCCD = gvHoTach.Rows[index].Cells[0].Value.ToString();
                         isTach = true;
                     }
-            }
-            catch 
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại thông tin");
-            }
-        } 
+                }
+                catch
+                {
+                    MessageBox.Show("Vui lòng kiểm tra lại thông tin");
+                }
+        }
         private bool KiemTraThongTin()
         {
             if (txtMaHoTach.Text == "")
@@ -67,14 +68,19 @@ namespace QuanLiCongDanThanhPho
                 return false;
             }
             return true;
-                
+
         }
 
         private void TaoHoMoi()
         {
             //Kiểm tra 
             HoKhauDAO hKDAO = new HoKhauDAO();
-            HoKhau hK = new HoKhau(txtMaHoGop.Text, "unknow, unknow, unknow,uknow", cD.CCCD);
+            Hokhau hK = new Hokhau()
+            {
+                MaHk = txtMaHoGop.Text,
+                DiaChi = "unknow, unknow, unknow,uknow",
+                CccdchuHo = cD.CCCD,
+            };
             hKDAO.ThemHoKhau(hK);
             cD.QuanHeVoiChuHo = "Chủ hộ";
             cD.MaHoKhau = txtMaHoGop.Text;
@@ -82,7 +88,6 @@ namespace QuanLiCongDanThanhPho
             LoadHoTach();
             LoadHoGop();
             XoaHoThua();
-            
         }
         private void btnTaoHoMoi_Click(object sender, EventArgs e)
         { 

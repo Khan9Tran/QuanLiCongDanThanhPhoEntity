@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
 
 namespace QuanLiCongDanThanhPho
@@ -42,8 +43,8 @@ namespace QuanLiCongDanThanhPho
             lblQueQuan.Text = ks.QueQuan.toString();
             lblQuocTich.Text = ks.QuocTich;
             HoKhauDAO hoKhauDAO = new HoKhauDAO();
-            HoKhau hk = hoKhauDAO.LayThongTin(congDan.MaHoKhau);
-            lblDiaChi.Text = hk.DiaChi.toString();
+            Hokhau hk = hoKhauDAO.LayThongTin(congDan.MaHoKhau);
+            lblDiaChi.Text = hk.DiaChi;
             CCCDDAO cCCDDAO = new CCCDDAO();
             CCCD cCCD =cCCDDAO.LayThongTin(new CCCD(congDan.CCCD, DateTime.Now, "unknow"));
             lblNgayCap.Text = cCCD.NgayCap.ToShortDateString();

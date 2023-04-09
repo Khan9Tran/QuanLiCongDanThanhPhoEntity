@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,14 +99,14 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaCCCD != null)
             {
-                Thue thue = thueDAO.LayThongTin(MaCCCD);
+                Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
                 CongDan cd = cdDAO.LayThongTin(MaCCCD);
-                HoKhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
+                Hokhau hk = hkDAO.LayThongTin(cd.MaHoKhau);
                 txtMaSoThue.Text = thue.MaThue;
                 txtTen.Text = cd.Ten;
                 txtCCCD.Text = cd.CCCD;
                 txtSdt.Text = cd.SDT;
-                txtDiaChi.Text = hk.DiaChi.toString();
+                txtDiaChi.Text = hk.DiaChi;
                 txtSoTienCanNop.Text = DinhDangTienTe(thue.SoTienCanNop);
                 txtSoTienDaNop.Text = DinhDangTienTe(thue.SoTienDaNop);
                 dtmNgayCapMaSoThue.Value = thue.NgayCapMa;
@@ -125,7 +126,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void CapNhatThue()
         {
-            Thue thue = thueDAO.LayThongTin(MaCCCD);
+            Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
             if (txtMaSoThue.Text != "")
             {
                 thue.CCCD = txtCCCD.Text;
