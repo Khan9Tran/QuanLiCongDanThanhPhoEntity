@@ -71,7 +71,7 @@ namespace QuanLiCongDanThanhPho
 
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
         {
-            string maHoKhau = gvHoKhau.CurrentRow.Cells["MaHk"].Value.ToString();
+            string maHoKhau = getMaHk();
             if (maHoKhau != "")
             {
                 FThongTinHoKhau tTHK = new FThongTinHoKhau(maHoKhau);
@@ -84,10 +84,14 @@ namespace QuanLiCongDanThanhPho
             FDangKyHoKhau dangKyHoKhau = new FDangKyHoKhau();
             (StackForm.fTrangChu).OpenChildForm(dangKyHoKhau);
         }
+        private string getMaHk()
+        {
+            return gvHoKhau.CurrentRow.Cells[0].Value.ToString();
+        }
 
         private void cmnusMenuTachGop_Click(object sender, EventArgs e)
         {
-            string maHoKhau = gvHoKhau.CurrentRow.Cells["Mã hộ khẩu"].Value.ToString();
+            string maHoKhau = getMaHk();
             if (maHoKhau != "")
             {
                 FDangKyHoKhau dangKyHoKhau = new FDangKyHoKhau(maHoKhau);

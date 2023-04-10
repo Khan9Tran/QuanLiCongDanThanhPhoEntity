@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     internal class ThueDAO
@@ -54,14 +54,10 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
-        public void CapNhatThue(Thue t) 
+        public void CapNhatThue() 
         {
-            Thue thue = db.Thues.Find(t.MaThue);
-            thue.HanNop = t.HanNop;
-            thue.SoTienDaNop = t.SoTienDaNop;
-            thue.SoTienCanNop = t.SoTienCanNop;
             db.SaveChanges();
-
+            MessageBox.Show("Cập nhật thuế thành công");
         }
 
         public int[] LayThongKeThue()

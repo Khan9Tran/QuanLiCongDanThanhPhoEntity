@@ -124,7 +124,7 @@ namespace QuanLiCongDanThanhPho
                 thue.NgayCap = dtmNgayCapMaSoThue.Value;
                 thue.HanNop = dtmHanNopThue.Value;
             }
-            thueDAO.CapNhatThue(thue);
+            thueDAO.CapNhatThue();
         }    
         private void btnXacNhan_Click(object sender, EventArgs e)
         {

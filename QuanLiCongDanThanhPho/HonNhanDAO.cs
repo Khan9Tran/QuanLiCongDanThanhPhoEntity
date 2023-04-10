@@ -87,8 +87,8 @@ namespace QuanLiCongDanThanhPho
         //Cập nhật thông tin hôn nhân
         public void CapNhatHonNhan()
         {
-                db.SaveChanges();
-                MessageBox.Show("Cập nhật hôn nhân thành công");
+            db.SaveChanges();
+            MessageBox.Show("Cập nhật hôn nhân thành công");
         }
 
         //Kiểm tra xem người có CCCD này đã kết hôn chưa

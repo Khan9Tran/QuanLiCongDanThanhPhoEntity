@@ -43,10 +43,10 @@ namespace QuanLiCongDanThanhPho
             db.SaveChanges();
             MessageBox.Show("Xoa thanh cong");
         }
-        public void CapNhatCongDan(Congdan cD )
+        public void CapNhatCongDan()
         {    
             db.SaveChanges();
-            MessageBox.Show("Cap nhat cong dan thanh cong");
+            MessageBox.Show("Cập nhật công dân thành công");
         }
         public void ThayDoiHoKhau(Congdan cD)
         {       
@@ -54,7 +54,7 @@ namespace QuanLiCongDanThanhPho
             congDan.MaHk = cD.MaHk;
             congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
             db.SaveChanges();
-            MessageBox.Show("Thay doi ho khau thanh cong");
+            MessageBox.Show("Thay đổi hộ khẩu thành công");
         }
         public void NhapHoKhau(Congdan cD)
         {       

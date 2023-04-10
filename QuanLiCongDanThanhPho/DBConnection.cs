@@ -17,6 +17,10 @@ namespace QuanLiCongDanThanhPho
 
         public static QuanlitpContext Db { get => db; set => db = value; }
 
+        public void CapNhat()
+        {
+            db.SaveChanges();
+        }
         public void ThucThi(string sqlStr, string thongBao)
         {
             try

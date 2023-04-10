@@ -66,19 +66,10 @@ namespace QuanLiCongDanThanhPho
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật hộ khẩu thành công");
         }
-        public void XoaHoKhau(HoKhau hK)
-    {
-            var hkToDelete = db.Hokhaus.Find(hK.MaHoKhau);
-            if (hkToDelete != null)
-            {
-                db.Hokhaus.Remove(hkToDelete);
-                db.SaveChanges();
-                MessageBox.Show("Đã xóa hộ không còn thành viên");
-            }
-            else
-            {
-                MessageBox.Show("Xóa hộ khẩu thất bại");
-            }
+        public void XoaHoKhau(Hokhau hK)
+        {   
+            db.Hokhaus.Remove(hK);
+            db.SaveChanges();
         }
         public List<object> TimHoNhieuNguoiNhat()
         {

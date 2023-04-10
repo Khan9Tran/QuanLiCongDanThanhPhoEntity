@@ -24,7 +24,7 @@ namespace QuanLiCongDanThanhPho
         {
          
             db.SaveChanges();
-            MessageBox.Show("Cap nhat khai sinh thanh cong");
+            MessageBox.Show("Cập nhật khai sinh thành công");
 
         }
         public void ThemKhaSinh(Khaisinh kS)

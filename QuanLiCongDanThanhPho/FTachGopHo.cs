@@ -120,7 +120,7 @@ namespace QuanLiCongDanThanhPho
         {
 
             HoKhauDAO hKDAO = new HoKhauDAO();
-            HoKhau hK = new HoKhau(txtMaHoTach.Text, "unknow, unknow, unknow,uknow", cD.Cccd);
+            Hokhau hK = hKDAO.LayThongTin(txtMaHoTach.Text);
             if (gvHoTach.Rows.Count <=1)
             {
                 hKDAO.XoaHoKhau(hK);

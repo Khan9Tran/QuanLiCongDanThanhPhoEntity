@@ -21,6 +21,7 @@ namespace QuanLiCongDanThanhPho
         HoKhauDAO hkDAO;
         TamTruTamVangDAO tttvDAO;
 
+
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
@@ -50,6 +51,7 @@ namespace QuanLiCongDanThanhPho
             hnDAO = new HonNhanDAO();
             tttvDAO = new TamTruTamVangDAO();
             this.congDan = congdan;
+
         }
         
         //Mở F khai sinh
@@ -348,7 +350,6 @@ namespace QuanLiCongDanThanhPho
             khaiSinh.DanToc = txtDanToc.Text;
             khaiSinh.QuocTich = txtQuocTich.Text;
             khaiSinh.GioiTinh = txtGioiTinh.Text;
-            ksDAO.CapNhatKhaiSinh();  
         }    
 
         private void CapNhatCongDan()
@@ -358,7 +359,7 @@ namespace QuanLiCongDanThanhPho
             congDan.NgheNghiep = txtNgheNghiep.Text;
             congDan.TonGiao = txtTonGiao.Text;
             congDan.QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text;
-            cdDAO.CapNhatCongDan(congDan);
+            cdDAO.CapNhatCongDan();
 
         }
 
@@ -373,9 +374,7 @@ namespace QuanLiCongDanThanhPho
                 {
                     Congdan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
                     cD.QuanHeVoiChuHo = "Unknow";
-                    cdDAO.CapNhatCongDan(cD);
                     hoKhau.CccdchuHo = txtCCCD.Text;
-                    hKDAO.CapNhatHoKhau();
                 }    
             }    
         }
@@ -393,7 +392,6 @@ namespace QuanLiCongDanThanhPho
                     hn.TenNam = txtHoVaTen.Text;  
                 else
                     hn.TenNu = txtHoVaTen.Text;
-                hnDAO.CapNhatHonNhan();
             }
         }
 
@@ -401,6 +399,9 @@ namespace QuanLiCongDanThanhPho
         {  
             if (KiemTraThongTin())
             {
+                CapNhatHoKhau();
+                CapNhatKhaiSinh();
+                CapNhatHonNhan();
                 CapNhatCongDan();
                 ReadOnly();
             }    
