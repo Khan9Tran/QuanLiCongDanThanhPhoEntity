@@ -31,10 +31,11 @@ namespace QuanLiCongDanThanhPho
             TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
             HonNhanDAO hnDAO = new HonNhanDAO();
             CCCDDAO cCCCDAO = new CCCDDAO();
+            Honnhan hn = hnDAO.LayThongTin(cD.Cccd);
+
             thueDAO.XoaThue(cD.Cccd);
             ksDAO.XoaKhaiSinh(cD.Cccd);
             tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
-            Honnhan hn = hnDAO.LayThongTin(cD.Cccd);
             hnDAO.Xoa(hn);
             cCCCDAO.XoaCCCD(cD.Cccd);
             Congdan congdan = db.Congdans.Find(cD.Cccd);
