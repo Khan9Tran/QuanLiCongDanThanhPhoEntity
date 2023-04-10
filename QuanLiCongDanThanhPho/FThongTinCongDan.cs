@@ -155,7 +155,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayKhaiSinh()
         {
-            KhaiSinh ks = ksDAO.LayThongTin(MaCCCD);
+            Khaisinh ks = ksDAO.LayThongTin(MaCCCD);
             dtmNgaySinh.Value = ks.NgaySinh;
             if (ks.GioiTinh == "f")  // "f" là giới tính nữ, "m" là nam
                 txtGioiTinh.Text = "Nữ";
@@ -163,7 +163,7 @@ namespace QuanLiCongDanThanhPho
                 txtGioiTinh.Text = "Nam";
             txtDanToc.Text = ks.DanToc;
             txtQuocTich.Text = ks.QuocTich;
-            txtQueQuan.Text = ks.QueQuan.toString();
+            txtQueQuan.Text = ks.QueQuan;
         }
 
         private void LayThue()
@@ -344,14 +344,13 @@ namespace QuanLiCongDanThanhPho
 
         private void CapNhatKhaiSinh()
         {
-            KhaiSinh khaiSinh = ksDAO.LayThongTin(MaCCCD);
-            khaiSinh.HoTen = txtHoVaTen.Text;
-            khaiSinh.QueQuan.DinhDang(txtQueQuan.Text);
+            Khaisinh khaiSinh = ksDAO.LayThongTin(MaCCCD);
+            khaiSinh.Ten = txtHoVaTen.Text;
+            khaiSinh.QueQuan = txtQueQuan.Text;
             khaiSinh.NgaySinh = dtmNgaySinh.Value;
             khaiSinh.DanToc = txtDanToc.Text;
             khaiSinh.QuocTich = txtQuocTich.Text;
             khaiSinh.GioiTinh = txtGioiTinh.Text;
-            khaiSinh.DinhDangGioiTinh();
             ksDAO.CapNhatKhaiSinh(khaiSinh);  
         }    
 

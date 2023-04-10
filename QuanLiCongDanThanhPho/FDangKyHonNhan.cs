@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyHonNhan : Form
@@ -177,8 +177,8 @@ namespace QuanLiCongDanThanhPho
         //Trả về tên hôn nhân thep mã số
         private string LayTenTheoCCCD(string cCCD)
         {
-            KhaiSinh ks = ksDAO.LayThongTin(cCCD);
-            return ks.HoTen;
+            Khaisinh ks = ksDAO.LayThongTin(cCCD);
+            return ks.Ten;
         }
 
         //Tìm kiếm theo CCCD

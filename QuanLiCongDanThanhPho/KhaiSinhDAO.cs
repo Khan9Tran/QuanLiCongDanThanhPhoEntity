@@ -7,41 +7,56 @@ using System.Threading.Tasks;
 using QuanLiCongDanThanhPho.Models;
 using System.Data.SqlTypes;
 using System.Data;
+using QuanLiCongDanThanhPho.Model;
 
 namespace QuanLiCongDanThanhPho
 {
     internal class KhaiSinhDAO
     {
         DBConnection conn = new DBConnection();
+        QuanlitpContext db = new QuanlitpContext();
         public string StringKhaiSinh(KhaiSinh kS)
         {
             string sqlStr = string.Format($"INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy, GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('{kS.MaKhaiSinh}' , N'{kS.HoTen}', '{kS.NgaySinh}','{kS.NgayDangKy}', '{kS.GioiTinh}', N'{kS.DanToc}', N'{kS.QuocTich}', N'{kS.NoiSinh.toString()}', N'{kS.QueQuan.toString()}','{kS.CCCDCha}', N'{kS.TenCha}', '{kS.CCCDMe}', N'{kS.TenMe}');");
             return sqlStr;
         }
-        public void CapNhatKhaiSinh(KhaiSinh kS)
+        public void CapNhatKhaiSinh(Khaisinh kS)
         {
-            string sqlStr = string.Format($"UPDATE KHAISINH SET  Ten = N'{kS.HoTen}', NgaySinh = '{kS.NgaySinh}', NgayDangKy = '{kS.NgayDangKy}', GioiTinh = '{kS.GioiTinh}', DanToc = N'{kS.DanToc}', QuocTich = N'{kS.QuocTich}', NoiSinh = N'{kS.NoiSinh.toString()}', QueQuan = N'{kS.QueQuan.toString()}', CCCDCha = '{kS.CCCDCha}', TenCha = N'{kS.TenCha}', CCCDMe = '{kS.CCCDMe}', TenMe = N'{kS.TenMe}' WHERE MaKS = '{kS.MaKhaiSinh}'");
-            conn.ThucThi(sqlStr, "Cập nhật khai sinh thành công");
+         
+                Khaisinh khaiSinh = db.Khaisinhs.Find(kS.MaKs);
+                khaiSinh = kS;
+                db.SaveChanges();
+
         }
-        public void ThemKhaSinh(KhaiSinh kS)
+        public void ThemKhaSinh(Khaisinh kS)
         {
-            string sqlStr = StringKhaiSinh(kS);
-            conn.ThucThi(sqlStr,"Thêm khai sinh thành công");
+            db.Khaisinhs.Add(kS);
+            db.SaveChanges();
         }
         public void XoaKhaiSinh(string maKhaiSinh)
         {
-            string sqlStr = string.Format($"DELETE FROM KHAISINH WHERE MaKS = '{maKhaiSinh}'");
-            conn.ThucThi(sqlStr, "Xóa khai sinh thành công");
+            Khaisinh khaiSinh = db.Khaisinhs.Find(maKhaiSinh);
+            db.Remove(khaiSinh);
+            db.SaveChanges();
         }
-        public KhaiSinh LayThongTin(string maCCCD)
+        public Khaisinh LayThongTin(string maCCCD)
         {
-            string strSql = string.Format("SELECT * FROM KHAISINH WHERE MaKS = '{0}'", maCCCD);
-            return conn.LayThongTinKhaiSinh(strSql);
+                Khaisinh khaiSinh = db.Khaisinhs.Find(maCCCD);
+                return khaiSinh;
         }
         public DataTable LayDanhSachVeSoNamNu()
         {
             string sqlStr = string.Format("SELECT GioiTinh as 'Giới tính', COUNT(*) as 'Số lượng' FROM KHAISINH RIGHT JOIN CONGDAN ON CONGDAN.CCCD = KHAISINH.MaKS GROUP BY GioiTinh");
             DataTable dt = conn.LayDanhSach(sqlStr);
+            /*using (var conn = new QuanlitpContext())
+            {
+                var list = from q in conn.Khaisinhs join p in conn.Congdans on q.MaKs equals p.Cccd
+                           group q by q.GioiTinh into g
+                           select new
+                           {
+         
+                           }
+            }*/
             foreach (DataRow dr in dt.Rows)
             {
                 if (dr["Giới tính"] != DBNull.Value && (string)dr["Giới tính"] == "f")
@@ -53,15 +68,12 @@ namespace QuanLiCongDanThanhPho
             }
             return dt;
         }
-        public KhaiSinh LayThongTinNamNuTheoTu(string tu, string dieuKien)
+        public Khaisinh LayThongTinhNamNuTheoTu(string tu, string dieuKien)
         {
-            string strSql = string.Format($"SELECT * FROM KHAISINH WHERE MaKS like '%{tu}%'");
-            if (dieuKien.Length > 0)
-            {
-                strSql += string.Format($" AND GioiTinh = '{dieuKien}'");
-            }
-            return conn.LayThongTinKhaiSinh(strSql);
-        }
+                var khaiSinh = db.Khaisinhs.Where(q => q.NoiSinh.Contains(tu) || q.QueQuan.Contains(tu) || q.QuocTich.Contains(tu) || q.MaKs.Contains(tu) || q.DanToc.Contains(tu) || q.Cccdcha.Contains(tu) || q.Cccdme.Contains(tu) && q.GioiTinh == dieuKien).FirstOrDefault();
+                return khaiSinh;
+        }   
+
         private int[] SoLuongNguoiTrongNhomTuoi(DataTable dt)
         {
             int[] cntNhomTuoi = { 0, 0 ,0 };

@@ -34,12 +34,12 @@ namespace QuanLiCongDanThanhPho
             lblCCCD.Text = congDan.Cccd;
             lblTen.Text = congDan.Ten.ToUpper();
             KhaiSinhDAO khaiSinhDAO = new KhaiSinhDAO();
-            KhaiSinh ks = khaiSinhDAO.LayThongTin(lblCCCD.Text);
+            Khaisinh ks = khaiSinhDAO.LayThongTin(lblCCCD.Text);
             if (ks.GioiTinh == "m")
                 lblGioiTinh.Text = "Nam";
             else lblGioiTinh.Text = "Nữ";
             lblNgaySinh.Text = ks.NgaySinh.ToShortDateString();
-            lblQueQuan.Text = ks.QueQuan.toString();
+            lblQueQuan.Text = ks.QueQuan;
             lblQuocTich.Text = ks.QuocTich;
             HoKhauDAO hoKhauDAO = new HoKhauDAO();
             HoKhau hk = hoKhauDAO.LayThongTin(congDan.MaHk);

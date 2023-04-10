@@ -61,8 +61,31 @@ namespace QuanLiCongDanThanhPho
                     QuanHeVoiChuHo = cboQuanHe.SelectedItem.ToString(),
                 };
                 cdDAO.ThemCongDan(cD);
-
-                KhaiSinh kS = new KhaiSinh(txtCCCD.Text, txtTen.Text, rdoNam.Checked.ToString(), cboQuocTich.SelectedItem.ToString(), cboDanToc.SelectedItem.ToString(), dtmNgaySinh.Value, dtmDKKhaiSinh.Value, txtNoiSinh.Text, txtQueQuan.Text, txtCCCDCha.Text, txtTenCha.Text, txtCCCDMe.Text, txtTenMe.Text);
+                string gt = "";
+                if (rdoNam.Checked)
+                {
+                    gt = "m";
+                }
+                else
+                {
+                    gt = "f";
+                }
+                Khaisinh kS = new Khaisinh()
+                {
+                    MaKs = txtCCCD.Text,
+                    Ten = txtTen.Text,
+                    GioiTinh = gt,
+                    QuocTich = cboQuocTich.SelectedItem.ToString(),
+                    DanToc = cboDanToc.SelectedItem.ToString(),
+                    NgaySinh = dtmNgaySinh.Value,
+                    NgayDangKy = dtmDKKhaiSinh.Value,
+                    NoiSinh = txtNoiSinh.Text,
+                    QueQuan = txtQueQuan.Text,
+                    Cccdcha = txtCCCDCha.Text,
+                    TenCha = txtTenCha.Text,
+                    Cccdme = txtCCCDMe.Text,
+                    TenMe = txtTenMe.Text
+                };
                 kSDAO.ThemKhaSinh(kS);
 
                 Models.Thue thue = new Models.Thue(txtThue.Text, txtCCCD.Text);

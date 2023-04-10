@@ -144,8 +144,32 @@ namespace QuanLiCongDanThanhPho
                     Ten = txtTen.Text,
                     Cccd = txtCccd.Text
                 };
+                string gt = "";
+                if (rdoNam.Checked)
+                {
+                    gt = "m";
+                }
+                else
+                {
+                    gt = "f";
+                }
                 cDDAO.ThemCongDan(congDan);
-                KhaiSinh kS = new KhaiSinh(txtCccd.Text, txtTen.Text, rdoNam.Checked.ToString(), cboQuocTich.SelectedItem.ToString(), cboDanToc.SelectedItem.ToString(), dtmNgaySinh.Value, dtmNgayDangKy.Value, txtNoiSinh.Text, txtQueQuan.Text, txtCccdCha.Text, txtTenCha.Text, txtCccdMe.Text, txtTenMe.Text);
+                Khaisinh kS = new Khaisinh()
+                {
+                    MaKs = txtCccd.Text,
+                    Ten = txtTen.Text,
+                    GioiTinh = gt,
+                    QuocTich = cboQuocTich.SelectedItem.ToString(),
+                    DanToc = cboDanToc.SelectedItem.ToString(),
+                    NgaySinh = dtmNgaySinh.Value,
+                    NgayDangKy = dtmNgayDangKy.Value,
+                    NoiSinh = txtNoiSinh.Text,
+                    QueQuan = txtQueQuan.Text,
+                    Cccdcha = txtCccdCha.Text,
+                    TenCha = txtTenCha.Text,
+                    Cccdme = txtCccdMe.Text,
+                    TenMe = txtTenMe.Text
+                };
                 kSDAO.ThemKhaSinh(kS);
             }
         }

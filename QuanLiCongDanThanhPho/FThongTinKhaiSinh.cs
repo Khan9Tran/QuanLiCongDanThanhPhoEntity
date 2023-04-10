@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinKhaiSinh : Form
@@ -131,12 +131,12 @@ namespace QuanLiCongDanThanhPho
         {
             if (maCCCD != null)
             {
-                KhaiSinh ks = ksDAO.LayThongTin(maCCCD);
-                KhaiSinh ksCha = ksDAO.LayThongTin(ks.CCCDCha);
-                KhaiSinh ksMe = ksDAO.LayThongTin(ks.CCCDMe);
-                txtTen.Text = ks.HoTen;
-                txtCccd.Text = ks.MaKhaiSinh;
-                txtNoiSinh.Text = ks.NoiSinh.toString();
+                Khaisinh ks = ksDAO.LayThongTin(maCCCD);
+                Khaisinh ksCha = ksDAO.LayThongTin(ks.Cccdcha);
+                Khaisinh ksMe = ksDAO.LayThongTin(ks.Cccdme);
+                txtTen.Text = ks.Ten;
+                txtCccd.Text = ks.MaKs;
+                txtNoiSinh.Text = ks.NoiSinh;
                 dtmNgaySinh.Value = ks.NgaySinh;
                 if (ks.GioiTinh == "f")
                     txtGioiTinh.Text = "Nữ";
@@ -146,14 +146,14 @@ namespace QuanLiCongDanThanhPho
                     txtGioiTinh.Text = "unknow";
                 txtDanToc.Text = ks.DanToc;
                 txtQuocTich.Text = ks.QuocTich;
-                txtQueQuan.Text = ks.QueQuan.toString();
+                txtQueQuan.Text = ks.QueQuan;
                 txtTenCha.Text = ks.TenCha;
                 txtTenMe.Text = ks.TenMe;
-                txtCccdCha.Text = ks.CCCDCha;
-                txtCccdMe.Text = ks.CCCDMe;
+                txtCccdCha.Text = ks.Cccdcha;
+                txtCccdMe.Text = ks.Cccdme;
                 txtQuocTichCha.Text = ksCha.QuocTich;
                 txtQuocTichMe.Text = ksMe.QuocTich;
-                dtmNgayDangKy.Value = ks.NgayDangKy;
+                dtmNgayDangKy.Value = ks.NgayDangKy.Value;
             }
         }
         private void FThongTinKhaiSinh_Load(object sender, EventArgs e)
@@ -175,14 +175,13 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                KhaiSinh kS = ksDAO.LayThongTin(MaCCCD);
-                kS.NoiSinh.DinhDang(txtNoiSinh.Text);
-                kS.QueQuan.DinhDang(txtQueQuan.Text);
+                Khaisinh kS = ksDAO.LayThongTin(MaCCCD);
+                kS.NoiSinh = txtNoiSinh.Text;
+                kS.QueQuan = txtQueQuan.Text;
                 kS.NgaySinh = dtmNgaySinh.Value;
                 kS.DanToc = txtDanToc.Text;
                 kS.QuocTich = txtQuocTich.Text;
                 kS.GioiTinh = txtGioiTinh.Text;
-                kS.DinhDangGioiTinh();
                 kS.NgayDangKy = dtmNgayDangKy.Value;
                 ksDAO.CapNhatKhaiSinh(kS);
                 ReadOnly();

@@ -47,7 +47,7 @@ namespace QuanLiCongDanThanhPho
 
             //Thêm công dân chưa có vào tạm trong hệ thống
             Congdan congDan;
-            KhaiSinh khaiSinh;
+            Khaisinh khaiSinh;
             if (tenChong == "unknow")
             {
                 congDan = new Congdan()
@@ -55,7 +55,11 @@ namespace QuanLiCongDanThanhPho
                     Cccd = hN.CCCDChong,
                     Ten =hN.TenChong
                 };
-                khaiSinh = new KhaiSinh(hN.CCCDChong, hN.TenChong);
+                khaiSinh = new Khaisinh()
+                {
+                    MaKs = hN.CCCDChong, 
+                    Ten = hN.TenChong 
+                };
                 MessageBox.Show("Thông chồng đã được tạo, nếu sống trong khu vực hãy bổ sung thông tin");
                 congDanDAO.ThemCongDan(congDan);
                 ksDao.ThemKhaSinh(khaiSinh);
@@ -67,7 +71,11 @@ namespace QuanLiCongDanThanhPho
                     Cccd = hN.CCCDVo,
                     Ten = hN.TenVo
                 };
-                khaiSinh = new KhaiSinh(hN.CCCDVo, hN.TenVo);
+                khaiSinh = new Khaisinh()
+                {
+                    MaKs = hN.CCCDVo,
+                    Ten = hN.TenVo
+                };
                 MessageBox.Show("Thông tin vợ đã được tạo, nếu sống trong khu vực hãy bổ sung thông tin");
                 congDanDAO.ThemCongDan(congDan);
                 ksDao.ThemKhaSinh(khaiSinh);
