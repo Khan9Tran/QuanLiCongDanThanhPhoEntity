@@ -1,4 +1,4 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +15,13 @@ namespace QuanLiCongDanThanhPho
     {
         ThueDAO thueDAO;
         private string luaChon; // Khởi tạo lựa chọn bộ lọc
-        private DataTable ds; //Khởi tạo danh sách cho datagridview
+        private List<Thue> ds; //Khởi tạo danh sách cho datagridview
         public FDanhSachThue()
         {
             InitializeComponent();
             StackForm.Add(this);
             thueDAO = new ThueDAO();
-            ds = new DataTable();
+            ds = new List<Thue>();
             luaChon = "tat ca";
         }
 
@@ -65,29 +65,8 @@ namespace QuanLiCongDanThanhPho
         {
             gvThue.DataSource = NgatTrang(ds,10);
             gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
-            for (int i = 0; i < gvThue.Rows.Count; i++)
-            {
-                try
-                {
-                    gvThue.Rows[i].Cells[2].Value = DinhDangTienTe(gvThue.Rows[i].Cells[2].Value.ToString());
-                }
-                catch
-                {
-
-                }
-            }
         }
         
-        //Dinh dang tien VND
-        private string DinhDangTienTe(string s)
-        {
-            string result = s;
-            for (int i = result.Length - 3; i >0; i -= 3)
-            {
-                result = result.Insert(i, ".");
-            }
-            return result + " VND";
-        }
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
         private void btnTienDaNop_Click(object sender, EventArgs e)
         {
@@ -137,9 +116,9 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Ngắt trang
-        private DataTable NgatTrang(DataTable ds, int recordNum)
+        private List<Thue> NgatTrang(List<Thue> ds, int recordNum)
         {
-            int totalRecord = ds.Rows.Count;
+            int totalRecord = ds.Count;
             if (totalRecord <= 0)
                 return ds;
             if (totalRecord % recordNum != 0)
@@ -147,7 +126,7 @@ namespace QuanLiCongDanThanhPho
             else
                 nudPage.Maximum = totalRecord / recordNum;
             int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).CopyToDataTable();
+            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).ToList();
         }
 
         //Thay đổi page

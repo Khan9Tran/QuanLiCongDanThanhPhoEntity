@@ -15,6 +15,7 @@ namespace QuanLiCongDanThanhPho
     {
         private string maCCCD;
         KhaiSinhDAO ksDAO = new KhaiSinhDAO();
+        CongDanDAO cdDAO = new CongDanDAO();
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
@@ -38,7 +39,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtCccdCha.Text != "" && txtCccdCha.Text != "unknow")
             {
-                FThongTinCongDan tTCD = new FThongTinCongDan(txtCccdCha.Text);
+                FThongTinCongDan tTCD = new FThongTinCongDan(cdDAO.LayThongTin(txtCccdCha.Text));
                 tTCD.ShowDialog();
             }
         }
@@ -123,7 +124,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtCccdMe.Text != "" && txtCccdMe.Text != "unknow")
             {
-                FThongTinCongDan tTCD = new FThongTinCongDan(txtCccdMe.Text);
+                FThongTinCongDan tTCD = new FThongTinCongDan(cdDAO.LayThongTin(txtCccdMe.Text));
                 tTCD.ShowDialog();
             }
         }
@@ -132,12 +133,22 @@ namespace QuanLiCongDanThanhPho
             if (maCCCD != null)
             {
                 Khaisinh ks = ksDAO.LayThongTin(maCCCD);
-                Khaisinh ksCha = ksDAO.LayThongTin(ks.Cccdcha);
-                Khaisinh ksMe = ksDAO.LayThongTin(ks.Cccdme);
+                if (ks.Cccdcha == "")
+                {
+                    Khaisinh ksCha = ksDAO.LayThongTin(ks.Cccdcha);
+                    txtQuocTichCha.Text = ksCha.QuocTich;
+                }
+                if (ks.Cccdme == "")
+                {
+                    Khaisinh ksMe = ksDAO.LayThongTin(ks.Cccdme);
+                    txtQuocTichMe.Text = ksMe.QuocTich;
+
+                }
                 txtTen.Text = ks.Ten;
                 txtCccd.Text = ks.MaKs;
                 txtNoiSinh.Text = ks.NoiSinh;
                 dtmNgaySinh.Value = ks.NgaySinh;
+
                 if (ks.GioiTinh == "f")
                     txtGioiTinh.Text = "Nữ";
                 else if (ks.GioiTinh == "m")
@@ -147,12 +158,12 @@ namespace QuanLiCongDanThanhPho
                 txtDanToc.Text = ks.DanToc;
                 txtQuocTich.Text = ks.QuocTich;
                 txtQueQuan.Text = ks.QueQuan;
+
                 txtTenCha.Text = ks.TenCha;
                 txtTenMe.Text = ks.TenMe;
+
                 txtCccdCha.Text = ks.Cccdcha;
                 txtCccdMe.Text = ks.Cccdme;
-                txtQuocTichCha.Text = ksCha.QuocTich;
-                txtQuocTichMe.Text = ksMe.QuocTich;
                 dtmNgayDangKy.Value = ks.NgayDangKy.Value;
             }
         }
@@ -181,9 +192,12 @@ namespace QuanLiCongDanThanhPho
                 kS.NgaySinh = dtmNgaySinh.Value;
                 kS.DanToc = txtDanToc.Text;
                 kS.QuocTich = txtQuocTich.Text;
-                kS.GioiTinh = txtGioiTinh.Text;
+                if (txtGioiTinh.Text == "nam")
+                    kS.GioiTinh = "m";
+                else
+                    kS.GioiTinh = "f";
                 kS.NgayDangKy = dtmNgayDangKy.Value;
-                ksDAO.CapNhatKhaiSinh(kS);
+                ksDAO.CapNhatKhaiSinh();
                 ReadOnly();
                 LayThongTinKhaiKhaiSinh();
             }    

@@ -61,20 +61,10 @@ namespace QuanLiCongDanThanhPho
             return result.ToList();
             
         }
-        public void CapNhatHoKhau(Hokhau hoKhau)
+        public void CapNhatHoKhau()
         {
-            var hK = db.Hokhaus.Find(hoKhau.MaHk);
-            if (hK != null)
-            {
-                hK = hoKhau;
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật hộ khẩu thành công");
-            }
-            else
-            {
-                MessageBox.Show("Cập nhật hộ khẩu thất bại");
-            }
-           
         }
         public void XoaHoKhau(HoKhau hK)
     {

@@ -20,22 +20,11 @@ namespace QuanLiCongDanThanhPho
             string sqlStr = string.Format($"INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy, GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('{kS.MaKhaiSinh}' , N'{kS.HoTen}', '{kS.NgaySinh}','{kS.NgayDangKy}', '{kS.GioiTinh}', N'{kS.DanToc}', N'{kS.QuocTich}', N'{kS.NoiSinh.toString()}', N'{kS.QueQuan.toString()}','{kS.CCCDCha}', N'{kS.TenCha}', '{kS.CCCDMe}', N'{kS.TenMe}');");
             return sqlStr;
         }
-        public void CapNhatKhaiSinh(Khaisinh kS)
+        public void CapNhatKhaiSinh()
         {
          
-            Khaisinh khaiSinh = db.Khaisinhs.Find(kS.MaKs);
-            khaiSinh.NoiSinh = kS.NoiSinh;
-            khaiSinh.NgaySinh = kS.NgaySinh;
-            khaiSinh.QueQuan = kS.QueQuan;
-            khaiSinh.DanToc = kS.DanToc;
-            khaiSinh.Cccdcha= kS.Cccdcha;
-            khaiSinh.Cccdme= kS.Cccdme;
-            khaiSinh.QuocTich = kS.QuocTich;
-            khaiSinh.Ten = kS.Ten;
-            khaiSinh.GioiTinh = kS.GioiTinh;
-            khaiSinh.TenCha = kS.TenCha;
-            khaiSinh.TenMe = kS.TenMe;
             db.SaveChanges();
+            MessageBox.Show("Cap nhat khai sinh thanh cong");
 
         }
         public void ThemKhaSinh(Khaisinh kS)

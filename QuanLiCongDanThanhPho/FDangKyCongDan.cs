@@ -9,8 +9,8 @@ using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Models;
 using QuanLiCongDanThanhPho.Model;
+
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyCongDan : Form
@@ -94,7 +94,11 @@ namespace QuanLiCongDanThanhPho
                 };
                 kSDAO.ThemKhaSinh(kS);
 
-                Models.Thue thue = new Models.Thue(txtThue.Text, txtCCCD.Text);
+                Thue thue = new Thue()
+                {
+                    MaThue = txtThue.Text,
+                    Cccd = txtCCCD.Text
+                };
                 thueDAO.ThemThue(thue);
 
                 if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")

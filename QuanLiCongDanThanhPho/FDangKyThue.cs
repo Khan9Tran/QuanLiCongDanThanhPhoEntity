@@ -1,4 +1,4 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,7 +77,15 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                Thue thue = new Thue(txtMaSoThue.Text, txtCCCD.Text, dtpNgayCapMa.Value, dtpHanNop.Value, txtSoTienCanNop.Text, txtSoTienDaNop.Text);
+                Thue thue = new Thue()
+                {
+                    MaThue = txtMaSoThue.Text,
+                    Cccd = txtCCCD.Text,
+                    NgayCap =dtpNgayCapMa.Value,
+                    HanNop = dtpHanNop.Value,
+                    SoTienCanNop = txtSoTienCanNop.Text,
+                    SoTienDaNop = txtSoTienDaNop.Text
+                };
                 ThueDAO congDanNopThue = new ThueDAO();
                 congDanNopThue.ThemThue(thue);
             }

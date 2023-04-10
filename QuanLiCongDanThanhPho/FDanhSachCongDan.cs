@@ -138,9 +138,10 @@ namespace QuanLiCongDanThanhPho
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
         {
             string maCCCD = GetCCCD();
+            Congdan cD = cdDao.LayThongTin(maCCCD);
             if (maCCCD != "")
             {
-                FThongTinCongDan ttCD = new FThongTinCongDan(maCCCD);
+                FThongTinCongDan ttCD = new FThongTinCongDan(cD);
                 ttCD.ShowDialog();
             }
         }

@@ -31,20 +31,22 @@ namespace QuanLiCongDanThanhPho
            
             db.Tamtrutamvangs.Add(tTTV);
             db.SaveChanges();
+            MessageBox.Show("Thêm tạm trú tạm vắng thành công");
         }
         public void XoaTamTruTamVang(string canCuoc)
         {
-            Tamtrutamvang tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).SingleOrDefault();
+            Tamtrutamvang tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).FirstOrDefault();
             db.Tamtrutamvangs.Remove(tTTV);
             db.SaveChanges();
+            MessageBox.Show("Xóa tạm trú tạm vắng thành công");
         }
         public Boolean KiemTraTamTruTamVang(string maCCCD)
         {
-            return LayThongTin(maCCCD) != null;
+            return db.Tamtrutamvangs.Where(q => q.Cccd == maCCCD).Any();
         }
         public Tamtrutamvang LayThongTin(string maCCCD)
         {
-            var tTTV = db.Tamtrutamvangs.First(q => q.Cccd == maCCCD);
+            var tTTV = db.Tamtrutamvangs.Where(q => q.Cccd == maCCCD).FirstOrDefault();
             return tTTV;
         } 
 

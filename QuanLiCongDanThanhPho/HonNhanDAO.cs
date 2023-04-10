@@ -85,19 +85,10 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Cập nhật thông tin hôn nhân
-        public void CapNhatHonNhan(Honnhan honNhan)
+        public void CapNhatHonNhan()
         {
-            var hN = db.Honnhans.First(q => q.MaHonNhan == honNhan.MaHonNhan);
-            if (hN != null)
-            {
-                hN = honNhan;
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật hôn nhân thành công");
-            }
-            else
-            {
-                MessageBox.Show("Cập nhật hôn nhân thật bại");
-            }
         }
 
         //Kiểm tra xem người có CCCD này đã kết hôn chưa
@@ -125,16 +116,15 @@ namespace QuanLiCongDanThanhPho
         //Lấy tất cả thông tin của hôn nhân theo CCCD
         public Honnhan LayThongTin(string maCCCD)
         {   
-            var hN = db.Honnhans.First(q => q.Cccdnam == maCCCD || q.Cccdnu == maCCCD);
+            var hN = db.Honnhans.Where(p => p.Cccdnam == maCCCD || p.Cccdnu == maCCCD).FirstOrDefault();
             return hN;
         }
 
         //Lấy tất cả thông tin của hôn nhân theo mã số
         public Honnhan LayThongTinTheoMaSo(string maHonNhan)
         {
-            var hN = db.Honnhans.First(q => q.MaHonNhan == maHonNhan);
-            return hN;
-            
+           var hN = db.Honnhans.Where(p => p.MaHonNhan == maHonNhan).FirstOrDefault();
+           return hN; 
         }
     }
 }

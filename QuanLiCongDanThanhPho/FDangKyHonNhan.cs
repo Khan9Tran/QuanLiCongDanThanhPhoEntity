@@ -171,16 +171,19 @@ namespace QuanLiCongDanThanhPho
         private void LoadHonNhan()
         {
             Honnhan hn = hNDAO.LayThongTinTheoMaSo(txtMaHonNhan.Text);
-            txtCCCDChong.Text = hn.Cccdnam;
-            txtCCCDVo.Text = hn.Cccdnu;
-            txtTenChong.Text = hn.TenNam;
-            txtTenVo.Text = hn.TenNu;
-            txtNoiDK.Text = hn.NoiDangKy;
-            dtpNgayDangKy.Value = hn.NgayDangKy.Value;
-            if (hn.Cccdnam != null)
-                ChoPhepLiHon();
-            else
-                ChoPhepDangKy();
+            if (hn != null)
+            {
+                txtCCCDChong.Text = hn.Cccdnam;
+                txtCCCDVo.Text = hn.Cccdnu;
+                txtTenChong.Text = hn.TenNam;
+                txtTenVo.Text = hn.TenNu;
+                txtNoiDK.Text = hn.NoiDangKy;
+                dtpNgayDangKy.Value = hn.NgayDangKy.Value;
+                if (hn.Cccdnam != null)
+                    ChoPhepLiHon();
+                else
+                    ChoPhepDangKy();
+            }
         }
 
         //Tìm kiếm theo mã số

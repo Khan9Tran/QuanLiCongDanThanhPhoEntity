@@ -1,5 +1,4 @@
-﻿using QuanLiCongDanThanhPho.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,68 +13,76 @@ namespace QuanLiCongDanThanhPho
         DBConnection conn = new DBConnection();
         QuanlitpContext db = DBConnection.Db;
         public ThueDAO() { }
-        public DataTable LayDanhSach()
+        public List<Thue> LayDanhSach()
         {
-            return conn.LayDanhSach("SELECT MaThue as 'Mã thuế', CCCD, SoTienCanNop as 'Số tiền cần nộp', HanNop as 'Hạn nộp' FROM THUE");
+            var list = (from q in db.Thues select q).ToList();
+            return list;
         }
-        public void ThemThue(Models.Thue thue)
+        public void ThemThue(Thue thue)
         {
-            string sqlStr = string.Format($"INSERT INTO THUE(MaThue, CCCD, SoTienCanNop, SoTienDaNop, NgayCap, HanNop) VALUES('{thue.MaThue}','{thue.CCCD}', '{thue.SoTienCanNop}','{thue.SoTienDaNop}', '{thue.NgayCapMa}', '{thue.HanNop}');");
-            conn.ThucThi(sqlStr,"Thêm thông tin thuế thành công");
+            db.Thues.Add(thue);
+            db.SaveChanges();
+            MessageBox.Show("Them thue thanh cong");
         }
         public void XoaThue(string canCuoc)
         {
-            Model.Thue thue = db.Thues.Where(p => p.Cccd == canCuoc).FirstOrDefault();
+            Thue thue = LayThongTin(canCuoc);
             db.Thues.Remove(thue);
+            db.SaveChanges();
         }
-        public Models.Thue LayThongTin(string maCCCD)
+        public Thue LayThongTin(string maCCCD)
         {
-            /*string sqlStr = string.Format("SELECT * FROM THUE WHERE CCCD = {0}", maCCCD);
-            return conn.LayThongTinThue(sqlStr);*/
-            return null;
+            return db.Thues.Where(p => p.Cccd == maCCCD).FirstOrDefault();
         }
-        public string ChuoiLayDanhSachTheoTu(string tu)
+        public List<Thue> LayDanhSachChuaTu(string tu)
         {
-            string str = string.Format($"SELECT MaThue as 'Mã thuế', CCCD, SoTienCanNop as 'Số tiền cần nộp', HanNop as 'Hạn nộp' FROM THUE WHERE (MaThue like '%{tu}%' OR CCCD like '%{tu}%' OR SoTienCanNop like '%{tu}%' OR Convert(varchar,Format(HanNop, 'dd/MM/yyyy')) like '%{tu}%')");
-            return str;
+            var list = (from q in db.Thues 
+                        where q.SoTienDaNop.Contains(tu) || q.SoTienDaNop.Contains(tu) || q.MaThue.Contains(tu) || q.Cccd.Contains(tu)
+                        select q).ToList();
+            return list;
         }
-        public DataTable LayDanhSachChuaTu(string tu)
+        public List<Thue> LayDanhSachSoTienDaNop(string tu)
         {
-            string strSql = ChuoiLayDanhSachTheoTu(tu);
-            return conn.LayDanhSach(strSql);
+            var list = from q in LayDanhSachChuaTu(tu)
+                       orderby q.SoTienDaNop ascending
+                       select q;
+            return list.ToList();
         }
-        public DataTable LayDanhSachSoTienDaNop(string tu)
+        public List<Thue> LayDanhSachTreHan(string tu)
         {
-            string sqlStr = ChuoiLayDanhSachTheoTu(tu) + " ORDER BY SoTienDaNop ASC";
-            return conn.LayDanhSach(sqlStr);
+            var list = from q in LayDanhSachChuaTu(tu)
+                       where q.HanNop < DateTime.Now && q.SoTienCanNop != "0"
+                       select q;
+            return list.ToList();
         }
-        public DataTable LayDanhSachTreHan(string tu)
+        public void CapNhatThue(Thue t) 
         {
-            string sqlStr = ChuoiLayDanhSachTheoTu(tu) + " AND GETDATE() > THUE.HanNop";
-            return conn.LayDanhSach(sqlStr);
-        }
-        public void CapNhatThue(Models.Thue thue) 
-        {
-            /* string sqlStr = string.Format($"UPDATE THUE SET CCCD = '{thue.CCCD}', SoTienCanNop = '{thue.SoTienCanNop}', SoTienDaNop = '{thue.SoTienDaNop}', NgayCap = '{thue.NgayCapMa}', HanNop = '{thue.HanNop}' WHERE MaThue = '{thue.MaThue}'");
-             conn.ThucThi(sqlStr, $"Cập nhật thuế thành công");*/
+            Thue thue = db.Thues.Find(t.MaThue);
+            thue.HanNop = t.HanNop;
+            thue.SoTienDaNop = t.SoTienDaNop;
+            thue.SoTienCanNop = t.SoTienCanNop;
+            db.SaveChanges();
+
         }
         public int[] LayThongKeThue()
         {
-            string sqlStr = string.Format("SELECT SUM(CONVERT(INT,SoTienCanNop)) as TongTienCanNop, SUM(CONVERT(INT,SoTienDaNop)) as TongTienDaNop, COUNT(*) as SL FROM THUE");
-            DataTable dt = conn.LayDanhSach(sqlStr);
             int[] thues = new int[4];
-            thues[0] = dt.Rows[0].Field<int>("TongTienCanNop");
-            thues[1] = dt.Rows[0].Field<int>("TongTienDaNop");
+            thues[0] = (from q in db.Thues
+                        let TongTienCanNop = Convert.ToInt32(q.SoTienCanNop)
+                        select TongTienCanNop).Sum();
+            thues[1] = (from q in db.Thues
+                        let TongTienDaNop = Convert.ToInt32(q.SoTienDaNop)
+                        select TongTienDaNop).Sum();
             thues[2] = thues[0] + thues[1];
-            thues[3] = dt.Rows[0].Field<int>("SL");
+            thues[3] = LayDanhSach().Count();
             return thues;
         }
         public int LaySoNguoiTreHan()
         {
-            string sqlStr = string.Format("SELECT COUNT(*) as SL FROM THUE WHERE GETDATE() > THUE.HanNop");
-            DataTable dt = conn.LayDanhSach(sqlStr);
-            int cnt = dt.Rows[0].Field<int>("SL");
-            return cnt;
+            var list = (from q in db.Thues
+                       where q.HanNop < DateTime.Now && q.SoTienCanNop != "0"
+                       select q).ToList();
+            return list.Count;
         }
     }
 }

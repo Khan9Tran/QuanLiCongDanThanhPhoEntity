@@ -45,17 +45,15 @@ namespace QuanLiCongDanThanhPho
         }
         public void CapNhatCongDan(Congdan cD )
         {    
-            Congdan congDan = db.Congdans.Find(cD.Cccd);
-            congDan = cD;
             db.SaveChanges();
             MessageBox.Show("Cap nhat cong dan thanh cong");
         }
         public void ThayDoiHoKhau(Congdan cD)
         {       
-                Congdan congDan = db.Congdans.Find(cD.Cccd);
-                congDan.MaHk = cD.MaHk;
-                congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
-                db.SaveChanges();
+            Congdan congDan = db.Congdans.Find(cD.Cccd);
+            congDan.MaHk = cD.MaHk;
+            congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
+            db.SaveChanges();
             MessageBox.Show("Thay doi ho khau thanh cong");
         }
         public void NhapHoKhau(Congdan cD)
@@ -80,7 +78,7 @@ namespace QuanLiCongDanThanhPho
         }
         public Congdan LayThongTin(string maCCCD)
         {
-            Congdan congDan = db.Congdans.Where(q => q.Cccd == maCCCD).FirstOrDefault();
+            Congdan congDan = db.Congdans.Find(maCCCD);
             return congDan; 
         }
         public List<Congdan> LayDanhSachCongDanNam(string tu)

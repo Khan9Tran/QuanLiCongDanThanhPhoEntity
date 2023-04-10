@@ -71,7 +71,7 @@ namespace QuanLiCongDanThanhPho
 
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
         {
-            string maHoKhau = gvHoKhau.CurrentRow.Cells["Mã hộ khẩu"].Value.ToString();
+            string maHoKhau = gvHoKhau.CurrentRow.Cells["MaHk"].Value.ToString();
             if (maHoKhau != "")
             {
                 FThongTinHoKhau tTHK = new FThongTinHoKhau(maHoKhau);

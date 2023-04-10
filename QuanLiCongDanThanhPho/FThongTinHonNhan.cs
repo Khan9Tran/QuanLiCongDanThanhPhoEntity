@@ -16,6 +16,7 @@ namespace QuanLiCongDanThanhPho
     {
         private string maCCCD;
         HonNhanDAO hnDAO = new HonNhanDAO();
+        CongDanDAO cdDAO = new CongDanDAO();
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
@@ -38,7 +39,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtCCCDChong.Text != "")
             {
-                FThongTinCongDan tTCD = new FThongTinCongDan(txtCCCDChong.Text);
+                FThongTinCongDan tTCD = new FThongTinCongDan(cdDAO.LayThongTin(txtCCCDChong.Text));
                 tTCD.ShowDialog();
             }
         }
@@ -47,7 +48,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtCCCDVo.Text != "")
             {
-                FThongTinCongDan tTCD = new FThongTinCongDan(txtCCCDVo.Text);
+                FThongTinCongDan tTCD = new FThongTinCongDan(cdDAO.LayThongTin(txtCCCDVo.Text));
                 tTCD.ShowDialog();
             }
         }
@@ -119,7 +120,7 @@ namespace QuanLiCongDanThanhPho
             Honnhan hN = hnDAO.LayThongTin(maCCCD);
             hN.NoiDangKy = txtNoiDangKy.Text;
             hN.NgayDangKy = dtmNgayDangKy.Value;
-            hnDAO.CapNhatHonNhan(hN);
+            hnDAO.CapNhatHonNhan();
         }
         private void CapNhat()
         {   if (KiemTraThongTin())
