@@ -72,7 +72,7 @@ namespace QuanLiCongDanThanhPho
         public List<Congdan> LayDanhSachTheoHoKhau(string maHK)
         {
             var cDs = from q in db.Congdans
-                          where q.MaHk.Contains(maHK)
+                          where q.MaHk == maHK
                           select q;
             return cDs.ToList();
         }
@@ -83,43 +83,42 @@ namespace QuanLiCongDanThanhPho
         }
         public List<Congdan> LayDanhSachCongDanNam(string tu)
         {
-             var list = from q in db.Congdans
+             var list = from q in LayDanhSachChuaTu(tu)
                            join p in db.Khaisinhs
                            on q.Cccd equals p.MaKs
-                           where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "m")
+                           where p.GioiTinh == "m"
                            select q;
               return list.ToList();   
            
         }
         public List<Congdan> LayDanhSachCongDanNu(string tu)
         {
-            var list = from q in db.Congdans
+            var list = from q in LayDanhSachChuaTu(tu)
                         join p in db.Khaisinhs
                         on q.Cccd equals p.MaKs
-                        where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "f")
+                        where (p.GioiTinh == "f")
                         select q;
             return list.ToList();
         }
         public List<Congdan> LayDanhSachDaKetHon(string tu)
         {
-            var list = from q in db.Congdans
-                        where ((from p in db.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() > 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+            var list = from q in LayDanhSachChuaTu(tu)
+                       where ((from p in db.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() > 0)
                         select q;
             return list.ToList();
         }
         public List<Congdan> LayDanhSachChuaKetHon(string tu)
         {
-            var list = from q in db.Congdans
-                        where ((from p in db.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() == 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+            var list = from q in LayDanhSachChuaTu(tu)
+                        where ((from p in db.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() == 0 )
                         select q;
             return list.ToList();
         }
         public List<Congdan> LayDanhSachTuoiXepTuBeDenLon(string tu)
         {
-            var list = from q in db.Congdans
+            var list = from q in LayDanhSachChuaTu(tu)
                         join p in db.Khaisinhs
                         on q.Cccd equals p.MaKs
-                        where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
                         orderby p.NgaySinh
                         select q;
             return list.ToList();

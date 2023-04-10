@@ -61,10 +61,22 @@ namespace QuanLiCongDanThanhPho
         //Tải danh sách lên datagridview
         private void LoadDanhSach()
         {
-            gvDanhSachCongDan.DataSource = NgatTrang(ds,15);   
+            gvDanhSachCongDan.DataSource = NgatTrang(ds,15);
+            HeaderText();
         }
 
-
+        private void HeaderText()
+        {
+            gvDanhSachCongDan.Columns[0].HeaderText = "CCCD";
+            gvDanhSachCongDan.Columns[1].HeaderText = "Họ và tên";
+            gvDanhSachCongDan.Columns[2].HeaderText = "Nghề nghiệp";
+            gvDanhSachCongDan.Columns[3].HeaderText = "Số ĐT";
+            gvDanhSachCongDan.Columns[4].HeaderText = "Tôn giáo";
+            gvDanhSachCongDan.Columns[5].HeaderText = "Mã hộ";
+            gvDanhSachCongDan.Columns[6].Visible = false;
+            gvDanhSachCongDan.Columns[7].Visible = false;
+            gvDanhSachCongDan.Columns[8].Visible = false;
+        }
         private void FDanhSachCongDan_Load(object sender, EventArgs e)
         {
             txtTimKiem_TextChanged(txtTimKiem, null);

@@ -26,8 +26,12 @@ namespace QuanLiCongDanThanhPho
         public void XoaThue(string canCuoc)
         {
             Thue thue = LayThongTin(canCuoc);
-            db.Thues.Remove(thue);
-            db.SaveChanges();
+            if (thue != null)
+            {
+                db.Thues.Remove(thue);
+                db.SaveChanges();
+                MessageBox.Show("Xóa thuế thành công");
+            }
         }
         public Thue LayThongTin(string maCCCD)
         {
@@ -37,7 +41,8 @@ namespace QuanLiCongDanThanhPho
         {
             var list = (from q in db.Thues 
                         where q.SoTienDaNop.Contains(tu) || q.SoTienDaNop.Contains(tu) || q.MaThue.Contains(tu) || q.Cccd.Contains(tu)
-                        select q).ToList();
+                        select q
+                        ).ToList();
             return list;
         }
         public List<Thue> LayDanhSachSoTienDaNop(string tu)

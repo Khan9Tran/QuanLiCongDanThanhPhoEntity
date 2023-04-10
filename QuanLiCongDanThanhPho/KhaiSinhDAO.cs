@@ -35,8 +35,12 @@ namespace QuanLiCongDanThanhPho
         public void XoaKhaiSinh(string maKhaiSinh)
         {
             Khaisinh khaiSinh = db.Khaisinhs.Find(maKhaiSinh);
-            db.Remove(khaiSinh);
-            db.SaveChanges();
+            if (khaiSinh != null)
+            {
+                db.Remove(khaiSinh);
+                db.SaveChanges();
+                MessageBox.Show("Xóa khai sinh thành công");
+            }
         }
         public Khaisinh LayThongTin(string maCCCD)
         {
