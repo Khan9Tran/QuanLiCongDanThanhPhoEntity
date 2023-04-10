@@ -4,14 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using QuanLiCongDanThanhPho.Model;
 
 namespace QuanLiCongDanThanhPho
 {
     internal class ThueDAO
     {
-        DBConnection conn = new DBConnection();
         QuanlitpContext db = DBConnection.Db;
+        DBConnection conn = new DBConnection();
         public ThueDAO() { }
         public List<Thue> LayDanhSach()
         {
@@ -64,6 +63,7 @@ namespace QuanLiCongDanThanhPho
             db.SaveChanges();
 
         }
+
         public int[] LayThongKeThue()
         {
             int[] thues = new int[4];
