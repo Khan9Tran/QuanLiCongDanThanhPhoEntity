@@ -12,6 +12,7 @@ namespace QuanLiCongDanThanhPho
     internal class ThueDAO
     {
         DBConnection conn = new DBConnection();
+        QuanlitpContext db = DBConnection.Db;
         public ThueDAO() { }
         public DataTable LayDanhSach()
         {
@@ -24,8 +25,8 @@ namespace QuanLiCongDanThanhPho
         }
         public void XoaThue(string canCuoc)
         {
-            string sqlStr = string.Format($"DELETE FROM THUE WHERE CCCD = '{canCuoc}'");
-            conn.ThucThi(sqlStr, "Xóa thông tin thuế thành công");
+            Model.Thue thue = db.Thues.Where(p => p.Cccd == canCuoc).FirstOrDefault();
+            db.Thues.Remove(thue);
         }
         public Models.Thue LayThongTin(string maCCCD)
         {

@@ -11,7 +11,7 @@ namespace QuanLiCongDanThanhPho
 {
     internal class TamTruTamVangDAO
     {
-        DBConnection conn = new DBConnection();
+        QuanlitpContext db = DBConnection.Db;
         public List<Tamtrutamvang> LayDanhSachTamTru(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -28,20 +28,15 @@ namespace QuanLiCongDanThanhPho
         }
         public void ThemTamTruTamVang(Tamtrutamvang tTTV)
         {
-            using (var conn = new QuanlitpContext()) 
-            {
-                conn.Tamtrutamvangs.Add(tTTV);
-                conn.SaveChanges();
-            }
+           
+            db.Tamtrutamvangs.Add(tTTV);
+            db.SaveChanges();
         }
         public void XoaTamTruTamVang(string canCuoc)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                Tamtrutamvang tTTV = conn.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).SingleOrDefault();
-                conn.Tamtrutamvangs.Remove(tTTV);
-                conn.SaveChanges();
-            }
+            Tamtrutamvang tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).SingleOrDefault();
+            db.Tamtrutamvangs.Remove(tTTV);
+            db.SaveChanges();
         }
         public Boolean KiemTraTamTruTamVang(string maCCCD)
         {
@@ -49,23 +44,16 @@ namespace QuanLiCongDanThanhPho
         }
         public Tamtrutamvang LayThongTin(string maCCCD)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var tTTV = conn.Tamtrutamvangs.First(q => q.Cccd == maCCCD);
-                return tTTV;
-            }
+            var tTTV = db.Tamtrutamvangs.First(q => q.Cccd == maCCCD);
+            return tTTV;
         } 
 
         public List<Tamtrutamvang> LayDanhSachChuaTu(string tu)
         {
-            using (var conn = new QuanlitpContext()) 
-            {
-                var list = from q in conn.Tamtrutamvangs
-                           where q.LiDo.Contains(tu) ||q.DiaChi.Contains(tu) || q.TrangThai.Contains(tu) || q.MaTttv.Contains(tu)
-                           select q;
-                return list.ToList();
-            }
-                
+            var list = from q in db.Tamtrutamvangs
+                        where q.LiDo.Contains(tu) ||q.DiaChi.Contains(tu) || q.TrangThai.Contains(tu) || q.MaTttv.Contains(tu)
+                        select q;
+            return list.ToList();
         }
         public List<Tamtrutamvang> LayDanhSachTheoTrangThai(string trangthai)
         {
@@ -110,12 +98,9 @@ namespace QuanLiCongDanThanhPho
         }
         public List<Tamtrutamvang> LayDanhSach()
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Tamtrutamvangs
-                           select q;
-                return list.ToList();
-            }
+            var list = from q in db.Tamtrutamvangs
+                        select q;
+            return list.ToList();
         }
         public int LaySoLuong()
         {
