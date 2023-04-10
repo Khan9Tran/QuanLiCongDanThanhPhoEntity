@@ -38,7 +38,7 @@ namespace QuanLiCongDanThanhPho
             }
             if (hnDAO.KiemTraHonNhan(cD.Cccd))
             {
-                HonNhan hn = hnDAO.LayThongTin(cD.Cccd);
+                Honnhan hn = hnDAO.LayThongTin(cD.Cccd);
                 hnDAO.Xoa(hn);
             }
             cCCCDAO.XoaCCCD(cD.Cccd);

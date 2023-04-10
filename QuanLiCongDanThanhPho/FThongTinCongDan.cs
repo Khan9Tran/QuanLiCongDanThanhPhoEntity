@@ -176,7 +176,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayHonNhan()
         {
-            HonNhan hn = new HonNhan();
+            Honnhan hn = new Honnhan();
             hn = hnDAO.LayThongTin(MaCCCD);
             if (!hnDAO.KiemTraHonNhan(MaCCCD))
             {
@@ -184,14 +184,14 @@ namespace QuanLiCongDanThanhPho
                 btnHonNhan.Enabled = false;
             }
             else
-                txtHonNhan.Text = hn.MaSo;
+                txtHonNhan.Text = hn.MaHonNhan;
         }
 
         private void LayHoKhau()
         {
             Congdan cd = cdDAO.LayThongTin(MaCCCD);
-            HoKhau hk = hkDAO.LayThongTin(cd.MaHk);
-            txtDiaChi.Text = hk.DiaChi.toString();
+            Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
+            txtDiaChi.Text = hk.DiaChi;
         }
 
         private void LayTamTruTamVang()
@@ -372,13 +372,13 @@ namespace QuanLiCongDanThanhPho
             if (txtQuanHeVoiChuHo.Text == "Chủ hộ")
             {
                 HoKhauDAO hKDAO = new HoKhauDAO();
-                HoKhau hoKhau = hKDAO.LayThongTin(txtMaHoKhau.Text);
-                if (hoKhau.CCCDChuHo != txtCCCD.Text)
+                Hokhau hoKhau = hKDAO.LayThongTin(txtMaHoKhau.Text);
+                if (hoKhau.CccdchuHo != txtCCCD.Text)
                 {
-                    Congdan cD = cdDAO.LayThongTin(hoKhau.CCCDChuHo);
+                    Congdan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
                     cD.QuanHeVoiChuHo = "Unknow";
                     cdDAO.CapNhatCongDan(cD);
-                    hoKhau.CCCDChuHo = txtCCCD.Text;
+                    hoKhau.CccdchuHo = txtCCCD.Text;
                     hKDAO.CapNhatHoKhau(hoKhau);
                 }    
             }    
@@ -392,11 +392,11 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtHonNhan.Text != "Chưa có hôn nhân" && txtHonNhan.Text != "")
             {
-                HonNhan hn = hnDAO.LayThongTin(MaCCCD);
-                if (txtCCCD.Text == hn.CCCDChong)
-                    hn.TenChong = txtHoVaTen.Text;  
+                Honnhan hn = hnDAO.LayThongTin(MaCCCD);
+                if (txtCCCD.Text == hn.Cccdnam)
+                    hn.TenNam = txtHoVaTen.Text;  
                 else
-                    hn.TenVo = txtHoVaTen.Text;
+                    hn.TenNu = txtHoVaTen.Text;
                 hnDAO.CapNhatHonNhan(hn);
             }
         }

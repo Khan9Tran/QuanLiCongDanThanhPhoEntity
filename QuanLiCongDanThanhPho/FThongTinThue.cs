@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -100,12 +101,12 @@ namespace QuanLiCongDanThanhPho
             {
                 Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
                 Congdan cd = cdDAO.LayThongTin(MaCCCD);
-                HoKhau hk = hkDAO.LayThongTin(cd.MaHk);
+                Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
                 txtMaSoThue.Text = thue.MaThue;
                 txtTen.Text = cd.Ten;
                 txtCCCD.Text = cd.Cccd;
                 txtSdt.Text = cd.Sdt;
-                txtDiaChi.Text = hk.DiaChi.toString();
+                txtDiaChi.Text = hk.DiaChi;
                 txtSoTienCanNop.Text = DinhDangTienTe(thue.SoTienCanNop);
                 txtSoTienDaNop.Text = DinhDangTienTe(thue.SoTienDaNop);
                 dtmNgayCapMaSoThue.Value = thue.NgayCapMa;

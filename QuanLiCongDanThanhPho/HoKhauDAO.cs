@@ -14,10 +14,13 @@ namespace QuanLiCongDanThanhPho
     {
         DBConnection conn = new DBConnection();
         public HoKhauDAO() { }
-        public void ThemHoKhau(HoKhau hK)
+        public void ThemHoKhau(Hokhau hK)
         {
-            string sqlStr = string.Format($"INSERT INTO HOKHAU(MaHK,DiaChi,CCCDChuHo) VALUES('{hK.MaHoKhau}',N'{hK.DiaChi.toString()}', '{hK.CCCDChuHo}');");
-            conn.ThucThi(sqlStr, "Tạo hộ khẩu mới thành công");
+            using (var conn = new QuanlitpContext())
+            {
+                conn.Hokhaus.Add(hK);
+                conn.SaveChanges();
+            }
         }
         public List<Hokhau> LayDanhSach()
         {
@@ -28,11 +31,13 @@ namespace QuanLiCongDanThanhPho
                 return Hks.ToList();
             }
         }
-        public HoKhau LayThongTin(string maHoKhau)
+        public Hokhau LayThongTin(string maHoKhau)
         {
-
-            string sqlStr = string.Format("SELECT * FROM HOKHAU WHERE MaHK = '{0}'", maHoKhau);
-            return conn.LayThongTinHoKhau(sqlStr);
+            using (var conn = new QuanlitpContext())
+            {
+                var hK = conn.Hokhaus.First(q => q.MaHk == maHoKhau);
+                return hK;
+            }
         }
         public List<Hokhau> LayDanhSachChuaTu(string tu)
         {
@@ -48,13 +53,11 @@ namespace QuanLiCongDanThanhPho
         {
             using (var conn = new QuanlitpContext())
             {
-                var result = (from h in conn.Hokhaus
-                              where !(h.MaHk == "00000A" || h.MaHk == "00000B")
+                var result =  (from h in LayDanhSachChuaTu(tu)
                               join c in (from cong in conn.Congdans
                                          group cong by cong.MaHk into g
                                          select new { MaHK = g.Key, SL = g.Count() })
                               on h.MaHk equals c.MaHK
-                              where h.DiaChi.Contains(tu) || h.CccdchuHo.Contains(tu) || h.MaHk.Contains(tu)
                               orderby c.SL ascending
                               select new Hokhau
                               {
@@ -66,19 +69,42 @@ namespace QuanLiCongDanThanhPho
                 return result.ToList();
             }
         }
-        public void CapNhatHoKhau(HoKhau hK)
+        public void CapNhatHoKhau(Hokhau hoKhau)
         {
-            string sqlStr = string.Format($"UPDATE HOKHAU SET DiaChi = N'{hK.DiaChi.toString()}', CCCDChuHo = '{hK.CCCDChuHo}' WHERE MaHK = '{hK.MaHoKhau}'");
-            conn.ThucThi(sqlStr, $"Cập nhật hộ khẩu thành công");
+            using (var conn = new QuanlitpContext())
+            {
+                var hK = conn.Hokhaus.Find(hoKhau.MaHk);
+                if (hK != null)
+                {
+                    hK = hoKhau;
+                    conn.SaveChanges();
+                    MessageBox.Show("Cập nhật hộ khẩu thành công");
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật hộ khẩu thất bại");
+                }
+            }
         }
         public void XoaHoKhau(HoKhau hK)
         {
-            string sqlStr = string.Format($"DELETE HOKHAU WHERE MaHK = '{hK.MaHoKhau}'");
-            conn.ThucThi(sqlStr, "Đã xóa hộ không còn thành viên");
+            using (var conn = new QuanlitpContext())
+            {
+                var hkToDelete = conn.Hokhaus.Find(hK.MaHoKhau);
+                if (hkToDelete != null)
+                {
+                    conn.Hokhaus.Remove(hkToDelete);
+                    conn.SaveChanges();
+                    MessageBox.Show("Đã xóa hộ không còn thành viên");
+                }
+                else
+                {
+                    MessageBox.Show("Xóa hộ khẩu thất bại");
+                }
+            }
         }
         public List<object> TimHoNhieuNguoiNhat()
         {
-            string sqlStr = string.Format("SELECT MaHK as 'Mã hộ', count(CCCD) as 'Số lượng' FROM CONGDAN GROUP BY MaHK HAVING count(CCCD) = (SELECT max(SL) FROM (SELECT count(CCCD) as SL FROM CONGDAN WHERE MaHK != '00000B' AND MaHK != '00000A' GROUP BY MaHK) as A)");
             using (var conn = new QuanlitpContext()) {
                 var subquery = conn.Congdans
                     .Where(c => c.MaHk != "00000A" && c.MaHk != "00000B")

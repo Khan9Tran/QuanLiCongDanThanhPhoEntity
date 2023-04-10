@@ -1,4 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
+using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,12 +39,12 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaHoKhau != null)
             {
-                HoKhau hk = hkDAO.LayThongTin(MaHoKhau);
-                txtCCCDChuHo.Text = hk.CCCDChuHo;
-                txtMaHoKhau.Text = hk.MaHoKhau;
-                txtDiaChi.Text = hk.DiaChi.toString();
+                Hokhau hk = hkDAO.LayThongTin(MaHoKhau);
+                txtCCCDChuHo.Text = hk.CccdchuHo;
+                txtMaHoKhau.Text = hk.MaHk;
+                txtDiaChi.Text = hk.DiaChi;
                 //---Thong tin chu ho---//
-                Congdan chuHo = cdDAO.LayThongTin(hk.CCCDChuHo);
+                Congdan chuHo = cdDAO.LayThongTin(hk.CccdchuHo);
                 txtTenChuHo.Text = chuHo.Ten.ToString();
                 //---Quan he voi chu ho---//
                 var dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
@@ -53,10 +54,10 @@ namespace QuanLiCongDanThanhPho
         }
         private void CapNhatHoKhau()
         {
-            HoKhau hoKhau = hkDAO.LayThongTin(maHoKhau);
+            Hokhau hoKhau = hkDAO.LayThongTin(maHoKhau);
             if (txtDiaChi.Text != "")
             {
-                hoKhau.DiaChi.DinhDang(txtDiaChi.Text);
+                hoKhau.DiaChi = txtDiaChi.Text;
             }
             hkDAO.CapNhatHoKhau(hoKhau);
         }
