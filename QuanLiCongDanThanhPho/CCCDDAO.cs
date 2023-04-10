@@ -33,11 +33,14 @@ namespace QuanLiCongDanThanhPho
             db.SaveChanges();
             MessageBox.Show("cap nhat thanh cong");
         }
-        public List<Cccd> DanhSachCCCDTheoDacDiem(string dacDiem)
+        public List<Object> DanhSachCCCDTheoDacDiem(string dacDiem)
         {
-            var list = db.Cccds.Where(q => q.DacDiem.Contains(dacDiem)).ToList();
+            var cccds = db.Cccds.Where(q => q.DacDiem == dacDiem);
+            var list = (from q in cccds
+                        join p in db.Congdans on q.MaCccd equals p.Cccd
+                        select new { p.Ten, q.MaCccd, q.NgayCap, q.DacDiem }).Cast<Object>().ToList();  
             return list;
-        }
+        }   
         public Cccd LayThongTin(Cccd cCCD)
         {
             var canCuoc = db.Cccds.Find(cCCD.MaCccd);

@@ -83,7 +83,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void LoadDanhSach()
         {
-            gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem("Unknow");
+            gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem(null);
             Reset();
         }    
         private void gvDanhSachChuaCapCCCD_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -91,8 +91,8 @@ namespace QuanLiCongDanThanhPho
             int dong = e.RowIndex;
             if (dong >= 0)
             {
-                txtCCCD.Text = gvDanhSachChuaCapCCCD.Rows[dong].Cells["maCCCD"].Value.ToString();
-                txtTen.Text = gvDanhSachChuaCapCCCD.Rows[dong].Cells["Ten"].Value.ToString();
+                txtCCCD.Text = gvDanhSachChuaCapCCCD.Rows[dong].Cells[1].Value.ToString();
+                txtTen.Text = gvDanhSachChuaCapCCCD.Rows[dong].Cells[0].Value.ToString();
             }
             txtDDNhanDang.Text = "";
             dtmNgayCap.Value = DateTime.Now;

@@ -23,6 +23,7 @@ namespace QuanLiCongDanThanhPho
             };
             CCCDDAO cCCDDAO = new CCCDDAO();
             cCCDDAO.ThemCCCD(cCCD);
+            MessageBox.Show("Thêm công dân thành công");
         }
         public void XoaCongDan(Congdan cD)
         {

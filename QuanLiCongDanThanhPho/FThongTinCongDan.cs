@@ -349,7 +349,11 @@ namespace QuanLiCongDanThanhPho
             khaiSinh.NgaySinh = dtmNgaySinh.Value;
             khaiSinh.DanToc = txtDanToc.Text;
             khaiSinh.QuocTich = txtQuocTich.Text;
-            khaiSinh.GioiTinh = txtGioiTinh.Text;
+            if (txtGioiTinh.Text == "Nam")
+                khaiSinh.GioiTinh = "m";
+            else
+                khaiSinh.GioiTinh = "f";
+            ksDAO.CapNhatKhaiSinh();
         }    
 
         private void CapNhatCongDan()
@@ -375,6 +379,7 @@ namespace QuanLiCongDanThanhPho
                     Congdan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
                     cD.QuanHeVoiChuHo = "Unknow";
                     hoKhau.CccdchuHo = txtCCCD.Text;
+                    hkDAO.CapNhatHoKhau();
                 }    
             }    
         }
@@ -388,10 +393,14 @@ namespace QuanLiCongDanThanhPho
             if (txtHonNhan.Text != "Chưa có hôn nhân" && txtHonNhan.Text != "")
             {
                 Honnhan hn = hnDAO.LayThongTin(congDan.Cccd);
-                if (txtCCCD.Text == hn.Cccdnam)
-                    hn.TenNam = txtHoVaTen.Text;  
-                else
-                    hn.TenNu = txtHoVaTen.Text;
+                if (hn.TenNam != txtHoVaTen.Text && hn.TenNu != txtHoVaTen.Text)
+                {
+                    if (txtCCCD.Text == hn.Cccdnam)
+                        hn.TenNam = txtHoVaTen.Text;
+                    else
+                        hn.TenNu = txtHoVaTen.Text;
+                    hnDAO.CapNhatHonNhan();
+                }
             }
         }
 
