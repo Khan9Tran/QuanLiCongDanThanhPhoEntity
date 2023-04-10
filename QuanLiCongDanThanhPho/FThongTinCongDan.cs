@@ -168,7 +168,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayThue()
         {
-            Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
+            Model.Thue thue = thueDAO.LayThongTin(MaCCCD);
             if (thue.MaThue == null || thue.MaThue == "")
                 btnThue.Enabled = false;
             txtMaThue.Text = thue.MaThue;

@@ -99,7 +99,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaCCCD != null)
             {
-                Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
+                Model.Thue thue = thueDAO.LayThongTin(MaCCCD);
                 Congdan cd = cdDAO.LayThongTin(MaCCCD);
                 Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
                 txtMaSoThue.Text = thue.MaThue;
@@ -109,8 +109,8 @@ namespace QuanLiCongDanThanhPho
                 txtDiaChi.Text = hk.DiaChi;
                 txtSoTienCanNop.Text = DinhDangTienTe(thue.SoTienCanNop);
                 txtSoTienDaNop.Text = DinhDangTienTe(thue.SoTienDaNop);
-                dtmNgayCapMaSoThue.Value = thue.NgayCapMa;
-                dtmHanNopThue.Value = thue.HanNop;
+                dtmNgayCapMaSoThue.Value = thue.NgayCap.Value;
+                dtmHanNopThue.Value = thue.HanNop.Value;
             }
         }
         private void FThongTinThue_Load(object sender, EventArgs e)
@@ -126,13 +126,13 @@ namespace QuanLiCongDanThanhPho
         }
         private void CapNhatThue()
         {
-            Models.Thue thue = thueDAO.LayThongTin(MaCCCD);
+            Model.Thue thue = thueDAO.LayThongTin(MaCCCD);
             if (txtMaSoThue.Text != "")
             {
-                thue.CCCD = txtCCCD.Text;
+                thue.Cccd = txtCCCD.Text;
                 thue.SoTienCanNop = txtSoTienCanNop.Text;
                 thue.SoTienDaNop = txtSoTienDaNop.Text;
-                thue.NgayCapMa = dtmNgayCapMaSoThue.Value;
+                thue.NgayCap = dtmNgayCapMaSoThue.Value;
                 thue.HanNop = dtmHanNopThue.Value;
             }
             thueDAO.CapNhatThue(thue);

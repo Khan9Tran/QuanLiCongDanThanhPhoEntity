@@ -94,7 +94,11 @@ namespace QuanLiCongDanThanhPho
                 };
                 kSDAO.ThemKhaSinh(kS);
 
-                Models.Thue thue = new Models.Thue(txtThue.Text, txtCCCD.Text);
+                Model.Thue thue = new Model.Thue()
+                {
+                    MaThue = txtThue.Text,
+                    Cccd = txtCCCD.Text,
+                };
                 thueDAO.ThemThue(thue);
 
                 if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")

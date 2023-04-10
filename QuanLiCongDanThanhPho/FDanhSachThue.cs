@@ -15,13 +15,13 @@ namespace QuanLiCongDanThanhPho
     {
         ThueDAO thueDAO;
         private string luaChon; // Khởi tạo lựa chọn bộ lọc
-        private DataTable ds; //Khởi tạo danh sách cho datagridview
+        private List<Model.Thue> ds; //Khởi tạo danh sách cho datagridview
         public FDanhSachThue()
         {
             InitializeComponent();
             StackForm.Add(this);
             thueDAO = new ThueDAO();
-            ds = new DataTable();
+            ds = new List<Model.Thue>();
             luaChon = "tat ca";
         }
 
@@ -137,9 +137,9 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Ngắt trang
-        private DataTable NgatTrang(DataTable ds, int recordNum)
+        private List<Model.Thue> NgatTrang(List<Model.Thue> ds, int recordNum)
         {
-            int totalRecord = ds.Rows.Count;
+            int totalRecord = ds.Count;
             if (totalRecord <= 0)
                 return ds;
             if (totalRecord % recordNum != 0)
@@ -147,7 +147,7 @@ namespace QuanLiCongDanThanhPho
             else
                 nudPage.Maximum = totalRecord / recordNum;
             int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).CopyToDataTable();
+            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).ToList();
         }
 
         //Thay đổi page
