@@ -23,9 +23,19 @@ namespace QuanLiCongDanThanhPho
         public void CapNhatKhaiSinh(Khaisinh kS)
         {
          
-                Khaisinh khaiSinh = db.Khaisinhs.Find(kS.MaKs);
-                khaiSinh = kS;
-                db.SaveChanges();
+            Khaisinh khaiSinh = db.Khaisinhs.Find(kS.MaKs);
+            khaiSinh.NoiSinh = kS.NoiSinh;
+            khaiSinh.NgaySinh = kS.NgaySinh;
+            khaiSinh.QueQuan = kS.QueQuan;
+            khaiSinh.DanToc = kS.DanToc;
+            khaiSinh.Cccdcha= kS.Cccdcha;
+            khaiSinh.Cccdme= kS.Cccdme;
+            khaiSinh.QuocTich = kS.QuocTich;
+            khaiSinh.Ten = kS.Ten;
+            khaiSinh.GioiTinh = kS.GioiTinh;
+            khaiSinh.TenCha = kS.TenCha;
+            khaiSinh.TenMe = kS.TenMe;
+            db.SaveChanges();
 
         }
         public void ThemKhaSinh(Khaisinh kS)

@@ -9,8 +9,8 @@ namespace QuanLiCongDanThanhPho
 {
     internal class HonNhanDAO
     {
-        DBConnection conn = new DBConnection();
-        
+        QuanlitpContext db = DBConnection.Db;
+
         //Kiểm tra tên nhập vào có trùng khớp với trong hệ thống không
         public bool isGiongNhau(string a, string b)
         {
@@ -53,14 +53,13 @@ namespace QuanLiCongDanThanhPho
                 congDan = new Congdan()
                 {   
                     Cccd = hN.Cccdnam,
-                    Ten =hN.TenNam
+                    Ten = hN.TenNam
                 };
                 khaiSinh = new Khaisinh()
                 {
-                    MaKs = hN.CCCDChong, 
-                    Ten = hN.TenChong 
+                    MaKs = hN.Cccdnam, 
+                    Ten = hN.TenNam 
                 };
-                khaiSinh = new KhaiSinh(hN.Cccdnam, hN.TenNam);
                 MessageBox.Show("Thông chồng đã được tạo, nếu sống trong khu vực hãy bổ sung thông tin");
                 congDanDAO.ThemCongDan(congDan);
                 ksDao.ThemKhaSinh(khaiSinh);
@@ -74,84 +73,68 @@ namespace QuanLiCongDanThanhPho
                 };
                 khaiSinh = new Khaisinh()
                 {
-                    MaKs = hN.CCCDVo,
-                    Ten = hN.TenVo
+                    MaKs = hN.Cccdnu,
+                    Ten = hN.TenNu
                 };
-                khaiSinh = new KhaiSinh(hN.Cccdnu, hN.TenNu);
                 MessageBox.Show("Thông tin vợ đã được tạo, nếu sống trong khu vực hãy bổ sung thông tin");
                 congDanDAO.ThemCongDan(congDan);
                 ksDao.ThemKhaSinh(khaiSinh);
-            }
-            using (var conn = new QuanlitpContext())
-            {
-                conn.Honnhans.Add(hN);
-                conn.SaveChanges();
-            }
+            }   
+            db.Honnhans.Add(hN);
+            db.SaveChanges();
         }
 
         //Cập nhật thông tin hôn nhân
         public void CapNhatHonNhan(Honnhan honNhan)
         {
-            using (var conn = new QuanlitpContext())
+            var hN = db.Honnhans.First(q => q.MaHonNhan == honNhan.MaHonNhan);
+            if (hN != null)
             {
-                var hN = conn.Honnhans.First(q => q.MaHonNhan == honNhan.MaHonNhan);
-                if (hN != null)
-                {
-                    hN = honNhan;
-                    conn.SaveChanges();
-                    MessageBox.Show("Cập nhật hôn nhân thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Cập nhật hôn nhân thật bại");
-                }
+                hN = honNhan;
+                db.SaveChanges();
+                MessageBox.Show("Cập nhật hôn nhân thành công");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật hôn nhân thật bại");
             }
         }
 
         //Kiểm tra xem người có CCCD này đã kết hôn chưa
         public Boolean KiemTraHonNhan(string maCCCD)
         {
-            string sqlStr = string.Format("SELECT COUNT(*) as COUNT FROM HONNHAN WHERE CCCDNam = '{0}' OR CCCDNu = '{0}'", maCCCD);
-            return conn.KiemTraCoKhong(sqlStr);
+           return db.Honnhans.Where(p => p.Cccdnam == maCCCD || p.Cccdnu == maCCCD).Any();
         }
 
         //Xóa hôn nhân
         public void Xoa(Honnhan honNhan)
         {
-            using (var conn = new QuanlitpContext())
+            var hN = db.Honnhans.Find(honNhan.MaHonNhan);
+            if (hN != null)
             {
-                var hN = conn.Honnhans.Find(honNhan.MaHonNhan);
-                if (hN != null)
-                {
-                    conn.Honnhans.Remove(hN);
-                    conn.SaveChanges();
-                    MessageBox.Show("Xóa hôn nhân thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Xóa hôn nhân thất bại");
-                }
+                db.Honnhans.Remove(hN);
+                db.SaveChanges();
+                MessageBox.Show("Xóa hôn nhân thành công");
+            }
+            else
+            {
+                MessageBox.Show("Xóa hôn nhân thất bại");
             }
         }    
 
         //Lấy tất cả thông tin của hôn nhân theo CCCD
         public Honnhan LayThongTin(string maCCCD)
-        {
-            using (var conn = new QuanlitpContext())
-            {
-                var hN = conn.Honnhans.First(q => q.Cccdnam == maCCCD || q.Cccdnu == maCCCD);
-                return hN;
-            }
+        {   
+            var hN = db.Honnhans.First(q => q.Cccdnam == maCCCD || q.Cccdnu == maCCCD);
+            return hN;
         }
 
         //Lấy tất cả thông tin của hôn nhân theo mã số
         public Honnhan LayThongTinTheoMaSo(string maHonNhan)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var hN = conn.Honnhans.First(q => q.MaHonNhan == maHonNhan);
-                return hN;
-            }
+            var hN = db.Honnhans.First(q => q.MaHonNhan == maHonNhan);
+            return hN;
+            
         }
     }
 }

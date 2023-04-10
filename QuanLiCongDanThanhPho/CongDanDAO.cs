@@ -10,16 +10,17 @@ namespace QuanLiCongDanThanhPho
 {
     internal class CongDanDAO
     {
+        QuanlitpContext db = DBConnection.Db;
         DBConnection conn = new DBConnection();
         public CongDanDAO() { }
         public void ThemCongDan(Congdan cD)
-        {   
-            using (var conn = new QuanlitpContext())
+        {
+            db.Congdans.Add(cD);
+            db.SaveChanges();
+            Cccd cCCD = new Cccd()
             {
-                conn.Congdans.Add(cD);
-                conn.SaveChanges();
-            }    
-            CCCD cCCD = new CCCD(cD.Cccd);
+                MaCccd = cD.Cccd
+            };
             CCCDDAO cCCDDAO = new CCCDDAO();
             cCCDDAO.ThemCCCD(cCCD);
         }
@@ -32,146 +33,104 @@ namespace QuanLiCongDanThanhPho
             CCCDDAO cCCCDAO = new CCCDDAO();
             thueDAO.XoaThue(cD.Cccd);
             ksDAO.XoaKhaiSinh(cD.Cccd);
-            if (tTTTVDAO.KiemTraTamTruTamVang(cD.Cccd))
-            {
-                tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
-            }
-            if (hnDAO.KiemTraHonNhan(cD.Cccd))
-            {
-                Honnhan hn = hnDAO.LayThongTin(cD.Cccd);
-                hnDAO.Xoa(hn);
-            }
+            tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
+            Honnhan hn = hnDAO.LayThongTin(cD.Cccd);
+            hnDAO.Xoa(hn);
             cCCCDAO.XoaCCCD(cD.Cccd);
-            using (var conn = new QuanlitpContext())
-            {
-                Congdan congdan = conn.Congdans.Find(cD.Cccd);
-                conn.Congdans.Remove(congdan);
-                conn.SaveChanges();
-            }    
+            Congdan congdan = db.Congdans.Find(cD.Cccd);
+            db.Congdans.Remove(congdan);
+            db.SaveChanges();
+            MessageBox.Show("Xoa thanh cong");
         }
         public void CapNhatCongDan(Congdan cD )
-        {
-           using (var conn = new QuanlitpContext())
-           {
-                Congdan congDan = conn.Congdans.Find(cD.Cccd);
-                congDan = cD;
-                conn.SaveChanges();
-           }    
+        {    
+            Congdan congDan = db.Congdans.Find(cD.Cccd);
+            congDan = cD;
+            db.SaveChanges();
+            MessageBox.Show("Cap nhat cong dan thanh cong");
         }
         public void ThayDoiHoKhau(Congdan cD)
-        {
-           using (var conn = new QuanlitpContext())
-           {
-                Congdan congDan = conn.Congdans.Find(cD.Cccd);
+        {       
+                Congdan congDan = db.Congdans.Find(cD.Cccd);
                 congDan.MaHk = cD.MaHk;
                 congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
-                conn.SaveChanges();
-           }    
+                db.SaveChanges();
+            MessageBox.Show("Thay doi ho khau thanh cong");
         }
         public void NhapHoKhau(Congdan cD)
-        {
-            using (var conn = new QuanlitpContext())
-            {
-                Congdan congDan = conn.Congdans.Find(cD.Cccd);
+        {       
+                Congdan congDan = db.Congdans.Find(cD.Cccd);
                 congDan.MaHk = cD.MaHk;
                 congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
-                conn.SaveChanges();
-            }
+                db.SaveChanges();
         }
         public List<Congdan> LayDanhSach()
         {
-           using (var conn = new QuanlitpContext()) 
-            {
-                var cDs = from q in conn.Congdans
+                var cDs = from q in db.Congdans
                           select q;
                 return cDs.ToList();
-           }
         }
         public List<Congdan> LayDanhSachTheoHoKhau(string maHK)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var cDs = from q in conn.Congdans
+            var cDs = from q in db.Congdans
                           where q.MaHk.Contains(maHK)
                           select q;
-                return cDs.ToList();
-            }
+            return cDs.ToList();
         }
         public Congdan LayThongTin(string maCCCD)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                Congdan congDan = conn.Congdans.Where(q => q.Cccd == maCCCD).FirstOrDefault();
-                return congDan;
-            }    
+            Congdan congDan = db.Congdans.Where(q => q.Cccd == maCCCD).FirstOrDefault();
+            return congDan; 
         }
         public List<Congdan> LayDanhSachCongDanNam(string tu)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Congdans
-                           join p in conn.Khaisinhs
+             var list = from q in db.Congdans
+                           join p in db.Khaisinhs
                            on q.Cccd equals p.MaKs
                            where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "m")
                            select q;
-                return list.ToList();
-            }   
+              return list.ToList();   
            
         }
         public List<Congdan> LayDanhSachCongDanNu(string tu)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Congdans
-                           join p in conn.Khaisinhs
-                           on q.Cccd equals p.MaKs
-                           where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "f")
-                           select q;
-                return list.ToList();
-            }
+            var list = from q in db.Congdans
+                        join p in db.Khaisinhs
+                        on q.Cccd equals p.MaKs
+                        where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)) && p.GioiTinh == "f")
+                        select q;
+            return list.ToList();
         }
         public List<Congdan> LayDanhSachDaKetHon(string tu)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Congdans
-                           where ((from p in conn.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() > 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
-                           select q;
-                return list.ToList();
-            }
+            var list = from q in db.Congdans
+                        where ((from p in db.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() > 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+                        select q;
+            return list.ToList();
         }
         public List<Congdan> LayDanhSachChuaKetHon(string tu)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Congdans
-                           where ((from p in conn.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() == 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
-                           select q;
-                return list.ToList();
-            }
+            var list = from q in db.Congdans
+                        where ((from p in db.Honnhans where q.Cccd == p.Cccdnu || q.Cccd == p.Cccdnam select p).Count() == 0 && (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+                        select q;
+            return list.ToList();
         }
         public List<Congdan> LayDanhSachTuoiXepTuBeDenLon(string tu)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Congdans
-                           join p in conn.Khaisinhs
-                           on q.Cccd equals p.MaKs
-                           where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
-                           orderby p.NgaySinh
-                           select q;
-                return list.ToList();
-            }
+            var list = from q in db.Congdans
+                        join p in db.Khaisinhs
+                        on q.Cccd equals p.MaKs
+                        where ((q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu)))
+                        orderby p.NgaySinh
+                        select q;
+            return list.ToList();
         }
         public List<Congdan> LayDanhSachChuaTu(string tu)
         {
-            using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Congdans
-                           where (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu))
-                           select q;
-                return list.ToList();
-            }
+            var list = from q in db.Congdans
+                        where (q.Ten.Contains(tu) || q.TonGiao.Contains(tu) || q.Sdt.Contains(tu) || q.Cccd.Contains(tu) || q.NgheNghiep.Contains(tu) || q.QuanHeVoiChuHo.Contains(tu) || q.MaHk.Contains(tu))
+                        select q;
+            return list.ToList();
         }
         public int LaySoLuongCongDan()
         {
@@ -212,24 +171,19 @@ namespace QuanLiCongDanThanhPho
             }
             return GroupByVaCountChoDataTable(dt, "Quận", "Số lượng người");
         }
-        public DataTable LayDanhSachNgheNghiep()
+        public List<Congdan> LayDanhSachNgheNghiep()
         {
-            string sqlStr = string.Format("SELECT NgheNghiep as 'Nghề nghiệp', COUNT(NgheNghiep) as 'Số lượng' FROM CONGDAN GROUP BY NgheNghiep");
-            return conn.LayDanhSach(sqlStr);
+            return null;
         }
         public int LaySoLuongDocThan()
         {
-            string strSql = string.Format($"SELECT COUNT(*) as SoLuong FROM (SELECT CD.CCCD, CD.Ten, CD.SDT, CD.NgheNghiep, CD.TonGiao FROM CONGDAN AS CD EXCEPT SELECT CONGDAN.CCCD, CONGDAN.Ten, CONGDAN.SDT, CONGDAN.NgheNghiep, CONGDAN.TonGiao FROM CONGDAN, HONNHAN WHERE CONGDAN.CCCD = HONNHAN.CCCDNam OR CONGDAN.CCCD = HONNHAN.CCCDNu) as CONGDAN \r\n          \r\n\r\n");
-            DataTable dt = conn.LayDanhSach(strSql);
-            int count = dt.Rows[0].Field<int>("SoLuong");
-            return count;
+            return LayDanhSach().Count() - LaySoLuongDaKetHon(); 
         }
         public int LaySoLuongDaKetHon()
         {
-            string strSql = string.Format($"SELECT COUNT(*) as SoLuong FROM (SELECT distinct * FROM CONGDAN INNER JOIN HONNHAN ON CONGDAN.CCCD = HONNHAN.CCCDNam OR CONGDAN.CCCD = HONNHAN.CCCDNu) as CONGDAN");
-            DataTable dt = conn.LayDanhSach(strSql);
-            int count = dt.Rows[0].Field<int>("SoLuong");
-            return count;
+            int slNam = (from q in db.Congdans join p in db.Honnhans on q.Cccd equals p.Cccdnam select q).Count();
+            int slNu = (from q in db.Congdans join p in db.Honnhans on q.Cccd equals p.Cccdnu select q).Count();
+            return slNam + slNu;
         }
     }
 }

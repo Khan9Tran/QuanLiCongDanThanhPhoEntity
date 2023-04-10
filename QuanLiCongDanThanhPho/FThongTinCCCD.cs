@@ -46,8 +46,8 @@ namespace QuanLiCongDanThanhPho
             Hokhau hk = hoKhauDAO.LayThongTin(congDan.MaHk);
             lblDiaChi.Text = hk.DiaChi;
             CCCDDAO cCCDDAO = new CCCDDAO();
-            CCCD cCCD =cCCDDAO.LayThongTin(new CCCD(congDan.Cccd, DateTime.Now, "unknow"));
-            lblNgayCap.Text = cCCD.NgayCap.ToShortDateString();
+            Cccd cCCD = cCCDDAO.LayThongTin(new Cccd() { MaCccd = congDan.Cccd });
+            lblNgayCap.Text = cCCD.NgayCap.ToString();
             lblDDNhanDang.Text = cCCD.DacDiem;
 
 

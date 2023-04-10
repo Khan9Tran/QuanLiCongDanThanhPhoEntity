@@ -1,4 +1,4 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,7 +48,11 @@ namespace QuanLiCongDanThanhPho
         
         private void DangNhap()
         {
-            Account acc = new Account(txtTaiKhoan.Text,txtMatKhau.Text);
+            Account acc = new Account()
+            {
+                UserName = txtTaiKhoan.Text,
+                StrPassword = txtMatKhau.Text,
+            };
             if (!accDAO.DangNhap(acc))
             {
                 MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác!");
@@ -102,7 +106,11 @@ namespace QuanLiCongDanThanhPho
             {
                 tmrShowTime.Stop();
                 flogo.Close();
-                Account acc = new Account(txtTaiKhoan.Text, txtMatKhau.Text);
+                Account acc = new Account()
+                {
+                    UserName = txtMatKhau.Text,
+                    StrPassword= txtMatKhau.Text,
+                };
                 FTrangChu newTrangChu = new FTrangChu(acc);
                 newTrangChu.ShowDialog();
                 Close();

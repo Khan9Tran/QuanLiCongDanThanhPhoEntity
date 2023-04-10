@@ -1,4 +1,4 @@
-﻿using QuanLiCongDanThanhPho.Models;
+﻿using QuanLiCongDanThanhPho.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +59,7 @@ namespace QuanLiCongDanThanhPho
         private void CapNhatMatKhau(string matKhauMoi, string userName)
         {
             Account acc = new Account();
-            acc.Password = matKhauMoi;
+            acc.StrPassword = matKhauMoi;
             acc.UserName = userName;
             accountDAO.CapNhatMatKhau(acc);
         }
@@ -80,7 +80,7 @@ namespace QuanLiCongDanThanhPho
 
         private bool KiemTraPass()
         {
-            if (txtMatKhau.Text != account.Password)
+            if (txtMatKhau.Text != account.StrPassword)
             {
                 MessageBox.Show("Mật khẩu không chính xác.");
                 return false;

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Models;
+using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyCCCD : Form
@@ -64,7 +64,12 @@ namespace QuanLiCongDanThanhPho
             { 
                 if (cDDAO.LayThongTin(txtCCCD.Text).Ten == txtTen.Text)
                 {
-                    CCCD cCCD = new CCCD(txtCCCD.Text, dtmNgayCap.Value, txtDDNhanDang.Text);
+                    Cccd cCCD = new Cccd()
+                    {
+                        MaCccd = txtCCCD.Text,
+                        NgayCap = dtmNgayCap.Value,
+                        DacDiem = txtDDNhanDang.Text
+                    };
                     cCCDDAO.CapNhatCCCD(cCCD);
                 }
                 else
