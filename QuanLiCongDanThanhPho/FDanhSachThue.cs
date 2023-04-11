@@ -30,7 +30,7 @@ namespace QuanLiCongDanThanhPho
             txtTimKiem_TextChanged(txtTimKiem, null);
             flpnPhanLoai.Width = 45;
         }
-      
+
 
         private void gvThue_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -38,7 +38,7 @@ namespace QuanLiCongDanThanhPho
             {
                 cmnusMenu.Show(this, this.PointToClient(MousePosition));
             }
- 
+
         }
         // Danh sach thuế của tất cả công dân
         private void btnTatCa_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace QuanLiCongDanThanhPho
         // Hàm sửa gán datatable cho datagridview
         private void LoadDanhSach()
         {
-            gvThue.DataSource = NgatTrang(ds,10);
+            gvThue.DataSource = NgatTrang(ds, 10);
             gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
             HeaderText();
         }
@@ -85,7 +85,7 @@ namespace QuanLiCongDanThanhPho
             luaChon = "da nop";
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
-        
+
         // Xóa thông tin thuế của công dân ra khỏi csdl
         private void cmnusMenuXoa_Click(object sender, EventArgs e)
         {
