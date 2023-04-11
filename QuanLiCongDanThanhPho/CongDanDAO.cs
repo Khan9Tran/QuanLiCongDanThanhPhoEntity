@@ -170,9 +170,18 @@ namespace QuanLiCongDanThanhPho
             }
             return GroupByVaCountChoDataTable(dt, "Quận", "Số lượng người");
         }
-        public List<Congdan> LayDanhSachNgheNghiep()
+        public List<object> LayDanhSachNgheNghiep()
         {
-            return null;
+            var result = db.Congdans
+                            .GroupBy(g => g.NgheNghiep)
+                            .Select(q => new
+                            {
+                                NgheNghiep = q.Key,
+                                SoLuong = q.Count()
+                            })
+                            .Cast<object>()
+                            .ToList();
+            return result;
         }
         public int LaySoLuongDocThan()
         {
