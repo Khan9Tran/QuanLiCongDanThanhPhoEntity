@@ -7,6 +7,16 @@ using System.Threading.Tasks;
 using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
+    /*
+    class GenObj<T> where T : class
+    {
+        public List<T> LayDanhSach() //generic
+        {
+            var list = (from q in db.T select q).ToList();
+            return list;
+        }
+    }
+    */
     internal class ThueDAO
     {
         QuanlitpContext db = DBConnection.Db;
