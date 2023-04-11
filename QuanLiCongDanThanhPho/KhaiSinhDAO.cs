@@ -77,14 +77,15 @@ namespace QuanLiCongDanThanhPho
                 return khaiSinh;
         }   
 
-        private int[] SoLuongNguoiTrongNhomTuoi(DataTable dt)
+        private int[] SoLuongNguoiTrongNhomTuoi(IEnumerable<dynamic> dt)
         {
             int[] cntNhomTuoi = { 0, 0 ,0 };
-            foreach (DataRow dr in dt.Rows)
+            foreach (var row in dt)
             {
-                if ((int)dr["SoTuoi"] < 15)
+                int soTuoi = row.SoTuoi;
+                if (soTuoi < 15)
                     cntNhomTuoi[0]++;
-                else if ((int)dr["SoTuoi"] >= 15 && (int)dr["SoTuoi"] <= 64)
+                else if (soTuoi >= 15 && soTuoi <= 64)
                     cntNhomTuoi[1]++;
                 else
                     cntNhomTuoi[2]++;
@@ -93,25 +94,19 @@ namespace QuanLiCongDanThanhPho
         }
         public DataTable LayTuoiCongDan()
         {
-            string sqlStr = string.Format("SELECT YEAR(GETDATE()) - YEAR(NgaySinh) as SoTuoi FROM KHAISINH");
-            DataTable duLieu = conn.LayDanhSach(sqlStr);
-            DataTable dtNhomTuoi = new DataTable();
-            dtNhomTuoi.Clear();
+            var dulieu = from q in db.Khaisinhs
+                         let SoTuoi = DateTime.Now.Year - q.NgaySinh.Year
+                         select new { SoTuoi };
+
+            var dtNhomTuoi = new DataTable();
             dtNhomTuoi.Columns.Add("Nhóm tuổi");
             dtNhomTuoi.Columns.Add("Số lượng");
-            int[] soLuongNhomTuoi = SoLuongNguoiTrongNhomTuoi(duLieu);
-            DataRow row1 = dtNhomTuoi.NewRow();
-            row1["Nhóm tuổi"] = "0-14";
-            row1["Số lượng"] = soLuongNhomTuoi[0];
-            DataRow row2 = dtNhomTuoi.NewRow();
-            row2["Nhóm tuổi"] = "15-64";
-            row2["Số lượng"] = soLuongNhomTuoi[1];
-            DataRow row3 = dtNhomTuoi.NewRow();
-            row3["Nhóm tuổi"] = "65+";
-            row3["Số lượng"] = soLuongNhomTuoi[2];
-            dtNhomTuoi.Rows.Add(row1);
-            dtNhomTuoi.Rows.Add(row2);
-            dtNhomTuoi.Rows.Add(row3);
+
+            var soLuongNhomTuoi = SoLuongNguoiTrongNhomTuoi(dulieu);
+            dtNhomTuoi.Rows.Add("0-14", soLuongNhomTuoi[0]);
+            dtNhomTuoi.Rows.Add("15-64", soLuongNhomTuoi[1]);
+            dtNhomTuoi.Rows.Add("65+", soLuongNhomTuoi[2]);
+
             return dtNhomTuoi;
         }
     }

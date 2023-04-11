@@ -91,9 +91,15 @@ namespace QuanLiCongDanThanhPho
                     NgayKt = dtpNgayKetThuc.Value,
                     LiDo = txtLiDo.Text,
                     DiaChi = txtDiaChi.Text,
-
                 };
-                tTTVDAO.ThemTamTruTamVang(tTTV);
+                try
+                {
+                    tTTVDAO.ThemTamTruTamVang(tTTV);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không có công dân ở địa phương");
+                }
             }
         }
 

@@ -36,9 +36,12 @@ namespace QuanLiCongDanThanhPho
         public void XoaTamTruTamVang(string canCuoc)
         {
             Tamtrutamvang tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).FirstOrDefault();
-            db.Tamtrutamvangs.Remove(tTTV);
-            db.SaveChanges();
-            MessageBox.Show("Xóa tạm trú tạm vắng thành công");
+            if (tTTV != null)
+            {
+                db.Tamtrutamvangs.Remove(tTTV);
+                db.SaveChanges();
+                MessageBox.Show("Xóa tạm trú tạm vắng thành công");
+            }
         }
         public Boolean KiemTraTamTruTamVang(string maCCCD)
         {
