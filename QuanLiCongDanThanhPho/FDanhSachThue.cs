@@ -65,8 +65,20 @@ namespace QuanLiCongDanThanhPho
         {
             gvThue.DataSource = NgatTrang(ds,10);
             gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
+            HeaderText();
         }
-        
+
+        private void HeaderText()
+        {
+            gvThue.Columns[0].HeaderText = "Mã Thuế";
+            gvThue.Columns[1].HeaderText = "Căn cước công dân";
+            gvThue.Columns[2].HeaderText = "Số tiền cần nộp";
+            gvThue.Columns[3].HeaderText = "Số tiền đã nộp";
+            gvThue.Columns[4].HeaderText = "Ngày cấp";
+            gvThue.Columns[5].HeaderText = "Hạn nộp";
+            gvThue.Columns[6].Visible = false;
+        }
+
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
         private void btnTienDaNop_Click(object sender, EventArgs e)
         {
