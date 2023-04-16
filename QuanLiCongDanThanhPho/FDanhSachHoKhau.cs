@@ -51,6 +51,15 @@ namespace QuanLiCongDanThanhPho
         private void LayDanhSach()
         {
             gvHoKhau.DataSource = NgatTrang(ds, 13);
+            HeaderText();
+        }
+
+        private void HeaderText()
+        {
+            gvHoKhau.Columns[0].HeaderText = "Mã Hộ Khẩu";
+            gvHoKhau.Columns[1].HeaderText = "Địa chỉ";
+            gvHoKhau.Columns[2].HeaderText = "Căn cước công dân chủ hộ";
+            gvHoKhau.Columns[3].Visible = false;
         }
 
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
