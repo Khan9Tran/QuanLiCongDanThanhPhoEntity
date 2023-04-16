@@ -33,9 +33,9 @@ namespace QuanLiCongDanThanhPho
             db.SaveChanges();
             MessageBox.Show("cap nhat thanh cong");
         }
-        public List<Object> DanhSachCCCDTheoDacDiem(string dacDiem)
+        public List<Object> DanhSachCCCDTheoDacDiem()
         {
-            var cccds = db.Cccds.Where(q => q.DacDiem == dacDiem);
+            var cccds = db.Cccds.Where(q => q.DacDiem == null);
             var list = (from q in cccds
                         join p in db.Congdans on q.MaCccd equals p.Cccd
                         select new { p.Ten, q.MaCccd, q.NgayCap, q.DacDiem }).Cast<Object>().ToList();  

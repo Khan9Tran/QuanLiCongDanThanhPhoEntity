@@ -115,7 +115,7 @@ namespace QuanLiCongDanThanhPho
 
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
-
+            LayDanhSach();
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
