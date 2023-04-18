@@ -46,11 +46,16 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.picTimKiem = new System.Windows.Forms.PictureBox();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
+            this.fpnlChucNang = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnThue = new System.Windows.Forms.Button();
+            this.btnTamVang = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachCongDan)).BeginInit();
             this.cmnusMenu.SuspendLayout();
             this.fpnlPhanLoai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTimKiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPage)).BeginInit();
+            this.fpnlChucNang.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvDanhSachCongDan
@@ -68,7 +73,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvDanhSachCongDan.DefaultCellStyle = dataGridViewCellStyle1;
-            this.gvDanhSachCongDan.Location = new System.Drawing.Point(20, 123);
+            this.gvDanhSachCongDan.Location = new System.Drawing.Point(15, 165);
             this.gvDanhSachCongDan.Name = "gvDanhSachCongDan";
             this.gvDanhSachCongDan.RowHeadersWidth = 51;
             this.gvDanhSachCongDan.RowTemplate.Height = 29;
@@ -239,7 +244,7 @@
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.Image = global::QuanLiCongDanThanhPho.Properties.Resources.page;
             this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.Location = new System.Drawing.Point(1214, 67);
+            this.btnThem.Location = new System.Drawing.Point(3, 3);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(150, 50);
             this.btnThem.TabIndex = 56;
@@ -278,6 +283,56 @@
             0});
             this.nudPage.ValueChanged += new System.EventHandler(this.nudPage_ValueChanged);
             // 
+            // fpnlChucNang
+            // 
+            this.fpnlChucNang.Controls.Add(this.btnThem);
+            this.fpnlChucNang.Controls.Add(this.btnThue);
+            this.fpnlChucNang.Controls.Add(this.btnTamVang);
+            this.fpnlChucNang.Controls.Add(this.button1);
+            this.fpnlChucNang.Location = new System.Drawing.Point(861, 64);
+            this.fpnlChucNang.Name = "fpnlChucNang";
+            this.fpnlChucNang.Size = new System.Drawing.Size(520, 62);
+            this.fpnlChucNang.TabIndex = 58;
+            // 
+            // btnThue
+            // 
+            this.btnThue.BackColor = System.Drawing.Color.Transparent;
+            this.btnThue.FlatAppearance.BorderSize = 0;
+            this.btnThue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThue.Image = global::QuanLiCongDanThanhPho.Properties.Resources.personal;
+            this.btnThue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThue.Location = new System.Drawing.Point(159, 3);
+            this.btnThue.Name = "btnThue";
+            this.btnThue.Size = new System.Drawing.Size(150, 50);
+            this.btnThue.TabIndex = 57;
+            this.btnThue.Text = "Thuế";
+            this.btnThue.UseVisualStyleBackColor = false;
+            this.btnThue.Click += new System.EventHandler(this.btnThue_Click);
+            // 
+            // btnTamVang
+            // 
+            this.btnTamVang.BackColor = System.Drawing.Color.Transparent;
+            this.btnTamVang.FlatAppearance.BorderSize = 0;
+            this.btnTamVang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTamVang.Image = global::QuanLiCongDanThanhPho.Properties.Resources.potential;
+            this.btnTamVang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTamVang.Location = new System.Drawing.Point(315, 3);
+            this.btnTamVang.Name = "btnTamVang";
+            this.btnTamVang.Size = new System.Drawing.Size(150, 50);
+            this.btnTamVang.TabIndex = 58;
+            this.btnTamVang.Text = "     Tạm vắng";
+            this.btnTamVang.UseVisualStyleBackColor = false;
+            this.btnTamVang.Click += new System.EventHandler(this.btnTamVang_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(471, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(8, 8);
+            this.button1.TabIndex = 59;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // FDanhSachCongDan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -285,8 +340,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1532, 679);
+            this.Controls.Add(this.fpnlChucNang);
             this.Controls.Add(this.nudPage);
-            this.Controls.Add(this.btnThem);
             this.Controls.Add(this.picTimKiem);
             this.Controls.Add(this.fpnlPhanLoai);
             this.Controls.Add(this.txtTimKiem);
@@ -302,6 +357,7 @@
             this.fpnlPhanLoai.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picTimKiem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPage)).EndInit();
+            this.fpnlChucNang.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,5 +381,9 @@
         private ToolStripMenuItem cmnusMenuXoa;
         private NumericUpDown nudPage;
         private Button btnLoc;
+        private FlowLayoutPanel fpnlChucNang;
+        private Button btnThue;
+        private Button btnTamVang;
+        private Button button1;
     }
 }

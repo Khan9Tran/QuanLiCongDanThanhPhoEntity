@@ -66,12 +66,12 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvThue.DefaultCellStyle = dataGridViewCellStyle1;
-            this.gvThue.Location = new System.Drawing.Point(25, 201);
+            this.gvThue.Location = new System.Drawing.Point(25, 127);
             this.gvThue.Name = "gvThue";
             this.gvThue.RowHeadersWidth = 51;
             this.gvThue.RowTemplate.Height = 29;
             this.gvThue.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvThue.Size = new System.Drawing.Size(1477, 466);
+            this.gvThue.Size = new System.Drawing.Size(1477, 540);
             this.gvThue.TabIndex = 0;
             // 
             // cmnusMenu
@@ -107,7 +107,7 @@
             this.flpnPhanLoai.Controls.Add(this.btnTienDaNop);
             this.flpnPhanLoai.Controls.Add(this.btnTreHan);
             this.flpnPhanLoai.Controls.Add(this.btnCongDanCanTaoThue);
-            this.flpnPhanLoai.Location = new System.Drawing.Point(25, 148);
+            this.flpnPhanLoai.Location = new System.Drawing.Point(25, 71);
             this.flpnPhanLoai.Name = "flpnPhanLoai";
             this.flpnPhanLoai.Size = new System.Drawing.Size(858, 47);
             this.flpnPhanLoai.TabIndex = 9;
@@ -210,7 +210,7 @@
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThem.Image = global::QuanLiCongDanThanhPho.Properties.Resources.page;
             this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.Location = new System.Drawing.Point(1209, 139);
+            this.btnThem.Location = new System.Drawing.Point(1194, 71);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(150, 50);
             this.btnThem.TabIndex = 58;
@@ -222,7 +222,7 @@
             this.nudPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(75)))), ((int)(((byte)(150)))));
             this.nudPage.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nudPage.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.nudPage.Location = new System.Drawing.Point(1352, 148);
+            this.nudPage.Location = new System.Drawing.Point(1352, 88);
             this.nudPage.Minimum = new decimal(new int[] {
             1,
             0,

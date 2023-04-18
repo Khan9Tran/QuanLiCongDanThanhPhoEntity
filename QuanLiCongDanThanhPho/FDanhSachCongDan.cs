@@ -27,6 +27,8 @@ namespace QuanLiCongDanThanhPho
             ds = new List<Congdan>();
             StackForm.Add(this);
             luaChon = "tat ca";
+            btnTamVang.Enabled = false;
+            btnThue.Enabled = false;
         }
 
         //Tìm kiếm công dân theo các điều kiện
@@ -88,8 +90,22 @@ namespace QuanLiCongDanThanhPho
 
         private void gvDanhSachCongDan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnThue.Enabled = true;
+            btnTamVang.Enabled = true;
             if (e.RowIndex != -1)
             {
+                ThueDAO thueDAO = new ThueDAO();
+                //Kiểm tra nếu không có trong ds thuế thì có thể đk
+                if (thueDAO.LayThongTin(GetCCCD()) != null)
+                {
+                    btnThue.Enabled = false;
+                }    
+                TamTruTamVangDAO tttvDAO= new TamTruTamVangDAO();
+                //Kiểm tra nếu không có trong ds tạm trú, tạm vắng thì có thể đk
+                if (tttvDAO.LayThongTin(GetCCCD()) != null)
+                {
+                    btnTamVang.Enabled = false;
+                }    
                 cmnusMenu.Show(this, this.PointToClient(MousePosition));
             }
         }
@@ -213,6 +229,18 @@ namespace QuanLiCongDanThanhPho
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
             LoadDanhSach();
+        }
+
+        private void btnThue_Click(object sender, EventArgs e)
+        {
+            FDangKyThue dangKyThue = new FDangKyThue(GetCCCD());
+            (StackForm.fTrangChu).OpenChildForm(dangKyThue);
+        }
+
+        private void btnTamVang_Click(object sender, EventArgs e)
+        {
+            FDangKyTamTruTamVang dKTamTruTamVang = new FDangKyTamTruTamVang(GetCCCD());
+            (StackForm.fTrangChu).OpenChildForm(dKTamTruTamVang);
         }
     }
 }

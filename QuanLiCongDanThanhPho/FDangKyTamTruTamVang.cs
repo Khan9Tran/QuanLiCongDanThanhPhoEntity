@@ -20,6 +20,27 @@ namespace QuanLiCongDanThanhPho
             tTTVDAO = new TamTruTamVangDAO();
             StackForm.Add(this);
         }
+        public FDangKyTamTruTamVang(string cCCD)
+        {
+            InitializeComponent();
+            tTTVDAO = new TamTruTamVangDAO();
+            StackForm.Add(this);
+            LoadThongTin(cCCD);
+            
+        }
+        private void LoadThongTin(string cCCD)
+        {
+            if (cCCD != null)
+            {
+                CongDanDAO congDanDAO = new CongDanDAO();
+                Congdan congDan = congDanDAO.LayThongTin(cCCD);
+                txtTen.Text = congDan.Ten;
+                txtCCCD.Text = congDan.Cccd;
+                txtMaSo.Text = congDan.Cccd;
+                rdoTamVang.Checked = true;
+                txtSDT.Text = congDan.Sdt;
+            }
+        }
         private bool KiemTraThongTin()
         {
             if (!KiemTraDuLieuNhap.isMaSo(txtMaSo.Text))
@@ -80,25 +101,39 @@ namespace QuanLiCongDanThanhPho
                     };
 
                     CongDanDAO cDTamTruDAO = new CongDanDAO();
-                    cDTamTruDAO.ThemCongDan(cDTamTru);
+                    try
+                    {
+
+                        cDTamTruDAO.ThemCongDan(cDTamTru);
+                    }
+                    catch (Exception ex) 
+                    {
+                        MessageBox.Show("Không thể dùng tùy chọn này");
+                        return;
+                    }
+                }
+                string trangThai = "Tạm vắng";
+                if (rdoTamTru.Checked == true)
+                {
+                    trangThai = "Tạm trú";
                 }
                 Tamtrutamvang tTTV = new Tamtrutamvang()
                 {
                     Cccd = txtCCCD.Text,
-                    TrangThai = txtLiDo.Text,
+                    TrangThai = trangThai,
                     MaTttv = txtMaSo.Text,
                     NgayBd = dtpNgayBatDau.Value,
                     NgayKt = dtpNgayKetThuc.Value,
                     LiDo = txtLiDo.Text,
                     DiaChi = txtDiaChi.Text,
                 };
-                try
+                if (tTTVDAO.LayThongTin(tTTV.Cccd) == null)
                 {
                     tTTVDAO.ThemTamTruTamVang(tTTV);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Không có công dân ở địa phương");
+                    MessageBox.Show("Thêm thất bại");
                 }
             }
         }

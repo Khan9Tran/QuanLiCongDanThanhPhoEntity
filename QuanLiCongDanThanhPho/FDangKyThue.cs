@@ -18,7 +18,24 @@ namespace QuanLiCongDanThanhPho
             InitializeComponent();
             StackForm.Add(this);
         }
-
+        public FDangKyThue(string cCCD)
+        {
+            InitializeComponent();
+            StackForm.Add(this);
+            LoadThongTin(cCCD);
+            
+        }
+        public void LoadThongTin(string cCCD) 
+        {
+            if (cCCD != null)
+            {
+                CongDanDAO congDanDAO = new CongDanDAO();
+                Congdan congDan = congDanDAO.LayThongTin(cCCD);
+                txtMaSoThue.Text = congDan.Cccd;
+                txtCCCD.Text = congDan.Cccd;
+                txtSoTienDaNop.Text = "0";
+            }
+        }
         private bool KiemTraThongTin()
         {
             if (!KiemTraDuLieuNhap.isMaSo(txtMaSoThue.Text))
