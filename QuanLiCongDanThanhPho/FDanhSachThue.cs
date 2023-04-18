@@ -30,7 +30,7 @@ namespace QuanLiCongDanThanhPho
             txtTimKiem_TextChanged(txtTimKiem, null);
             flpnPhanLoai.Width = 45;
         }
-      
+
 
         private void gvThue_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -38,7 +38,7 @@ namespace QuanLiCongDanThanhPho
             {
                 cmnusMenu.Show(this, this.PointToClient(MousePosition));
             }
- 
+
         }
         // Danh sach thuế của tất cả công dân
         private void btnTatCa_Click(object sender, EventArgs e)
@@ -63,18 +63,29 @@ namespace QuanLiCongDanThanhPho
         // Hàm sửa gán datatable cho datagridview
         private void LoadDanhSach()
         {
-            gvThue.DataSource = NgatTrang(ds,10);
-            gvThue.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
-            gvThue.Columns[5].DefaultCellStyle.Format = "dd/MM/yyyy";
+            gvThue.DataSource = NgatTrang(ds, 10);
+            gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
+            HeaderText();
         }
-        
+
+        private void HeaderText()
+        {
+            gvThue.Columns[0].HeaderText = "Mã Thuế";
+            gvThue.Columns[1].HeaderText = "Căn cước công dân";
+            gvThue.Columns[2].HeaderText = "Số tiền cần nộp";
+            gvThue.Columns[3].HeaderText = "Số tiền đã nộp";
+            gvThue.Columns[4].HeaderText = "Ngày cấp";
+            gvThue.Columns[5].HeaderText = "Hạn nộp";
+            gvThue.Columns[6].Visible = false;
+        }
+
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
         private void btnTienDaNop_Click(object sender, EventArgs e)
         {
             luaChon = "da nop";
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
-        
+
         // Xóa thông tin thuế của công dân ra khỏi csdl
         private void cmnusMenuXoa_Click(object sender, EventArgs e)
         {

@@ -25,10 +25,17 @@ namespace QuanLiCongDanThanhPho
         }
         public void CapNhatMatKhau(Account acc)
         {
-            Account acccount = db.Accounts.Find(acc.UserName);
-            acccount.StrPassword = acc.StrPassword;
-            db.SaveChanges();
-            MessageBox.Show("Doi mat khau thanh cong");
+            try
+            {
+                Account? acccount = db.Accounts.Find(acc.UserName);
+                acccount.StrPassword = acc.StrPassword;
+                db.SaveChanges();
+                MessageBox.Show("Doi mat khau thanh cong");
+            }
+            catch
+            {
+                MessageBox.Show("Doi mat khau thanh cong");
+            }
         }
         public void CapNhatDisplayName(Account acc)
         {

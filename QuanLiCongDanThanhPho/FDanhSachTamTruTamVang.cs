@@ -60,8 +60,19 @@ namespace QuanLiCongDanThanhPho
             gvTVTT.DataSource = NgatTrang(ds, 10);
             gvTVTT.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
             gvTVTT.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
+            HeaderText();
         }
-
+        private void HeaderText()
+        {
+            gvTVTT.Columns[0].HeaderText = "Mã tạm trú tạm vắng";
+            gvTVTT.Columns[1].HeaderText = "Căn cước công dân";
+            gvTVTT.Columns[2].HeaderText = "Địa chỉ";
+            gvTVTT.Columns[3].HeaderText = "Ngày bắt đầu";
+            gvTVTT.Columns[4].HeaderText = "Ngày kết thúc";
+            gvTVTT.Columns[5].HeaderText = "Trạng thái";
+            gvTVTT.Columns[6].HeaderText = "Lí do";
+            gvTVTT.Columns[7].Visible = false;
+        }
         private void btnTV_Click(object sender, EventArgs e)
         {
             luaChon = "tam vang";

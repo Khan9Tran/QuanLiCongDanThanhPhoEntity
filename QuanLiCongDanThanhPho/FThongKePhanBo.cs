@@ -23,13 +23,13 @@ namespace QuanLiCongDanThanhPho
 
         private void FThongKePhanBo_Load(object sender, EventArgs e)
         {
-            gvDanhSachQuan.DataSource = cdDAO.LayDanhSachDiaChi();
+            gvDanhSachQuan.DataSource = cdDAO.LayDanhSachDC();
             lblSoNguoiTamTru.Text += " " + tttvDAO.LaySoLuongTamTru().ToString();
             lblSoNguoiTamVang.Text += " " + tttvDAO.LaySoLuongTamVang().ToString();
             lblSoNguoiQuaHanTT.Text += " " + tttvDAO.LaySoLuongQuaHanTamTru().ToString();
             lblSoNguoiQuaHanTV.Text += " " + tttvDAO.LaySoLuongQuaHanTamVang().ToString();
             gvHoNhieuNguoiNhat.DataSource = hkDAO.TimHoNhieuNguoiNhat();
-            lblSoNguoiTrungBinhMotQuan.Text += " " + cdDAO.LaySoNguoiTrungBinhCuaMotQuan().ToString();
+            lblSoNguoiTrungBinhMotQuan.Text += " " + cdDAO.LaySoNguoiTrungBinhMotQuan().ToString();
         }
     }
 }

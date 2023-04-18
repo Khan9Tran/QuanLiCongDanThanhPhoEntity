@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLiCongDanThanhPho.Model;
 using QuanLiCongDanThanhPho.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 namespace QuanLiCongDanThanhPho
 {
     internal class CongDanDAO
@@ -134,45 +136,60 @@ namespace QuanLiCongDanThanhPho
         public int LaySoLuongCongDan()
         {
             return LayDanhSach().Count;
-        }
-        // Hàm tương tự như group by và count 1 cột nhưng cho DataTable
-        private DataTable GroupByVaCountChoDataTable(DataTable dt, string tenCot1, string tenCot2)
+        }   
+
+        public int LaySoNguoiTrungBinhMotQuan()
         {
-            var groups = dt.AsEnumerable().GroupBy(row => row[0]);
-            var resultTable = new DataTable();
-            resultTable.Columns.Add(tenCot1, typeof(object));
-            resultTable.Columns.Add(tenCot2, typeof(int));
-            foreach (var group in groups)
-            {
-                var value = group.Key;
-                var count = group.Count();
-                var newRow = resultTable.NewRow();
-                newRow[tenCot1] = value;
-                newRow[tenCot2] = count;
-                resultTable.Rows.Add(newRow);
-            }
-            return resultTable;
+            var ds = LayDanhSachDC();
+            var avgSoLuongNguoi = ds
+                    .Select(x => (int)x.GetType().GetProperty("SoLuongNguoi").GetValue(x, null))
+                    .Average();
+            return (int)avgSoLuongNguoi;
         }
-        public int LaySoNguoiTrungBinhCuaMotQuan()
-        {
-            int cnt = (int)LayDanhSachDiaChi().Compute("AVG([Số lượng người])", "");
-            return cnt;
-        }
-        public DataTable LayDanhSachDiaChi()
+        public List<object> LayDanhSachDC()
         {
             DiaChi dc = new DiaChi();
-            string sqlStr = string.Format("SELECT DiaChi FROM CONGDAN INNER JOIN HOKHAU ON CONGDAN.MaHK = HOKHAU.MaHK WHERE HOKHAU.DiaChi <> N'Tạm trú' AND HOKHAU.DiaChi <> N'Tạm vắng' UNION ALL SELECT DiaChi FROM TAMTRUTAMVANG");
-            DataTable dt = conn.LayDanhSach(sqlStr);
-            foreach(DataRow dr in dt.Rows)
-            {
-                dr["DiaChi"] = dc.DinhDang((string)dr["DiaChi"]);
-                dr["DiaChi"] = dc.QuanHuyen;
-            }
-            return GroupByVaCountChoDataTable(dt, "Quận", "Số lượng người");
+            var query = (
+                from cd in db.Congdans
+                join hk in db.Hokhaus on cd.MaHk equals hk.MaHk
+                where hk.DiaChi != "Tạm trú" && hk.DiaChi != "Tạm vắng"
+                select hk.DiaChi
+            ).Concat(
+                from tt in db.Tamtrutamvangs
+                select tt.DiaChi
+            );
+
+            var result = query.AsEnumerable()
+                .Select(dc.DinhDang)
+                .Select(d => new
+                {
+                    Quan = dc.QuanHuyen,
+                    SoLuongNguoi = 1
+                })
+                .GroupBy(x => x.Quan)
+                .Select(g => new
+                {
+                    Quan = g.Key,
+                    SoLuongNguoi = g.Count()
+                })
+                .Cast<object>()
+                .ToList();
+
+            return result;
+
         }
-        public List<Congdan> LayDanhSachNgheNghiep()
+        public List<object> LayDanhSachNgheNghiep()
         {
-            return null;
+            var result = db.Congdans
+                            .GroupBy(g => g.NgheNghiep)
+                            .Select(q => new
+                            {
+                                NgheNghiep = q.Key,
+                                SoLuong = q.Count()
+                            })
+                            .Cast<object>()
+                            .ToList();
+            return result;
         }
         public int LaySoLuongDocThan()
         {

@@ -8,6 +8,7 @@ using QuanLiCongDanThanhPho.Models;
 using System.Data.SqlTypes;
 using System.Data;
 using QuanLiCongDanThanhPho.Model;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -47,29 +48,17 @@ namespace QuanLiCongDanThanhPho
                 Khaisinh khaiSinh = db.Khaisinhs.Find(maCCCD);
                 return khaiSinh;
         }
-        public DataTable LayDanhSachVeSoNamNu()
+        public List<object> LayDanhSachVeSoNamNu()
         {
-            string sqlStr = string.Format("SELECT GioiTinh as 'Giới tính', COUNT(*) as 'Số lượng' FROM KHAISINH RIGHT JOIN CONGDAN ON CONGDAN.CCCD = KHAISINH.MaKS GROUP BY GioiTinh");
-            DataTable dt = conn.LayDanhSach(sqlStr);
-            /*using (var conn = new QuanlitpContext())
-            {
-                var list = from q in conn.Khaisinhs join p in conn.Congdans on q.MaKs equals p.Cccd
-                           group q by q.GioiTinh into g
-                           select new
-                           {
-         
-                           }
-            }*/
-            foreach (DataRow dr in dt.Rows)
-            {
-                if (dr["Giới tính"] != DBNull.Value && (string)dr["Giới tính"] == "f")
-                    dr["Giới tính"] = "Nữ";
-                else if (dr["Giới tính"] != DBNull.Value && (string)dr["Giới tính"] == "m")
-                    dr["Giới tính"] = "Nam";
-                else
-                    dr["Giới tính"] = "Unknown";
-            }
-            return dt;
+            var result = db.Khaisinhs
+               .GroupBy(c => c.GioiTinh)
+               .Select(g => new {
+                   MaHk = g.Key,
+                   SoLuong = g.Count()
+               })
+               .Cast<object>()
+               .ToList();
+            return result;
         }
         public Khaisinh LayThongTinhNamNuTheoTu(string tu, string dieuKien)
         {

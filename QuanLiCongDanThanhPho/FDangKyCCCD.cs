@@ -83,7 +83,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void LoadDanhSach()
         {
-            gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem(null);
+            gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem();
             Reset();
         }    
         private void gvDanhSachChuaCapCCCD_CellClick(object sender, DataGridViewCellEventArgs e)
