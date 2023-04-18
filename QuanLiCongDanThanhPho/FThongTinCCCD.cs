@@ -39,7 +39,7 @@ namespace QuanLiCongDanThanhPho
             if (ks.GioiTinh == "m")
                 lblGioiTinh.Text = "Nam";
             else lblGioiTinh.Text = "Nữ";
-            lblNgaySinh.Text = ks.NgaySinh.ToShortDateString();
+            lblNgaySinh.Text = ks.NgaySinh.ToString("dd/MM/yyyy");
             lblQueQuan.Text = ks.QueQuan;
             lblQuocTich.Text = ks.QuocTich;
             HoKhauDAO hoKhauDAO = new HoKhauDAO();
@@ -47,7 +47,7 @@ namespace QuanLiCongDanThanhPho
             lblDiaChi.Text = hk.DiaChi;
             CCCDDAO cCCDDAO = new CCCDDAO();
             Cccd cCCD = cCCDDAO.LayThongTin(new Cccd() { MaCccd = congDan.Cccd });
-            lblNgayCap.Text = cCCD.NgayCap.ToString();
+            lblNgayCap.Text = ((DateTime)cCCD.NgayCap).ToString("dd/MM/yyyy");
             lblDDNhanDang.Text = cCCD.DacDiem;
 
 
