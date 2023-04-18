@@ -64,7 +64,8 @@ namespace QuanLiCongDanThanhPho
         private void LoadDanhSach()
         {
             gvThue.DataSource = NgatTrang(ds,10);
-            gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
+            gvThue.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
+            gvThue.Columns[5].DefaultCellStyle.Format = "dd/MM/yyyy";
         }
         
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
@@ -140,7 +141,15 @@ namespace QuanLiCongDanThanhPho
             if (flpnPhanLoai.Width > 50)
                 flpnPhanLoai.Width = 45;
             else
-                flpnPhanLoai.Width = 800;
+                flpnPhanLoai.Width = 1000;
+        }
+
+        private void btnCongDanCanTaoThue_Click(object sender, EventArgs e)
+        {
+            FDanhSachCongDan ds = new FDanhSachCongDan();
+            (StackForm.fTrangChu).OpenChildForm(ds);
+            ds.Ds = thueDAO.DuTuoiDongThue();
+
         }
     }
 }

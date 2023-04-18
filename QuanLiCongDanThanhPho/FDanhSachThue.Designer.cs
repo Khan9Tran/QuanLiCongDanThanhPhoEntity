@@ -34,14 +34,15 @@
             this.cmnusMenuChiTiet = new System.Windows.Forms.ToolStripMenuItem();
             this.cmnusMenuXoa = new System.Windows.Forms.ToolStripMenuItem();
             this.flpnPhanLoai = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnLoc = new System.Windows.Forms.Button();
             this.btnTatCa = new System.Windows.Forms.Button();
             this.btnTienDaNop = new System.Windows.Forms.Button();
             this.btnTreHan = new System.Windows.Forms.Button();
+            this.btnCongDanCanTaoThue = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.picTimKiem = new System.Windows.Forms.PictureBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
-            this.btnLoc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvThue)).BeginInit();
             this.cmnusMenu.SuspendLayout();
             this.flpnPhanLoai.SuspendLayout();
@@ -99,10 +100,23 @@
             this.flpnPhanLoai.Controls.Add(this.btnTatCa);
             this.flpnPhanLoai.Controls.Add(this.btnTienDaNop);
             this.flpnPhanLoai.Controls.Add(this.btnTreHan);
+            this.flpnPhanLoai.Controls.Add(this.btnCongDanCanTaoThue);
             this.flpnPhanLoai.Location = new System.Drawing.Point(25, 148);
             this.flpnPhanLoai.Name = "flpnPhanLoai";
             this.flpnPhanLoai.Size = new System.Drawing.Size(699, 47);
             this.flpnPhanLoai.TabIndex = 9;
+            // 
+            // btnLoc
+            // 
+            this.btnLoc.FlatAppearance.BorderSize = 0;
+            this.btnLoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.dots__2_;
+            this.btnLoc.Location = new System.Drawing.Point(3, 3);
+            this.btnLoc.Name = "btnLoc";
+            this.btnLoc.Size = new System.Drawing.Size(32, 40);
+            this.btnLoc.TabIndex = 60;
+            this.btnLoc.UseVisualStyleBackColor = true;
+            this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
             // 
             // btnTatCa
             // 
@@ -148,6 +162,21 @@
             this.btnTreHan.Text = "Trễ Hạn";
             this.btnTreHan.UseVisualStyleBackColor = false;
             this.btnTreHan.Click += new System.EventHandler(this.btnTreHan_Click);
+            // 
+            // btnCongDanCanTaoThue
+            // 
+            this.btnCongDanCanTaoThue.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnCongDanCanTaoThue.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnCongDanCanTaoThue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCongDanCanTaoThue.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCongDanCanTaoThue.ForeColor = System.Drawing.Color.Black;
+            this.btnCongDanCanTaoThue.Location = new System.Drawing.Point(437, 3);
+            this.btnCongDanCanTaoThue.Name = "btnCongDanCanTaoThue";
+            this.btnCongDanCanTaoThue.Size = new System.Drawing.Size(204, 40);
+            this.btnCongDanCanTaoThue.TabIndex = 61;
+            this.btnCongDanCanTaoThue.Text = "Truy thu thuế";
+            this.btnCongDanCanTaoThue.UseVisualStyleBackColor = false;
+            this.btnCongDanCanTaoThue.Click += new System.EventHandler(this.btnCongDanCanTaoThue_Click);
             // 
             // txtTimKiem
             // 
@@ -206,18 +235,6 @@
             0});
             this.nudPage.ValueChanged += new System.EventHandler(this.nudPage_ValueChanged);
             // 
-            // btnLoc
-            // 
-            this.btnLoc.FlatAppearance.BorderSize = 0;
-            this.btnLoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.dots__2_;
-            this.btnLoc.Location = new System.Drawing.Point(3, 3);
-            this.btnLoc.Name = "btnLoc";
-            this.btnLoc.Size = new System.Drawing.Size(32, 40);
-            this.btnLoc.TabIndex = 60;
-            this.btnLoc.UseVisualStyleBackColor = true;
-            this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
-            // 
             // FDanhSachThue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -261,5 +278,6 @@
         private Button btnTreHan;
         private NumericUpDown nudPage;
         private Button btnLoc;
+        private Button btnCongDanCanTaoThue;
     }
 }

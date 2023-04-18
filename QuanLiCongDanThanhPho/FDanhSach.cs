@@ -17,8 +17,15 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
             StackForm.Add(this);
+            FlatStyle();
         }
-
+        private void FlatStyle()
+        {
+            btnCongDan.FlatAppearance.BorderSize = 0;
+            btnHoKhau.FlatAppearance.BorderSize = 0;
+            btnThue.FlatAppearance.BorderSize = 0;
+            btnTTTV.FlatAppearance.BorderSize = 0;
+        }
         public void OpenChildForm(Form childForm)
         {
             if (currentChildForm != null)
@@ -40,7 +47,7 @@ namespace QuanLiCongDanThanhPho
             if (flpnlPhanLoai.Width > 50)
                 flpnlPhanLoai.Width = 45;
             else
-                flpnlPhanLoai.Width = 800;
+                flpnlPhanLoai.Width = 1600;
         }
 
         private void FDanhSach_Load(object sender, EventArgs e)

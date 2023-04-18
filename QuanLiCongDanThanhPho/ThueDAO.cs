@@ -95,5 +95,21 @@ namespace QuanLiCongDanThanhPho
                        select q).ToList();
             return list.Count;
         }
+        public List<Congdan> DuTuoiDongThue()
+        {
+            var list = from q in db.Thues
+                        join p in db.Congdans
+                        on q.Cccd equals p.Cccd
+                        select p;
+            var listCongDanDuTuoi = from q in db.Congdans
+                                    join p in db.Khaisinhs on q.Cccd equals p.MaKs
+                                    let years = DateTime.Now.Year - p.NgaySinh.Year
+                                    let birthdayThisYear = p.NgaySinh.AddYears(years)
+                                    where (DateTime.Now < birthdayThisYear && years - 1 >= 18) || (DateTime.Now >= birthdayThisYear && years >= 18)
+                                    select q;
+
+            var listChuaDongThue =(from q in  listCongDanDuTuoi select q).Except(list).ToList();
+            return listChuaDongThue.ToList();
+        }
     }
 }

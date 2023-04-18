@@ -16,6 +16,9 @@ namespace QuanLiCongDanThanhPho
         CongDanDAO cdDao;
         private string luaChon;
         private List<Congdan> ds;
+
+        public List<Congdan> Ds { get => ds; set => ds = value; }
+
         public FDanhSachCongDan()
         {
 
