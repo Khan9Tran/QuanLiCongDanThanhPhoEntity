@@ -30,6 +30,16 @@ namespace QuanLiCongDanThanhPho
             lblSoNguoiQuaHanTV.Text += " " + tttvDAO.LaySoLuongQuaHanTamVang().ToString();
             gvHoNhieuNguoiNhat.DataSource = hkDAO.TimHoNhieuNguoiNhat();
             lblSoNguoiTrungBinhMotQuan.Text += " " + cdDAO.LaySoNguoiTrungBinhMotQuan().ToString();
+            HeaderText();
+        }
+
+        private void HeaderText()
+        {
+            gvDanhSachQuan.Columns[0].HeaderText = "Quận";
+            gvDanhSachQuan.Columns[1].HeaderText = "Số lượng người";
+
+            gvHoNhieuNguoiNhat.Columns[0].HeaderText = "Mã hộ khẩu";
+            gvHoNhieuNguoiNhat.Columns[1].HeaderText = "Số lượng người";
         }
     }
 }

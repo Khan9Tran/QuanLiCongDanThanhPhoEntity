@@ -29,7 +29,19 @@ namespace QuanLiCongDanThanhPho
             lblSoLuongChuaKetHon.Text += string.Format($" {cdDAO.LaySoLuongDocThan()}");
             gvNhomTuoi.DataSource = ksDAO.LayTuoiCongDan();
             gvNgheNghiep.DataSource = cdDAO.LayDanhSachNgheNghiep();
+            HeaderText();
+        }
 
+        private void HeaderText()
+        {
+            gvNgheNghiep.Columns[0].HeaderText = "Nghề nghiệp";
+            gvNgheNghiep.Columns[1].HeaderText = "Số lượng";
+
+            gvSoLuongNamNu.Columns[0].HeaderText = "Giới tính";
+            gvSoLuongNamNu.Columns[1].HeaderText = "Số lượng";
+
+            gvNhomTuoi.Columns[0].HeaderText = "Nhóm tuổi";
+            gvNhomTuoi.Columns[0].HeaderText = "Số lượng";
         }
     }
 }
