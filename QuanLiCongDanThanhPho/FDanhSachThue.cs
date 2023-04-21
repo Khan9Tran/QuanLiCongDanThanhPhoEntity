@@ -37,6 +37,7 @@ namespace QuanLiCongDanThanhPho
             if (e.RowIndex != -1)
             {
                 cmnusMenu.Show(this, this.PointToClient(MousePosition));
+                LoadLblThue(e.RowIndex);
             }
 
         }
@@ -72,13 +73,20 @@ namespace QuanLiCongDanThanhPho
         {
             gvThue.Columns[0].HeaderText = "Mã Thuế";
             gvThue.Columns[1].HeaderText = "Căn cước công dân";
-            gvThue.Columns[2].HeaderText = "Số tiền cần nộp";
-            gvThue.Columns[3].HeaderText = "Số tiền đã nộp";
+            gvThue.Columns[2].HeaderText = "Còn nợ (VNĐ)";
+            gvThue.Columns[3].HeaderText = "Đã thu (VNĐ)";
             gvThue.Columns[4].HeaderText = "Ngày cấp";
             gvThue.Columns[5].HeaderText = "Hạn nộp";
             gvThue.Columns[6].Visible = false;
         }
-
+        private void LoadLblThue(int rowIndex)
+        {
+            CongDanDAO cDDAO = new CongDanDAO();
+            Congdan cD = cDDAO.LayThongTin(getCCCD());
+            string Ten = cD.Ten;
+            string soTienCanNop = (string)gvThue.Rows[rowIndex].Cells[2].Value;
+            lblThongTin.Text = Ten + " cần thanh toán " + soTienCanNop + " VNĐ";
+        }
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
         private void btnTienDaNop_Click(object sender, EventArgs e)
         {
@@ -86,13 +94,17 @@ namespace QuanLiCongDanThanhPho
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
+        private string getCCCD()
+        {
+            return  (string)gvThue.CurrentRow.Cells[1].Value;
+        }
         // Xóa thông tin thuế của công dân ra khỏi csdl
         private void cmnusMenuXoa_Click(object sender, EventArgs e)
         {
             DialogResult exit = MessageBox.Show("Bạn có thật sự muốn xóa thông tin thuế?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (exit == DialogResult.Yes)
             {
-                string maCCCD = gvThue.CurrentRow.Cells["CCCD"].Value.ToString();
+                string maCCCD = getCCCD();
                 if (maCCCD != "")
                 {
                     thueDAO.XoaThue(maCCCD);
@@ -161,6 +173,28 @@ namespace QuanLiCongDanThanhPho
             (StackForm.fTrangChu).OpenChildForm(ds);
             ds.Ds = thueDAO.DuTuoiDongThue();
 
+        }
+        private bool ThanhToan()
+        {
+            if (txtDongThue.Text.Length == 0) return false;
+            if (KiemTraDuLieuNhap.isTien(txtDongThue.Text))
+            {
+                int tienNhap = int.Parse(txtDongThue.Text);
+                Thue thue = thueDAO.LayThongTin(getCCCD());
+                if (thue.ThanhToan(tienNhap))
+                {
+                    thueDAO.CapNhatThue();
+                    return true;
+                }
+            }
+            return false;
+        }
+        private void btnXacNhan_Click(object sender, EventArgs e)
+        {
+            if (ThanhToan())
+                MessageBox.Show("Thanh toán thành công");
+            else
+                MessageBox.Show("Thanh toán thất bại");
         }
     }
 }

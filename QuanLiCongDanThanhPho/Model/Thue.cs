@@ -18,4 +18,14 @@ public partial class Thue
     public DateTime? HanNop { get; set; }
 
     public virtual Cccd? CccdNavigation { get; set; }
+
+    public bool ThanhToan(int tien)
+    {
+        if (tien > int.Parse(this.SoTienCanNop))
+            return false;
+        this.SoTienCanNop = (int.Parse(this.SoTienCanNop) - tien).ToString();
+        int tongThu = int.Parse(this.SoTienDaNop) + tien;
+        this.SoTienDaNop = tongThu.ToString();
+        return true;
+    }
 }

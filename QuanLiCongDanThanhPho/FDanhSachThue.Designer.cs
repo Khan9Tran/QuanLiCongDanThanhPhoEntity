@@ -44,6 +44,9 @@
             this.picTimKiem = new System.Windows.Forms.PictureBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
+            this.txtDongThue = new System.Windows.Forms.TextBox();
+            this.lblThongTin = new System.Windows.Forms.Label();
+            this.btnXacNhan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvThue)).BeginInit();
             this.cmnusMenu.SuspendLayout();
             this.flpnPhanLoai.SuspendLayout();
@@ -71,8 +74,9 @@
             this.gvThue.RowHeadersWidth = 51;
             this.gvThue.RowTemplate.Height = 29;
             this.gvThue.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvThue.Size = new System.Drawing.Size(1477, 540);
+            this.gvThue.Size = new System.Drawing.Size(1477, 426);
             this.gvThue.TabIndex = 0;
+            this.gvThue.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvThue_CellClick);
             // 
             // cmnusMenu
             // 
@@ -93,12 +97,14 @@
             this.cmnusMenuChiTiet.Name = "cmnusMenuChiTiet";
             this.cmnusMenuChiTiet.Size = new System.Drawing.Size(128, 32);
             this.cmnusMenuChiTiet.Text = "Chi tiết";
+            this.cmnusMenuChiTiet.Click += new System.EventHandler(this.cmnusMenuChiTiet_Click);
             // 
             // cmnusMenuXoa
             // 
             this.cmnusMenuXoa.Name = "cmnusMenuXoa";
             this.cmnusMenuXoa.Size = new System.Drawing.Size(128, 32);
             this.cmnusMenuXoa.Text = "Xóa";
+            this.cmnusMenuXoa.Click += new System.EventHandler(this.cmnusMenuXoa_Click);
             // 
             // flpnPhanLoai
             // 
@@ -216,6 +222,7 @@
             this.btnThem.TabIndex = 58;
             this.btnThem.Text = "Thêm ";
             this.btnThem.UseVisualStyleBackColor = false;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // nudPage
             // 
@@ -239,14 +246,57 @@
             0});
             this.nudPage.ValueChanged += new System.EventHandler(this.nudPage_ValueChanged);
             // 
+            // txtDongThue
+            // 
+            this.txtDongThue.BackColor = System.Drawing.Color.Gainsboro;
+            this.txtDongThue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDongThue.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDongThue.Location = new System.Drawing.Point(898, 605);
+            this.txtDongThue.Name = "txtDongThue";
+            this.txtDongThue.Size = new System.Drawing.Size(428, 31);
+            this.txtDongThue.TabIndex = 60;
+            // 
+            // lblThongTin
+            // 
+            this.lblThongTin.AutoSize = true;
+            this.lblThongTin.BackColor = System.Drawing.Color.Gainsboro;
+            this.lblThongTin.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblThongTin.Location = new System.Drawing.Point(12, 605);
+            this.lblThongTin.Name = "lblThongTin";
+            this.lblThongTin.Size = new System.Drawing.Size(105, 31);
+            this.lblThongTin.TabIndex = 61;
+            this.lblThongTin.Text = "Mã thuế:";
+            // 
+            // btnXacNhan
+            // 
+            this.btnXacNhan.BackColor = System.Drawing.Color.Transparent;
+            this.btnXacNhan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnXacNhan.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnXacNhan.FlatAppearance.BorderSize = 0;
+            this.btnXacNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXacNhan.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnXacNhan.ForeColor = System.Drawing.Color.Black;
+            this.btnXacNhan.Image = global::QuanLiCongDanThanhPho.Properties.Resources.accept;
+            this.btnXacNhan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnXacNhan.Location = new System.Drawing.Point(1332, 596);
+            this.btnXacNhan.Name = "btnXacNhan";
+            this.btnXacNhan.Size = new System.Drawing.Size(170, 40);
+            this.btnXacNhan.TabIndex = 62;
+            this.btnXacNhan.Text = "Xác nhận";
+            this.btnXacNhan.UseVisualStyleBackColor = false;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
+            // 
             // FDanhSachThue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1532, 679);
+            this.Controls.Add(this.lblThongTin);
+            this.Controls.Add(this.txtDongThue);
             this.Controls.Add(this.nudPage);
             this.Controls.Add(this.btnThem);
+            this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.picTimKiem);
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.flpnPhanLoai);
@@ -256,6 +306,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FDanhSachThue";
             this.Text = "FDanhSachThue";
+            this.Load += new System.EventHandler(this.FDanhSachThue_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvThue)).EndInit();
             this.cmnusMenu.ResumeLayout(false);
             this.flpnPhanLoai.ResumeLayout(false);
@@ -282,5 +333,8 @@
         private NumericUpDown nudPage;
         private Button btnLoc;
         private Button btnCongDanCanTaoThue;
+        private TextBox txtDongThue;
+        private Label lblThongTin;
+        private Button btnXacNhan;
     }
 }
