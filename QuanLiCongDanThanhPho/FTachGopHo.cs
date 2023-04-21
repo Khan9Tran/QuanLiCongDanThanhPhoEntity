@@ -155,10 +155,36 @@ namespace QuanLiCongDanThanhPho
         private void LoadHoTach()
         {
              gvHoTach.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
+             HeaderTextHoTach();
         }
         private void LoadHoGop()
         {
             gvHoGop.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoGop.Text);
+            HeaderTextHoGop();
+        }
+        private void HeaderTextHoGop()
+        {
+            gvHoGop.Columns[0].HeaderText = "CCCD";
+            gvHoGop.Columns[1].HeaderText = "Tên";
+            gvHoGop.Columns[2].HeaderText = "Nghề nghiệp";
+            gvHoGop.Columns[3].HeaderText = "Số điện thoại";
+            gvHoGop.Columns[4].HeaderText = "Tôn giáo";
+            gvHoGop.Columns[5].HeaderText = "Mã hộ khẩu";
+            gvHoGop.Columns[6].HeaderText = "Quan hệ với chủ hộ";
+            gvHoGop.Columns[7].Visible = false;
+            gvHoGop.Columns[8].Visible = false;
+        }
+        private void HeaderTextHoTach()
+        {
+            gvHoTach.Columns[0].HeaderText = "CCCD";
+            gvHoTach.Columns[1].HeaderText = "Tên";
+            gvHoTach.Columns[2].HeaderText = "Nghề nghiệp";
+            gvHoTach.Columns[3].HeaderText = "Số điện thoại";
+            gvHoTach.Columns[4].HeaderText = "Tôn giáo";
+            gvHoTach.Columns[5].HeaderText = "Mã hộ khẩu";
+            gvHoTach.Columns[6].HeaderText = "Quan hệ với chủ hộ";
+            gvHoTach.Columns[7].Visible = false;
+            gvHoTach.Columns[8].Visible = false;
         }
 
         private void btnMaHoTach_Click(object sender, EventArgs e)
