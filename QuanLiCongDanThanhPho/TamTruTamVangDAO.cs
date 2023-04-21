@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Server;
 using QuanLiCongDanThanhPho.Model;
-using QuanLiCongDanThanhPho.Models;
 namespace QuanLiCongDanThanhPho
 {
     internal class TamTruTamVangDAO

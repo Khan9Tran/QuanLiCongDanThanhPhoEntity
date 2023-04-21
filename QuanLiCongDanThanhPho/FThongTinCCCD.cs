@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLiCongDanThanhPho.Model;
-using QuanLiCongDanThanhPho.Models;
-using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinCCCD : Form

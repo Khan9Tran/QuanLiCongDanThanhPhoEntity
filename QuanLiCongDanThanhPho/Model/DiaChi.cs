@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QuanLiCongDanThanhPho.Models
+namespace QuanLiCongDanThanhPho.Model
 {
     internal class DiaChi
     {
@@ -46,14 +46,14 @@ namespace QuanLiCongDanThanhPho.Models
                 xaPhuongTT = s[1];
                 quanHuyen = s[2];
                 tinhThanhPho = s[3];
-                
-  
+
+
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 return false;
             }
-            return  true;
+            return true;
         }
         public string toString()
         {

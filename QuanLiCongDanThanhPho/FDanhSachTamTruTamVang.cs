@@ -1,5 +1,5 @@
-﻿using QuanLiCongDanThanhPho.Model;
-using QuanLiCongDanThanhPho.Models;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using QuanLiCongDanThanhPho.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,6 +61,7 @@ namespace QuanLiCongDanThanhPho
             gvTVTT.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
             gvTVTT.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
             HeaderText();
+            HightLightQuaHan();
         }
         private void HeaderText()
         {
@@ -73,6 +74,17 @@ namespace QuanLiCongDanThanhPho
             gvTVTT.Columns[6].HeaderText = "Lí do";
             gvTVTT.Columns[7].Visible = false;
         }
+        private void HightLightQuaHan()
+        {
+            for (int index = 0; index < gvTVTT.Rows.Count; index++)
+            {
+                if ((DateTime)gvTVTT.Rows[index].Cells[4].Value < DateTime.Now)
+                {
+                    gvTVTT.Rows[index].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
+
         private void btnTV_Click(object sender, EventArgs e)
         {
             luaChon = "tam vang";
@@ -98,7 +110,6 @@ namespace QuanLiCongDanThanhPho
                 cmnusMenu.Show(this, this.PointToClient(MousePosition));
             }
         }
-
         //Xóa thông tin
         private void cmnusMenuXoa_Click(object sender, EventArgs e)
         {

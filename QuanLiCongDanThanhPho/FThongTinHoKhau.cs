@@ -1,5 +1,4 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using QuanLiCongDanThanhPho.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
