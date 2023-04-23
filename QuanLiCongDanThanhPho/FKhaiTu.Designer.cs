@@ -103,6 +103,7 @@
             this.btnReset.TabIndex = 92;
             this.btnReset.Text = "Tải lại";
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnDangKy
             // 
@@ -119,6 +120,7 @@
             this.btnDangKy.TabIndex = 89;
             this.btnDangKy.Text = "      Xác nhận";
             this.btnDangKy.UseVisualStyleBackColor = false;
+            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
             // 
             // picTimKiem
             // 
@@ -128,7 +130,6 @@
             this.picTimKiem.Size = new System.Drawing.Size(37, 31);
             this.picTimKiem.TabIndex = 100;
             this.picTimKiem.TabStop = false;
-            this.picTimKiem.Click += new System.EventHandler(this.picTimKiem_Click);
             // 
             // FKhaiTu
             // 

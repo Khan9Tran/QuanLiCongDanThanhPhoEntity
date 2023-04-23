@@ -27,6 +27,7 @@ namespace QuanLiCongDanThanhPho
             if (exit == DialogResult.Yes)
             {
                 StackForm.ClearAll();
+                StackForm.fTrangChu.Close();
                 Application.Exit();
             }
         }
