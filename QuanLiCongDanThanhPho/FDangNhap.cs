@@ -23,7 +23,6 @@ namespace QuanLiCongDanThanhPho
             InitializeComponent();
             accDAO = new AccountDAO();
             KeyPreview = true;
-            flogo = new FLOGO();
             tmrShowTime.Interval = 5;
         }
 
@@ -45,7 +44,6 @@ namespace QuanLiCongDanThanhPho
             checkPass = true;
             txtMatKhau.UseSystemPasswordChar = true;
         }
-        
         private void DangNhap()
         {
             Account acc = new Account()
@@ -61,6 +59,7 @@ namespace QuanLiCongDanThanhPho
             {
                 Hide();
                 tmrShowTime.Start();
+                flogo = new FLOGO();
                 flogo.Show();
             }    
         }
@@ -108,12 +107,11 @@ namespace QuanLiCongDanThanhPho
                 flogo.Close();
                 Account acc = new Account()
                 {
-                    UserName = txtMatKhau.Text,
-                    StrPassword= txtMatKhau.Text,
+                    UserName = txtTaiKhoan.Text,
+                    StrPassword = txtMatKhau.Text,
                 };
-                FTrangChu newTrangChu = new FTrangChu(acc);
-                newTrangChu.ShowDialog();
-                Close();
+                FTrangChu newTrangChu = new FTrangChu(acc, this);
+                newTrangChu.Show();
             }
         }
     }
