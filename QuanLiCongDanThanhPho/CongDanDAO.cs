@@ -43,7 +43,7 @@ namespace QuanLiCongDanThanhPho
             Congdan congdan = db.Congdans.Find(cD.Cccd);
             db.Congdans.Remove(congdan);
             db.SaveChanges();
-            MessageBox.Show("Xoa thanh cong");
+            MessageBox.Show("Xóa công dân thành công");
         }
         public void CapNhatCongDan()
         {

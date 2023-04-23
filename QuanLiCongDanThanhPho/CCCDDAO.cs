@@ -15,14 +15,14 @@ namespace QuanLiCongDanThanhPho
         {
             db.Add(canCuoc);
             db.SaveChanges();
-            MessageBox.Show("Them can cuoc thanh cong");
+            MessageBox.Show("Thêm căn cước thành công");
         }
         public void XoaCCCD(string maCanCuoc) 
         {
             Cccd cCCD= db.Cccds.Find(maCanCuoc);
             db.Remove(cCCD);
             db.SaveChanges();
-            MessageBox.Show("Them can cuoc thanh cong");
+            MessageBox.Show("Xóa căn cước thành công");
         }
         public void CapNhatCCCD(Cccd canCuoc) 
         {
@@ -30,7 +30,7 @@ namespace QuanLiCongDanThanhPho
             cCCD.NgayCap = canCuoc.NgayCap;
             cCCD.DacDiem = canCuoc.DacDiem;
             db.SaveChanges();
-            MessageBox.Show("cap nhat thanh cong");
+            MessageBox.Show("Cập nhật căn cước thành công");
         }
         public List<Object> DanhSachCCCDTheoDacDiem()
         {

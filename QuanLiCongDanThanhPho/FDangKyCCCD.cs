@@ -24,6 +24,7 @@ namespace QuanLiCongDanThanhPho
         private void FDangKyCCCD_Load(object sender, EventArgs e)
         {
             LoadDanhSach();
+            HeaderText();
         }
        private bool KiemTraThongTin()
        {
@@ -85,7 +86,14 @@ namespace QuanLiCongDanThanhPho
         {
             gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem();
             Reset();
-        }    
+        }
+        private void HeaderText()
+        {
+            gvDanhSachChuaCapCCCD.Columns[0].HeaderText = "Tên";
+            gvDanhSachChuaCapCCCD.Columns[1].HeaderText = "CCCD";
+            gvDanhSachChuaCapCCCD.Columns[2].HeaderText = "Ngày cấp";
+            gvDanhSachChuaCapCCCD.Columns[3].HeaderText = "Đặc điểm";
+        }
         private void gvDanhSachChuaCapCCCD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int dong = e.RowIndex;

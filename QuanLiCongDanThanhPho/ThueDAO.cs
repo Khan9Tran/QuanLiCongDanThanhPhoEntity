@@ -31,7 +31,7 @@ namespace QuanLiCongDanThanhPho
         {
             db.Thues.Add(thue);
             db.SaveChanges();
-            MessageBox.Show("Them thue thanh cong");
+            MessageBox.Show("Thêm thuế thành công");
         }
         public void XoaThue(string canCuoc)
         {
