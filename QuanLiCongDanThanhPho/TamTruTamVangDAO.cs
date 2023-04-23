@@ -42,6 +42,11 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Xóa tạm trú tạm vắng thành công");
             }
         }
+        public void CapNhat()
+        {
+            db.SaveChanges();
+            MessageBox.Show("Cập nhật thành công");
+        }
         public Boolean KiemTraTamTruTamVang(string maCCCD)
         {
             return db.Tamtrutamvangs.Where(q => q.Cccd == maCCCD).Any();

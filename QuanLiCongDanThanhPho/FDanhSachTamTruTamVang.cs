@@ -55,6 +55,16 @@ namespace QuanLiCongDanThanhPho
             LoadDanhSach();
         }
 
+        private string getCCCD()
+        {
+            return (string)gvTVTT.CurrentRow.Cells[1].Value;
+        }
+        private void GiaHan(int day)
+        {
+            Tamtrutamvang tTTTV = tttvDao.LayThongTin(getCCCD());
+            tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(day);
+            tttvDao.CapNhat();
+        }
         private void LoadDanhSach()
         {
             gvTVTT.DataSource = NgatTrang(ds, 10);
@@ -157,6 +167,28 @@ namespace QuanLiCongDanThanhPho
                 flpnlPhanLoai.Width = 45;
             else
                 flpnlPhanLoai.Width = 800;
+        }
+
+
+
+        private void ngayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GiaHan(3);
+        }
+
+        private void tuanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GiaHan(7);
+        }
+
+        private void thangToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GiaHan(30);
+        }
+
+        private void namToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            GiaHan(365);
         }
     }
 }

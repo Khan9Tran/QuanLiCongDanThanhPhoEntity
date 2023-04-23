@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gvTVTT = new System.Windows.Forms.DataGridView();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.flpnlPhanLoai = new System.Windows.Forms.FlowLayoutPanel();
@@ -42,6 +42,11 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.cmnusMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmnusMenuXoa = new System.Windows.Forms.ToolStripMenuItem();
+            this.giaHạnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ngayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tuanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.namToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.gvTVTT)).BeginInit();
             this.flpnlPhanLoai.SuspendLayout();
@@ -56,22 +61,23 @@
             this.gvTVTT.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvTVTT.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvTVTT.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvTVTT.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvTVTT.DefaultCellStyle = dataGridViewCellStyle1;
             this.gvTVTT.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.gvTVTT.Location = new System.Drawing.Point(25, 162);
             this.gvTVTT.Name = "gvTVTT";
             this.gvTVTT.RowHeadersWidth = 51;
             this.gvTVTT.RowTemplate.Height = 29;
             this.gvTVTT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvTVTT.Size = new System.Drawing.Size(1480, 488);
+            this.gvTVTT.Size = new System.Drawing.Size(1480, 483);
             this.gvTVTT.TabIndex = 1;
+            this.gvTVTT.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTVTT_CellClick);
             // 
             // txtTimKiem
             // 
@@ -198,12 +204,12 @@
             this.cmnusMenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cmnusMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmnusMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmnusMenuXoa});
+            this.cmnusMenuXoa,
+            this.giaHạnToolStripMenuItem});
             this.cmnusMenu.Name = "contextMenuStrip1";
             this.cmnusMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.cmnusMenu.ShowImageMargin = false;
-            this.cmnusMenu.Size = new System.Drawing.Size(96, 36);
-            this.cmnusMenu.Click += new System.EventHandler(this.cmnusMenuXoa_Click);
+            this.cmnusMenu.Size = new System.Drawing.Size(186, 96);
             // 
             // cmnusMenuXoa
             // 
@@ -211,6 +217,45 @@
             this.cmnusMenuXoa.Name = "cmnusMenuXoa";
             this.cmnusMenuXoa.Size = new System.Drawing.Size(185, 32);
             this.cmnusMenuXoa.Text = "Xóa";
+            // 
+            // giaHạnToolStripMenuItem
+            // 
+            this.giaHạnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ngayToolStripMenuItem,
+            this.tuanToolStripMenuItem,
+            this.thangToolStripMenuItem,
+            this.namToolStripMenuItem1});
+            this.giaHạnToolStripMenuItem.Name = "giaHạnToolStripMenuItem";
+            this.giaHạnToolStripMenuItem.Size = new System.Drawing.Size(185, 32);
+            this.giaHạnToolStripMenuItem.Text = "Gia hạn";
+            // 
+            // ngayToolStripMenuItem
+            // 
+            this.ngayToolStripMenuItem.Name = "ngayToolStripMenuItem";
+            this.ngayToolStripMenuItem.Size = new System.Drawing.Size(171, 32);
+            this.ngayToolStripMenuItem.Text = "3 ngày";
+            this.ngayToolStripMenuItem.Click += new System.EventHandler(this.ngayToolStripMenuItem_Click);
+            // 
+            // tuanToolStripMenuItem
+            // 
+            this.tuanToolStripMenuItem.Name = "tuanToolStripMenuItem";
+            this.tuanToolStripMenuItem.Size = new System.Drawing.Size(171, 32);
+            this.tuanToolStripMenuItem.Text = "1 tuần";
+            this.tuanToolStripMenuItem.Click += new System.EventHandler(this.tuanToolStripMenuItem_Click);
+            // 
+            // thangToolStripMenuItem
+            // 
+            this.thangToolStripMenuItem.Name = "thangToolStripMenuItem";
+            this.thangToolStripMenuItem.Size = new System.Drawing.Size(171, 32);
+            this.thangToolStripMenuItem.Text = "1 tháng";
+            this.thangToolStripMenuItem.Click += new System.EventHandler(this.thangToolStripMenuItem_Click);
+            // 
+            // namToolStripMenuItem1
+            // 
+            this.namToolStripMenuItem1.Name = "namToolStripMenuItem1";
+            this.namToolStripMenuItem1.Size = new System.Drawing.Size(171, 32);
+            this.namToolStripMenuItem1.Text = "1 năm";
+            this.namToolStripMenuItem1.Click += new System.EventHandler(this.namToolStripMenuItem1_Click);
             // 
             // nudPage
             // 
@@ -277,5 +322,10 @@
         private Button btnQuaHan;
         private NumericUpDown nudPage;
         private Button btnLoc;
+        private ToolStripMenuItem giaHạnToolStripMenuItem;
+        private ToolStripMenuItem ngayToolStripMenuItem;
+        private ToolStripMenuItem tuanToolStripMenuItem;
+        private ToolStripMenuItem thangToolStripMenuItem;
+        private ToolStripMenuItem namToolStripMenuItem1;
     }
 }
