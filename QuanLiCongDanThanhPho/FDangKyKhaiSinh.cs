@@ -141,7 +141,8 @@ namespace QuanLiCongDanThanhPho
                 Congdan congDan = new Congdan()
                 {
                     Ten = txtTen.Text,
-                    Cccd = txtCccd.Text
+                    Cccd = txtCccd.Text,
+                    MaHk = "00000A"
                 };
                 string gt = "";
                 if (rdoNam.Checked)
@@ -167,7 +168,7 @@ namespace QuanLiCongDanThanhPho
                     Cccdcha = txtCccdCha.Text,
                     TenCha = txtTenCha.Text,
                     Cccdme = txtCccdMe.Text,
-                    TenMe = txtTenMe.Text
+                    TenMe = txtTenMe.Text,
                 };
                 kSDAO.ThemKhaSinh(kS);
             }
