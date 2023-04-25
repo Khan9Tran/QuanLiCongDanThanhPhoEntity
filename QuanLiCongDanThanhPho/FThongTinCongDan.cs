@@ -20,9 +20,11 @@ namespace QuanLiCongDanThanhPho
         HonNhanDAO hnDAO;
         HoKhauDAO hkDAO;
         TamTruTamVangDAO tttvDAO;
+        CCCDDAO cCCDDAO;
 
-        string maTamTru = "00000B";
-        string maChuaCoHK = "00000A";
+        private string maTamTru = "00000B";
+        private string maChuaCoHK = "00000A";
+        private string path = @"..\..\..\..\HinhCongDan";
 
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
@@ -47,8 +49,8 @@ namespace QuanLiCongDanThanhPho
             hkDAO = new HoKhauDAO();
             hnDAO = new HonNhanDAO();
             tttvDAO = new TamTruTamVangDAO();
+            cCCDDAO = new CCCDDAO();
             congDan = congdan;
-
         }
         
         //Mở F khai sinh
@@ -257,9 +259,22 @@ namespace QuanLiCongDanThanhPho
                 LayHinhDaiDien();
             }
         }
+        private void TatXemCCCD()
+        {
+            Cccd cccd = new Cccd()
+            {
+                MaCccd = congDan.Cccd
+            };
+            cccd = cCCDDAO.LayThongTin(cccd);
+            if (cccd.DacDiem == null)
+            {
+                btnThongTinCCCD.Enabled = false;
+            }
+        }
         private void FThongTinCongDan_Load(object sender, EventArgs e)
         {
-                LayThongTinCongDan();
+            LayThongTinCongDan();
+            TatXemCCCD();
         }
 
         private bool isMaHK(string? maHK)
@@ -433,61 +448,11 @@ namespace QuanLiCongDanThanhPho
             ReadOnly();
         }
 
-        //Xóa file ảnh tồn tại
-        public void DeleteDirectory(string folderPath, string fileName)
-        {
-            string fileNamePng = fileName + ".png";
-            string fullPathPng = Path.Combine(folderPath, fileNamePng);
-
-            string fileNameJpg = fileName + ".jpg";
-            string fullPathJpg = Path.Combine(folderPath, fileNameJpg);
-
-            if (File.Exists(fullPathPng)) 
-            {
-                File.Delete(fullPathPng);
-            }
-            if (File.Exists(fullPathJpg)) 
-            {
-                File.Delete(fullPathJpg);
-            }
-            
-        }
-
-        private void SaveHinhDaiDien()
-        {
-
-            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string fileName = string.Format($"{txtCCCD.Text}");
-            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\..\HinhCongDan"));
-            DeleteDirectory(folderPath, fileName);
-            string fullPath;
-            if (ofdHinhDaiDien.FileName.Contains(".jpg"))
-            {
-                fileName += ".jpg";
-                fullPath = Path.Combine(folderPath, fileName);
-                ptcHinhDaiDien.Image.Save(fullPath, ImageFormat.Jpeg);
-            }
-            else
-            {
-                fileName += ".png";
-                fullPath = Path.Combine(folderPath, fileName);
-                ptcHinhDaiDien.Image.Save(fullPath, ImageFormat.Png);
-            }
-        }
         private void ThemHinh()
         {
-            ofdHinhDaiDien.Filter = "PImage Files (*.jpg, *.png)|*.jpg;*.png";
-            try
+            if (HinhDaiDien.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
             {
-                if (ofdHinhDaiDien.ShowDialog() == DialogResult.OK)
-                {
-                    ptcHinhDaiDien.Image = new Bitmap(ofdHinhDaiDien.FileName);
-                    SaveHinhDaiDien();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Không mở được ảnh" + ex);
+                HinhDaiDien.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien, path);
             }
         }
         private void picCongDan_Click(object sender, EventArgs e)

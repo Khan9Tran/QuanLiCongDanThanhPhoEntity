@@ -19,7 +19,9 @@ namespace QuanLiCongDanThanhPho
         KhaiSinhDAO kSDAO;
         ThueDAO thueDAO;
         HonNhanDAO hNDAO;
-        CCCDDAO cCCDDAO;
+
+        private string path = @"..\..\..\..\HinhCongDan";
+
         public FDangKyCongDan()
         {
             InitializeComponent();
@@ -28,7 +30,6 @@ namespace QuanLiCongDanThanhPho
             kSDAO = new KhaiSinhDAO();
             thueDAO = new ThueDAO();
             hNDAO = new HonNhanDAO();
-            cCCDDAO = new CCCDDAO();
         }
         public bool isData()
         {
@@ -123,7 +124,7 @@ namespace QuanLiCongDanThanhPho
                     hNDAO.ThemHonNhan(hN);
                 }
                 if (ptcHinhDaiDien.Image != null) 
-                    SaveHinhDaiDien();
+                    HinhDaiDien.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien, path);
             }
         }
 
@@ -313,45 +314,12 @@ namespace QuanLiCongDanThanhPho
                 txtTenVoChong.BackColor = Color.WhiteSmoke;
             }    
         }
-        private void ThemHinh()
-        {
-            ofdHinhDaiDien.Filter = "PImage Files (*.jpg, *.png)|*.jpg;*.png";
-            try
-            {
-                if (ofdHinhDaiDien.ShowDialog() == DialogResult.OK)
-                {
-                    ptcHinhDaiDien.Image = new Bitmap(ofdHinhDaiDien.FileName);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Không mở được ảnh" + ex);
-            }
-        }
 
         private void btnThemHinh_Click(object sender, EventArgs e)
         {
-            ThemHinh();
+            HinhDaiDien.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien);
         }
 
-        private void SaveHinhDaiDien()
-        {
-            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string fileName = string.Format($"{txtCCCD.Text}");
-            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\..\HinhCongDan"));
-            string fullPath;
-            if (ofdHinhDaiDien.FileName.Contains(".jpg"))
-            {
-                fileName += ".jpg";
-                fullPath = Path.Combine(folderPath, fileName);
-                ptcHinhDaiDien.Image.Save(fullPath, ImageFormat.Jpeg);
-            }
-            else
-            {
-                fileName += ".png";
-                fullPath = Path.Combine(folderPath, fileName);
-                ptcHinhDaiDien.Image.Save(fullPath, ImageFormat.Png);
-            }
-        }
+        
     }
 }
