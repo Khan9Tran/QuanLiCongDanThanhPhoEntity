@@ -17,19 +17,24 @@ namespace QuanLiCongDanThanhPho
     public partial class FTachGopHo : Form
     {
         private CongDanDAO cDDAO;
+        private HoKhauDAO hKDAO;
         private bool isTach = false;
         private Congdan cD;
-        public FTachGopHo()
+        public void init()
         {
             InitializeComponent();
             cDDAO = new CongDanDAO();
+            hKDAO = new HoKhauDAO();
             StackForm.Add(this);
+        }
+
+        public FTachGopHo()
+        {
+            init();
         }
         public FTachGopHo(string maHoTach)
         {
-            InitializeComponent();
-            cDDAO = new CongDanDAO();
-            StackForm.Add(this);
+            init();
             txtMaHoTach.Text = maHoTach;
             LoadHoTach();
         }
@@ -55,6 +60,7 @@ namespace QuanLiCongDanThanhPho
                     MessageBox.Show("Vui lòng kiểm tra lại thông tin");
                 }
         }
+
         private bool KiemTraThongTin()
         {
             if (txtMaHoTach.Text == "")
@@ -91,33 +97,38 @@ namespace QuanLiCongDanThanhPho
             LoadHoGop();
             XoaHoThua();
         }
+        private bool isHoKhau(string maHoKhau)
+        {
+            Hokhau hK = hKDAO.LayThongTin(txtMaHoGop.Text);
+            if (hK == null)
+                return false;
+            return true;
+        }
         private void btnTaoHoMoi_Click(object sender, EventArgs e)
         { 
-            if (KiemTraThongTin())
-                if (isTach == true)
+            if (KiemTraThongTin() && isTach == true)
+            {
+                //Kiểm tra 
+                if (isHoKhau(txtMaHoGop.Text))
                 {
-                    //Kiểm tra 
-                    if (gvHoGop.Rows.Count != 1)
-                    {
-                        MessageBox.Show("Hộ đã tồn tại");
-                    }
-                    else if (cD.MaHk == txtMaHoGop.Text)
-                    {
-                        MessageBox.Show("Đây là một hộ duy nhất!");
-                    }
-                    else
-                    {
-                        TaoHoMoi();
-                    }
-                    isTach = false;
+                    MessageBox.Show("Hộ đã tồn tại");
                 }
+                else if (cD.MaHk == txtMaHoGop.Text)
+                {
+                    MessageBox.Show("Đây là một hộ duy nhất!");
+                }
+                else
+                {
+                    TaoHoMoi();
+                }
+                isTach = false;
+            }
         }
 
         //Thực hiện xóa hộ nếu không còn thành viên
         private void XoaHoThua()
         {
 
-            HoKhauDAO hKDAO = new HoKhauDAO();
             Hokhau hK = hKDAO.LayThongTin(txtMaHoTach.Text);
             if (gvHoTach.Rows.Count <=1)
             {
@@ -134,67 +145,70 @@ namespace QuanLiCongDanThanhPho
         }
         private void btnGopHo_Click(object sender, EventArgs e)
         {   
-            if (KiemTraThongTin())
-                if (isTach == true)
+            if (KiemTraThongTin() && isTach == true)
+            {
+                if (!isHoKhau(txtMaHoGop.Text))
                 {
-                    if (gvHoGop.Rows.Count <= 1)
-                    {
-                        MessageBox.Show("Hộ không tồn tại");
-                    }
-                    else if (cD.MaHk == txtMaHoGop.Text)
-                    {
-                        MessageBox.Show("Đây là một hộ duy nhất!");
-                    }
-                    else
-                    {
-                        ThemVaoHo();
-                    }
-                    isTach = false;
+                    MessageBox.Show("Hộ không tồn tại");
                 }
+                else if (cD.MaHk == txtMaHoGop.Text)
+                {
+                    MessageBox.Show("Đây là một hộ duy nhất!");
+                }
+                else
+                {
+                    ThemVaoHo();
+                }
+                isTach = false;
+            }
         }
         private void LoadHoTach()
         {
              gvHoTach.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
-             HeaderTextHoTach();
+             HeaderTach();
         }
         private void LoadHoGop()
         {
             gvHoGop.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoGop.Text);
-            HeaderTextHoGop();
-        }
-        private void HeaderTextHoGop()
-        {
-            gvHoGop.Columns[0].HeaderText = "CCCD";
-            gvHoGop.Columns[1].HeaderText = "Tên";
-            gvHoGop.Columns[2].HeaderText = "Nghề nghiệp";
-            gvHoGop.Columns[3].HeaderText = "Số điện thoại";
-            gvHoGop.Columns[4].HeaderText = "Tôn giáo";
-            gvHoGop.Columns[5].HeaderText = "Mã hộ khẩu";
-            gvHoGop.Columns[6].HeaderText = "Quan hệ với chủ hộ";
-            gvHoGop.Columns[7].Visible = false;
-            gvHoGop.Columns[8].Visible = false;
-        }
-        private void HeaderTextHoTach()
-        {
-            gvHoTach.Columns[0].HeaderText = "CCCD";
-            gvHoTach.Columns[1].HeaderText = "Tên";
-            gvHoTach.Columns[2].HeaderText = "Nghề nghiệp";
-            gvHoTach.Columns[3].HeaderText = "Số điện thoại";
-            gvHoTach.Columns[4].HeaderText = "Tôn giáo";
-            gvHoTach.Columns[5].HeaderText = "Mã hộ khẩu";
-            gvHoTach.Columns[6].HeaderText = "Quan hệ với chủ hộ";
-            gvHoTach.Columns[7].Visible = false;
-            gvHoTach.Columns[8].Visible = false;
+            HeaderGop();
         }
 
-        private void btnMaHoTach_Click(object sender, EventArgs e)
+        private List<string> HeaderText = new List<string>()
+            { "CCCD", "Tên", "Nghề nghiệp", "SĐT", "Tôn giáo", "Mã hộ khẩu", "Quan hệ với chủ hộ" };
+        private void HeaderTach()
         {
-            LoadHoTach();
+
+            for (int i = 0; i < gvHoTach.Columns.Count - 2; i++) 
+            {
+                gvHoTach.Columns[i].HeaderText = HeaderText[i];
+            }
+            for (int i = gvHoTach.Columns.Count - 2; i < gvHoTach.Columns.Count; i++)
+            {
+                gvHoTach.Columns[i].Visible = false;
+            }
+        }
+        private void HeaderGop()
+        {
+
+            for (int i = 0; i < gvHoGop.Columns.Count - 2; i++)
+            {
+                gvHoGop.Columns[i].HeaderText = HeaderText[i];
+            }
+            for (int i = gvHoGop.Columns.Count - 2; i < gvHoGop.Columns.Count; i++)
+            {
+                gvHoGop.Columns[i].Visible = false;
+            }
+        }
+        private void btnMaHoTach_Click(object sender, EventArgs e)
+        { 
+            if (txtMaHoTach.Text != "")
+                LoadHoTach();
         }
 
         private void btnMaHoGop_Click(object sender, EventArgs e)
         {
-            LoadHoGop();
+            if (txtMaHoGop.Text != "")
+                LoadHoGop();
         }
         private void Reset()
         {

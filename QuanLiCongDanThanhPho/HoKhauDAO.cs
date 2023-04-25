@@ -30,7 +30,7 @@ namespace QuanLiCongDanThanhPho
         }
         public Hokhau LayThongTin(string maHoKhau)
         {
-            var hK = db.Hokhaus.First(q => q.MaHk == maHoKhau);
+            Hokhau hK = db.Hokhaus.Where(q => q.MaHk == maHoKhau).FirstOrDefault();
             return hK;
         }
         public List<Hokhau> LayDanhSachChuaTu(string tu)
