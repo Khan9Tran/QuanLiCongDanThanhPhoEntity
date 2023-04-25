@@ -13,51 +13,7 @@ namespace QuanLiCongDanThanhPho
     {
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.connStr);
         static QuanlitpContext db = new QuanlitpContext();
-
         public static QuanlitpContext Db { get => db; set => db = value; }
 
-        public void CapNhat()
-        {
-            db.SaveChanges();
-        }
-        public void ThucThi(string sqlStr, string thongBao)
-        {
-            try
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(sqlStr, conn);
-                if (cmd.ExecuteNonQuery() > 0)
-                {
-                    MessageBox.Show(thongBao);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Thất bại" + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
-        public DataTable LayDanhSach(string sqlStr)
-        {
-            DataTable ds = new DataTable();
-            try
-            {
-                conn.Open();
-                SqlDataAdapter adapter = new SqlDataAdapter(sqlStr, conn);
-                adapter.Fill(ds);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Thất bại" + ex);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return ds;
-        }
     }
 }

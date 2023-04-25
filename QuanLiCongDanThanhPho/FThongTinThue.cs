@@ -14,28 +14,34 @@ namespace QuanLiCongDanThanhPho
     public partial class FThongTinThue : Form
     {
         private string maCCCD;
-        ThueDAO thueDAO = new ThueDAO();
-        CongDanDAO cdDAO = new CongDanDAO();
-        HoKhauDAO hkDAO = new HoKhauDAO();
+
+        ThueDAO thueDAO;
+        CongDanDAO cdDAO;
+        HoKhauDAO hkDAO;
+
+        //Dùng để kéo thả form
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
-        public string MaCCCD
-        {
-            set { maCCCD = value; }
-            get { return maCCCD; }
-        }
+
+        public string MaCCCD { get => maCCCD; set => maCCCD = value; }
+
         public FThongTinThue()
         {
             InitializeComponent();
             StackForm.Add(this);
         }
+
         public FThongTinThue(string maCCCD)
         {
             MaCCCD = maCCCD;
             InitializeComponent();
             StackForm.Add(this);
+            thueDAO = new ThueDAO();
+            cdDAO = new CongDanDAO();
+            hkDAO = new HoKhauDAO();
         }
+
         private bool KiemTraThongTin()
         {
             if (!KiemTraDuLieuNhap.isTien(txtSoTienCanNop.Text))
@@ -62,6 +68,7 @@ namespace QuanLiCongDanThanhPho
             dtmNgayCapMaSoThue.Enabled = false;
             btnXacNhan.Enabled = false;
         }
+
         private void UnReanOnly()
         {
             txtSoTienCanNop.ReadOnly = false;
@@ -72,6 +79,7 @@ namespace QuanLiCongDanThanhPho
             dtmNgayCapMaSoThue.Enabled = true;
             btnXacNhan.Enabled = true;
         }
+
         private void AutoReadOnly()
         {
             if (txtSoTienCanNop.ReadOnly == false)
@@ -91,6 +99,7 @@ namespace QuanLiCongDanThanhPho
                 Thue thue = thueDAO.LayThongTin(MaCCCD);
                 Congdan cd = cdDAO.LayThongTin(MaCCCD);
                 Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
+
                 txtMaSoThue.Text = thue.MaThue;
                 txtTen.Text = cd.Ten;
                 txtCCCD.Text = cd.Cccd;
@@ -106,16 +115,18 @@ namespace QuanLiCongDanThanhPho
         {
             LayThongTinThue();
         }
+
+        //Tạo kéo thả form
         protected override void WndProc(ref Message message)
         {
             base.WndProc(ref message);
-
             if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
                 message.Result = (IntPtr)HTCAPTION;
         }
         private void CapNhatThue()
         {
             Thue thue = thueDAO.LayThongTin(MaCCCD);
+
             if (txtMaSoThue.Text != "")
             {
                 thue.Cccd = txtCCCD.Text;
@@ -124,6 +135,7 @@ namespace QuanLiCongDanThanhPho
                 thue.NgayCap = dtmNgayCapMaSoThue.Value;
                 thue.HanNop = dtmHanNopThue.Value;
             }
+
             thueDAO.CapNhatThue();
         }    
         private void btnXacNhan_Click(object sender, EventArgs e)
@@ -140,7 +152,6 @@ namespace QuanLiCongDanThanhPho
         {
             AutoReadOnly();
         }
-
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinThue();

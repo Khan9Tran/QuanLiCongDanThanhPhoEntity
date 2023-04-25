@@ -14,11 +14,20 @@ namespace QuanLiCongDanThanhPho
     public partial class FDanhSachCongDan : Form
     {
         CongDanDAO cdDao;
-        private string luaChon;
+        private dynamic luaChon;
         private List<Congdan> ds;
 
         public List<Congdan> Ds { get => ds; set => ds = value; }
 
+        private enum Loc
+        {
+            tatCa,
+            nam,
+            nu,
+            ketHon,
+            docThan,
+            tuoiTac,
+        }
         public FDanhSachCongDan()
         {
 
@@ -26,7 +35,7 @@ namespace QuanLiCongDanThanhPho
             cdDao = new CongDanDAO();
             ds = new List<Congdan>();
             StackForm.Add(this);
-            luaChon = "tat ca";
+            luaChon = Loc.tatCa;
             btnTamVang.Enabled = false;
             btnThue.Enabled = false;
         }
@@ -34,28 +43,28 @@ namespace QuanLiCongDanThanhPho
         //Tìm kiếm công dân theo các điều kiện
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == "tat ca")
+            if (luaChon == Loc.tatCa)
             {
                 ds = cdDao.LayDanhSachChuaTu(txtTimKiem.Text);
             }
-            else if (luaChon == "nam")
+            else if (luaChon == Loc.nam)
             {
                 ds = cdDao.LayDanhSachCongDanNam(txtTimKiem.Text);
             }
-            else if (luaChon == "nu")
+            else if (luaChon == Loc.nu)
             {
                 ds = cdDao.LayDanhSachCongDanNu(txtTimKiem.Text);
 
             }
-            else if (luaChon == "ket hon")
+            else if (luaChon == Loc.ketHon)
             {
                 ds = cdDao.LayDanhSachDaKetHon(txtTimKiem.Text);
             }
-            else if (luaChon == "doc than")
+            else if (luaChon == Loc.docThan)
             {
                 ds = cdDao.LayDanhSachChuaKetHon(txtTimKiem.Text);
             }
-            else if (luaChon == "tuoi tac")
+            else if (luaChon == Loc.tuoiTac)
             {
                 ds = cdDao.LayDanhSachTuoiXepTuBeDenLon(txtTimKiem.Text);
             }
@@ -113,42 +122,47 @@ namespace QuanLiCongDanThanhPho
         //Lọc giới tính: Nam
         private void btnNam_Click(object sender, EventArgs e)
         {
-            luaChon = "nam";
+            luaChon = Loc.nam;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
         //Show tất cả
         private void btnTatCa_Click(object sender, EventArgs e)
         {
-            luaChon = "tat ca";
+            luaChon = Loc.tatCa;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
         //Lọc giới tính: nữ
         private void btnNu_Click(object sender, EventArgs e)
         {
-            luaChon = "nu";
+            luaChon = Loc.nu;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
         //Lọc người chưa kết hôn
         private void btnDocThan_Click(object sender, EventArgs e)
         {
-            luaChon = "doc than";
+            luaChon = Loc.docThan;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
         //Lọc người đã kết hôn
         private void btnKetHon_Click(object sender, EventArgs e)
         {
-            luaChon = "ket hon";
+            luaChon = Loc.ketHon;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
         //Sắp xếp theo tuổi tác
         private void btnTuoiTac_Click(object sender, EventArgs e)
         {
-            luaChon = "tuoi tac";
+            TimKiem(Loc.tuoiTac);
+        }
+        
+        private void TimKiem(dynamic type)
+        {
+            luaChon = type;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
@@ -162,7 +176,7 @@ namespace QuanLiCongDanThanhPho
         //Lấy mã cccd bằng kick vào gridview
         private string GetCCCD()
         {
-            return gvDanhSachCongDan.CurrentRow.Cells[0].Value.ToString();
+            return (string)gvDanhSachCongDan.CurrentRow.Cells[0].Value;
         }
 
         //Menu
@@ -170,7 +184,7 @@ namespace QuanLiCongDanThanhPho
         {
             string maCCCD = GetCCCD();
             Congdan cD = cdDao.LayThongTin(maCCCD);
-            if (maCCCD != "")
+            if (maCCCD != "" && cD != null)
             {
                 FThongTinCongDan ttCD = new FThongTinCongDan(cD);
                 ttCD.ShowDialog();
@@ -184,8 +198,11 @@ namespace QuanLiCongDanThanhPho
             if (maCCCD != "")
             {
                 Congdan cd = cdDao.LayThongTin(maCCCD);
-                cdDao.XoaCongDan(cd);
-                txtTimKiem_TextChanged(txtTimKiem, null);
+                if (cd != null)
+                {
+                    cdDao.XoaCongDan(cd);
+                    txtTimKiem_TextChanged(txtTimKiem, null);
+                }
             }
         }
 

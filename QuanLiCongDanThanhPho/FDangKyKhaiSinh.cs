@@ -12,12 +12,18 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyKhaiSinh : Form
     {
+        CongDanDAO cDDAO;
+        HonNhanDAO hNDAO;
+        KhaiSinhDAO kSDAO;
         public FDangKyKhaiSinh()
         {
+
             InitializeComponent();
             StackForm.Add(this);
+            cDDAO = new CongDanDAO();
+            hNDAO = new HonNhanDAO();
+            kSDAO = new KhaiSinhDAO();
         }
-        KhaiSinhDAO kSDAO = new KhaiSinhDAO();
 
         private void FDangKyKhaiSinh_Load(object sender, EventArgs e)
         {
@@ -117,10 +123,9 @@ namespace QuanLiCongDanThanhPho
         }
         private bool KiemTraChaMe()
         {
-            CongDanDAO cDDAOCha = new CongDanDAO();
-            CongDanDAO cDDAOMe = new CongDanDAO();
-            Congdan cha = cDDAOCha.LayThongTin(txtCccdCha.Text);
-            Congdan me = cDDAOMe.LayThongTin(txtCccdMe.Text);
+            Congdan cha = cDDAO.LayThongTin(txtCccdCha.Text);
+            Congdan me = cDDAO.LayThongTin(txtCccdMe.Text);
+
             if ((cha != null) && (txtTenCha.Text != cha.Ten))
             {
                 MessageBox.Show("Tên và căn cước công dân cha không khớp");
@@ -131,19 +136,25 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Tên và căn cước công dân mẹ không khớp");
                 return false;
             }
+            if (hNDAO.LayThongTin(txtCccdCha.Text) != hNDAO.LayThongTin(txtCccdMe.Text))
+            {
+                MessageBox.Show("Hôn nhân không khớp");
+                return false;
+            }
+            
             return true;
         }
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             if (KiemTraThongTin() && KiemTraChaMe())
             { 
-                CongDanDAO cDDAO = new CongDanDAO();
                 Congdan congDan = new Congdan()
                 {
                     Ten = txtTen.Text,
                     Cccd = txtCccd.Text,
                     MaHk = "00000A"
                 };
+
                 string gt = "";
                 if (rdoNam.Checked)
                 {
@@ -159,8 +170,8 @@ namespace QuanLiCongDanThanhPho
                     MaKs = txtCccd.Text,
                     Ten = txtTen.Text,
                     GioiTinh = gt,
-                    QuocTich = cboQuocTich.SelectedItem.ToString(),
-                    DanToc = cboDanToc.SelectedItem.ToString(),
+                    QuocTich = (string)cboQuocTich.SelectedItem,
+                    DanToc = (string)cboDanToc.SelectedItem,
                     NgaySinh = dtmNgaySinh.Value,
                     NgayDangKy = dtmNgayDangKy.Value,
                     NoiSinh = txtNoiSinh.Text,
