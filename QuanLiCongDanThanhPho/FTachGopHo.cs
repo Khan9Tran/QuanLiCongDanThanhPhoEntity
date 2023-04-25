@@ -82,7 +82,6 @@ namespace QuanLiCongDanThanhPho
         private void TaoHoMoi()
         {
             //Kiểm tra 
-            HoKhauDAO hKDAO = new HoKhauDAO();
             Hokhau hK = new Hokhau()
             {
                 MaHk = txtMaHoGop.Text,
@@ -130,7 +129,8 @@ namespace QuanLiCongDanThanhPho
         {
 
             Hokhau hK = hKDAO.LayThongTin(txtMaHoTach.Text);
-            if (gvHoTach.Rows.Count <=1)
+
+            if (gvHoTach.Rows.Count == 0)
             {
                 hKDAO.XoaHoKhau(hK);
             }
@@ -162,19 +162,23 @@ namespace QuanLiCongDanThanhPho
                 isTach = false;
             }
         }
+
         private void LoadHoTach()
         {
              gvHoTach.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
              HeaderTach();
         }
+
         private void LoadHoGop()
         {
             gvHoGop.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoGop.Text);
             HeaderGop();
         }
 
+        //Hổ trợ hiển thị tên cột có dấu
         private List<string> HeaderText = new List<string>()
             { "CCCD", "Tên", "Nghề nghiệp", "SĐT", "Tôn giáo", "Mã hộ khẩu", "Quan hệ với chủ hộ" };
+
         private void HeaderTach()
         {
 
