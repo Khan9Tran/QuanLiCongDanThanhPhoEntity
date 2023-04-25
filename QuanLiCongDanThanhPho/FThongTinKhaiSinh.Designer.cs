@@ -56,6 +56,8 @@
             this.txtQuocTich = new System.Windows.Forms.TextBox();
             this.txtDanToc = new System.Windows.Forms.TextBox();
             this.pnlTren = new System.Windows.Forms.Panel();
+            this.dtmNgayDangKy = new System.Windows.Forms.DateTimePicker();
+            this.lblNgayDangKy = new System.Windows.Forms.Label();
             this.fpnlChucNang = new System.Windows.Forms.FlowLayoutPanel();
             this.btnXacNhan = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
@@ -64,14 +66,12 @@
             this.lblQue = new System.Windows.Forms.Label();
             this.btnThongTinMe = new System.Windows.Forms.Button();
             this.btnThongTinCha = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlTittle = new System.Windows.Forms.Panel();
             this.titleBarWhite1 = new QuanLiCongDanThanhPho.TitleBarWhite();
             this.sideBarWhite1 = new QuanLiCongDanThanhPho.SideBarWhite();
-            this.lblNgayDangKy = new System.Windows.Forms.Label();
-            this.dtmNgayDangKy = new System.Windows.Forms.DateTimePicker();
             this.pnlTren.SuspendLayout();
             this.fpnlChucNang.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlTittle.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtQuocTichMe
@@ -216,7 +216,6 @@
             this.lblTittle.Size = new System.Drawing.Size(324, 38);
             this.lblTittle.TabIndex = 0;
             this.lblTittle.Text = "THÔNG TIN KHAI SINH";
-            this.lblTittle.Click += new System.EventHandler(this.lblTittle_Click);
             // 
             // lblTen
             // 
@@ -412,6 +411,27 @@
             this.pnlTren.Size = new System.Drawing.Size(1194, 631);
             this.pnlTren.TabIndex = 0;
             // 
+            // dtmNgayDangKy
+            // 
+            this.dtmNgayDangKy.CustomFormat = "dd/MM/yyyy";
+            this.dtmNgayDangKy.Enabled = false;
+            this.dtmNgayDangKy.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dtmNgayDangKy.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtmNgayDangKy.Location = new System.Drawing.Point(290, 569);
+            this.dtmNgayDangKy.Name = "dtmNgayDangKy";
+            this.dtmNgayDangKy.Size = new System.Drawing.Size(174, 34);
+            this.dtmNgayDangKy.TabIndex = 102;
+            this.dtmNgayDangKy.Value = new System.DateTime(2023, 2, 28, 0, 0, 0, 0);
+            // 
+            // lblNgayDangKy
+            // 
+            this.lblNgayDangKy.AutoSize = true;
+            this.lblNgayDangKy.Location = new System.Drawing.Point(50, 569);
+            this.lblNgayDangKy.Name = "lblNgayDangKy";
+            this.lblNgayDangKy.Size = new System.Drawing.Size(144, 28);
+            this.lblNgayDangKy.TabIndex = 101;
+            this.lblNgayDangKy.Text = "Ngày đăng ký";
+            // 
             // fpnlChucNang
             // 
             this.fpnlChucNang.Controls.Add(this.btnXacNhan);
@@ -514,14 +534,14 @@
             this.btnThongTinCha.UseVisualStyleBackColor = false;
             this.btnThongTinCha.Click += new System.EventHandler(this.btnThongTinCha_Click);
             // 
-            // panel1
+            // pnlTittle
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            this.panel1.Controls.Add(this.lblTittle);
-            this.panel1.Location = new System.Drawing.Point(3, 32);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1194, 55);
-            this.panel1.TabIndex = 1;
+            this.pnlTittle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            this.pnlTittle.Controls.Add(this.lblTittle);
+            this.pnlTittle.Location = new System.Drawing.Point(3, 32);
+            this.pnlTittle.Name = "pnlTittle";
+            this.pnlTittle.Size = new System.Drawing.Size(1194, 55);
+            this.pnlTittle.TabIndex = 1;
             // 
             // titleBarWhite1
             // 
@@ -537,27 +557,6 @@
             this.sideBarWhite1.Size = new System.Drawing.Size(75, 29);
             this.sideBarWhite1.TabIndex = 3;
             // 
-            // lblNgayDangKy
-            // 
-            this.lblNgayDangKy.AutoSize = true;
-            this.lblNgayDangKy.Location = new System.Drawing.Point(50, 569);
-            this.lblNgayDangKy.Name = "lblNgayDangKy";
-            this.lblNgayDangKy.Size = new System.Drawing.Size(144, 28);
-            this.lblNgayDangKy.TabIndex = 101;
-            this.lblNgayDangKy.Text = "Ngày đăng ký";
-            // 
-            // dtmNgayDangKy
-            // 
-            this.dtmNgayDangKy.CustomFormat = "dd/MM/yyyy";
-            this.dtmNgayDangKy.Enabled = false;
-            this.dtmNgayDangKy.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dtmNgayDangKy.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtmNgayDangKy.Location = new System.Drawing.Point(290, 569);
-            this.dtmNgayDangKy.Name = "dtmNgayDangKy";
-            this.dtmNgayDangKy.Size = new System.Drawing.Size(174, 34);
-            this.dtmNgayDangKy.TabIndex = 102;
-            this.dtmNgayDangKy.Value = new System.DateTime(2023, 2, 28, 0, 0, 0, 0);
-            // 
             // FThongTinKhaiSinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -566,7 +565,7 @@
             this.ClientSize = new System.Drawing.Size(1200, 720);
             this.Controls.Add(this.sideBarWhite1);
             this.Controls.Add(this.titleBarWhite1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlTittle);
             this.Controls.Add(this.pnlTren);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -578,8 +577,8 @@
             this.pnlTren.ResumeLayout(false);
             this.pnlTren.PerformLayout();
             this.fpnlChucNang.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlTittle.ResumeLayout(false);
+            this.pnlTittle.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -613,7 +612,7 @@
         private TextBox txtQuocTich;
         private TextBox txtDanToc;
         private Panel pnlTren;
-        private Panel panel1;
+        private Panel pnlTittle;
         private Button btnThongTinCha;
         private Button btnThongTinMe;
         private TextBox txtQueQuan;

@@ -13,26 +13,22 @@ namespace QuanLiCongDanThanhPho
     public partial class FThongTinKhaiSinh : Form
     {
         private string maCCCD;
-        KhaiSinhDAO ksDAO = new KhaiSinhDAO();
-        CongDanDAO cdDAO = new CongDanDAO();
+        KhaiSinhDAO ksDAO;
+        CongDanDAO cdDAO;
+
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
 
-        public string MaCCCD
-        {
-            set { maCCCD = value; }
-            get { return maCCCD; }
-        }
-        public FThongTinKhaiSinh()
-        {
-            InitializeComponent();
-        }
+        public string MaCCCD { get => maCCCD; set => maCCCD = value; }
+
         public FThongTinKhaiSinh(string maCCCD)
         {
             MaCCCD = maCCCD;
             InitializeComponent();
             StackForm.Add(this);
+            ksDAO = new KhaiSinhDAO();
+            cdDAO = new CongDanDAO();
         }
         private void btnThongTinCha_Click(object sender, EventArgs e)
         {
@@ -132,17 +128,18 @@ namespace QuanLiCongDanThanhPho
             if (maCCCD != null)
             {
                 Khaisinh ks = ksDAO.LayThongTin(maCCCD);
-                if (ks.Cccdcha == "")
+                if (ks.Cccdcha != "")
                 {
                     Khaisinh ksCha = ksDAO.LayThongTin(ks.Cccdcha);
                     txtQuocTichCha.Text = ksCha.QuocTich;
                 }
-                if (ks.Cccdme == "")
+                if (ks.Cccdme != "")
                 {
                     Khaisinh ksMe = ksDAO.LayThongTin(ks.Cccdme);
                     txtQuocTichMe.Text = ksMe.QuocTich;
 
                 }
+
                 txtTen.Text = ks.Ten;
                 txtCccd.Text = ks.MaKs;
                 txtNoiSinh.Text = ks.NoiSinh;
@@ -176,10 +173,6 @@ namespace QuanLiCongDanThanhPho
 
             if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
                 message.Result = (IntPtr)HTCAPTION;
-        }
-        private void lblTittle_Click(object sender, EventArgs e)
-        {
-
         }
         private void CapNhatKhaiSinh()
         {

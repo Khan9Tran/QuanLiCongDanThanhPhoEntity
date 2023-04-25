@@ -125,16 +125,22 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Tên và căn cước công dân cha không khớp");
                 return false;
             }
+
             if ((me != null ) && (txtTenMe.Text != me.Ten))
             {
                 MessageBox.Show("Tên và căn cước công dân mẹ không khớp");
                 return false;
             }
-            if (hNDAO.LayThongTin(txtCccdCha.Text) != hNDAO.LayThongTin(txtCccdMe.Text))
+
+            Honnhan Chong = hNDAO.LayThongTin(txtCccdCha.Text);
+            Honnhan Vo = hNDAO.LayThongTin(txtCccdMe.Text);
+
+            //Cả vợ và chồng đều có thông tin hôn nhân ở khu vực mới có thể đăng kí khai sinh cho con
+            if (Chong.MaHonNhan != Vo.MaHonNhan || Chong == null || Vo == null)     
             {
                 MessageBox.Show("Hôn nhân không khớp");
                 return false;
-            }
+            }    
             
             return true;
         }
@@ -148,6 +154,7 @@ namespace QuanLiCongDanThanhPho
                     Cccd = txtCccd.Text,
                     MaHk = "00000A"
                 };
+                cDDAO.ThemCongDan(congDan);
 
                 string gt = "";
                 if (rdoNam.Checked)
@@ -158,7 +165,6 @@ namespace QuanLiCongDanThanhPho
                 {
                     gt = "f";
                 }
-                cDDAO.ThemCongDan(congDan);
 
                 Khaisinh kS = new Khaisinh()
                 {
