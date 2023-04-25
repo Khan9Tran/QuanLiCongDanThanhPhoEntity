@@ -14,23 +14,29 @@ namespace QuanLiCongDanThanhPho
     public partial class FDanhSachHoKhau : Form
     {
         HoKhauDAO hkDao = new HoKhauDAO();
-        private string luaChon;
+        private dynamic luaChon;
         private List<Hokhau> ds;
+        
+        enum Loc 
+        {
+            tatCa,
+            soTv
+        }
         public FDanhSachHoKhau()
         {
             InitializeComponent();
             StackForm.Add(this);
             ds = new List<Hokhau>();
-            luaChon = "tat ca";
         }
 
-        private void gvHoKhau_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TimKiem(dynamic type)
         {
+            luaChon = type;
+            txtTimKiem_TextChanged(txtTimKiem, null);
         }
-
         private void FDanhSachHoKhau_Load(object sender, EventArgs e)
         {
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
             flpnlPhanLoai.Width = 45;
         }
 
@@ -44,8 +50,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTatCa_Click(object sender, EventArgs e)
         {
-            luaChon = "tat ca";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
         }
 
         private void LayDanhSach()
@@ -64,18 +69,18 @@ namespace QuanLiCongDanThanhPho
 
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == "tat ca")
+            if (luaChon == Loc.tatCa)
                 ds = hkDao.LayDanhSachChuaTu(txtTimKiem.Text);
-            else if (luaChon == "sotv")
+            else if (luaChon == Loc.soTv)
                 ds = hkDao.LayDanhSachXepTheoSoTV(txtTimKiem.Text);
+
             nudPage.Value = 1;
             LayDanhSach();
         }
 
         private void btnSoTV_Click(object sender, EventArgs e)
         {
-            luaChon = "sotv";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.soTv);
         }
 
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
@@ -95,7 +100,7 @@ namespace QuanLiCongDanThanhPho
         }
         private string getMaHk()
         {
-            return gvHoKhau.CurrentRow.Cells[0].Value.ToString();
+            return (string)gvHoKhau.CurrentRow.Cells[0].Value;
         }
 
         private void cmnusMenuTachGop_Click(object sender, EventArgs e)

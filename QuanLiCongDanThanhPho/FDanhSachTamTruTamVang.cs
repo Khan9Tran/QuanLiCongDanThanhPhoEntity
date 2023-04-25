@@ -15,7 +15,7 @@ namespace QuanLiCongDanThanhPho
     public partial class FDanhSachTamTruTamVang : Form
     {
         TamTruTamVangDAO tttvDao;
-        private string luaChon;
+        private dynamic luaChon;
         private List<Tamtrutamvang> ds;
         public FDanhSachTamTruTamVang()
         {
@@ -23,53 +23,79 @@ namespace QuanLiCongDanThanhPho
             StackForm.Add(this);
             ds = new List<Tamtrutamvang>();
             tttvDao = new TamTruTamVangDAO();
-            luaChon = "tat ca";
         }
 
+        private enum Loc 
+        {
+            tatCa,
+            tamTru,
+            tamVang,
+            quaHan
+        }
+        private void TimKiem(dynamic type)
+        {
+            luaChon = type;
+            txtTimKiem_TextChanged(txtTimKiem, null);
+
+        }
         //Load danh sách ban đầu
         private void FDanhSachTamTruTamVang_Load(object sender, EventArgs e)
         {
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
             flpnlPhanLoai.Width = 45;
         }
 
         private void btnTatCa_Click(object sender, EventArgs e)
         {
-            luaChon = "tat ca";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
         }
 
 
         //Tìm kiếm
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == "tat ca")
+            if (luaChon == Loc.tatCa)
                 ds = tttvDao.LayDanhSachChuaTu(txtTimKiem.Text);
-            else if (luaChon == "tam tru")
+            else if (luaChon == Loc.tamVang)
                 ds = tttvDao.LayDanhSachTamTru(txtTimKiem.Text);
-            else if (luaChon == "tam vang")
+            else if (luaChon == Loc.tamVang)
                 ds = tttvDao.LayDanhSachTamVang(txtTimKiem.Text);
-            else if (luaChon == "qua han")
+            else if (luaChon == Loc.quaHan)
                 ds = tttvDao.LayDanhSachQuaHan(txtTimKiem.Text);
             nudPage.Value = 1;
             LoadDanhSach();
         }
-
+        enum LoaiGiaHan
+        {
+            ngay,
+            thang,
+            nam
+        }
         private string getCCCD()
         {
             return (string)gvTVTT.CurrentRow.Cells[1].Value;
         }
-        private void GiaHan(int day)
+        private void GiaHan(int num, dynamic type)
         {
             Tamtrutamvang tTTTV = tttvDao.LayThongTin(getCCCD());
-            tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(day);
+            if (type == LoaiGiaHan.ngay)
+                tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(num);
+            else if (type ==  LoaiGiaHan.thang)
+                tTTTV.NgayKt = tTTTV.NgayKt.Value.AddMonths(num);
+            else
+                tTTTV.NgayKt = tTTTV.NgayKt.Value.AddYears(num);
             tttvDao.CapNhat();
+        }
+        private string DayFormat()
+        {
+            return "dd/MM/yyyy";
         }
         private void LoadDanhSach()
         {
             gvTVTT.DataSource = NgatTrang(ds, 10);
-            gvTVTT.Columns[4].DefaultCellStyle.Format = "dd/MM/yyyy";
-            gvTVTT.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
+            gvTVTT.Columns[4].DefaultCellStyle.Format = DayFormat();
+            gvTVTT.Columns[3].DefaultCellStyle.Format = DayFormat();
+
             HeaderText();
             HightLightQuaHan();
         }
@@ -97,14 +123,12 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTV_Click(object sender, EventArgs e)
         {
-            luaChon = "tam vang";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tamVang);
         }
 
         private void btnTT_Click(object sender, EventArgs e)
         {
-            luaChon = "tam tru";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tamTru);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -120,13 +144,15 @@ namespace QuanLiCongDanThanhPho
                 cmnusMenu.Show(this, this.PointToClient(MousePosition));
             }
         }
+
         //Xóa thông tin
         private void cmnusMenuXoa_Click(object sender, EventArgs e)
         {
             DialogResult exit = MessageBox.Show("Bạn có thật sự muốn xóa thông tin tạm trú/tạm vắng?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (exit == DialogResult.Yes)
             {
-                string maCCCD = gvTVTT.CurrentRow.Cells["CCCD"].Value.ToString();
+                string maCCCD = getCCCD();
+
                 if (maCCCD != "")
                 {
                     tttvDao.XoaTamTruTamVang(maCCCD);
@@ -138,8 +164,7 @@ namespace QuanLiCongDanThanhPho
         //Lọc danh sách hết hạn tạm trú tạm vắng
         private void btnQuaHan_Click(object sender, EventArgs e)
         {
-            luaChon = "qua han";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.quaHan);
         }
 
         //Ngắt trang
@@ -169,26 +194,23 @@ namespace QuanLiCongDanThanhPho
                 flpnlPhanLoai.Width = 800;
         }
 
-
-
         private void ngayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GiaHan(3);
+            GiaHan(3, LoaiGiaHan.ngay);
         }
 
         private void tuanToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GiaHan(7);
+            GiaHan(7, LoaiGiaHan.ngay);
         }
-
         private void thangToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GiaHan(30);
+            GiaHan(1, LoaiGiaHan.thang);
         }
 
         private void namToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            GiaHan(365);
+            GiaHan(1, LoaiGiaHan.nam);
         }
     }
 }

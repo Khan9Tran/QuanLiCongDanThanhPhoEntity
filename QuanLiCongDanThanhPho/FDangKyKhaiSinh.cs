@@ -17,17 +17,11 @@ namespace QuanLiCongDanThanhPho
         KhaiSinhDAO kSDAO;
         public FDangKyKhaiSinh()
         {
-
             InitializeComponent();
             StackForm.Add(this);
             cDDAO = new CongDanDAO();
             hNDAO = new HonNhanDAO();
             kSDAO = new KhaiSinhDAO();
-        }
-
-        private void FDangKyKhaiSinh_Load(object sender, EventArgs e)
-        {
-
         }
 
         private bool KiemTraThongTin()
@@ -165,6 +159,7 @@ namespace QuanLiCongDanThanhPho
                     gt = "f";
                 }
                 cDDAO.ThemCongDan(congDan);
+
                 Khaisinh kS = new Khaisinh()
                 {
                     MaKs = txtCccd.Text,

@@ -35,7 +35,6 @@ namespace QuanLiCongDanThanhPho
             cdDao = new CongDanDAO();
             ds = new List<Congdan>();
             StackForm.Add(this);
-            luaChon = Loc.tatCa;
             btnTamVang.Enabled = false;
             btnThue.Enabled = false;
         }
@@ -93,7 +92,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void FDanhSachCongDan_Load(object sender, EventArgs e)
         {
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
             fpnlPhanLoai.Width = 45;
         }
 
@@ -122,36 +121,31 @@ namespace QuanLiCongDanThanhPho
         //Lọc giới tính: Nam
         private void btnNam_Click(object sender, EventArgs e)
         {
-            luaChon = Loc.nam;
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.nam);
         }
 
         //Show tất cả
         private void btnTatCa_Click(object sender, EventArgs e)
         {
-            luaChon = Loc.tatCa;
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
         }
 
         //Lọc giới tính: nữ
         private void btnNu_Click(object sender, EventArgs e)
         {
-            luaChon = Loc.nu;
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.nu);
         }
 
         //Lọc người chưa kết hôn
         private void btnDocThan_Click(object sender, EventArgs e)
         {
-            luaChon = Loc.docThan;
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.docThan);
         }
 
         //Lọc người đã kết hôn
         private void btnKetHon_Click(object sender, EventArgs e)
         {
-            luaChon = Loc.ketHon;
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.ketHon);
         }
 
         //Sắp xếp theo tuổi tác

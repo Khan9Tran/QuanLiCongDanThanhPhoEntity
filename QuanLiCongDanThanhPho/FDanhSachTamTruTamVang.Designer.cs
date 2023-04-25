@@ -77,7 +77,7 @@
             this.gvTVTT.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvTVTT.Size = new System.Drawing.Size(1480, 483);
             this.gvTVTT.TabIndex = 1;
-            this.gvTVTT.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTVTT_CellClick);
+            this.gvTVTT.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvTVTT_CellClick);
             // 
             // txtTimKiem
             // 
@@ -209,13 +209,13 @@
             this.cmnusMenu.Name = "contextMenuStrip1";
             this.cmnusMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.cmnusMenu.ShowImageMargin = false;
-            this.cmnusMenu.Size = new System.Drawing.Size(186, 96);
+            this.cmnusMenu.Size = new System.Drawing.Size(132, 68);
             // 
             // cmnusMenuXoa
             // 
             this.cmnusMenuXoa.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cmnusMenuXoa.Name = "cmnusMenuXoa";
-            this.cmnusMenuXoa.Size = new System.Drawing.Size(185, 32);
+            this.cmnusMenuXoa.Size = new System.Drawing.Size(131, 32);
             this.cmnusMenuXoa.Text = "Xóa";
             // 
             // giaHạnToolStripMenuItem
@@ -226,7 +226,7 @@
             this.thangToolStripMenuItem,
             this.namToolStripMenuItem1});
             this.giaHạnToolStripMenuItem.Name = "giaHạnToolStripMenuItem";
-            this.giaHạnToolStripMenuItem.Size = new System.Drawing.Size(185, 32);
+            this.giaHạnToolStripMenuItem.Size = new System.Drawing.Size(131, 32);
             this.giaHạnToolStripMenuItem.Text = "Gia hạn";
             // 
             // ngayToolStripMenuItem

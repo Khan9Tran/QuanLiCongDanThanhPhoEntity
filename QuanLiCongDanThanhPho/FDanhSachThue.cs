@@ -14,20 +14,33 @@ namespace QuanLiCongDanThanhPho
     public partial class FDanhSachThue : Form
     {
         ThueDAO thueDAO;
-        private string luaChon; // Khởi tạo lựa chọn bộ lọc
+        CongDanDAO cDDAO;
+        private dynamic luaChon; // Khởi tạo lựa chọn bộ lọc
         private List<Thue> ds; //Khởi tạo danh sách cho datagridview
         public FDanhSachThue()
         {
             InitializeComponent();
             StackForm.Add(this);
             thueDAO = new ThueDAO();
+            cDDAO = new CongDanDAO();
             ds = new List<Thue>();
-            luaChon = "tat ca";
         }
 
+        private enum Loc
+        {
+            tatCa,
+            daNop,
+            treHan
+        }
+
+        private void TimKiem(dynamic type)
+        {
+            luaChon = type;
+            txtTimKiem_TextChanged(txtTimKiem, null);
+        }
         private void FDanhSachThue_Load(object sender, EventArgs e)
         {
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
             flpnPhanLoai.Width = 45;
         }
 
@@ -44,18 +57,17 @@ namespace QuanLiCongDanThanhPho
         // Danh sach thuế của tất cả công dân
         private void btnTatCa_Click(object sender, EventArgs e)
         {
-            luaChon = "tat ca";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.tatCa);
         }
 
         // Thay đổi danh sách trong datagridview theo từ tìm kiếm
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == "tat ca")
+            if (luaChon == Loc.tatCa)
                 ds = thueDAO.LayDanhSachChuaTu(txtTimKiem.Text);
-            else if (luaChon == "da nop")
+            else if (luaChon == Loc.daNop)
                 ds = thueDAO.LayDanhSachSoTienDaNop(txtTimKiem.Text);
-            else if (luaChon == "tre han")
+            else if (luaChon == Loc.treHan)
                 ds = thueDAO.LayDanhSachTreHan(txtTimKiem.Text);
             nudPage.Value = 1;
             LoadDanhSach();
@@ -79,25 +91,26 @@ namespace QuanLiCongDanThanhPho
             gvThue.Columns[5].HeaderText = "Hạn nộp";
             gvThue.Columns[6].Visible = false;
         }
+
         private void LoadLblThue(int rowIndex)
         {
-            CongDanDAO cDDAO = new CongDanDAO();
             Congdan cD = cDDAO.LayThongTin(getCCCD());
             string Ten = cD.Ten;
             string soTienCanNop = (string)gvThue.Rows[rowIndex].Cells[2].Value;
             lblThongTin.Text = Ten + " cần thanh toán " + soTienCanNop + " VNĐ";
         }
+
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
         private void btnTienDaNop_Click(object sender, EventArgs e)
         {
-            luaChon = "da nop";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.daNop);
         }
 
         private string getCCCD()
         {
             return  (string)gvThue.CurrentRow.Cells[1].Value;
         }
+
         // Xóa thông tin thuế của công dân ra khỏi csdl
         private void cmnusMenuXoa_Click(object sender, EventArgs e)
         {
@@ -116,7 +129,8 @@ namespace QuanLiCongDanThanhPho
         // Mở ra form thông tin thuế của công dân được chọn
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
         {
-            string maCCCD = gvThue.CurrentRow.Cells["CCCD"].Value.ToString();
+            string maCCCD = getCCCD();
+
             if (maCCCD != "")
             {
                 FThongTinThue ttThue = new FThongTinThue();
@@ -135,8 +149,7 @@ namespace QuanLiCongDanThanhPho
         // Lọc danh sách những người đóng tiền trẽ hạn/ chưa đủ tiền khi quá thời gian
         private void btnTreHan_Click(object sender, EventArgs e)
         {
-            luaChon = "tre han";
-            txtTimKiem_TextChanged(txtTimKiem, null);
+            TimKiem(Loc.treHan);
         }
 
         //Ngắt trang
