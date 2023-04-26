@@ -43,7 +43,6 @@
             this.pnlSideBar.Name = "pnlSideBar";
             this.pnlSideBar.Size = new System.Drawing.Size(65, 40);
             this.pnlSideBar.TabIndex = 0;
-            this.pnlSideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSideBar_Paint);
             // 
             // btnBack
             // 

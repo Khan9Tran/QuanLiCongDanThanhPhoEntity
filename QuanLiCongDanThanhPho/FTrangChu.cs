@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FTrangChu : Form
     {
-        public Form currentChildForm;
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
+
+        public OpenChildForm openChildForm;
+
         private Account account;
         private AccountDAO accountDAO;
         FDangNhap fDangNhap;
@@ -29,6 +21,7 @@ namespace QuanLiCongDanThanhPho
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(pnlHienThiForm);
             StackForm.fTrangChu = this;
+            openChildForm = new OpenChildForm(pnlHienThiForm);
         }
         public FTrangChu(Account acc, FDangNhap dangNhap)
         {
@@ -36,6 +29,7 @@ namespace QuanLiCongDanThanhPho
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(pnlHienThiForm);
             StackForm.fTrangChu = this;
+            openChildForm = new OpenChildForm(pnlHienThiForm);
             accountDAO = new AccountDAO();
             account = accountDAO.LayThongTinTaiKhoan(acc);
             tmrPhongTo.Interval = 1;
@@ -55,24 +49,9 @@ namespace QuanLiCongDanThanhPho
         }
         private void btnDanhMuc_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSach());
+            openChildForm.Open(new FDanhSach());
             TatMenu(sender, e);
 
-        }
-        public void OpenChildForm(Form childForm)
-        {
-            if (currentChildForm != null)
-            {
-                currentChildForm.Hide();
-            }
-            currentChildForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            pnlHienThiForm.Controls.Add(childForm);
-            pnlHienThiForm.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
         }
         public void TatMenu(object sender, EventArgs e)
         {
@@ -81,48 +60,48 @@ namespace QuanLiCongDanThanhPho
         }
         private void cmnusDangKyItemTamTruTamVang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDangKyTamTruTamVang());
+            openChildForm.Open(new FDangKyTamTruTamVang());
             TatMenu(sender, e);
         }
 
         private void cmnusitemDangKyHonNhan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDangKyHonNhan());
+            openChildForm.Open(new FDangKyHonNhan());
             TatMenu(sender, e);
         }
 
         private void cmnusDangKyItemKhaiSinh_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDangKyKhaiSinh());
+            openChildForm.Open(new FDangKyKhaiSinh());
             TatMenu(sender, e);
         }
 
         private void cmnusDanhMucItemCongDan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachCongDan());
+            openChildForm.Open(new FDanhSachCongDan());
             TatMenu(sender, e);
         }
 
         private void cmnusDanhMucItemHoKhau_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachHoKhau());
+            openChildForm.Open(new FDanhSachHoKhau());
             TatMenu(sender, e);
         }
         private void cmnusDanhMucItemTamTruTamVang_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachTamTruTamVang());
+            openChildForm.Open(new FDanhSachTamTruTamVang());
             TatMenu(sender, e);
         }
 
         private void cmnusDanhMucItemThue_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachThue());
+            openChildForm.Open(new FDanhSachThue());
             TatMenu(sender, e);
         }
 
         private void cmnusDangKyItemCongDan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDangKyCongDan());
+            openChildForm.Open(new FDangKyCongDan());
             TatMenu(sender, e);
         }
 
@@ -237,7 +216,7 @@ namespace QuanLiCongDanThanhPho
 
         private void cmnusDangKyItemHoKhau_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDangKyHoKhau());
+            openChildForm.Open(new FDangKyHoKhau());
             TatMenu(sender, e);
         }
 
@@ -251,7 +230,7 @@ namespace QuanLiCongDanThanhPho
 
         private void cmnusDangKyItemCCCD_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDangKyCCCD());
+            openChildForm.Open(new FDangKyCCCD());
             TatMenu(sender, e);
         }
 
@@ -279,11 +258,11 @@ namespace QuanLiCongDanThanhPho
 
         private void cmnusTaiKhoanItemCaNhan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FTaiKhoan(account));
+            openChildForm.Open(new FTaiKhoan(account));
         }
         private void lblThongKe_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FThongKe());
+            openChildForm.Open(new FThongKe());
             TatMenu(sender, e);
         }
 
@@ -294,7 +273,7 @@ namespace QuanLiCongDanThanhPho
 
         private void ItemCongDanChuyenDi_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FKhaiTu());
+            openChildForm.Open(new FKhaiTu());
             TatMenu(sender, e);
         }
 

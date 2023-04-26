@@ -134,7 +134,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyTamTruTamVang dangKyTTTV = new FDangKyTamTruTamVang();
-            (StackForm.fTrangChu).OpenChildForm(dangKyTTTV);
+            (StackForm.fTrangChu).openChildForm.Open(dangKyTTTV);
         }
 
         private void gvTVTT_CellClick(object sender, DataGridViewCellEventArgs e)

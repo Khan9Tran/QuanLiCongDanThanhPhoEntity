@@ -12,48 +12,35 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyHoKhau : Form
     {
-        private Form currentChildForm;
+        public OpenChildForm openChildForm;
         private string maHoTach;
         public FDangKyHoKhau()
         {
             InitializeComponent();
             StackForm.Add(this);
+            openChildForm = new OpenChildForm(pnlLuaChon);
         }
         public FDangKyHoKhau(string maHoTach)
         {
             InitializeComponent();
             StackForm.Add(this);
+            openChildForm = new OpenChildForm(pnlLuaChon);
             this.maHoTach = maHoTach;
-            OpenChildForm(new FTachGopHo(maHoTach));
+            openChildForm.Open(new FTachGopHo(maHoTach));
             btnTachGop.BackColor = Color.Gray;
             btnThem.BackColor = Color.WhiteSmoke;
         }
 
-        public void OpenChildForm(Form childForm)
-        {
-            if (currentChildForm != null)
-            {
-                currentChildForm.Hide();
-            }
-            currentChildForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            pnlLuaChon.Controls.Add(childForm);
-            pnlLuaChon.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
-        }
         private void btnTachGop_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FTachGopHo());
+            openChildForm.Open(new FTachGopHo());
             btnTachGop.BackColor = Color.Gray;
             btnThem.BackColor = Color.WhiteSmoke;
         }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FThemNguoiVaoHo());
+            openChildForm.Open(new FThemNguoiVaoHo());
             btnTachGop.BackColor = Color.WhiteSmoke;
             btnThem.BackColor = Color.Gray;
         }

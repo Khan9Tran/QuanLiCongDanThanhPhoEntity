@@ -19,7 +19,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            (this.ParentForm as FTrangChu).currentChildForm = null;
+            (this.ParentForm as FTrangChu).openChildForm.CurrentChildForm = null;
             StackForm.ClearAll();
 
         }
@@ -29,9 +29,5 @@ namespace QuanLiCongDanThanhPho
             StackForm.Back();
         }
 
-        private void pnlSideBar_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
