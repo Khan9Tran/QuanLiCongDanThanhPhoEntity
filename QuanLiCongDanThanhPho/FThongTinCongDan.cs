@@ -197,6 +197,7 @@ namespace QuanLiCongDanThanhPho
             }
             else
             {
+                txtQuanHeVoiChuHo.Text = "Không có";
                 btnHoKhau.Enabled = false;
             }    
         }
@@ -399,15 +400,18 @@ namespace QuanLiCongDanThanhPho
         {
             HoKhauDAO hKDAO = new HoKhauDAO();
             Hokhau hoKhau = hKDAO.LayThongTin(txtMaHoKhau.Text);
-            if (txtQuanHeVoiChuHo.Text == "Chủ hộ" && hoKhau.CccdchuHo != txtCCCD.Text)
+            if (hoKhau != null)
             {
-                Congdan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
-                cD.QuanHeVoiChuHo = "Unknow";
-                hoKhau.CccdchuHo = txtCCCD.Text;
-                cdDAO.CapNhatCongDan();
+                if (txtQuanHeVoiChuHo.Text == "Chủ hộ" && hoKhau.CccdchuHo != txtCCCD.Text)
+                {
+                    Congdan cD = cdDAO.LayThongTin(hoKhau.CccdchuHo);
+                    cD.QuanHeVoiChuHo = "Unknow";
+                    hoKhau.CccdchuHo = txtCCCD.Text;
+                    cdDAO.CapNhatCongDan();
+                }
+                hoKhau.DiaChi = txtDiaChi.Text;
+                hkDAO.CapNhatHoKhau();
             }
-            hoKhau.DiaChi = txtDiaChi.Text;
-            hkDAO.CapNhatHoKhau();
         }
         private void btnSua_Click(object sender, EventArgs e)
         {  

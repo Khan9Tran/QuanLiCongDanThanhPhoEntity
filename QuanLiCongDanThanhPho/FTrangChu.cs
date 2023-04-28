@@ -8,7 +8,6 @@ namespace QuanLiCongDanThanhPho
         const int HTCAPTION = 0x2;
 
         public OpenChildForm openChildForm;
-
         private Account account;
         private AccountDAO accountDAO;
         FDangNhap fDangNhap;
