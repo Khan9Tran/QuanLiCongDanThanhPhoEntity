@@ -1,14 +1,4 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -24,7 +14,8 @@ namespace QuanLiCongDanThanhPho
 
         private string maTamTru = "00000B";
         private string maChuaCoHK = "00000A";
-        private string path = @"..\..\..\..\HinhCongDan";
+
+        private HinhDaiDien hinhCongDan;
 
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
@@ -51,6 +42,7 @@ namespace QuanLiCongDanThanhPho
             tttvDAO = new TamTruTamVangDAO();
             cCCDDAO = new CCCDDAO();
             congDan = congdan;
+            hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
         
         //Mở F khai sinh
@@ -214,38 +206,6 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-        //Lấy hình công dân từ folder HinhCongDan
-        private void LayHinhDaiDien()
-        {
-            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\..\HinhCongDan"));
-            string imagePath = string.Format(@$"{folderPath}\{txtCCCD.Text}");
-            string png = imagePath + ".png";
-            string jpg = imagePath + ".jpg";
-            Bitmap bitmap = null;
-            if (File.Exists(png))
-            { 
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(png, true)) //Giúp k bị lỗi không thể truy cập file đang hoạt động khi xóa
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
-            }
-            else if (File.Exists(jpg))
-            {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(jpg, true))
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
-            }
-        }
 
         public void LayThongTinCongDan()
         {
@@ -257,7 +217,7 @@ namespace QuanLiCongDanThanhPho
                 LayHonNhan();
                 LayHoKhau();
                 LayTamTruTamVang();
-                LayHinhDaiDien();
+                hinhCongDan.LayHinhDaiDien(txtCCCD.Text,ptcHinhDaiDien);
             }
         }
         private void TatXemCCCD()
@@ -454,9 +414,9 @@ namespace QuanLiCongDanThanhPho
 
         private void ThemHinh()
         {
-            if (HinhDaiDien.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
+            if (hinhCongDan.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
             {
-                HinhDaiDien.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien, path);
+                hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
             }
         }
         private void picCongDan_Click(object sender, EventArgs e)

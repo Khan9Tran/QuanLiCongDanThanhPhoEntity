@@ -7,7 +7,7 @@ namespace QuanLiCongDanThanhPho
     {
         private AccountDAO accountDAO;
         private Account account;
-        private string path = @"..\..\..\..\HinhTaiKhoan";
+        private HinhDaiDien hinhAdmin;
         public Account Account { get => account; set => account = value; }
 
         public FTaiKhoan(Account acc)
@@ -17,6 +17,7 @@ namespace QuanLiCongDanThanhPho
             pnlDoiPass.Hide();
             accountDAO = new AccountDAO();
             account = acc;
+            hinhAdmin = new HinhDaiDien(HinhDaiDien.Type.admin);
         }
         private void ClearPass()
         {
@@ -44,7 +45,7 @@ namespace QuanLiCongDanThanhPho
         {
             txtDisplayName.Text = account.DisplayName;
             txtUserName.Text = account.UserName;
-            HinhDaiDien.LayHinhDaiDien(account.UserName, ptcHinhDaiDien, path);
+            hinhAdmin.LayHinhDaiDien(account.UserName, ptcHinhDaiDien);
         }
 
         private void CapNhatMatKhau(string matKhauMoi, string userName)
@@ -203,10 +204,10 @@ namespace QuanLiCongDanThanhPho
         }
         private void btnThemHinh_Click(object sender, EventArgs e)
         {
-            if (HinhDaiDien.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
+            if (hinhAdmin.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
             {
                 StackForm.TrangChu.LoadTaiKhoan();
-                HinhDaiDien.SaveHinhDaiDien(account.UserName, ofdHinhDaiDien, ptcHinhDaiDien, path);
+                hinhAdmin.SaveHinhDaiDien(account.UserName, ofdHinhDaiDien, ptcHinhDaiDien);
             }
         }
     }

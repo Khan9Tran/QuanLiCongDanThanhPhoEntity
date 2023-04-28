@@ -64,13 +64,9 @@ namespace QuanLiCongDanThanhPho
             thang,
             nam
         }
-        private string getCCCD()
-        {
-            return (string)gvTVTT.CurrentRow.Cells[1].Value;
-        }
         private void GiaHan(int num, dynamic type)
         {
-            Tamtrutamvang tTTTV = tttvDAO.LayThongTin(getCCCD());
+            Tamtrutamvang tTTTV = tttvDAO.LayThongTin(CCCDDAO.GetCCCD(gvTVTT,1));
             if (type == LoaiGiaHan.ngay)
                 tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(num);
             else if (type ==  LoaiGiaHan.thang)
@@ -144,7 +140,7 @@ namespace QuanLiCongDanThanhPho
             DialogResult exit = MessageBox.Show("Bạn có thật sự muốn xóa thông tin tạm trú/tạm vắng?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (exit == DialogResult.Yes)
             {
-                string maCCCD = getCCCD();
+                string maCCCD = CCCDDAO.GetCCCD(gvTVTT, 1);
 
                 if (maCCCD != "")
                 {

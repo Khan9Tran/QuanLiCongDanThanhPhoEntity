@@ -1,26 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
 
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyCongDan : Form
     {
-        CongDanDAO cdDAO;
-        KhaiSinhDAO kSDAO;
-        ThueDAO thueDAO;
-        HonNhanDAO hNDAO;
+        private CongDanDAO cdDAO;
+        private KhaiSinhDAO kSDAO;
+        private ThueDAO thueDAO;
+        private HonNhanDAO hNDAO;
 
-        private string path = @"..\..\..\..\HinhCongDan";
+        private HinhDaiDien hinhCongDan;
 
         public FDangKyCongDan()
         {
@@ -30,6 +19,7 @@ namespace QuanLiCongDanThanhPho
             kSDAO = new KhaiSinhDAO();
             thueDAO = new ThueDAO();
             hNDAO = new HonNhanDAO();
+            hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
         public bool isData()
         {
@@ -124,7 +114,7 @@ namespace QuanLiCongDanThanhPho
                     hNDAO.ThemHonNhan(hN);
                 }
                 if (ptcHinhDaiDien.Image != null) 
-                    HinhDaiDien.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien, path);
+                    hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
             }
         }
 
@@ -317,7 +307,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnThemHinh_Click(object sender, EventArgs e)
         {
-            HinhDaiDien.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien);
+            hinhCongDan.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien);
         }
 
         

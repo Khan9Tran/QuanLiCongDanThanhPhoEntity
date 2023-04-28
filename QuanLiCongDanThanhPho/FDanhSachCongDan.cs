@@ -93,17 +93,18 @@ namespace QuanLiCongDanThanhPho
         {
             btnThue.Enabled = true;
             btnTamVang.Enabled = true;
+            string cCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
             if (e.RowIndex != -1)
             {
                 ThueDAO thueDAO = new ThueDAO();
                 //Kiểm tra nếu không có trong ds thuế thì có thể đk
-                if (thueDAO.LayThongTin(GetCCCD()) != null)
+                if (thueDAO.LayThongTin(cCCD) != null)
                 {
                     btnThue.Enabled = false;
                 }    
                 TamTruTamVangDAO tttvDAO= new TamTruTamVangDAO();
                 //Kiểm tra nếu không có trong ds tạm trú, tạm vắng thì có thể đk
-                if (tttvDAO.LayThongTin(GetCCCD()) != null)
+                if (tttvDAO.LayThongTin(cCCD) != null)
                 {
                     btnTamVang.Enabled = false;
                 }    
@@ -160,16 +161,11 @@ namespace QuanLiCongDanThanhPho
             (StackForm.TrangChu).ChildForm.Open(dangKyCongDan);
         }
 
-        //Lấy mã cccd bằng kick vào gridview
-        private string GetCCCD()
-        {
-            return (string)gvDanhSachCongDan.CurrentRow.Cells[0].Value;
-        }
 
         //Menu
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
         {
-            string maCCCD = GetCCCD();
+            string maCCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
             Congdan cD = cdDao.LayThongTin(maCCCD);
             if (maCCCD != "" && cD != null)
             {
@@ -181,7 +177,7 @@ namespace QuanLiCongDanThanhPho
         //Xóa công dân
         private void XoaCongDan()
         {
-            string maCCCD = GetCCCD();
+            string maCCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
             if (maCCCD != "")
             {
                 Congdan cd = cdDao.LayThongTin(maCCCD);
@@ -223,13 +219,15 @@ namespace QuanLiCongDanThanhPho
 
         private void btnThue_Click(object sender, EventArgs e)
         {
-            FDangKyThue dangKyThue = new FDangKyThue(GetCCCD());
+            string cCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
+            FDangKyThue dangKyThue = new FDangKyThue(cCCD);
             (StackForm.TrangChu).ChildForm.Open(dangKyThue);
         }
 
         private void btnTamVang_Click(object sender, EventArgs e)
         {
-            FDangKyTamTruTamVang dKTamTruTamVang = new FDangKyTamTruTamVang(GetCCCD());
+            string cCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
+            FDangKyTamTruTamVang dKTamTruTamVang = new FDangKyTamTruTamVang(cCCD);
             (StackForm.TrangChu).ChildForm.Open(dKTamTruTamVang);
         }
     }

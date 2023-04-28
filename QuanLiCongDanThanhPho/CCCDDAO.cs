@@ -39,7 +39,12 @@ namespace QuanLiCongDanThanhPho
                         join p in db.Congdans on q.MaCccd equals p.Cccd
                         select new { p.Ten, q.MaCccd, q.NgayCap, q.DacDiem }).Cast<Object>().ToList();  
             return list;
-        }   
+        }
+
+        static public string GetCCCD(DataGridView gvDanhSach, int index)
+        {
+            return (string)gvDanhSach.CurrentRow.Cells[index].Value;
+        }
         public Cccd LayThongTin(Cccd cCCD)
         {
             var canCuoc = db.Cccds.Find(cCCD.MaCccd);

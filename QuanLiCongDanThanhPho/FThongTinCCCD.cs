@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
+
 namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinCCCD : Form
@@ -20,7 +12,8 @@ namespace QuanLiCongDanThanhPho
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
-        private string path = @"..\..\..\..\HinhCongDan";
+
+        private HinhDaiDien hinhCongDan;
 
         public FThongTinCCCD(Congdan congDan)
         {
@@ -30,6 +23,7 @@ namespace QuanLiCongDanThanhPho
             kSDAO = new KhaiSinhDAO();
             CccdDAO = new CCCDDAO();
             hKDAO = new HoKhauDAO();
+            hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
         private void HienThiThongTin()
         {
@@ -61,7 +55,7 @@ namespace QuanLiCongDanThanhPho
         private void FThongTinCCCD_Load(object sender, EventArgs e)
         {
             HienThiThongTin();
-            HinhDaiDien.LayHinhDaiDien(lblCCCD.Text, ptcHinhDaiDien, path);
+            hinhCongDan.LayHinhDaiDien(lblCCCD.Text, ptcHinhDaiDien);
         }
 
         protected override void WndProc(ref Message message)
