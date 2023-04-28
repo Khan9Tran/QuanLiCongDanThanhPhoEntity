@@ -1,13 +1,4 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -16,6 +7,7 @@ namespace QuanLiCongDanThanhPho
         CongDanDAO cdDao;
         private dynamic luaChon;
         private List<Congdan> ds;
+        private Paging listCongDan;
 
         public List<Congdan> Ds { get => ds; set => ds = value; }
 
@@ -34,6 +26,7 @@ namespace QuanLiCongDanThanhPho
             InitializeComponent();
             cdDao = new CongDanDAO();
             ds = new List<Congdan>();
+            listCongDan = new Paging(nudPage, 15);
             StackForm.Add(this);
             btnTamVang.Enabled = false;
             btnThue.Enabled = false;
@@ -74,7 +67,7 @@ namespace QuanLiCongDanThanhPho
         //Tải danh sách lên datagridview
         private void LoadDanhSach()
         {
-            gvDanhSachCongDan.DataSource = NgatTrang(ds,15);
+            gvDanhSachCongDan.DataSource = listCongDan.NgatTrang(ds);
             HeaderText();
         }
 
@@ -207,20 +200,6 @@ namespace QuanLiCongDanThanhPho
             {
                 XoaCongDan();
             }
-        }
-
-        //Phân trang cho datagridview
-        private List<Congdan> NgatTrang(List<Congdan> ds, int recordNum)
-        {
-            int totalRecord = ds.Count;
-            if (totalRecord <= 0)
-                return ds;
-            if (totalRecord % recordNum != 0)
-                nudPage.Maximum = (totalRecord / recordNum) + 1;
-            else
-                nudPage.Maximum =  totalRecord / recordNum;
-            int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page -1)* recordNum).Take(recordNum).ToList();
         }
 
         //Đóng mở các nút lọc

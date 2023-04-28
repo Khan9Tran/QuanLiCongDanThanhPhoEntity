@@ -17,6 +17,7 @@ namespace QuanLiCongDanThanhPho
         private CongDanDAO cDDAO;
         private dynamic luaChon; // Khởi tạo lựa chọn bộ lọc
         private List<Thue> ds; //Khởi tạo danh sách cho datagridview
+        private Paging listThue;
         public FDanhSachThue()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace QuanLiCongDanThanhPho
             thueDAO = new ThueDAO();
             cDDAO = new CongDanDAO();
             ds = new List<Thue>();
+            listThue = new Paging(nudPage, 10);
         }
 
         private enum Loc
@@ -75,7 +77,7 @@ namespace QuanLiCongDanThanhPho
         // Hàm sửa gán datatable cho datagridview
         private void LoadDanhSach()
         {
-            gvThue.DataSource = NgatTrang(ds, 10);
+            gvThue.DataSource = listThue.NgatTrang(ds);
             gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
             HeaderText();
         }
@@ -149,20 +151,6 @@ namespace QuanLiCongDanThanhPho
         private void btnTreHan_Click(object sender, EventArgs e)
         {
             TimKiem(Loc.treHan);
-        }
-
-        //Ngắt trang
-        private List<Thue> NgatTrang(List<Thue> ds, int recordNum)
-        {
-            int totalRecord = ds.Count;
-            if (totalRecord <= 0)
-                return ds;
-            if (totalRecord % recordNum != 0)
-                nudPage.Maximum = (totalRecord / recordNum) + 1;
-            else
-                nudPage.Maximum = totalRecord / recordNum;
-            int page = int.Parse(nudPage.Value.ToString());
-            return ds.AsEnumerable().Skip((page - 1) * recordNum).Take(recordNum).ToList();
         }
 
         //Thay đổi page
