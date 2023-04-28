@@ -5,7 +5,7 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDanhSachTamTruTamVang : Form
     {
-        TamTruTamVangDAO tttvDao;
+        private TamTruTamVangDAO tttvDAO;
         private dynamic luaChon;
         private List<Tamtrutamvang> ds;
         public FDanhSachTamTruTamVang()
@@ -13,7 +13,7 @@ namespace QuanLiCongDanThanhPho
             InitializeComponent();
             StackForm.Add(this);
             ds = new List<Tamtrutamvang>();
-            tttvDao = new TamTruTamVangDAO();
+            tttvDAO = new TamTruTamVangDAO();
         }
 
         private enum Loc 
@@ -46,13 +46,13 @@ namespace QuanLiCongDanThanhPho
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
             if (luaChon == Loc.tatCa)
-                ds = tttvDao.LayDanhSachChuaTu(txtTimKiem.Text);
+                ds = tttvDAO.LayDanhSachChuaTu(txtTimKiem.Text);
             else if (luaChon == Loc.tamVang)
-                ds = tttvDao.LayDanhSachTamTru(txtTimKiem.Text);
+                ds = tttvDAO.LayDanhSachTamTru(txtTimKiem.Text);
             else if (luaChon == Loc.tamVang)
-                ds = tttvDao.LayDanhSachTamVang(txtTimKiem.Text);
+                ds = tttvDAO.LayDanhSachTamVang(txtTimKiem.Text);
             else if (luaChon == Loc.quaHan)
-                ds = tttvDao.LayDanhSachQuaHan(txtTimKiem.Text);
+                ds = tttvDAO.LayDanhSachQuaHan(txtTimKiem.Text);
             nudPage.Value = 1;
             LoadDanhSach();
         }
@@ -68,14 +68,14 @@ namespace QuanLiCongDanThanhPho
         }
         private void GiaHan(int num, dynamic type)
         {
-            Tamtrutamvang tTTTV = tttvDao.LayThongTin(getCCCD());
+            Tamtrutamvang tTTTV = tttvDAO.LayThongTin(getCCCD());
             if (type == LoaiGiaHan.ngay)
                 tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(num);
             else if (type ==  LoaiGiaHan.thang)
                 tTTTV.NgayKt = tTTTV.NgayKt.Value.AddMonths(num);
             else
                 tTTTV.NgayKt = tTTTV.NgayKt.Value.AddYears(num);
-            tttvDao.CapNhat();
+            tttvDAO.CapNhat();
         }
         private string DayFormat()
         {
@@ -125,7 +125,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyTamTruTamVang dangKyTTTV = new FDangKyTamTruTamVang();
-            (StackForm.fTrangChu).openChildForm.Open(dangKyTTTV);
+            (StackForm.TrangChu).ChildForm.Open(dangKyTTTV);
         }
 
         private void gvTVTT_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -146,7 +146,7 @@ namespace QuanLiCongDanThanhPho
 
                 if (maCCCD != "")
                 {
-                    tttvDao.XoaTamTruTamVang(maCCCD);
+                    tttvDAO.XoaTamTruTamVang(maCCCD);
                     txtTimKiem_TextChanged(txtTimKiem, null);
                 }
             }

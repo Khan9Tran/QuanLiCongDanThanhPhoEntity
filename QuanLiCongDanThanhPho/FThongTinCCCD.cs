@@ -12,10 +12,10 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinCCCD : Form
     {
-        Congdan congDan;
-        KhaiSinhDAO kSDAO;
-        CCCDDAO CccdDAO;
-        HoKhauDAO hKDAO;
+        private Congdan congDan;
+        private KhaiSinhDAO kSDAO;
+        private CCCDDAO CccdDAO;
+        private HoKhauDAO hKDAO;
 
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;

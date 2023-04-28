@@ -164,7 +164,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyCongDan dangKyCongDan = new FDangKyCongDan();
-            (StackForm.fTrangChu).openChildForm.Open(dangKyCongDan);
+            (StackForm.TrangChu).ChildForm.Open(dangKyCongDan);
         }
 
         //Lấy mã cccd bằng kick vào gridview
@@ -245,13 +245,13 @@ namespace QuanLiCongDanThanhPho
         private void btnThue_Click(object sender, EventArgs e)
         {
             FDangKyThue dangKyThue = new FDangKyThue(GetCCCD());
-            (StackForm.fTrangChu).openChildForm.Open(dangKyThue);
+            (StackForm.TrangChu).ChildForm.Open(dangKyThue);
         }
 
         private void btnTamVang_Click(object sender, EventArgs e)
         {
             FDangKyTamTruTamVang dKTamTruTamVang = new FDangKyTamTruTamVang(GetCCCD());
-            (StackForm.fTrangChu).openChildForm.Open(dKTamTruTamVang);
+            (StackForm.TrangChu).ChildForm.Open(dKTamTruTamVang);
         }
     }
 }

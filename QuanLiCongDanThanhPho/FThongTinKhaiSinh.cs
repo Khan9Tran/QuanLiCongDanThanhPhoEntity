@@ -4,8 +4,8 @@ namespace QuanLiCongDanThanhPho
     public partial class FThongTinKhaiSinh : Form
     {
         private string maCCCD;
-        KhaiSinhDAO ksDAO;
-        CongDanDAO cdDAO;
+        private KhaiSinhDAO ksDAO;
+        private CongDanDAO cdDAO;
 
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;

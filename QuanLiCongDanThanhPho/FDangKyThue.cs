@@ -64,10 +64,6 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
-        private void FDangKyThue_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnReset_Click(object sender, EventArgs e)
         {

@@ -12,23 +12,25 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongKe : Form
     {
-        KhaiSinhDAO ksDAO = new KhaiSinhDAO();
-        public OpenChildForm openChildForm;
+        private OpenChildForm childForm;
 
         public FThongKe()
         {
             InitializeComponent();
             StackForm.Add(this);
-            openChildForm = new OpenChildForm(pnlHienThiThongKe);
+            childForm = new OpenChildForm(pnlHienThiThongKe);
         }
+
+        public OpenChildForm ChildForm { get => childForm; set => childForm = value; }
+
         private void cmbLuaChon_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbLuaChon.SelectedItem.ToString() == "Công dân")
-                openChildForm.Open(new FThongKeCongDan());
+                childForm.Open(new FThongKeCongDan());
             else if (cmbLuaChon.SelectedItem.ToString() == "Phân bố dân cư")
-                openChildForm.Open(new FThongKePhanBo());
+                childForm.Open(new FThongKePhanBo());
             else if (cmbLuaChon.SelectedItem.ToString() == "Thuế")
-                openChildForm.Open(new FThongKeThue());
+                childForm.Open(new FThongKeThue());
         }
     }
 }

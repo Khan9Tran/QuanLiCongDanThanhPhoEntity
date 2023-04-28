@@ -12,11 +12,14 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDanhSach : Form
     {
-        public Form currentChildForm;
+        private OpenChildForm childForm;
+        public OpenChildForm ChildForm { get => childForm; set => childForm = value; }
+
         public FDanhSach()
         {
             InitializeComponent();
             StackForm.Add(this);
+            childForm = new OpenChildForm(pnlHienThiDanhSach);
             FlatStyle();
         }
         private void FlatStyle()
@@ -25,21 +28,6 @@ namespace QuanLiCongDanThanhPho
             btnHoKhau.FlatAppearance.BorderSize = 0;
             btnThue.FlatAppearance.BorderSize = 0;
             btnTTTV.FlatAppearance.BorderSize = 0;
-        }
-        public void OpenChildForm(Form childForm)
-        {
-            if (currentChildForm != null)
-            {
-                currentChildForm.Hide();
-            }
-            currentChildForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            pnlHienThiDanhSach.Controls.Add(childForm);
-            pnlHienThiDanhSach.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
@@ -57,22 +45,22 @@ namespace QuanLiCongDanThanhPho
 
         private void btnCongDan_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachCongDan());
+            childForm.Open(new FDanhSachCongDan());
         }
 
         private void btnThue_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachThue());
+            childForm.Open(new FDanhSachThue());
         }
 
         private void btnHoKhau_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachHoKhau());
+            childForm.Open(new FDanhSachHoKhau());
         }
 
         private void btnTTTV_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FDanhSachTamTruTamVang());
+            childForm.Open(new FDanhSachTamTruTamVang());
         }
     }
 }

@@ -14,13 +14,13 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinCongDan : Form
     {
-        CongDanDAO cdDAO;
-        KhaiSinhDAO ksDAO;
-        ThueDAO thueDAO;
-        HonNhanDAO hnDAO;
-        HoKhauDAO hkDAO;
-        TamTruTamVangDAO tttvDAO;
-        CCCDDAO cCCDDAO;
+        private CongDanDAO cdDAO;
+        private KhaiSinhDAO ksDAO;
+        private ThueDAO thueDAO;
+        private HonNhanDAO hnDAO;
+        private HoKhauDAO hkDAO;
+        private TamTruTamVangDAO tttvDAO;
+        private CCCDDAO cCCDDAO;
 
         private string maTamTru = "00000B";
         private string maChuaCoHK = "00000A";

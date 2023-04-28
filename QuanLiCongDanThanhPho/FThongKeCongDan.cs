@@ -12,23 +12,26 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongKeCongDan : Form
     {
-        CongDanDAO cdDAO = new CongDanDAO();
-        KhaiSinhDAO ksDAO = new KhaiSinhDAO();
+        private CongDanDAO cDDAO;
+        private KhaiSinhDAO kSDAO;
 
         public FThongKeCongDan()
         {
             InitializeComponent();
             StackForm.Add(this);
+            cDDAO = new CongDanDAO();
+            kSDAO = new KhaiSinhDAO();
         }
+
 
         private void FThongKeCongDancs_Load(object sender, EventArgs e)
         {
-            gvSoLuongNamNu.DataSource = ksDAO.LayDanhSachVeSoNamNu();
-            lblSoCongDan.Text += string.Format($" {cdDAO.LaySoLuongCongDan()}");
-            lblSoLuongDaKetHon.Text += string.Format($" {cdDAO.LaySoLuongDaKetHon()}");
-            lblSoLuongChuaKetHon.Text += string.Format($" {cdDAO.LaySoLuongDocThan()}");
-            gvNhomTuoi.DataSource = ksDAO.LayTuoiCongDan();
-            gvNgheNghiep.DataSource = cdDAO.LayDanhSachNgheNghiep();
+            gvSoLuongNamNu.DataSource = kSDAO.LayDanhSachVeSoNamNu();
+            lblSoCongDan.Text += string.Format($" {cDDAO.LaySoLuongCongDan()}");
+            lblSoLuongDaKetHon.Text += string.Format($" {cDDAO.LaySoLuongDaKetHon()}");
+            lblSoLuongChuaKetHon.Text += string.Format($" {cDDAO.LaySoLuongDocThan()}");
+            gvNhomTuoi.DataSource = kSDAO.LayTuoiCongDan();
+            gvNgheNghiep.DataSource = cDDAO.LayDanhSachNgheNghiep();
             HeaderText();
         }
 

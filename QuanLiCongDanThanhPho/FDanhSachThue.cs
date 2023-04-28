@@ -13,8 +13,8 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDanhSachThue : Form
     {
-        ThueDAO thueDAO;
-        CongDanDAO cDDAO;
+        private ThueDAO thueDAO;
+        private CongDanDAO cDDAO;
         private dynamic luaChon; // Khởi tạo lựa chọn bộ lọc
         private List<Thue> ds; //Khởi tạo danh sách cho datagridview
         public FDanhSachThue()
@@ -43,7 +43,6 @@ namespace QuanLiCongDanThanhPho
             TimKiem(Loc.tatCa);
             flpnPhanLoai.Width = 45;
         }
-
 
         private void gvThue_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -143,7 +142,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyThue dangKyThue = new FDangKyThue();
-            (StackForm.fTrangChu).openChildForm.Open(dangKyThue);
+            (StackForm.TrangChu).ChildForm.Open(dangKyThue);
         }
 
         // Lọc danh sách những người đóng tiền trẽ hạn/ chưa đủ tiền khi quá thời gian
@@ -183,7 +182,7 @@ namespace QuanLiCongDanThanhPho
         private void btnCongDanCanTaoThue_Click(object sender, EventArgs e)
         {
             FDanhSachCongDan ds = new FDanhSachCongDan();
-            (StackForm.fTrangChu).openChildForm.Open(ds);
+            (StackForm.TrangChu).ChildForm.Open(ds);
             ds.Ds = thueDAO.DuTuoiDongThue();
 
         }

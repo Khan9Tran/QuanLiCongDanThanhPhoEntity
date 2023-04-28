@@ -64,7 +64,6 @@
             this.ptcLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptcLogo.TabIndex = 0;
             this.ptcLogo.TabStop = false;
-            this.ptcLogo.Click += new System.EventHandler(this.ptcLogo_Click);
             // 
             // FLOGO
             // 

@@ -12,7 +12,7 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyTamTruTamVang : Form
     {
-        TamTruTamVangDAO tTTVDAO;
+        private TamTruTamVangDAO tTTVDAO;
         public FDangKyTamTruTamVang()
         {
             InitializeComponent();

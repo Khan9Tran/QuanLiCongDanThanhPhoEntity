@@ -59,7 +59,7 @@ namespace QuanLiCongDanThanhPho
         {
             account.DisplayName = newDisplayName;
             accountDAO.CapNhatDisplayName(account);
-            StackForm.fTrangChu.LoadTaiKhoan();
+            StackForm.TrangChu.LoadTaiKhoan();
         }
 
         private void Reset()
@@ -146,7 +146,7 @@ namespace QuanLiCongDanThanhPho
             if (txtDisplayName.Text != "" && KiemTraDuLieuNhap.isTen(txtUserName.Text))
             {
                 CapNhatDisplayName(txtDisplayName.Text, account.UserName);
-                StackForm.fTrangChu.Account.DisplayName = txtDisplayName.Text;
+                StackForm.TrangChu.Account.DisplayName = txtDisplayName.Text;
                 ReadOnly();
             }
             else
@@ -205,7 +205,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (HinhDaiDien.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
             {
-                StackForm.fTrangChu.LoadTaiKhoan();
+                StackForm.TrangChu.LoadTaiKhoan();
                 HinhDaiDien.SaveHinhDaiDien(account.UserName, ofdHinhDaiDien, ptcHinhDaiDien, path);
             }
         }

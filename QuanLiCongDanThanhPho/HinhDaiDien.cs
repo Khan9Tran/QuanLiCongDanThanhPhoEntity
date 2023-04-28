@@ -6,6 +6,13 @@ namespace QuanLiCongDanThanhPho
 {
     public static class HinhDaiDien
     {
+        private static string GetFolderPath(string path)
+        {
+            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, path));
+            return folderPath;
+        }
+
         private static void DeleteDirectory(string folderPath, string fileName)
         {
             string fileNamePng = fileName + ".png";
@@ -24,26 +31,27 @@ namespace QuanLiCongDanThanhPho
             }
 
         }
+
         public static void SaveHinhDaiDien(string name, OpenFileDialog ofdHinhDaiDien, PictureBox ptcHinhDaiDien, string path)
         {
-            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string fileName = string.Format(name);
-            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, path));
-            string fullPath;
-            DeleteDirectory(folderPath, fileName); //Xóa ảnh cũ
-            if (ofdHinhDaiDien.FileName.Contains(".jpg"))
+            string fileExtension = Path.GetExtension(ofdHinhDaiDien.FileName).ToLowerInvariant();
+
+            if (fileExtension != ".jpg" && fileExtension != ".png")
             {
-                fileName += ".jpg";
-                fullPath = Path.Combine(folderPath, fileName);
-                ptcHinhDaiDien.Image.Save(fullPath, ImageFormat.Jpeg);
+                // Thông báo lỗi nếu ko phải file png với jpg
+                MessageBox.Show("File ảnh không hợp lệ. Chọn ảnh jpg hoặc png.");
+                return;
             }
-            else
-            {
-                fileName += ".png";
-                fullPath = Path.Combine(folderPath, fileName);
-                ptcHinhDaiDien.Image.Save(fullPath, ImageFormat.Png);
-            }
+
+            string fileName = string.Format($"{name}{fileExtension}");
+            string folderPath = GetFolderPath(path);
+            string fullPath = Path.Combine(folderPath, fileName);
+
+            DeleteDirectory(folderPath, $"{name}"); // Xóa ảnh cũ
+
+            ptcHinhDaiDien.Image.Save(fullPath, fileExtension == ".jpg" ? ImageFormat.Jpeg : ImageFormat.Png);
         }
+
         public static bool ThemHinhDaiDien(OpenFileDialog ofdHinhDaiDien, PictureBox ptcHinhDaiDien)
         {
             ofdHinhDaiDien.Filter = "PImage Files (*.jpg, *.png)|*.jpg;*.png";
@@ -62,36 +70,33 @@ namespace QuanLiCongDanThanhPho
 
         }
 
+        private static void GanHinh(string filename, PictureBox ptcHinhDaiDien)
+        {
+            Bitmap bitmap = null;
+            bitmap?.Dispose();
+            ptcHinhDaiDien.Image?.Dispose();
+
+            using (Bitmap tempImage = new Bitmap(filename, true)) //Giúp k bị lỗi không thể truy cập file đang hoạt động khi xóa
+            {
+                bitmap = new Bitmap(tempImage);
+                ptcHinhDaiDien.Image = bitmap;
+            }
+        }
+
         public static void LayHinhDaiDien(string name, PictureBox ptcHinhDaiDien, string path)
         {
-            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, path));
+            string folderPath = GetFolderPath(path);
             string imagePath = string.Format(@$"{folderPath}\{name}");
             string png = imagePath + ".png";
             string jpg = imagePath + ".jpg";
-            Bitmap bitmap = null;
 
             if (File.Exists(png))
             {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(png, true)) //Giúp k bị lỗi không thể truy cập file đang hoạt động khi xóa
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
+                GanHinh(png, ptcHinhDaiDien);
             }
             else if (File.Exists(jpg))
             {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(jpg, true))
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
+                GanHinh(jpg, ptcHinhDaiDien);
             }
         }
 

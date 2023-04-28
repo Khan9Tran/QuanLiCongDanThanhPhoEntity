@@ -25,7 +25,7 @@ namespace QuanLiCongDanThanhPho
         private void btnHome_Click(object sender, EventArgs e)
         {
             StackForm.ClearAll();
-            StackForm.fTrangChu.BringToFront();
+            StackForm.TrangChu.BringToFront();
         }
 
         private void SideBarWhite_Load(object sender, EventArgs e)
