@@ -62,7 +62,7 @@ namespace QuanLiCongDanThanhPho
             gvQuanHeVoiChuHo.Columns[2].HeaderText = "Nghề nghiệp";
             gvQuanHeVoiChuHo.Columns[3].HeaderText = "Số điện thoại";
             gvQuanHeVoiChuHo.Columns[4].HeaderText = "Tôn giáo";
-            gvQuanHeVoiChuHo.Columns[5].HeaderText = "Mã hộ khẩu";
+            gvQuanHeVoiChuHo.Columns[5].Visible = false;
             gvQuanHeVoiChuHo.Columns[6].HeaderText = "Quan hệ với chủ hộ";
             gvQuanHeVoiChuHo.Columns[7].Visible = false;
             gvQuanHeVoiChuHo.Columns[8].Visible = false;
