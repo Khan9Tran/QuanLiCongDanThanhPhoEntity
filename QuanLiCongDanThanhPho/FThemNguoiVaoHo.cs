@@ -15,6 +15,19 @@ namespace QuanLiCongDanThanhPho
         private void LoadDanhSachChuaHoKhau()
         {
             gvNguoiChuaCoHoKhau.DataSource = cDDAO.LayDanhSachTheoHoKhau("00000A");
+            HeaderText();
+        }
+        private void HeaderText()
+        {
+            gvNguoiChuaCoHoKhau.Columns[0].HeaderText = "CCCD";
+            gvNguoiChuaCoHoKhau.Columns[1].HeaderText = "Tên";
+            gvNguoiChuaCoHoKhau.Columns[2].HeaderText = "Nghề nghiệp";
+            gvNguoiChuaCoHoKhau.Columns[3].HeaderText = "SĐT";
+            gvNguoiChuaCoHoKhau.Columns[4].HeaderText = "Tôn giáo";
+            gvNguoiChuaCoHoKhau.Columns[5].HeaderText = "Mã hộ khẩu";
+            gvNguoiChuaCoHoKhau.Columns[6].HeaderText = "Quan hệ với chủ hộ";
+            gvNguoiChuaCoHoKhau.Columns[7].Visible = false;
+            gvNguoiChuaCoHoKhau.Columns[8].Visible = false;
         }
         private void btnTim_Click(object sender, EventArgs e)
         {
