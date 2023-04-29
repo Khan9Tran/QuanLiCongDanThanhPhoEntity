@@ -11,10 +11,9 @@ namespace QuanLiCongDanThanhPho
         private Account account;
         private AccountDAO accountDAO;
         private FDangNhap fDangNhap;
-
+        private HinhDaiDien hinhAdmin;
         public Account Account { get => account; set => account = value; }
         public OpenChildForm ChildForm { get => childForm; set => childForm = value; }
-
         public FTrangChu()
         {
             InitializeComponent();
@@ -22,6 +21,7 @@ namespace QuanLiCongDanThanhPho
             this.Controls.Add(pnlHienThiForm);
             StackForm.TrangChu = this;
             childForm = new OpenChildForm(pnlHienThiForm);
+            hinhAdmin = new HinhDaiDien(HinhDaiDien.Type.admin);
         }
         public FTrangChu(Account acc, FDangNhap dangNhap)
         {
@@ -35,12 +35,13 @@ namespace QuanLiCongDanThanhPho
             tmrPhongTo.Interval = 1;
             tmrThuNho.Interval = 1;
             fDangNhap = dangNhap;
+            hinhAdmin = new HinhDaiDien(HinhDaiDien.Type.admin);
         }
         public void LoadTaiKhoan()
         {
             account = accountDAO.LayThongTinTaiKhoan(account);
             btnTaiKhoan.Text = "Xin chào: " + account.DisplayName;
-            LayHinhDaiDien();
+            hinhAdmin.LayHinhDaiDien(account.UserName, ptcHinhDaiDien);
         }
         private void btnDangKy_Click(object sender, EventArgs e)
         {
@@ -150,68 +151,6 @@ namespace QuanLiCongDanThanhPho
                     tmrPhongTo.Stop();
                 }
             }
-        }
-        private void LayHinhDaiDien()
-        {
-            string sCurrentDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string folderPath = string.Format(System.IO.Path.Combine(sCurrentDirectory, @"..\..\..\..\HinhTaiKhoan"));
-            string imagePath = string.Format(@$"{folderPath}\{account.UserName}");
-            string png = imagePath + ".png";
-            string jpg = imagePath + ".jpg";
-            Bitmap bitmap = null;
-
-            if (File.Exists(png))
-            {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(png, true)) //Giúp k bị lỗi không thể truy cập file đang hoạt động khi xóa
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
-            }
-            else if (File.Exists(jpg))
-            {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(jpg, true))
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
-            }
-
-        }
-
-        private void pnlDanhMuc_MouseHover(object sender, EventArgs e)
-        {
-            pnlDanhMuc.BackColor = Color.FromArgb(44, 43, 60);
-        }
-        private void pnlDanhMuc_MouseLeave(object sender, EventArgs e)
-        {
-            pnlDanhMuc.BackColor = Color.FromArgb(50, 49, 70);
-        }
-
-        private void lblDangKy_MouseHover(object sender, EventArgs e)
-        {
-            pnlDangKy.BackColor = Color.FromArgb(44, 43, 60);
-        }
-
-        private void lblDangKy_MouseLeave(object sender, EventArgs e)
-        {
-            pnlDangKy.BackColor = Color.FromArgb(50, 49, 70);
-        }
-
-        private void pnlThongKe_MouseHover(object sender, EventArgs e)
-        {
-            pnlThongKe.BackColor = Color.FromArgb(44, 43, 60);
-        }
-
-        private void pnlThongKe_MouseLeave(object sender, EventArgs e)
-        {
-            pnlThongKe.BackColor = Color.FromArgb(50, 49, 70);
         }
 
         private void cmnusDangKyItemHoKhau_Click(object sender, EventArgs e)
