@@ -11,7 +11,6 @@
         {
             (this.ParentForm as FTrangChu).ChildForm.CurrentChildForm = null;
             StackForm.ClearAll();
-
         }
 
         private void btnBack_Click(object sender, EventArgs e)

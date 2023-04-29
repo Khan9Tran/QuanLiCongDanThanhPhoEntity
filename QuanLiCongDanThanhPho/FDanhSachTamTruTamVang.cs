@@ -1,21 +1,18 @@
 ﻿using QuanLiCongDanThanhPho.Model;
+using System.Configuration;
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDanhSachTamTruTamVang : Form
+    public partial class FDanhSachTamTruTamVang : FormDanhSach
     {
         private TamTruTamVangDAO tttvDAO;
-        private dynamic luaChon;
-        private List<Tamtrutamvang> ds;
-        private Paging listTamTruTamVang;
 
         public FDanhSachTamTruTamVang()
         {
             InitializeComponent();
-            StackForm.Add(this);
-            ds = new List<Tamtrutamvang>();
+
             tttvDAO = new TamTruTamVangDAO();
-            listTamTruTamVang = new Paging(nudPage, 10);
+            ListData = new Paging(nudPage, 10);
         }
 
         private enum Loc 
@@ -25,12 +22,14 @@ namespace QuanLiCongDanThanhPho
             tamVang,
             quaHan
         }
+
         private void TimKiem(dynamic type)
         {
-            luaChon = type;
+            LuaChon = type;
             txtTimKiem_TextChanged(txtTimKiem, null);
 
         }
+
         //Load danh sách ban đầu
         private void FDanhSachTamTruTamVang_Load(object sender, EventArgs e)
         {
@@ -47,16 +46,16 @@ namespace QuanLiCongDanThanhPho
         //Tìm kiếm
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == Loc.tatCa)
-                ds = tttvDAO.LayDanhSachChuaTu(txtTimKiem.Text);
-            else if (luaChon == Loc.tamVang)
-                ds = tttvDAO.LayDanhSachTamTru(txtTimKiem.Text);
-            else if (luaChon == Loc.tamVang)
-                ds = tttvDAO.LayDanhSachTamVang(txtTimKiem.Text);
-            else if (luaChon == Loc.quaHan)
-                ds = tttvDAO.LayDanhSachQuaHan(txtTimKiem.Text);
+            if (LuaChon == Loc.tatCa)
+                Ds = tttvDAO.LayDanhSachChuaTu(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.tamTru)
+                Ds = tttvDAO.LayDanhSachTamTru(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.tamVang)
+                Ds = tttvDAO.LayDanhSachTamVang(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.quaHan)
+                Ds = tttvDAO.LayDanhSachQuaHan(txtTimKiem.Text).ToList<Object>();
             nudPage.Value = 1;
-            LoadDanhSach();
+            LoadDanhSach(gvTVTT);
         }
         enum LoaiGiaHan
         {
@@ -75,22 +74,10 @@ namespace QuanLiCongDanThanhPho
                 tTTTV.NgayKt = tTTTV.NgayKt.Value.AddYears(num);
             tttvDAO.CapNhat();
         }
-        private string DayFormat()
-        {
-            return "dd/MM/yyyy";
-        }
-        private void LoadDanhSach()
-        {
-            gvTVTT.DataSource = listTamTruTamVang.NgatTrang(ds);
-            gvTVTT.Columns[4].DefaultCellStyle.Format = DayFormat();
-            gvTVTT.Columns[3].DefaultCellStyle.Format = DayFormat();
 
-            HeaderText();
-            HightLightQuaHan();
-        }
-        private void HeaderText()
+        internal override void HeaderText()
         {
-            gvTVTT.Columns[0].HeaderText = "Mã tạm trú tạm vắng";
+            gvTVTT.Columns[0].HeaderText = "Mã tạm trú/ tạm vắng";
             gvTVTT.Columns[1].HeaderText = "Căn cước công dân";
             gvTVTT.Columns[2].HeaderText = "Địa chỉ";
             gvTVTT.Columns[3].HeaderText = "Ngày bắt đầu";
@@ -98,6 +85,11 @@ namespace QuanLiCongDanThanhPho
             gvTVTT.Columns[5].HeaderText = "Trạng thái";
             gvTVTT.Columns[6].HeaderText = "Lí do";
             gvTVTT.Columns[7].Visible = false;
+
+            gvTVTT.Columns[4].DefaultCellStyle.Format = DayFormat();
+            gvTVTT.Columns[3].DefaultCellStyle.Format = DayFormat();
+
+            HightLightQuaHan();
         }
         private void HightLightQuaHan()
         {
@@ -156,18 +148,14 @@ namespace QuanLiCongDanThanhPho
             TimKiem(Loc.quaHan);
         }
 
-
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
-            LoadDanhSach();
+            LoadDanhSach(gvTVTT);
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
         {
-            if (flpnlPhanLoai.Width > 50)
-                flpnlPhanLoai.Width = 45;
-            else
-                flpnlPhanLoai.Width = 800;
+            Loc_Click(flpnlPhanLoai);
         }
 
         private void ngayToolStripMenuItem_Click(object sender, EventArgs e)

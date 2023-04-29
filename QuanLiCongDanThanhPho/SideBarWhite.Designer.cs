@@ -81,7 +81,6 @@
             this.Controls.Add(this.pnlSideBar);
             this.Name = "SideBarWhite";
             this.Size = new System.Drawing.Size(60, 32);
-            this.Load += new System.EventHandler(this.SideBarWhite_Load);
             this.pnlSideBar.ResumeLayout(false);
             this.ResumeLayout(false);
 

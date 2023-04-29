@@ -2,14 +2,9 @@
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDanhSachCongDan : Form
+    public partial class FDanhSachCongDan : FormDanhSach
     {
         CongDanDAO cdDao;
-        private dynamic luaChon;
-        private List<Congdan> ds;
-        private Paging listCongDan;
-
-        public List<Congdan> Ds { get => ds; set => ds = value; }
 
         private enum Loc
         {
@@ -22,12 +17,9 @@ namespace QuanLiCongDanThanhPho
         }
         public FDanhSachCongDan()
         {
-
             InitializeComponent();
             cdDao = new CongDanDAO();
-            ds = new List<Congdan>();
-            listCongDan = new Paging(nudPage, 15);
-            StackForm.Add(this);
+            ListData = new Paging(nudPage, 15);
             btnTamVang.Enabled = false;
             btnThue.Enabled = false;
         }
@@ -35,43 +27,37 @@ namespace QuanLiCongDanThanhPho
         //Tìm kiếm công dân theo các điều kiện
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == Loc.tatCa)
+            if (LuaChon == Loc.tatCa)
             {
-                ds = cdDao.LayDanhSachChuaTu(txtTimKiem.Text);
+                Ds = cdDao.LayDanhSachChuaTu(txtTimKiem.Text).ToList<Object>();
             }
-            else if (luaChon == Loc.nam)
+            else if (LuaChon == Loc.nam)
             {
-                ds = cdDao.LayDanhSachCongDanNam(txtTimKiem.Text);
+                Ds = cdDao.LayDanhSachCongDanNam(txtTimKiem.Text).ToList<Object>();
             }
-            else if (luaChon == Loc.nu)
+            else if (LuaChon == Loc.nu)
             {
-                ds = cdDao.LayDanhSachCongDanNu(txtTimKiem.Text);
+                Ds = cdDao.LayDanhSachCongDanNu(txtTimKiem.Text).ToList<Object>();
 
             }
-            else if (luaChon == Loc.ketHon)
+            else if (LuaChon == Loc.ketHon)
             {
-                ds = cdDao.LayDanhSachDaKetHon(txtTimKiem.Text);
+                Ds = cdDao.LayDanhSachDaKetHon(txtTimKiem.Text).ToList<Object>();
             }
-            else if (luaChon == Loc.docThan)
+            else if (LuaChon == Loc.docThan)
             {
-                ds = cdDao.LayDanhSachChuaKetHon(txtTimKiem.Text);
+                Ds = cdDao.LayDanhSachChuaKetHon(txtTimKiem.Text).ToList<Object>();
             }
-            else if (luaChon == Loc.tuoiTac)
+            else if (LuaChon == Loc.tuoiTac)
             {
-                ds = cdDao.LayDanhSachTuoiXepTuBeDenLon(txtTimKiem.Text);
+                Ds = cdDao.LayDanhSachTuoiXepTuBeDenLon(txtTimKiem.Text).ToList<Object>();
             }
             nudPage.Value = 1;
-            LoadDanhSach();
+            LoadDanhSach(gvDanhSachCongDan);
         }
 
-        //Tải danh sách lên datagridview
-        private void LoadDanhSach()
-        {
-            gvDanhSachCongDan.DataSource = listCongDan.NgatTrang(ds);
-            HeaderText();
-        }
 
-        private void HeaderText()
+        internal override void HeaderText()
         {
             gvDanhSachCongDan.Columns[0].HeaderText = "CCCD";
             gvDanhSachCongDan.Columns[1].HeaderText = "Họ và tên";
@@ -150,7 +136,7 @@ namespace QuanLiCongDanThanhPho
         
         private void TimKiem(dynamic type)
         {
-            luaChon = type;
+            LuaChon = type;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
 
@@ -201,20 +187,13 @@ namespace QuanLiCongDanThanhPho
         //Đóng mở các nút lọc
         private void btnLoc_Click(object sender, EventArgs e)
         {
-            if (fpnlPhanLoai.Width > 50)
-            {
-                fpnlPhanLoai.Width = 45;
-            }    
-            else 
-            {
-                fpnlPhanLoai.Width = 900;
-            }
+            Loc_Click(fpnlPhanLoai);
         }
 
         //Thay đổi ngắt trang
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
-            LoadDanhSach();
+            LoadDanhSach(gvDanhSachCongDan);
         }
 
         private void btnThue_Click(object sender, EventArgs e)

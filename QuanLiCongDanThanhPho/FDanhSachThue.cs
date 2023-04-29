@@ -2,23 +2,17 @@
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDanhSachThue : Form
+    public partial class FDanhSachThue : FormDanhSach
     {
         private ThueDAO thueDAO;
         private CongDanDAO cDDAO;
-        private dynamic luaChon; // Khởi tạo lựa chọn bộ lọc
-        private List<Thue> ds; //Khởi tạo danh sách cho datagridview
-        private Paging listThue;
         public FDanhSachThue()
         {
             InitializeComponent();
-            StackForm.Add(this);
 
             thueDAO = new ThueDAO();
             cDDAO = new CongDanDAO();
-            ds = new List<Thue>();
-
-            listThue = new Paging(nudPage, 10);
+            ListData = new Paging(nudPage, 10);
         }
 
         private enum Loc
@@ -30,7 +24,7 @@ namespace QuanLiCongDanThanhPho
 
         private void TimKiem(dynamic type)
         {
-            luaChon = type;
+            LuaChon = type;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
         private void FDanhSachThue_Load(object sender, EventArgs e)
@@ -48,6 +42,7 @@ namespace QuanLiCongDanThanhPho
             }
 
         }
+
         // Danh sach thuế của tất cả công dân
         private void btnTatCa_Click(object sender, EventArgs e)
         {
@@ -57,25 +52,18 @@ namespace QuanLiCongDanThanhPho
         // Thay đổi danh sách trong datagridview theo từ tìm kiếm
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == Loc.tatCa)
-                ds = thueDAO.LayDanhSachChuaTu(txtTimKiem.Text);
-            else if (luaChon == Loc.daNop)
-                ds = thueDAO.LayDanhSachSoTienDaNop(txtTimKiem.Text);
-            else if (luaChon == Loc.treHan)
-                ds = thueDAO.LayDanhSachTreHan(txtTimKiem.Text);
+            if (LuaChon == Loc.tatCa)
+                Ds = thueDAO.LayDanhSachChuaTu(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.daNop)
+                Ds = thueDAO.LayDanhSachSoTienDaNop(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.treHan)
+                Ds = thueDAO.LayDanhSachTreHan(txtTimKiem.Text).ToList<Object>();
             nudPage.Value = 1;
-            LoadDanhSach();
+            LoadDanhSach(gvThue);
 
         }
-        // Hàm sửa gán datatable cho datagridview
-        private void LoadDanhSach()
-        {
-            gvThue.DataSource = listThue.NgatTrang(ds);
-            gvThue.Columns[3].DefaultCellStyle.Format = "dd/MM/yyyy";
-            HeaderText();
-        }
 
-        private void HeaderText()
+        internal override void HeaderText()
         {
             gvThue.Columns[0].HeaderText = "Mã Thuế";
             gvThue.Columns[1].HeaderText = "Căn cước công dân";
@@ -84,6 +72,9 @@ namespace QuanLiCongDanThanhPho
             gvThue.Columns[4].HeaderText = "Ngày cấp";
             gvThue.Columns[5].HeaderText = "Hạn nộp";
             gvThue.Columns[6].Visible = false;
+
+            gvThue.Columns[4].DefaultCellStyle.Format = DayFormat();
+            gvThue.Columns[5].DefaultCellStyle.Format = DayFormat();
         }
 
         private void LoadLblThue(int rowIndex)
@@ -143,22 +134,19 @@ namespace QuanLiCongDanThanhPho
         //Thay đổi page
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
-            LoadDanhSach();
+            LoadDanhSach(gvThue);
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
         {
-            if (flpnPhanLoai.Width > 50)
-                flpnPhanLoai.Width = 45;
-            else
-                flpnPhanLoai.Width = 1000;
+            Loc_Click(flpnPhanLoai);
         }
 
         private void btnCongDanCanTaoThue_Click(object sender, EventArgs e)
         {
             FDanhSachCongDan ds = new FDanhSachCongDan();
             (StackForm.TrangChu).ChildForm.Open(ds);
-            ds.Ds = thueDAO.DuTuoiDongThue();
+            ds.Ds = thueDAO.DuTuoiDongThue().ToList<Object>();
 
         }
         private bool ThanhToan()

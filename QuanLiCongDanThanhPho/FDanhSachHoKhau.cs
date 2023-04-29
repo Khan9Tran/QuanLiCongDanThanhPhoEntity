@@ -3,12 +3,9 @@ using System.Data;
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDanhSachHoKhau : Form
+    public partial class FDanhSachHoKhau : FormDanhSach
     {
         private HoKhauDAO hkDAO;
-        private dynamic luaChon;
-        private List<Hokhau> ds;
-        private Paging listHoKhau;
         
         enum Loc 
         {
@@ -18,15 +15,14 @@ namespace QuanLiCongDanThanhPho
         public FDanhSachHoKhau()
         {
             InitializeComponent();
-            StackForm.Add(this);
-            ds = new List<Hokhau>();
+
             hkDAO = new HoKhauDAO();
-            listHoKhau = new Paging(nudPage, 10);
+            ListData = new Paging(nudPage, 10);
         }
 
         private void TimKiem(dynamic type)
         {
-            luaChon = type;
+            LuaChon = type;
             txtTimKiem_TextChanged(txtTimKiem, null);
         }
         private void FDanhSachHoKhau_Load(object sender, EventArgs e)
@@ -48,13 +44,7 @@ namespace QuanLiCongDanThanhPho
             TimKiem(Loc.tatCa);
         }
 
-        private void LayDanhSach()
-        {
-            gvHoKhau.DataSource = listHoKhau.NgatTrang(ds);
-            HeaderText();
-        }
-
-        private void HeaderText()
+        internal override void HeaderText()
         {
             gvHoKhau.Columns[0].HeaderText = "Mã Hộ Khẩu";
             gvHoKhau.Columns[1].HeaderText = "Địa chỉ";
@@ -64,13 +54,13 @@ namespace QuanLiCongDanThanhPho
 
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
-            if (luaChon == Loc.tatCa)
-                ds = hkDAO.LayDanhSachChuaTu(txtTimKiem.Text);
-            else if (luaChon == Loc.soTv)
-                ds = hkDAO.LayDanhSachXepTheoSoTV(txtTimKiem.Text);
+            if (LuaChon == Loc.tatCa)
+                Ds = hkDAO.LayDanhSachChuaTu(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.soTv)
+                Ds = hkDAO.LayDanhSachXepTheoSoTV(txtTimKiem.Text).ToList<Object>();
 
             nudPage.Value = 1;
-            LayDanhSach();
+            LoadDanhSach(gvHoKhau);
         }
 
         private void btnSoTV_Click(object sender, EventArgs e)
@@ -93,6 +83,7 @@ namespace QuanLiCongDanThanhPho
             FDangKyHoKhau dangKyHoKhau = new FDangKyHoKhau();
             (StackForm.TrangChu).ChildForm.Open(dangKyHoKhau);
         }
+
         private string getMaHk()
         {
             return (string)gvHoKhau.CurrentRow.Cells[0].Value;
@@ -110,15 +101,12 @@ namespace QuanLiCongDanThanhPho
 
         private void nudPage_ValueChanged(object sender, EventArgs e)
         {
-            LayDanhSach();
+            LoadDanhSach(gvHoKhau);
         }
 
         private void btnLoc_Click(object sender, EventArgs e)
         {
-            if (flpnlPhanLoai.Width > 50)
-                flpnlPhanLoai.Width = 45;
-            else
-                flpnlPhanLoai.Width = 800;
+            Loc_Click(flpnlPhanLoai);
         }
     }
 }
