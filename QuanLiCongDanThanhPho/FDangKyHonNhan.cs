@@ -5,11 +5,13 @@ namespace QuanLiCongDanThanhPho
     {
         HonNhanDAO hNDAO;
         KhaiSinhDAO kSDAO;
+        CongDanDAO cdDAO;
         public FDangKyHonNhan()
         {
             InitializeComponent();
             hNDAO = new HonNhanDAO();
             kSDAO = new KhaiSinhDAO();
+            cdDAO = new CongDanDAO();
             StackForm.Add(this);
         }
         
@@ -28,7 +30,10 @@ namespace QuanLiCongDanThanhPho
                     NoiDangKy = txtNoiDK.Text,
                     NgayDangKy = dtpNgayDangKy.Value,
                 };
-                hNDAO.ThemHonNhan(hN);
+                if (hNDAO.ThemHonNhan(hN))
+                    MessageBox.Show("Đăng ký thành công");
+                else
+                    MessageBox.Show("Đăng ký thất bại");
             }
         }
 
@@ -71,8 +76,10 @@ namespace QuanLiCongDanThanhPho
                 NoiDangKy = txtNoiDK.Text,
                 NgayDangKy = dtpNgayDangKy.Value,
             };
-
-            hNDAO.Xoa(hN);
+            if (hNDAO.Xoa(hN))
+                MessageBox.Show("Xóa thành công");
+            else
+                MessageBox.Show("Xóa thất bại");
             Reset();
         }
 
@@ -91,7 +98,7 @@ namespace QuanLiCongDanThanhPho
 
         //Kiểm tra hợp lệ của thông tin
         private bool KiemTraThongTin()
-        {
+        {    
             if (!KiemTraDuLieuNhap.isMaSo(txtMaHonNhan.Text))
             {
                 MessageBox.Show("Mã hôn nhân sai định dạng");
@@ -122,7 +129,12 @@ namespace QuanLiCongDanThanhPho
                 txtTenVo.Focus();
                 return false;
             }
-            if (hNDAO.LayThongTin(txtCCCDChong.Text).TenNam != null)
+            if (cdDAO.LayThongTin(txtCCCDChong.Text) == null || cdDAO.LayThongTin(txtCCCDVo.Text) == null)
+            {
+                MessageBox.Show("Cần thêm thông tin cả 2 công dân");
+                return false;
+            }
+            if (hNDAO.LayThongTin(txtCCCDChong.Text) != null)
             {
                 MessageBox.Show("Người chồng đã kết hôn");
                 return false;
@@ -132,7 +144,7 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Người chồng sai giới tính");
                 return false;
             }    
-            if (hNDAO.LayThongTin(txtCCCDChong.Text).TenNam != null)
+            if (hNDAO.LayThongTin(txtCCCDVo.Text) != null)
             {
                 MessageBox.Show("Người vợ đã kết hôn");
                 return false;
@@ -156,7 +168,7 @@ namespace QuanLiCongDanThanhPho
         //Tải thông tin hôn nhân lên
         private void LoadHonNhan()
         {
-            Honnhan hn = hNDAO.LayThongTinTheoMaSo(txtMaHonNhan.Text);
+            Honnhan? hn = hNDAO.LayThongTinTheoMaSo(txtMaHonNhan.Text);
             if (hn != null)
             {
                 txtCCCDChong.Text = hn.Cccdnam;
@@ -183,10 +195,12 @@ namespace QuanLiCongDanThanhPho
         }
 
         //Trả về tên hôn nhân thep mã số
-        private string LayTenTheoCCCD(string cCCD)
+        private string? LayTenTheoCCCD(string cCCD)
         {
             Khaisinh ks = kSDAO.LayThongTin(cCCD);
-            return ks.Ten;
+            if (ks != null)
+                return ks.Ten;
+            return null;
         }
 
         //Tìm kiếm theo CCCD

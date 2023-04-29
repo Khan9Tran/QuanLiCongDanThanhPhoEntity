@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using QuanLiCongDanThanhPho.Model;
 
 namespace QuanLiCongDanThanhPho
@@ -17,21 +12,30 @@ namespace QuanLiCongDanThanhPho
             db.SaveChanges();
             MessageBox.Show("Thêm căn cước thành công");
         }
+
         public void XoaCCCD(string maCanCuoc) 
         {
-            Cccd cCCD= db.Cccds.Find(maCanCuoc);
-            db.Remove(cCCD);
-            db.SaveChanges();
+            Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == maCanCuoc).FirstOrDefault();
+            if (cCCD != null)
+            {
+                db.Remove(cCCD);
+                db.SaveChanges();
+            }
             MessageBox.Show("Xóa căn cước thành công");
         }
+
         public void CapNhatCCCD(Cccd canCuoc) 
         {
-            Cccd cCCD = db.Cccds.Find(canCuoc.MaCccd);
-            cCCD.NgayCap = canCuoc.NgayCap;
-            cCCD.DacDiem = canCuoc.DacDiem;
-            db.SaveChanges();
+            Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == canCuoc.MaCccd).FirstOrDefault();
+            if (cCCD != null)
+            {
+                cCCD.NgayCap = canCuoc.NgayCap;
+                cCCD.DacDiem = canCuoc.DacDiem;
+                db.SaveChanges();
+            }
             MessageBox.Show("Cập nhật căn cước thành công");
         }
+
         public List<Object> DanhSachCCCDTheoDacDiem()
         {
             var cccds = db.Cccds.Where(q => q.DacDiem == null);
@@ -45,9 +49,10 @@ namespace QuanLiCongDanThanhPho
         {
             return (string)gvDanhSach.CurrentRow.Cells[index].Value;
         }
-        public Cccd LayThongTin(Cccd cCCD)
+
+        public Cccd? LayThongTin(Cccd cCCD)
         {
-            var canCuoc = db.Cccds.Find(cCCD.MaCccd);
+            Cccd? canCuoc = db.Cccds.Where(p => p.MaCccd == cCCD.MaCccd).FirstOrDefault();
             return canCuoc;
         }
     }

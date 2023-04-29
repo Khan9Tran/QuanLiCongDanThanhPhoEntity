@@ -12,7 +12,6 @@ namespace QuanLiCongDanThanhPho
     internal class CongDanDAO
     {
         QuanlitpContext db = DBConnection.Db;
-        DBConnection conn = new DBConnection();
         public CongDanDAO() { }
         public void ThemCongDan(Congdan cD)
         {
@@ -26,7 +25,7 @@ namespace QuanLiCongDanThanhPho
             cCCDDAO.ThemCCCD(cCCD);
             MessageBox.Show("Thêm công dân thành công");
         }
-        public void XoaCongDan(Congdan cD)
+        public bool XoaCongDan(Congdan cD)
         {
             ThueDAO thueDAO = new ThueDAO();
             KhaiSinhDAO ksDAO = new KhaiSinhDAO();
@@ -43,7 +42,7 @@ namespace QuanLiCongDanThanhPho
             Congdan congdan = db.Congdans.Find(cD.Cccd);
             db.Congdans.Remove(congdan);
             db.SaveChanges();
-            MessageBox.Show("Xóa công dân thành công");
+            return true;
         }
         public void CapNhatCongDan()
         {
@@ -52,18 +51,24 @@ namespace QuanLiCongDanThanhPho
         }
         public void ThayDoiHoKhau(Congdan cD)
         {
-            Congdan congDan = db.Congdans.Find(cD.Cccd);
-            congDan.MaHk = cD.MaHk;
-            congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
-            db.SaveChanges();
+            Congdan? congDan = db.Congdans.Find(cD.Cccd);
+            if (congDan != null)
+            {
+                congDan.MaHk = cD.MaHk;
+                congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
+                db.SaveChanges();
+            }
             MessageBox.Show("Thay đổi hộ khẩu thành công");
         }
         public void NhapHoKhau(Congdan cD)
         {
-            Congdan congDan = db.Congdans.Find(cD.Cccd);
-            congDan.MaHk = cD.MaHk;
-            congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
-            db.SaveChanges();
+            Congdan? congDan = db.Congdans.Find(cD.Cccd);
+            if (congDan != null)
+            {
+                congDan.MaHk = cD.MaHk;
+                congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
+                db.SaveChanges();
+            }
         }
         public List<Congdan> LayDanhSach()
         {
@@ -78,9 +83,9 @@ namespace QuanLiCongDanThanhPho
                       select q;
             return cDs.ToList();
         }
-        public Congdan LayThongTin(string maCCCD)
+        public Congdan? LayThongTin(string maCCCD)
         {
-            Congdan congDan = db.Congdans.Find(maCCCD);
+            Congdan? congDan = db.Congdans.Find(maCCCD);
             return congDan;
         }
         public List<Congdan> LayDanhSachCongDanNam(string tu)

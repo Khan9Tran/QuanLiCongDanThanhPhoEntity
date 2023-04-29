@@ -92,15 +92,18 @@ namespace QuanLiCongDanThanhPho
             if (maCCCD != null)
             {
                 Khaisinh ks = ksDAO.LayThongTin(maCCCD);
+                if (ks == null) return;
                 if (ks.Cccdcha != "")
                 {
                     Khaisinh ksCha = ksDAO.LayThongTin(ks.Cccdcha);
-                    txtQuocTichCha.Text = ksCha.QuocTich;
+                    if (ksCha != null)
+                        txtQuocTichCha.Text = ksCha.QuocTich;
                 }
                 if (ks.Cccdme != "")
                 {
                     Khaisinh ksMe = ksDAO.LayThongTin(ks.Cccdme);
-                    txtQuocTichMe.Text = ksMe.QuocTich;
+                    if (ksMe != null)
+                        txtQuocTichMe.Text = ksMe.QuocTich;
 
                 }
 

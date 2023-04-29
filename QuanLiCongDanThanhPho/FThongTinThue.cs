@@ -60,8 +60,8 @@ namespace QuanLiCongDanThanhPho
             if (MaCCCD != null)
             {
                 Thue thue = thueDAO.LayThongTin(MaCCCD);
-                Congdan cd = cdDAO.LayThongTin(MaCCCD);
-                Hokhau hk = hkDAO.LayThongTin(cd.MaHk);
+                Congdan? cd = cdDAO.LayThongTin(MaCCCD);
+                Hokhau? hk = hkDAO.LayThongTin(cd.MaHk);
 
                 txtMaSoThue.Text = thue.MaThue;
                 txtTen.Text = cd.Ten;
@@ -70,8 +70,10 @@ namespace QuanLiCongDanThanhPho
                 txtDiaChi.Text = hk.DiaChi;
                 txtSoTienCanNop.Text = thue.SoTienCanNop;
                 txtSoTienDaNop.Text = thue.SoTienDaNop;
-                dtmNgayCapMaSoThue.Value = thue.NgayCap.Value;
-                dtmHanNopThue.Value = thue.HanNop.Value;
+                if (thue.NgayCap != null)
+                    dtmNgayCapMaSoThue.Value = thue.NgayCap.Value;
+                if (thue.HanNop != null)
+                    dtmHanNopThue.Value = thue.HanNop.Value;
             }
         }
         private void FThongTinThue_Load(object sender, EventArgs e)

@@ -58,7 +58,9 @@ namespace QuanLiCongDanThanhPho
                     MaHk = txtHoKhau.Text,
                     QuanHeVoiChuHo = cboQuanHe.SelectedItem.ToString(),
                 };
+
                 cDDAO.ThemCongDan(cD);
+
                 string gt = "";
                 if (rdoNam.Checked)
                 {

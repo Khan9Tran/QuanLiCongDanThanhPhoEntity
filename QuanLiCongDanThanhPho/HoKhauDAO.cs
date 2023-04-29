@@ -59,10 +59,15 @@ namespace QuanLiCongDanThanhPho
                 db.SaveChanges();
                 MessageBox.Show("Cập nhật hộ khẩu thành công");
         }
-        public void XoaHoKhau(Hokhau hK)
-        {   
-            db.Hokhaus.Remove(hK);
-            db.SaveChanges();
+        public bool XoaHoKhau(Hokhau hK)
+        {
+            if (hK != null)
+            {
+                db.Hokhaus.Remove(hK);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
         }
         public List<object> TimHoNhieuNguoiNhat()
         {
