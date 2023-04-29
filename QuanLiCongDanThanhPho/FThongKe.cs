@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace QuanLiCongDanThanhPho
+﻿namespace QuanLiCongDanThanhPho
 {
     public partial class FThongKe : Form
     {
@@ -22,14 +12,20 @@ namespace QuanLiCongDanThanhPho
         }
 
         public OpenChildForm ChildForm { get => childForm; set => childForm = value; }
+        
+        private enum Type {
+            congDan,
+            thue,
+            phanBoDanCu
+        };
 
         private void cmbLuaChon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbLuaChon.SelectedItem.ToString() == "Công dân")
+            if ((Type)cmbLuaChon.SelectedIndex == Type.congDan)
                 childForm.Open(new FThongKeCongDan());
-            else if (cmbLuaChon.SelectedItem.ToString() == "Phân bố dân cư")
+            else if ((Type)cmbLuaChon.SelectedIndex== Type.phanBoDanCu)
                 childForm.Open(new FThongKePhanBo());
-            else if (cmbLuaChon.SelectedItem.ToString() == "Thuế")
+            else if ((Type)(Type)cmbLuaChon.SelectedIndex == Type.thue)
                 childForm.Open(new FThongKeThue());
         }
     }

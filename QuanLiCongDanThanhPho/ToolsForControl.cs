@@ -1,4 +1,6 @@
-﻿namespace QuanLiCongDanThanhPho
+﻿using System.Windows.Forms;
+
+namespace QuanLiCongDanThanhPho
 {
    public class ToolsForControl
    {
@@ -19,6 +21,16 @@
             off
         }
 
+        public static void ClearTextBox(Control.ControlCollection Controls)
+        {
+            foreach (Control control in Controls)
+            {
+                if (control is TextBox)
+                {
+                    (control as TextBox).Clear();
+                }
+            }
+        }
         public Turn State {set => state = value; }
 
         public void AutoReadOnly()

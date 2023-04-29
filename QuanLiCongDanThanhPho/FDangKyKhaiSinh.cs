@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
+
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyKhaiSinh : Form
@@ -96,25 +88,10 @@ namespace QuanLiCongDanThanhPho
         }
 
         private void btnReset_Click(object sender, EventArgs e)
-        {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                {
-                    if (control is TextBox)
-                    {
-                        (control as TextBox).Clear();
-                    }
-                    else
-                    {
-                        func(control.Controls);
-                    }
-                }
-            };
-            func(Controls);
+        { 
+            ToolsForControl.ClearTextBox(Controls);
         }
+
         private bool KiemTraChaMe()
         {
             Congdan cha = cDDAO.LayThongTin(txtCccdCha.Text);
@@ -144,6 +121,7 @@ namespace QuanLiCongDanThanhPho
             
             return true;
         }
+
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             if (KiemTraThongTin() && KiemTraChaMe())

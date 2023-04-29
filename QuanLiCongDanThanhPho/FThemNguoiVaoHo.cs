@@ -12,11 +12,13 @@ namespace QuanLiCongDanThanhPho
             gvNguoiChuaCoHoKhau.Hide();
             StackForm.Add(this);
         }
+
         private void LoadDanhSachChuaHoKhau()
         {
             gvNguoiChuaCoHoKhau.DataSource = cDDAO.LayDanhSachTheoHoKhau("00000A");
             HeaderText();
         }
+
         private void HeaderText()
         {
             gvNguoiChuaCoHoKhau.Columns[0].HeaderText = "CCCD";
@@ -29,6 +31,7 @@ namespace QuanLiCongDanThanhPho
             gvNguoiChuaCoHoKhau.Columns[7].Visible = false;
             gvNguoiChuaCoHoKhau.Columns[8].Visible = false;
         }
+
         private void btnTim_Click(object sender, EventArgs e)
         {
             lblThongTin.Show();
@@ -56,12 +59,10 @@ namespace QuanLiCongDanThanhPho
             txtCCCD.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[0].Value.ToString();
             txtTen.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[1].Value.ToString();
         }
+
         private void Reset()
         {
-            txtCCCD.Text = "";
-            txtTen.Text = "";
-            txtMaHo.Text = "";
-            txtQuanHeVoiChuHo.Text = "";
+            ToolsForControl.ClearTextBox(Controls);
             gvNguoiChuaCoHoKhau.Hide();
             lblThongTin.Hide();
             LoadDanhSachChuaHoKhau();

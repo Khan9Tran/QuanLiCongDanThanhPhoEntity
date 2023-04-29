@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
+
 namespace QuanLiCongDanThanhPho
 {
     public partial class FKhaiTu : Form
@@ -38,6 +30,7 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+
         private void XoaCongDan()
         {
             Congdan cD = new Congdan()
@@ -47,23 +40,20 @@ namespace QuanLiCongDanThanhPho
             };
             congDanDAO.XoaCongDan(cD);
         }
-        private void Reset()
-        {
-            txtCCCD.Clear();
-            txtTen.Clear();
-        }
+
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             if (KiemTraThongTin())
             {
                 XoaCongDan();
-                Reset();
             }
         }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
-            Reset();
+            ToolsForControl.ClearTextBox(Controls);
         }
+
         private void txtCCCD_TextChanged(object sender, EventArgs e)
         {
             Congdan cD = congDanDAO.LayThongTin(txtCCCD.Text);

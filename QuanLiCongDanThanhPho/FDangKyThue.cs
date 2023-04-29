@@ -6,16 +6,22 @@ namespace QuanLiCongDanThanhPho
     {
         public FDangKyThue()
         {
-            InitializeComponent();
-            StackForm.Add(this);
+            Init();
         }
+
         public FDangKyThue(string cCCD)
         {
-            InitializeComponent();
-            StackForm.Add(this);
+            Init();
             LoadThongTin(cCCD);
             
         }
+
+        public void Init()
+        {
+            InitializeComponent();
+            StackForm.Add(this);
+        }
+
         public void LoadThongTin(string cCCD) 
         {
             if (cCCD != null)
@@ -27,6 +33,7 @@ namespace QuanLiCongDanThanhPho
                 txtSoTienDaNop.Text = "0";
             }
         }
+
         private bool KiemTraThongTin()
         {
             if (!KiemTraDuLieuNhap.isMaSo(txtMaSoThue.Text))
@@ -58,23 +65,9 @@ namespace QuanLiCongDanThanhPho
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                {
-                    if (control is TextBox)
-                    {
-                        (control as TextBox).Clear();
-                    }
-                    else
-                    {
-                        func(control.Controls);
-                    }
-                }
-            };
-            func(Controls);
+            ToolsForControl.ClearTextBox(Controls);
+            dtpNgayCapMa.Value = DateTime.Now;
+            dtpHanNop.Value = DateTime.Now;
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)

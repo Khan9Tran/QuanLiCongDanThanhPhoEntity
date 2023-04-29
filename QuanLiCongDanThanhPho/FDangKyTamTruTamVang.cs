@@ -15,15 +15,17 @@ namespace QuanLiCongDanThanhPho
         private TamTruTamVangDAO tTTVDAO;
         public FDangKyTamTruTamVang()
         {
+            Init();
+        }
+        public void Init()
+        {
             InitializeComponent();
             tTTVDAO = new TamTruTamVangDAO();
             StackForm.Add(this);
         }
         public FDangKyTamTruTamVang(string cCCD)
         {
-            InitializeComponent();
-            tTTVDAO = new TamTruTamVangDAO();
-            StackForm.Add(this);
+            Init();
             LoadThongTin(cCCD);
             
         }
@@ -139,23 +141,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                {
-                    if (control is TextBox)
-                    {
-                        (control as TextBox).Clear();
-                    }
-                    else
-                    {
-                        func(control.Controls);
-                    }
-                }
-            };
-            func(Controls);
+            ToolsForControl.ClearTextBox(Controls);
         }
     }
 }

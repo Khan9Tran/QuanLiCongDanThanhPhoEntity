@@ -4,21 +4,22 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyCongDan : Form
     {
-        private CongDanDAO cdDAO;
+        private CongDanDAO cDDAO;
         private KhaiSinhDAO kSDAO;
         private ThueDAO thueDAO;
         private HonNhanDAO hNDAO;
-
+        private HoKhauDAO hKDAO;
         private HinhDaiDien hinhCongDan;
 
         public FDangKyCongDan()
         {
             InitializeComponent();
             StackForm.Add(this);
-            cdDAO = new CongDanDAO();
+            cDDAO = new CongDanDAO();
             kSDAO = new KhaiSinhDAO();
             thueDAO = new ThueDAO();
             hNDAO = new HonNhanDAO();
+            hKDAO = new HoKhauDAO();
             hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
         public bool isData()
@@ -29,23 +30,23 @@ namespace QuanLiCongDanThanhPho
                 txtCCCD.Focus();
                 return false;
             }
-
             return true;
         }    
+
         public void ThemCongDan()
         {
             if (KiemTraThongTin())
             {
                 if (cboQuanHe.SelectedItem.ToString() == "Chủ hộ")
                 {
-                    HoKhauDAO hoKhauDAO = new HoKhauDAO();
                     Hokhau hK = new Hokhau()
                     {
                         MaHk = txtHoKhau.Text,
                         DiaChi = txtDiaChi.Text,
                         CccdchuHo = txtCCCD.Text,
                     };
-                    hoKhauDAO.ThemHoKhau(hK);
+
+                    hKDAO.ThemHoKhau(hK);
                 }
                 Congdan cD = new Congdan()
                 {
@@ -57,7 +58,7 @@ namespace QuanLiCongDanThanhPho
                     MaHk = txtHoKhau.Text,
                     QuanHeVoiChuHo = cboQuanHe.SelectedItem.ToString(),
                 };
-                cdDAO.ThemCongDan(cD);
+                cDDAO.ThemCongDan(cD);
                 string gt = "";
                 if (rdoNam.Checked)
                 {
@@ -120,29 +121,16 @@ namespace QuanLiCongDanThanhPho
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                {
-                    if (control is TextBox)
-                    {
-                        (control as TextBox).Clear();
-                    }
-                    else
-                    {
-                        func(control.Controls);
-                    }
-                }
-            };
-            func(Controls);
+            ToolsForControl.ClearTextBox(Controls);
+            dtmDKKhaiSinh.Value = DateTime.Now;
+            dtmNgaySinh.Value = DateTime.Now;
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             ThemCongDan();
         }
+
         private bool KiemTraThongTin()
         {
             if (!KiemTraDuLieuNhap.isCCCD(txtCCCD.Text))
