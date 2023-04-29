@@ -1,11 +1,14 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinHoKhau : Form
+    public partial class FThongTinHoKhau : MoveForm
     {
         private string maHoKhau;
         private HoKhauDAO hkDAO;
         private CongDanDAO cdDAO;
+
+        private ToolsForControl tool; 
+
         const int WM_NCHITTEST = 0x84;
         const int HTCLIENT = 0x1;
         const int HTCAPTION = 0x2;
@@ -17,8 +20,11 @@ namespace QuanLiCongDanThanhPho
             MaHoKhau = maHoKhau;
             InitializeComponent();
             StackForm.Add(this);
+
             hkDAO = new HoKhauDAO();
             cdDAO = new CongDanDAO();
+
+            SetTools();
         }
         public void LayThongTinHoKhau()
         {
@@ -75,33 +81,19 @@ namespace QuanLiCongDanThanhPho
                 message.Result = (IntPtr)HTCAPTION;
         }
 
-    
-        private void ReadOnly()
-        {
-            txtDiaChi.ReadOnly = true;
-            txtDiaChi.BackColor = Color.Gainsboro;
-            btnXacNhan.Enabled = false;
-        }
 
-        private void UnReadOnly()
+        private void SetTools()
         {
-            txtDiaChi.ReadOnly = false;
-            txtDiaChi.BackColor = Color.SteelBlue;
-            btnXacNhan.Enabled = true;
-        }
+            List<TextBox> listTxt = new List<TextBox>()
+            {txtDiaChi};
 
-        private void AutoReadOnly()
-        {
-            if (txtDiaChi.ReadOnly == false)
+            List<Control> listControl = new List<Control>()
             {
-                ReadOnly();
-            }
-            else
-            {
-                UnReadOnly();
-            }
+                btnXacNhan
+            };
+            tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
-
+     
         private void gvQuanHeVoiChuHo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
@@ -117,20 +109,20 @@ namespace QuanLiCongDanThanhPho
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            AutoReadOnly();
+            tool.AutoReadOnly();
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             CapNhatHoKhau();
             LayThongTinHoKhau();
-            ReadOnly();
+            tool.TurnOff();
         }
-
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinHoKhau();
-            ReadOnly();
+            tool.State = ToolsForControl.Turn.on;
+            tool.TurnOff();
         }
     }
 }

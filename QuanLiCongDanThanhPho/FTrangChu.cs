@@ -1,12 +1,8 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FTrangChu : Form
+    public partial class FTrangChu : MoveForm
     {
-        const int WM_NCHITTEST = 0x84;
-        const int HTCLIENT = 0x1;
-        const int HTCAPTION = 0x2;
-
         private OpenChildForm childForm;
         private Account account;
         private AccountDAO accountDAO;
@@ -14,28 +10,27 @@ namespace QuanLiCongDanThanhPho
         private HinhDaiDien hinhAdmin;
         public Account Account { get => account; set => account = value; }
         public OpenChildForm ChildForm { get => childForm; set => childForm = value; }
-        public FTrangChu()
-        {
-            InitializeComponent();
-            this.Controls.Add(this.pnlMenu);
-            this.Controls.Add(pnlHienThiForm);
-            StackForm.TrangChu = this;
-            childForm = new OpenChildForm(pnlHienThiForm);
-            hinhAdmin = new HinhDaiDien(HinhDaiDien.Type.admin);
-        }
+
         public FTrangChu(Account acc, FDangNhap dangNhap)
         {
             InitializeComponent();
+
             this.Controls.Add(this.pnlMenu);
             this.Controls.Add(pnlHienThiForm);
+
             StackForm.TrangChu = this;
+
             childForm = new OpenChildForm(pnlHienThiForm);
             accountDAO = new AccountDAO();
             account = accountDAO.LayThongTinTaiKhoan(acc);
-            tmrPhongTo.Interval = 1;
-            tmrThuNho.Interval = 1;
+
             fDangNhap = dangNhap;
             hinhAdmin = new HinhDaiDien(HinhDaiDien.Type.admin);
+
+            //Chỉnh độ mượt của thanh menu
+            tmrPhongTo.Interval = 1;
+            tmrThuNho.Interval = 1;
+
         }
         public void LoadTaiKhoan()
         {
@@ -127,8 +122,6 @@ namespace QuanLiCongDanThanhPho
                 pnlHienThiForm.BackColor = Color.White;
             }
         }
-
-
         private void tmrThuNho_Tick(object sender, EventArgs e)
         {
             if (pnlMenu.Width >= 80)
@@ -157,14 +150,6 @@ namespace QuanLiCongDanThanhPho
         {
             childForm.Open(new FDangKyHoKhau());
             TatMenu(sender, e);
-        }
-
-        protected override void WndProc(ref Message message)
-        {
-            base.WndProc(ref message);
-
-            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
-                message.Result = (IntPtr)HTCAPTION;
         }
 
         private void cmnusDangKyItemCCCD_Click(object sender, EventArgs e)

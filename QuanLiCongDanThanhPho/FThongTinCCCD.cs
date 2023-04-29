@@ -2,16 +2,13 @@
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinCCCD : Form
+    public partial class FThongTinCCCD : MoveForm
     {
         private Congdan congDan;
         private KhaiSinhDAO kSDAO;
         private CCCDDAO CccdDAO;
         private HoKhauDAO hKDAO;
 
-        const int WM_NCHITTEST = 0x84;
-        const int HTCLIENT = 0x1;
-        const int HTCAPTION = 0x2;
 
         private HinhDaiDien hinhCongDan;
 
@@ -58,12 +55,5 @@ namespace QuanLiCongDanThanhPho
             hinhCongDan.LayHinhDaiDien(lblCCCD.Text, ptcHinhDaiDien);
         }
 
-        protected override void WndProc(ref Message message)
-        {
-            base.WndProc(ref message);
-
-            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
-                message.Result = (IntPtr)HTCAPTION;
-        }
     }
 }

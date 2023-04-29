@@ -1,45 +1,29 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinThue : Form
+    public partial class FThongTinThue : MoveForm
     {
-        private string maCCCD;
+        private string? maCCCD;
+        private ToolsForControl tool;
 
-        ThueDAO thueDAO;
-        CongDanDAO cdDAO;
-        HoKhauDAO hkDAO;
+        private ThueDAO thueDAO;
+        private CongDanDAO cdDAO;
+        private HoKhauDAO hkDAO;
 
-        //Dùng để kéo thả form
-        const int WM_NCHITTEST = 0x84;
-        const int HTCLIENT = 0x1;
-        const int HTCAPTION = 0x2;
-
-        public string MaCCCD { get => maCCCD; set => maCCCD = value; }
-
-        public FThongTinThue()
-        {
-            InitializeComponent();
-            StackForm.Add(this);
-        }
+        public string? MaCCCD { get => maCCCD; set => maCCCD = value; }
 
         public FThongTinThue(string maCCCD)
         {
-            MaCCCD = maCCCD;
             InitializeComponent();
             StackForm.Add(this);
+
+            MaCCCD = maCCCD;
             thueDAO = new ThueDAO();
             cdDAO = new CongDanDAO();
             hkDAO = new HoKhauDAO();
+
+            SetTools();
         }
 
         private bool KiemTraThongTin()
@@ -58,40 +42,19 @@ namespace QuanLiCongDanThanhPho
             }   
             return true;
         }
-        private void ReadOnly()
+
+        private void SetTools()
         {
-            txtSoTienCanNop.ReadOnly = true;
-            txtSoTienCanNop.BackColor = Color.Gainsboro;
-            txtSoTienDaNop.ReadOnly = true;
-            txtSoTienDaNop.BackColor = Color.Gainsboro;
-            dtmHanNopThue.Enabled = false;
-            dtmNgayCapMaSoThue.Enabled = false;
-            btnXacNhan.Enabled = false;
+            List<TextBox> listTxt = new List<TextBox>()
+            {txtSoTienCanNop, txtSoTienDaNop};
+
+            List<Control> listControl = new List<Control>()
+            {
+                dtmHanNopThue, dtmNgayCapMaSoThue, btnXacNhan
+            };
+            tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
 
-        private void UnReanOnly()
-        {
-            txtSoTienCanNop.ReadOnly = false;
-            txtSoTienCanNop.BackColor = Color.SteelBlue;
-            txtSoTienDaNop.ReadOnly = false;
-            txtSoTienDaNop.BackColor = Color.SteelBlue;
-            dtmHanNopThue.Enabled = true;
-            dtmNgayCapMaSoThue.Enabled = true;
-            btnXacNhan.Enabled = true;
-        }
-
-        private void AutoReadOnly()
-        {
-            if (txtSoTienCanNop.ReadOnly == false)
-            {
-                ReadOnly();
-            }
-            else
-            {
-                UnReanOnly();
-            } 
-                
-        }
         private void LayThongTinThue()
         {
             if (MaCCCD != null)
@@ -116,13 +79,6 @@ namespace QuanLiCongDanThanhPho
             LayThongTinThue();
         }
 
-        //Tạo kéo thả form
-        protected override void WndProc(ref Message message)
-        {
-            base.WndProc(ref message);
-            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
-                message.Result = (IntPtr)HTCAPTION;
-        }
         private void CapNhatThue()
         {
             Thue thue = thueDAO.LayThongTin(MaCCCD);
@@ -144,18 +100,18 @@ namespace QuanLiCongDanThanhPho
             {
                 CapNhatThue();
                 LayThongTinThue();
-                ReadOnly();
+                tool.TurnOff();
             }    
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            AutoReadOnly();
+                tool.AutoReadOnly();
         }
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinThue();
-            ReadOnly();
+            tool.TurnOff();
         }
     }
 }

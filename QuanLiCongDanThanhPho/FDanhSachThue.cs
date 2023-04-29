@@ -1,13 +1,4 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -22,9 +13,11 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
             StackForm.Add(this);
+
             thueDAO = new ThueDAO();
             cDDAO = new CongDanDAO();
             ds = new List<Thue>();
+
             listThue = new Paging(nudPage, 10);
         }
 
@@ -129,8 +122,7 @@ namespace QuanLiCongDanThanhPho
 
             if (maCCCD != "")
             {
-                FThongTinThue ttThue = new FThongTinThue();
-                ttThue.MaCCCD = maCCCD;
+                FThongTinThue ttThue = new FThongTinThue(maCCCD);
                 ttThue.ShowDialog();
             }
         }

@@ -1,11 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLiCongDanThanhPho.Model;
+
 
 namespace QuanLiCongDanThanhPho
 {
@@ -28,9 +22,9 @@ namespace QuanLiCongDanThanhPho
             return Hks.ToList();
             
         }
-        public Hokhau LayThongTin(string maHoKhau)
+        public Hokhau? LayThongTin(string maHoKhau)
         {
-            Hokhau hK = db.Hokhaus.Where(q => q.MaHk == maHoKhau).FirstOrDefault();
+            Hokhau? hK = db.Hokhaus.Where(q => q.MaHk == maHoKhau).FirstOrDefault();
             return hK;
         }
         public List<Hokhau> LayDanhSachChuaTu(string tu)

@@ -1,35 +1,29 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinHonNhan : Form
+    public partial class FThongTinHonNhan : MoveForm
     {
         private string maCCCD;
         private HonNhanDAO hNDAO;
         private CongDanDAO cDDAO;
 
-        const int WM_NCHITTEST = 0x84;
-        const int HTCLIENT = 0x1;
-        const int HTCAPTION = 0x2;
+
+        private ToolsForControl tool;
 
         public string MaCCCD { get => maCCCD; set => maCCCD = value; }
 
         public FThongTinHonNhan(string maCCCD)
         {
             MaCCCD = maCCCD;
+
             InitializeComponent();
             StackForm.Add(this);
+
             hNDAO = new HonNhanDAO();
             cDDAO = new CongDanDAO();
+
+            SetTools();
         }
         private void btnThongTinChong_Click(object sender, EventArgs e)
         {
@@ -65,41 +59,21 @@ namespace QuanLiCongDanThanhPho
         {
             LayThongTinHonNhan();
         }
-        protected override void WndProc(ref Message message)
-        {
-            base.WndProc(ref message);
 
-            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
-                message.Result = (IntPtr)HTCAPTION;
-        }
-        private void ReadOnly()
+        private void SetTools()
         {
-            dtmNgayDangKy.Enabled = false;
-            txtNoiDangKy.ReadOnly = true;
-            btnXacNhan.Enabled = false;
-            txtNoiDangKy.BackColor = Color.Gainsboro;
-        }
-        private void UnReadOnLy()
-        {
-            dtmNgayDangKy.Enabled = true;
-            txtNoiDangKy.ReadOnly = false;
-            btnXacNhan.Enabled = true;
-            txtNoiDangKy.BackColor = Color.SteelBlue;
-        }
-        private void ChoPhepThayDoi()
-        {
-            if (txtNoiDangKy.ReadOnly == false)
+            List<TextBox> listTxt = new List<TextBox>()
+            { txtNoiDangKy};
+
+            List<Control> listControl = new List<Control>()
             {
-                ReadOnly();
-            }
-            else
-            {
-                UnReadOnLy();
-            }
+                btnXacNhan, dtmNgayDangKy
+            };
+            tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
-            ChoPhepThayDoi();
+            tool.AutoReadOnly();
         }
         private bool KiemTraThongTin()
         {
@@ -125,10 +99,9 @@ namespace QuanLiCongDanThanhPho
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             CapNhatHonNhan();
-            ReadOnly();
+            tool.TurnOff();
             LayThongTinHonNhan();
         }
-
 
         private void btnReLoad_Click(object sender, EventArgs e)
         {
