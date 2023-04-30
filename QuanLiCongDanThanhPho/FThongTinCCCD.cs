@@ -27,7 +27,7 @@ namespace QuanLiCongDanThanhPho
             lblCCCD.Text = congDan.Cccd;
             lblTen.Text = congDan.Ten.ToUpper();
 
-            Khaisinh ks = kSDAO.LayThongTin(lblCCCD.Text);
+            Khaisinh? ks = kSDAO.LayThongTin(lblCCCD.Text);
             if (ks != null)
             {
                 if (ks.GioiTinh == "m")
@@ -38,11 +38,11 @@ namespace QuanLiCongDanThanhPho
                 lblQuocTich.Text = ks.QuocTich;
             }
 
-            Hokhau hk = hKDAO.LayThongTin(congDan.MaHk);
+            Hokhau? hk = hKDAO.LayThongTin(congDan.MaHk);
             if (hk != null)
                 lblDiaChi.Text = hk.DiaChi;
 
-            Cccd cCCD = CccdDAO.LayThongTin(new Cccd() { MaCccd = congDan.Cccd });
+            Cccd? cCCD = CccdDAO.LayThongTin(new Cccd() { MaCccd = congDan.Cccd });
             if (cCCD != null)
             {
                 lblNgayCap.Text = ((DateTime)cCCD.NgayCap).ToString("dd/MM/yyyy");

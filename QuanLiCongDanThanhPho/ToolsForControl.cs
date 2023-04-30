@@ -27,7 +27,7 @@ namespace QuanLiCongDanThanhPho
             {
                 if (control is TextBox)
                 {
-                    (control as TextBox).Clear();
+                    (control as TextBox)?.Clear();
                 }
             }
         }

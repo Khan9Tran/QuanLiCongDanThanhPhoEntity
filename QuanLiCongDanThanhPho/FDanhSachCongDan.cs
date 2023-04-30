@@ -152,7 +152,7 @@ namespace QuanLiCongDanThanhPho
         private void cmnusMenuChiTiet_Click(object sender, EventArgs e)
         {
             string maCCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
-            Congdan cD = cdDao.LayThongTin(maCCCD);
+            Congdan? cD = cdDao.LayThongTin(maCCCD);
             if (maCCCD != "" && cD != null)
             {
                 FThongTinCongDan ttCD = new FThongTinCongDan(cD);
@@ -166,7 +166,7 @@ namespace QuanLiCongDanThanhPho
             string maCCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
             if (maCCCD != "")
             {
-                Congdan cd = cdDao.LayThongTin(maCCCD);
+                Congdan? cd = cdDao.LayThongTin(maCCCD);
                 if (cd != null)
                 {
                     cdDao.XoaCongDan(cd);
@@ -200,14 +200,14 @@ namespace QuanLiCongDanThanhPho
         {
             string cCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
             FDangKyThue dangKyThue = new FDangKyThue(cCCD);
-            (StackForm.TrangChu).ChildForm.Open(dangKyThue);
+            (StackForm.TrangChu)?.ChildForm.Open(dangKyThue);
         }
 
         private void btnTamVang_Click(object sender, EventArgs e)
         {
             string cCCD = CCCDDAO.GetCCCD(gvDanhSachCongDan, 0);
             FDangKyTamTruTamVang dKTamTruTamVang = new FDangKyTamTruTamVang(cCCD);
-            (StackForm.TrangChu).ChildForm.Open(dKTamTruTamVang);
+            (StackForm.TrangChu)?.ChildForm.Open(dKTamTruTamVang);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
-            this.FindForm().WindowState = FormWindowState.Minimized;
+            FindForm().WindowState = FormWindowState.Minimized;
         }
     }
 }

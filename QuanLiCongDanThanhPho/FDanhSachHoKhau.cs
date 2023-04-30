@@ -81,7 +81,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyHoKhau dangKyHoKhau = new FDangKyHoKhau();
-            (StackForm.TrangChu).ChildForm.Open(dangKyHoKhau);
+            (StackForm.TrangChu)?.ChildForm.Open(dangKyHoKhau);
         }
 
         private string getMaHk()
@@ -95,7 +95,7 @@ namespace QuanLiCongDanThanhPho
             if (maHoKhau != "")
             {
                 FDangKyHoKhau dangKyHoKhau = new FDangKyHoKhau(maHoKhau);
-                (StackForm.TrangChu).ChildForm.Open(dangKyHoKhau);
+                (StackForm.TrangChu)?.ChildForm.Open(dangKyHoKhau);
             }
         }
 

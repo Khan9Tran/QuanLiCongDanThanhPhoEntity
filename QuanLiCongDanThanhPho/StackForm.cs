@@ -3,19 +3,20 @@
     static internal class StackForm
     {
         static private List<Form> forms = new List<Form>();
-        private static FTrangChu trangChu;
-
-        public static FTrangChu TrangChu { get => trangChu; set => trangChu = value; }
+        private static FTrangChu? trangChu;
+        public static FTrangChu? TrangChu { get => trangChu; set => trangChu = value; }
 
         static public void Add(Form form)
         {
             forms.Add(form);
         }
+
         static public void RemoveForm()
         {
             forms[forms.Count - 1].Close();
             forms.RemoveAt(forms.Count - 1);
         }
+
         static public void Back()
         {
             if (forms.Count > 0)
@@ -33,7 +34,7 @@
                         forms[forms.Count - 1].Name == "FDanhSach"
                         )
                     {
-                        trangChu.ChildForm.Open(forms[forms.Count - 1]);
+                        trangChu?.ChildForm.Open(forms[forms.Count - 1]);
                     }
                     else if (forms[forms.Count - 1].Name == "FDanhSachCongDan" ||
                             forms[forms.Count - 1].Name == "FDanhSachThue" ||
@@ -45,7 +46,7 @@
                         {
                             if (forms[i].Name == "FDanhSach")
                             {
-                                trangChu.ChildForm.Open(forms[i]);
+                                trangChu?.ChildForm.Open(forms[i]);
                                 (forms[i] as FDanhSach).ChildForm.Open(forms[forms.Count - 1]);
                                 break;
                             }
@@ -58,7 +59,7 @@
                         {
                             if (forms[i].Name == "FDangKyHoKhau")
                             {
-                                trangChu.ChildForm.Open(forms[i]);
+                                trangChu?.ChildForm.Open(forms[i]);
                                 (forms[i] as FDangKyHoKhau).ChildForm.Open(forms[forms.Count - 1]);
                                 break;
                             }
@@ -72,7 +73,7 @@
                         {
                             if (forms[i].Name == "FThongKe")
                             {
-                                trangChu.ChildForm.Open(forms[i]);
+                                trangChu?.ChildForm.Open(forms[i]);
                                 (forms[i] as FThongKe).ChildForm.Open(forms[forms.Count - 1]);
                                 break;
                             }

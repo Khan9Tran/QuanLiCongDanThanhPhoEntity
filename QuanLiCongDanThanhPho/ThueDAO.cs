@@ -7,16 +7,6 @@ using System.Threading.Tasks;
 using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    /*
-    class GenObj<T> where T : class
-    {
-        public List<T> LayDanhSach() //generic
-        {
-            var list = (from q in db.T select q).ToList();
-            return list;
-        }
-    }
-    */
     internal class ThueDAO
     {
         QuanlitpContext db = DBConnection.Db;
@@ -26,26 +16,44 @@ namespace QuanLiCongDanThanhPho
             var list = (from q in db.Thues select q).ToList();
             return list;
         }
-        public void ThemThue(Thue thue)
+
+        public bool ThemThue(Thue thue)
         {
-            db.Thues.Add(thue);
-            db.SaveChanges();
-            MessageBox.Show("Thêm thuế thành công");
-        }
-        public void XoaThue(string canCuoc)
-        {
-            Thue thue = LayThongTin(canCuoc);
-            if (thue != null)
+            try
             {
-                db.Thues.Remove(thue);
+                db.Thues.Add(thue);
                 db.SaveChanges();
-                MessageBox.Show("Xóa thuế thành công");
             }
+            catch(Exception ex) 
+            {
+                return false;
+            }
+            return true;
         }
+
+        public bool XoaThue(string canCuoc)
+        {
+            try
+            {
+                Thue? thue = LayThongTin(canCuoc);
+                if (thue != null)
+                {
+                    db.Thues.Remove(thue);
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         public Thue? LayThongTin(string maCCCD)
         {
             return db.Thues.Where(p => p.Cccd == maCCCD).FirstOrDefault();
         }
+
         public List<Thue> LayDanhSachChuaTu(string tu)
         {
             var list = (from q in db.Thues 
@@ -54,6 +62,7 @@ namespace QuanLiCongDanThanhPho
                         ).ToList();
             return list;
         }
+
         public List<Thue> LayDanhSachSoTienDaNop(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -61,6 +70,7 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public List<Thue> LayDanhSachTreHan(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -68,10 +78,10 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public void CapNhatThue() 
         {
             db.SaveChanges();
-            MessageBox.Show("Cập nhật thuế thành công");
         }
 
         public int[] LayThongKeThue()
@@ -87,6 +97,7 @@ namespace QuanLiCongDanThanhPho
             thues[3] = LayDanhSach().Count();
             return thues;
         }
+
         public int LaySoNguoiTreHan()
         {
             var list = (from q in db.Thues
@@ -94,6 +105,7 @@ namespace QuanLiCongDanThanhPho
                        select q).ToList();
             return list.Count;
         }
+
         public List<Congdan> DuTuoiDongThue()
         {
             var list = from q in db.Thues

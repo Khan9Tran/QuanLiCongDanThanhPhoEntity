@@ -6,22 +6,33 @@ namespace QuanLiCongDanThanhPho
     internal class CCCDDAO
     {
         QuanlitpContext db = DBConnection.Db;
-        public void ThemCCCD(Cccd canCuoc)
+        public bool ThemCCCD(Cccd canCuoc)
         {
-            db.Add(canCuoc);
-            db.SaveChanges();
-            MessageBox.Show("Thêm căn cước thành công");
-        }
-
-        public void XoaCCCD(string maCanCuoc) 
-        {
-            Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == maCanCuoc).FirstOrDefault();
-            if (cCCD != null)
+            try
             {
-                db.Remove(cCCD);
+                db.Add(canCuoc);
                 db.SaveChanges();
             }
-            MessageBox.Show("Xóa căn cước thành công");
+            catch 
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool XoaCCCD(string maCanCuoc) 
+        {
+            try
+            {
+                Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == maCanCuoc).FirstOrDefault();
+                if (cCCD != null)
+                {
+                    db.Remove(cCCD);
+                    db.SaveChanges();
+                }
+            }
+            catch { return false; }
+            return true;
         }
 
         public void CapNhatCCCD(Cccd canCuoc) 
@@ -33,7 +44,6 @@ namespace QuanLiCongDanThanhPho
                 cCCD.DacDiem = canCuoc.DacDiem;
                 db.SaveChanges();
             }
-            MessageBox.Show("Cập nhật căn cước thành công");
         }
 
         public List<Object> DanhSachCCCDTheoDacDiem()

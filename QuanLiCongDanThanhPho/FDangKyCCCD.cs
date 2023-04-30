@@ -53,8 +53,9 @@ namespace QuanLiCongDanThanhPho
         {
             CongDanDAO cDDAO = new CongDanDAO();
             if (KiemTraThongTin())
-            { 
-                if (cDDAO.LayThongTin(txtCCCD.Text).Ten == txtTen.Text)
+            {
+                Congdan? cD = cDDAO.LayThongTin(txtCCCD.Text);
+                if (cD != null && cD.Ten == txtTen.Text)
                 {
                     Cccd cCCD = new Cccd()
                     {
@@ -78,6 +79,7 @@ namespace QuanLiCongDanThanhPho
             gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem();
             Reset();
         }
+
         private void HeaderText()
         {
             gvDanhSachChuaCapCCCD.Columns[0].HeaderText = "Tên";

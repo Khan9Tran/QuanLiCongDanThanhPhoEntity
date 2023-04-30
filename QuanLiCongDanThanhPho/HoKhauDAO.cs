@@ -7,14 +7,20 @@ namespace QuanLiCongDanThanhPho
     {
         QuanlitpContext db = DBConnection.Db;
         public HoKhauDAO() { }
-        public void ThemHoKhau(Hokhau hK)
-        {
-            using (var conn = new QuanlitpContext())
+        public bool ThemHoKhau(Hokhau hK)
+        {   try
             {
-                conn.Hokhaus.Add(hK);
-                conn.SaveChanges();
+                db.Hokhaus.Add(hK);
+                db.SaveChanges();
             }
+            catch
+            (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
+
         public List<Hokhau> LayDanhSach()
         {
             var Hks = from q in db.Hokhaus
@@ -22,11 +28,13 @@ namespace QuanLiCongDanThanhPho
             return Hks.ToList();
             
         }
+
         public Hokhau? LayThongTin(string maHoKhau)
         {
             Hokhau? hK = db.Hokhaus.Where(q => q.MaHk == maHoKhau).FirstOrDefault();
             return hK;
         }
+
         public List<Hokhau> LayDanhSachChuaTu(string tu)
         {
             var Hks = from q in db.Hokhaus
@@ -35,6 +43,7 @@ namespace QuanLiCongDanThanhPho
             return Hks.ToList();
             
         }
+
         public List<Hokhau> LayDanhSachXepTheoSoTV(string tu)
         {
             
@@ -57,17 +66,23 @@ namespace QuanLiCongDanThanhPho
         public void CapNhatHoKhau()
         {
                 db.SaveChanges();
-                MessageBox.Show("Cập nhật hộ khẩu thành công");
         }
         public bool XoaHoKhau(Hokhau hK)
         {
-            if (hK != null)
+            try
             {
-                db.Hokhaus.Remove(hK);
-                db.SaveChanges();
-                return true;
+                if (hK != null)
+                {
+                    db.Hokhaus.Remove(hK);
+                    db.SaveChanges();
+                    return true;
+                }
             }
-            return false;
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
         public List<object> TimHoNhieuNguoiNhat()
         {

@@ -4,14 +4,12 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinHonNhan : MoveForm
     {
-        private string maCCCD;
+        private string? maCCCD;
         private HonNhanDAO hNDAO;
         private CongDanDAO cDDAO;
 
-
-        private ToolsForControl tool;
-
-        public string MaCCCD { get => maCCCD; set => maCCCD = value; }
+        private ToolsForControl? tool;
+        public string? MaCCCD { get => maCCCD; set => maCCCD = value; }
 
         public FThongTinHonNhan(string maCCCD)
         {
@@ -23,7 +21,8 @@ namespace QuanLiCongDanThanhPho
             hNDAO = new HonNhanDAO();
             cDDAO = new CongDanDAO();
 
-            SetTools();
+            if (tool == null)
+                SetTools();
         }
         private void btnThongTinChong_Click(object sender, EventArgs e)
         {
@@ -46,13 +45,16 @@ namespace QuanLiCongDanThanhPho
         {
             if (maCCCD != null)
             {
-                Honnhan hn = hNDAO.LayThongTin(maCCCD);
-                txtTenChong.Text = hn.TenNam;
-                txtTenVo.Text = hn.TenNu;
-                txtCCCDChong.Text = hn.Cccdnam;
-                txtCCCDVo.Text = hn.Cccdnu;
-                txtNoiDangKy.Text = hn.NoiDangKy;
-                dtmNgayDangKy.Value = hn.NgayDangKy.Value;
+                Honnhan? hn = hNDAO.LayThongTin(maCCCD);
+                if (hn != null)
+                {
+                    txtTenChong.Text = hn.TenNam;
+                    txtTenVo.Text = hn.TenNu;
+                    txtCCCDChong.Text = hn.Cccdnam;
+                    txtCCCDVo.Text = hn.Cccdnu;
+                    txtNoiDangKy.Text = hn.NoiDangKy;
+                    dtmNgayDangKy.Value = hn.NgayDangKy.Value;
+                }
             }
         }    
         private void FThongTinHonNhan_Load(object sender, EventArgs e)
@@ -73,7 +75,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
-            tool.AutoReadOnly();
+            tool?.AutoReadOnly();
         }
         private bool KiemTraThongTin()
         {
@@ -87,19 +89,20 @@ namespace QuanLiCongDanThanhPho
         }    
         public void CapNhatHonNhan()
         {
-            Honnhan hN = hNDAO.LayThongTin(maCCCD);
-            if (KiemTraThongTin())
+            Honnhan? hN = hNDAO.LayThongTin(maCCCD);
+            if (KiemTraThongTin() && hN != null)
             {
                 hN.NoiDangKy = txtNoiDangKy.Text;
                 hN.NgayDangKy = dtmNgayDangKy.Value;
                 hNDAO.CapNhatHonNhan();
+                MessageBox.Show("Cập nhật thành công");
             }
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             CapNhatHonNhan();
-            tool.TurnOff();
+            tool?.TurnOff();
             LayThongTinHonNhan();
         }
 

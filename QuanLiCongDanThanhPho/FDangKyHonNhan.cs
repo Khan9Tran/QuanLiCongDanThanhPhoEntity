@@ -134,6 +134,7 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Cần thêm thông tin cả 2 công dân");
                 return false;
             }
+
             if (hNDAO.LayThongTin(txtCCCDChong.Text) != null)
             {
                 MessageBox.Show("Người chồng đã kết hôn");
@@ -143,7 +144,8 @@ namespace QuanLiCongDanThanhPho
             {
                 MessageBox.Show("Người chồng sai giới tính");
                 return false;
-            }    
+            }  
+            
             if (hNDAO.LayThongTin(txtCCCDVo.Text) != null)
             {
                 MessageBox.Show("Người vợ đã kết hôn");

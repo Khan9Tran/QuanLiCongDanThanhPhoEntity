@@ -89,18 +89,17 @@ namespace QuanLiCongDanThanhPho
 
         private void CapNhatThue()
         {
-            Thue thue = thueDAO.LayThongTin(MaCCCD);
+            Thue? thue = thueDAO.LayThongTin(MaCCCD);
 
-            if (txtMaSoThue.Text != "")
+            if (txtMaSoThue.Text != "" && thue != null)
             {
                 thue.Cccd = txtCCCD.Text;
                 thue.SoTienCanNop = txtSoTienCanNop.Text;
                 thue.SoTienDaNop = txtSoTienDaNop.Text;
                 thue.NgayCap = dtmNgayCapMaSoThue.Value;
                 thue.HanNop = dtmHanNopThue.Value;
+                thueDAO.CapNhatThue();
             }
-
-            thueDAO.CapNhatThue();
         }    
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
@@ -108,18 +107,18 @@ namespace QuanLiCongDanThanhPho
             {
                 CapNhatThue();
                 LayThongTinThue();
-                tool.TurnOff();
+                tool?.TurnOff();
             }    
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-                tool.AutoReadOnly();
+                tool?.AutoReadOnly();
         }
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinThue();
-            tool.TurnOff();
+            tool?.TurnOff();
         }
     }
 }

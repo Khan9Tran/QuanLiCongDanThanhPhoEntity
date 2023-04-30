@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlTypes;
-using System.Data;
+﻿using System.Data;
 using QuanLiCongDanThanhPho.Model;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -17,19 +10,27 @@ namespace QuanLiCongDanThanhPho
 
         public void CapNhatKhaiSinh()
         {
-         
             db.SaveChanges();
-            MessageBox.Show("Cập nhật khai sinh thành công");
+        }
 
-        }
-        public void ThemKhaSinh(Khaisinh kS)
+        public bool ThemKhaSinh(Khaisinh kS)
         {
-            db.Khaisinhs.Add(kS);
-            db.SaveChanges();
+            try
+            {
+                db.Khaisinhs.Add(kS);
+                db.SaveChanges();
+            }
+            catch 
+            {
+                return false;
+            } 
+            return true;
+            
         }
+
         public bool XoaKhaiSinh(string maKhaiSinh)
         {
-            Khaisinh khaiSinh = db.Khaisinhs.Find(maKhaiSinh);
+            Khaisinh? khaiSinh = db.Khaisinhs.Find(maKhaiSinh);
             if (khaiSinh != null)
             {
                 db.Remove(khaiSinh);
@@ -38,11 +39,13 @@ namespace QuanLiCongDanThanhPho
             }
             return false;
         }
-        public Khaisinh LayThongTin(string maCCCD)
+
+        public Khaisinh? LayThongTin(string maCCCD)
         {
-                Khaisinh khaiSinh = db.Khaisinhs.Find(maCCCD);
+                Khaisinh? khaiSinh = db.Khaisinhs.Find(maCCCD);
                 return khaiSinh;
         }
+
         public List<object> LayDanhSachVeSoNamNu()
         {
             var result = db.Khaisinhs
@@ -55,7 +58,8 @@ namespace QuanLiCongDanThanhPho
                .ToList();
             return result;
         }
-        public Khaisinh LayThongTinhNamNuTheoTu(string tu, string dieuKien)
+
+        public Khaisinh? LayThongTinhNamNuTheoTu(string tu, string dieuKien)
         {
                 var khaiSinh = db.Khaisinhs.Where(q => q.NoiSinh.Contains(tu) || q.QueQuan.Contains(tu) || q.QuocTich.Contains(tu) || q.MaKs.Contains(tu) || q.DanToc.Contains(tu) || q.Cccdcha.Contains(tu) || q.Cccdme.Contains(tu) && q.GioiTinh == dieuKien).FirstOrDefault();
                 return khaiSinh;
@@ -76,6 +80,7 @@ namespace QuanLiCongDanThanhPho
             }
             return cntNhomTuoi;
         }
+
         public DataTable LayTuoiCongDan()
         {
             var dulieu = from q in db.Khaisinhs

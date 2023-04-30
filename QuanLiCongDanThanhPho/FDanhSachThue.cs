@@ -79,10 +79,13 @@ namespace QuanLiCongDanThanhPho
 
         private void LoadLblThue(int rowIndex)
         {
-            Congdan cD = cDDAO.LayThongTin(CCCDDAO.GetCCCD(gvThue, 1));
-            string Ten = cD.Ten;
-            string soTienCanNop = (string)gvThue.Rows[rowIndex].Cells[2].Value;
-            lblThongTin.Text = Ten + " cần thanh toán " + soTienCanNop + " VNĐ";
+            Congdan? cD = cDDAO.LayThongTin(CCCDDAO.GetCCCD(gvThue, 1));
+            if (cD != null)
+            {
+                string Ten = cD.Ten;
+                string soTienCanNop = (string)gvThue.Rows[rowIndex].Cells[2].Value;
+                lblThongTin.Text = Ten + " cần thanh toán " + soTienCanNop + " VNĐ";
+            }
         }
 
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
@@ -122,7 +125,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyThue dangKyThue = new FDangKyThue();
-            (StackForm.TrangChu).ChildForm.Open(dangKyThue);
+            (StackForm.TrangChu)?.ChildForm.Open(dangKyThue);
         }
 
         // Lọc danh sách những người đóng tiền trẽ hạn/ chưa đủ tiền khi quá thời gian
@@ -145,7 +148,7 @@ namespace QuanLiCongDanThanhPho
         private void btnCongDanCanTaoThue_Click(object sender, EventArgs e)
         {
             FDanhSachCongDan ds = new FDanhSachCongDan();
-            (StackForm.TrangChu).ChildForm.Open(ds);
+            (StackForm.TrangChu)?.ChildForm.Open(ds);
             ds.Ds = thueDAO.DuTuoiDongThue().ToList<Object>();
 
         }
@@ -155,8 +158,8 @@ namespace QuanLiCongDanThanhPho
             if (KiemTraDuLieuNhap.isTien(txtDongThue.Text))
             {
                 int tienNhap = int.Parse(txtDongThue.Text);
-                Thue thue = thueDAO.LayThongTin(CCCDDAO.GetCCCD(gvThue, 1));
-                if (thue.ThanhToan(tienNhap))
+                Thue? thue = thueDAO.LayThongTin(CCCDDAO.GetCCCD(gvThue, 1));
+                if (thue != null && thue.ThanhToan(tienNhap))
                 {
                     thueDAO.CapNhatThue();
                     return true;

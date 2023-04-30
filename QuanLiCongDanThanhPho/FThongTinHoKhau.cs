@@ -36,7 +36,7 @@ namespace QuanLiCongDanThanhPho
                     if (maHoKhau != null)
                     {
                         //---Thong tin chu ho---//
-                        Congdan? chuHo = cdDAO.LayThongTin(maHoKhau);
+                        Congdan? chuHo = cdDAO.LayThongTin(hk.CccdchuHo);
                         if (chuHo != null)
                             txtTenChuHo.Text = chuHo.Ten.ToString();
 
@@ -55,8 +55,9 @@ namespace QuanLiCongDanThanhPho
             if (txtDiaChi.Text != "" && hoKhau != null)
             {
                 hoKhau.DiaChi = txtDiaChi.Text;
+                hkDAO.CapNhatHoKhau();
+                MessageBox.Show("Cập nhật thành công");
             }
-            hkDAO.CapNhatHoKhau();
         }
         private void FThongTinHoKhau_Load(object sender, EventArgs e)
         {

@@ -25,33 +25,46 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
-        public void ThemTamTruTamVang(Tamtrutamvang tTTV)
+        public bool ThemTamTruTamVang(Tamtrutamvang tTTV)
         {
-           
-            db.Tamtrutamvangs.Add(tTTV);
-            db.SaveChanges();
-            MessageBox.Show("Thêm tạm trú tạm vắng thành công");
-        }
-        public void XoaTamTruTamVang(string canCuoc)
-        {
-            Tamtrutamvang tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).FirstOrDefault();
-            if (tTTV != null)
+            try
             {
-                db.Tamtrutamvangs.Remove(tTTV);
+                db.Tamtrutamvangs.Add(tTTV);
                 db.SaveChanges();
-                MessageBox.Show("Xóa tạm trú tạm vắng thành công");
             }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool XoaTamTruTamVang(string canCuoc)
+        {
+            try
+            {
+                Tamtrutamvang? tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).FirstOrDefault();
+                if (tTTV != null)
+                {
+                    db.Tamtrutamvangs.Remove(tTTV);
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
         public void CapNhat()
         {
             db.SaveChanges();
-            MessageBox.Show("Cập nhật thành công");
         }
         public Boolean KiemTraTamTruTamVang(string maCCCD)
         {
             return db.Tamtrutamvangs.Where(q => q.Cccd == maCCCD).Any();
         }
-        public Tamtrutamvang LayThongTin(string maCCCD)
+
+        public Tamtrutamvang? LayThongTin(string maCCCD)
         {
             var tTTV = db.Tamtrutamvangs.Where(q => q.Cccd == maCCCD).FirstOrDefault();
             return tTTV;
@@ -64,6 +77,7 @@ namespace QuanLiCongDanThanhPho
                         select q;
             return list.ToList();
         }
+
         public List<Tamtrutamvang> LayDanhSachTheoTrangThai(string trangthai)
         {
             var list = from q in LayDanhSach()
@@ -71,11 +85,13 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public int LaySoLuongTamTru()
         {
             var list = LayDanhSachTheoTrangThai("Tạm trú");
             return list.Count;
         }
+
         public int LaySoLuongTamVang()
         {
             var list = LayDanhSachTheoTrangThai("Tạm vắng");
@@ -89,6 +105,7 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public int LaySoLuongQuaHanTamTru()
         {
             var list = from q in LayDanhSachTheoTrangThai("Tạm trú")
@@ -111,6 +128,7 @@ namespace QuanLiCongDanThanhPho
                         select q;
             return list.ToList();
         }
+
         public int LaySoLuong()
         {
             var list = LayDanhSach();

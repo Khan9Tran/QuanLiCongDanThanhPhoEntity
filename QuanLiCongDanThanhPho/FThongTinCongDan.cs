@@ -75,7 +75,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayKhaiSinh()
         {
-            Khaisinh ks = ksDAO.LayThongTin(congDan.Cccd);
+            Khaisinh? ks = ksDAO.LayThongTin(congDan.Cccd);
             if (ks != null)
             {
                 dtmNgaySinh.Value = ks.NgaySinh;
@@ -91,7 +91,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayThue()
         {
-            Thue thue = thueDAO.LayThongTin(congDan.Cccd);
+            Thue? thue = thueDAO.LayThongTin(congDan.Cccd);
             if (thue == null)
                 btnThue.Enabled = false;
             else
@@ -129,13 +129,13 @@ namespace QuanLiCongDanThanhPho
 
         private void LayTamTruTamVang()
         {
-           Tamtrutamvang tttv = tttvDAO.LayThongTin(congDan.Cccd);
+           Tamtrutamvang? tttv = tttvDAO.LayThongTin(congDan.Cccd);
             if (tttv == null)
                 txtGhiChu.Text = "Không có ghi chú";
             else
             {
-                tttv = tttvDAO.LayThongTin(congDan.Cccd);
-                txtGhiChu.Text = tttv.TrangThai;
+                string? trangThai = tttv.TrangThai;
+                txtGhiChu.Text = trangThai;
             }
         }
 
@@ -162,7 +162,7 @@ namespace QuanLiCongDanThanhPho
 
             cccd = cCCDDAO.LayThongTin(cccd);
 
-            if (cccd.DacDiem == null)
+            if (cccd == null || cccd.DacDiem == null)
             {
                 btnThongTinCCCD.Enabled = false;
             }
@@ -273,17 +273,20 @@ namespace QuanLiCongDanThanhPho
 
         private void CapNhatKhaiSinh()
         {
-            Khaisinh khaiSinh = ksDAO.LayThongTin(congDan.Cccd);
-            khaiSinh.Ten = txtHoVaTen.Text;
-            khaiSinh.QueQuan = txtQueQuan.Text;
-            khaiSinh.NgaySinh = dtmNgaySinh.Value;
-            khaiSinh.DanToc = txtDanToc.Text;
-            khaiSinh.QuocTich = txtQuocTich.Text;
-            if (txtGioiTinh.Text == "Nam")
-                khaiSinh.GioiTinh = "m";
-            else
-                khaiSinh.GioiTinh = "f";
-            ksDAO.CapNhatKhaiSinh();
+            Khaisinh? khaiSinh = ksDAO.LayThongTin(congDan.Cccd);
+            if (khaiSinh != null)
+            {
+                khaiSinh.Ten = txtHoVaTen.Text;
+                khaiSinh.QueQuan = txtQueQuan.Text;
+                khaiSinh.NgaySinh = dtmNgaySinh.Value;
+                khaiSinh.DanToc = txtDanToc.Text;
+                khaiSinh.QuocTich = txtQuocTich.Text;
+                if (txtGioiTinh.Text == "Nam")
+                    khaiSinh.GioiTinh = "m";
+                else
+                    khaiSinh.GioiTinh = "f";
+                ksDAO.CapNhatKhaiSinh();
+            }
         }    
 
         private void CapNhatCongDan()
@@ -294,7 +297,6 @@ namespace QuanLiCongDanThanhPho
             congDan.TonGiao = txtTonGiao.Text;
             congDan.QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text;
             cdDAO.CapNhatCongDan();
-
         }
 
         //Thay đổi chủ hộ ở table hộ khẩu nếu có

@@ -60,7 +60,7 @@ namespace QuanLiCongDanThanhPho
         {
             account.DisplayName = newDisplayName;
             accountDAO.CapNhatDisplayName(account);
-            StackForm.TrangChu.LoadTaiKhoan();
+            StackForm.TrangChu?.LoadTaiKhoan();
         }
 
         private void Reset()
@@ -206,7 +206,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (hinhAdmin.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))
             {
-                StackForm.TrangChu.LoadTaiKhoan();
+                StackForm.TrangChu?.LoadTaiKhoan();
                 hinhAdmin.SaveHinhDaiDien(account.UserName, ofdHinhDaiDien, ptcHinhDaiDien);
             }
         }

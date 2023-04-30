@@ -4,10 +4,10 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FTachGopHo : Form
     {
-        private CongDanDAO cDDAO;
-        private HoKhauDAO hKDAO;
+        private CongDanDAO? cDDAO;
+        private HoKhauDAO? hKDAO;
         private bool isTach = false;
-        private Congdan cD;
+        private Congdan? cD;
         public void init()
         {
             InitializeComponent();
@@ -34,11 +34,11 @@ namespace QuanLiCongDanThanhPho
                 {
 
                     int index = gvHoTach.CurrentCell.RowIndex;
-                    if (index >= 0)
+                    if (index >= 0 && gvHoTach.Rows[index].Cells[0] != null)
                     {
                         cD = new Congdan()
                         {
-                            Cccd = gvHoTach.Rows[index].Cells[0].Value.ToString()
+                            Cccd = (string)gvHoTach.Rows[index].Cells[0].Value
                         };
                         isTach = true;
                     }
@@ -74,19 +74,19 @@ namespace QuanLiCongDanThanhPho
             {
                 MaHk = txtMaHoGop.Text,
                 DiaChi = "unknow, unknow, unknow,uknow",
-                CccdchuHo = cD.Cccd,
+                CccdchuHo = cD?.Cccd,
             };
-            hKDAO.ThemHoKhau(hK);
+            hKDAO?.ThemHoKhau(hK);
             cD.QuanHeVoiChuHo = "Chủ hộ";
             cD.MaHk = txtMaHoGop.Text;
-            cDDAO.ThayDoiHoKhau(cD);
+            cDDAO?.ThayDoiHoKhau(cD);
             LoadHoTach();
             LoadHoGop();
             XoaHoThua();
         }
         private bool isHoKhau(string maHoKhau)
         {
-            Hokhau hK = hKDAO.LayThongTin(txtMaHoGop.Text);
+            Hokhau? hK = hKDAO?.LayThongTin(txtMaHoGop.Text);
             if (hK == null)
                 return false;
             return true;
@@ -116,17 +116,17 @@ namespace QuanLiCongDanThanhPho
         private void XoaHoThua()
         {
 
-            Hokhau hK = hKDAO.LayThongTin(txtMaHoTach.Text);
+            Hokhau? hK = hKDAO?.LayThongTin(txtMaHoTach.Text);
 
-            if (gvHoTach.Rows.Count == 0)
+            if (hK != null && gvHoTach.Rows.Count == 0)
             {
-                hKDAO.XoaHoKhau(hK);
+                hKDAO?.XoaHoKhau(hK);
             }
         }
         public void ThemVaoHo()
         {
             cD.MaHk = txtMaHoGop.Text;
-            cDDAO.NhapHoKhau(cD);   
+            cDDAO?.NhapHoKhau(cD);   
             LoadHoTach();
             LoadHoGop();
             XoaHoThua();
@@ -153,13 +153,13 @@ namespace QuanLiCongDanThanhPho
 
         private void LoadHoTach()
         {
-             gvHoTach.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
+             gvHoTach.DataSource = cDDAO?.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
              HeaderTach();
         }
 
         private void LoadHoGop()
         {
-            gvHoGop.DataSource = cDDAO.LayDanhSachTheoHoKhau(txtMaHoGop.Text);
+            gvHoGop.DataSource = cDDAO?.LayDanhSachTheoHoKhau(txtMaHoGop.Text);
             HeaderGop();
         }
 

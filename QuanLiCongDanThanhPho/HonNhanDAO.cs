@@ -15,58 +15,70 @@ namespace QuanLiCongDanThanhPho
         //Đnăng ký hôn nhân
         public bool ThemHonNhan(Honnhan hN)
         {
-            CongDanDAO congDanDAO = new CongDanDAO();
-            KhaiSinhDAO ksDao = new KhaiSinhDAO();
-
-            Congdan? chong = congDanDAO.LayThongTin(hN.Cccdnam);
-            Congdan? vo = congDanDAO.LayThongTin(hN.Cccdnu);
-
-            //Nếu 2 người không sống trong khu vực thì không thể đăng ký
-            if (chong == null || vo == null)
+            try
             {
-                MessageBox.Show("Thông tin không tồn tại trong hệ thống");
-            }
-            else
-            {
-                //Kiểm tra tên có khớp không
-                if (chong != null && !isGiongNhau(chong.Ten, hN.TenNam))
-                {
-                    return false;
-                }
-                if (vo != null && !isGiongNhau(vo.Ten, hN.TenNu))
-                {
-                    return false;
-                }
+                CongDanDAO congDanDAO = new CongDanDAO();
+                KhaiSinhDAO ksDao = new KhaiSinhDAO();
 
-                //Thêm công dân chưa có vào tạm trong hệ thống
-                db.Honnhans.Add(hN);
-                db.SaveChanges();
-                return true;
+                Congdan? chong = congDanDAO.LayThongTin(hN.Cccdnam);
+                Congdan? vo = congDanDAO.LayThongTin(hN.Cccdnu);
+
+                //Nếu 2 người không sống trong khu vực thì không thể đăng ký
+                if (chong == null || vo == null)
+                {
+                    MessageBox.Show("Thông tin không tồn tại trong hệ thống");
+                }
+                else
+                {
+                    //Kiểm tra tên có khớp không
+                    if (chong != null && !isGiongNhau(chong.Ten, hN.TenNam))
+                    {
+                        return false;
+                    }
+                    if (vo != null && !isGiongNhau(vo.Ten, hN.TenNu))
+                    {
+                        return false;
+                    }
+
+                    //Thêm công dân chưa có vào tạm trong hệ thống
+                    db.Honnhans.Add(hN);
+                    db.SaveChanges();
+                }
             }
-            return false;
+            catch
+            {
+                return false;
+            }
+            return true;
         }
 
         //Cập nhật thông tin hôn nhân
         public void CapNhatHonNhan()
         {
             db.SaveChanges();
-            MessageBox.Show("Cập nhật hôn nhân thành công");
         }
 
         //Xóa hôn nhân
         public bool Xoa(Honnhan honNhan)
         {
-            if (honNhan != null)
-            { 
-                Honnhan? hN = db.Honnhans.Find(honNhan.MaHonNhan);
-                if (hN != null)
+            try
+            {
+                if (honNhan != null)
                 {
-                    db.Honnhans.Remove(hN);
-                    db.SaveChanges();
+                    Honnhan? hN = db.Honnhans.Find(honNhan.MaHonNhan);
+                    if (hN != null)
+                    {
+                        db.Honnhans.Remove(hN);
+                        db.SaveChanges();
                         return true;
+                    }
                 }
             }
-            return false;
+            catch
+            {
+                return false;
+            }
+            return true;
         }    
 
         //Lấy tất cả thông tin của hôn nhân theo CCCD

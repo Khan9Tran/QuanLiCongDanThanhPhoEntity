@@ -15,11 +15,11 @@ namespace QuanLiCongDanThanhPho
         public CongDanDAO() { }
         public void ThemCongDan(Congdan cD)
         {
-            db.Congdans.Add(cD);
-            db.SaveChanges();
-
             try
             {
+                db.Congdans.Add(cD);
+                db.SaveChanges();
+
                 Cccd cCCD = new Cccd()
                 {
                     MaCccd = cD.Cccd
@@ -36,48 +36,72 @@ namespace QuanLiCongDanThanhPho
         }
         public bool XoaCongDan(Congdan cD)
         {
-            ThueDAO thueDAO = new ThueDAO();
-            KhaiSinhDAO ksDAO = new KhaiSinhDAO();
-            TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
-            HonNhanDAO hnDAO = new HonNhanDAO();
-            CCCDDAO cCCCDAO = new CCCDDAO();
-            Honnhan hn = hnDAO.LayThongTin(cD.Cccd);
+            try
+            {
+                ThueDAO thueDAO = new ThueDAO();
+                KhaiSinhDAO ksDAO = new KhaiSinhDAO();
+                TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
+                HonNhanDAO hnDAO = new HonNhanDAO();
+                CCCDDAO cCCCDAO = new CCCDDAO();
+                Honnhan? hn = hnDAO.LayThongTin(cD.Cccd);
 
-            thueDAO.XoaThue(cD.Cccd);
-            ksDAO.XoaKhaiSinh(cD.Cccd);
-            tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
-            hnDAO.Xoa(hn);
-            cCCCDAO.XoaCCCD(cD.Cccd);
-            Congdan congdan = db.Congdans.Find(cD.Cccd);
-            db.Congdans.Remove(congdan);
-            db.SaveChanges();
+                thueDAO.XoaThue(cD.Cccd);
+                ksDAO.XoaKhaiSinh(cD.Cccd);
+                tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
+
+                if (hn != null)
+                    hnDAO.Xoa(hn);
+                cCCCDAO.XoaCCCD(cD.Cccd);
+
+                db.Congdans.Remove(cD);
+                db.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
             return true;
         }
         public void CapNhatCongDan()
         {
             db.SaveChanges();
-            MessageBox.Show("Cập nhật công dân thành công");
         }
-        public void ThayDoiHoKhau(Congdan cD)
+        public bool ThayDoiHoKhau(Congdan cD)
         {
-            Congdan? congDan = db.Congdans.Find(cD.Cccd);
-            if (congDan != null)
+            try
             {
-                congDan.MaHk = cD.MaHk;
-                congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
-                db.SaveChanges();
+                Congdan? congDan = db.Congdans.Find(cD.Cccd);
+                if (congDan != null)
+                {
+                    congDan.MaHk = cD.MaHk;
+                    congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                return false;
             }
             MessageBox.Show("Thay đổi hộ khẩu thành công");
+            return true;
         }
-        public void NhapHoKhau(Congdan cD)
+        public bool NhapHoKhau(Congdan cD)
         {
-            Congdan? congDan = db.Congdans.Find(cD.Cccd);
-            if (congDan != null)
+            try
             {
-                congDan.MaHk = cD.MaHk;
-                congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
-                db.SaveChanges();
+                Congdan? congDan = db.Congdans.Find(cD.Cccd);
+                if (congDan != null)
+                {
+                    congDan.MaHk = cD.MaHk;
+                    congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
+                    db.SaveChanges();
+                }
             }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
         public List<Congdan> LayDanhSach()
         {
@@ -85,6 +109,7 @@ namespace QuanLiCongDanThanhPho
                       select q;
             return cDs.ToList();
         }
+
         public List<Congdan> LayDanhSachTheoHoKhau(string maHK)
         {
             var cDs = from q in db.Congdans
@@ -92,11 +117,13 @@ namespace QuanLiCongDanThanhPho
                       select q;
             return cDs.ToList();
         }
+
         public Congdan? LayThongTin(string maCCCD)
         {
             Congdan? congDan = db.Congdans.Find(maCCCD);
             return congDan;
         }
+
         public List<Congdan> LayDanhSachCongDanNam(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -107,6 +134,7 @@ namespace QuanLiCongDanThanhPho
             return list.ToList();
 
         }
+
         public List<Congdan> LayDanhSachCongDanNu(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -116,6 +144,7 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public List<Congdan> LayDanhSachDaKetHon(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -123,6 +152,7 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public List<Congdan> LayDanhSachChuaKetHon(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -130,6 +160,7 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
         public List<Congdan> LayDanhSachTuoiXepTuBeDenLon(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -159,7 +190,6 @@ namespace QuanLiCongDanThanhPho
                     .Average();
             return (int)avgSoLuongNguoi;
         }
-      
         public List<object> LayDanhSachDC()
         {
             DiaChi dc = new DiaChi();

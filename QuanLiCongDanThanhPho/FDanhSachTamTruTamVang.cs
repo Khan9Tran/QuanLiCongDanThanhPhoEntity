@@ -65,14 +65,17 @@ namespace QuanLiCongDanThanhPho
         }
         private void GiaHan(int num, dynamic type)
         {
-            Tamtrutamvang tTTTV = tttvDAO.LayThongTin(CCCDDAO.GetCCCD(gvTVTT,1));
-            if (type == LoaiGiaHan.ngay)
-                tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(num);
-            else if (type ==  LoaiGiaHan.thang)
-                tTTTV.NgayKt = tTTTV.NgayKt.Value.AddMonths(num);
-            else
-                tTTTV.NgayKt = tTTTV.NgayKt.Value.AddYears(num);
-            tttvDAO.CapNhat();
+            Tamtrutamvang? tTTTV = tttvDAO.LayThongTin(CCCDDAO.GetCCCD(gvTVTT,1));
+            if (tTTTV != null)
+            {
+                if (type == LoaiGiaHan.ngay)
+                    tTTTV.NgayKt = tTTTV.NgayKt.Value.AddDays(num);
+                else if (type == LoaiGiaHan.thang)
+                    tTTTV.NgayKt = tTTTV.NgayKt.Value.AddMonths(num);
+                else
+                    tTTTV.NgayKt = tTTTV.NgayKt.Value.AddYears(num);
+                tttvDAO.CapNhat();
+            }
         }
 
         internal override void HeaderText()
@@ -115,7 +118,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyTamTruTamVang dangKyTTTV = new FDangKyTamTruTamVang();
-            (StackForm.TrangChu).ChildForm.Open(dangKyTTTV);
+            (StackForm.TrangChu)?.ChildForm.Open(dangKyTTTV);
         }
 
         private void gvTVTT_CellClick(object sender, DataGridViewCellEventArgs e)

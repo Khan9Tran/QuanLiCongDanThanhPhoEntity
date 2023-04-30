@@ -25,7 +25,7 @@ namespace QuanLiCongDanThanhPho
         private void btnHome_Click(object sender, EventArgs e)
         {
             StackForm.ClearAll();
-            StackForm.TrangChu.BringToFront();
+            StackForm.TrangChu?.BringToFront();
         }
 
     }
