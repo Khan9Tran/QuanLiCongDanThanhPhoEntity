@@ -94,73 +94,66 @@ namespace QuanLiCongDanThanhPho
 
         private bool KiemTraChaMe()
         {
-            Congdan cha = cDDAO.LayThongTin(txtCccdCha.Text);
-            Congdan me = cDDAO.LayThongTin(txtCccdMe.Text);
+            Honnhan? chong = hNDAO.LayThongTin(txtCccdCha.Text);
+            Honnhan? vo = hNDAO.LayThongTin(txtCccdMe.Text);
 
-            if ((cha != null) && (txtTenCha.Text != cha.Ten))
-            {
-                MessageBox.Show("Tên và căn cước công dân cha không khớp");
+            if (chong == null || vo == null)
+                return false;   
+            if (chong.MaHonNhan != vo.MaHonNhan) 
                 return false;
-            }
-
-            if ((me != null ) && (txtTenMe.Text != me.Ten))
-            {
-                MessageBox.Show("Tên và căn cước công dân mẹ không khớp");
+            if (txtTenCha.Text != chong.TenNam)
                 return false;
-            }
-
-            Honnhan Chong = hNDAO.LayThongTin(txtCccdCha.Text);
-            Honnhan Vo = hNDAO.LayThongTin(txtCccdMe.Text);
-
-            //Cả vợ và chồng đều có thông tin hôn nhân ở khu vực mới có thể đăng kí khai sinh cho con
-            if (Chong.MaHonNhan != Vo.MaHonNhan || Chong == null || Vo == null)     
-            {
-                MessageBox.Show("Hôn nhân không khớp");
+            if (txtTenMe.Text  != vo.TenNu)
                 return false;
-            }    
-            
             return true;
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            if (KiemTraThongTin() && KiemTraChaMe())
-            { 
-                Congdan congDan = new Congdan()
+            if (KiemTraThongTin())
+            {
+                if (KiemTraChaMe())
                 {
-                    Ten = txtTen.Text,
-                    Cccd = txtCccd.Text,
-                    MaHk = "00000A"
-                };
-                cDDAO.ThemCongDan(congDan);
+                    Congdan congDan = new Congdan()
+                    {
+                        Ten = txtTen.Text,
+                        Cccd = txtCccd.Text,
+                        MaHk = "00000A"
+                    };
+                    cDDAO.ThemCongDan(congDan);
 
-                string gt = "";
-                if (rdoNam.Checked)
-                {
-                    gt = "m";
+                    string gt = "";
+                    if (rdoNam.Checked)
+                    {
+                        gt = "m";
+                    }
+                    else
+                    {
+                        gt = "f";
+                    }
+
+                    Khaisinh kS = new Khaisinh()
+                    {
+                        MaKs = txtCccd.Text,
+                        Ten = txtTen.Text,
+                        GioiTinh = gt,
+                        QuocTich = (string)cboQuocTich.SelectedItem,
+                        DanToc = (string)cboDanToc.SelectedItem,
+                        NgaySinh = dtmNgaySinh.Value,
+                        NgayDangKy = dtmNgayDangKy.Value,
+                        NoiSinh = txtNoiSinh.Text,
+                        QueQuan = txtQueQuan.Text,
+                        Cccdcha = txtCccdCha.Text,
+                        TenCha = txtTenCha.Text,
+                        Cccdme = txtCccdMe.Text,
+                        TenMe = txtTenMe.Text,
+                    };
+                    kSDAO.ThemKhaSinh(kS);
                 }
                 else
                 {
-                    gt = "f";
-                }
-
-                Khaisinh kS = new Khaisinh()
-                {
-                    MaKs = txtCccd.Text,
-                    Ten = txtTen.Text,
-                    GioiTinh = gt,
-                    QuocTich = (string)cboQuocTich.SelectedItem,
-                    DanToc = (string)cboDanToc.SelectedItem,
-                    NgaySinh = dtmNgaySinh.Value,
-                    NgayDangKy = dtmNgayDangKy.Value,
-                    NoiSinh = txtNoiSinh.Text,
-                    QueQuan = txtQueQuan.Text,
-                    Cccdcha = txtCccdCha.Text,
-                    TenCha = txtTenCha.Text,
-                    Cccdme = txtCccdMe.Text,
-                    TenMe = txtTenMe.Text,
-                };
-                kSDAO.ThemKhaSinh(kS);
+                    MessageBox.Show("Sai thông tin");
+                }    
             }
         }
 

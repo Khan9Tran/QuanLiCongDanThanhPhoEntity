@@ -172,6 +172,7 @@
             this.btnDangKy.TabIndex = 93;
             this.btnDangKy.Text = "Xác nhận";
             this.btnDangKy.UseVisualStyleBackColor = false;
+            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
             // 
             // fpnlChucNang
             // 

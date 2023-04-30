@@ -20,7 +20,6 @@ namespace QuanLiCongDanThanhPho
     internal class ThueDAO
     {
         QuanlitpContext db = DBConnection.Db;
-        DBConnection conn = new DBConnection();
         public ThueDAO() { }
         public List<Thue> LayDanhSach()
         {
@@ -43,7 +42,7 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Xóa thuế thành công");
             }
         }
-        public Thue LayThongTin(string maCCCD)
+        public Thue? LayThongTin(string maCCCD)
         {
             return db.Thues.Where(p => p.Cccd == maCCCD).FirstOrDefault();
         }

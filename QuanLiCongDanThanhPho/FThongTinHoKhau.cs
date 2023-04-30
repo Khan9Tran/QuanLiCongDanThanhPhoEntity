@@ -3,17 +3,13 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinHoKhau : MoveForm
     {
-        private string maHoKhau;
+        private string? maHoKhau;
         private HoKhauDAO hkDAO;
         private CongDanDAO cdDAO;
 
-        private ToolsForControl tool; 
+        private ToolsForControl? tool; 
 
-        const int WM_NCHITTEST = 0x84;
-        const int HTCLIENT = 0x1;
-        const int HTCAPTION = 0x2;
-
-        public string MaHoKhau { get => maHoKhau; set => maHoKhau = value; }
+        public string? MaHoKhau { get => maHoKhau; set => maHoKhau = value; }
 
         public FThongTinHoKhau(string maHoKhau)
         {
@@ -30,26 +26,33 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaHoKhau != null)
             {
-                Hokhau hk = hkDAO.LayThongTin(MaHoKhau);
-                txtCCCDChuHo.Text = hk.CccdchuHo;
-                txtMaHoKhau.Text = hk.MaHk;
-                txtDiaChi.Text = hk.DiaChi;
+                Hokhau? hk = hkDAO.LayThongTin(MaHoKhau);
+                if (hk != null)
+                {
+                    txtCCCDChuHo.Text = hk.CccdchuHo;
+                    txtMaHoKhau.Text = hk.MaHk;
+                    txtDiaChi.Text = hk.DiaChi;
 
-                //---Thong tin chu ho---//
-                Congdan chuHo = cdDAO.LayThongTin(hk.CccdchuHo);
-                txtTenChuHo.Text = chuHo.Ten.ToString();
+                    if (maHoKhau != null)
+                    {
+                        //---Thong tin chu ho---//
+                        Congdan? chuHo = cdDAO.LayThongTin(maHoKhau);
+                        if (chuHo != null)
+                            txtTenChuHo.Text = chuHo.Ten.ToString();
 
-                //---Quan he voi chu ho---//
+                        //---Quan he voi chu ho---//
 
-                var dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
-                gvQuanHeVoiChuHo.DataSource = dsNguoiTrongHo;
-                lblTong.Text = "Tổng thành viên: " + dsNguoiTrongHo.Count.ToString();
+                        var dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
+                        gvQuanHeVoiChuHo.DataSource = dsNguoiTrongHo;
+                        lblTong.Text = "Tổng thành viên: " + dsNguoiTrongHo.Count.ToString();
+                    }
+                }
             }
         }
         private void CapNhatHoKhau()
         {
-            Hokhau hoKhau = hkDAO.LayThongTin(maHoKhau);
-            if (txtDiaChi.Text != "")
+            Hokhau? hoKhau = hkDAO.LayThongTin(maHoKhau);
+            if (txtDiaChi.Text != "" && hoKhau != null)
             {
                 hoKhau.DiaChi = txtDiaChi.Text;
             }
@@ -73,14 +76,6 @@ namespace QuanLiCongDanThanhPho
             gvQuanHeVoiChuHo.Columns[7].Visible = false;
             gvQuanHeVoiChuHo.Columns[8].Visible = false;
         }
-        protected override void WndProc(ref Message message)
-        {
-            base.WndProc(ref message);
-
-            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
-                message.Result = (IntPtr)HTCAPTION;
-        }
-
 
         private void SetTools()
         {
@@ -101,28 +96,35 @@ namespace QuanLiCongDanThanhPho
                 string maCCCD = (string)gvQuanHeVoiChuHo.CurrentRow.Cells[0].Value;
                 if (maCCCD != "")
                 {
-                    FThongTinCongDan ttCD = new FThongTinCongDan(cdDAO.LayThongTin(maCCCD));
-                    ttCD.ShowDialog();
+                    Congdan? cD = cdDAO.LayThongTin(maCCCD);
+                    if (cD != null)
+                    {
+                        FThongTinCongDan ttCD = new FThongTinCongDan(cD);
+                        ttCD.ShowDialog();
+                    }
                 }
             }
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            tool.AutoReadOnly();
+            tool?.AutoReadOnly();
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             CapNhatHoKhau();
             LayThongTinHoKhau();
-            tool.TurnOff();
+            tool?.TurnOff();
         }
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinHoKhau();
-            tool.State = ToolsForControl.Turn.on;
-            tool.TurnOff();
+            if (tool != null)
+            {
+                tool.State = ToolsForControl.Turn.on;
+                tool?.TurnOff();
+            }
         }
     }
 }

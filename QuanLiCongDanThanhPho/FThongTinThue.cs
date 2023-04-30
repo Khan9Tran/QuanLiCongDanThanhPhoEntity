@@ -5,7 +5,7 @@ namespace QuanLiCongDanThanhPho
     public partial class FThongTinThue : MoveForm
     {
         private string? maCCCD;
-        private ToolsForControl tool;
+        private ToolsForControl? tool;
 
         private ThueDAO thueDAO;
         private CongDanDAO cdDAO;
@@ -61,13 +61,19 @@ namespace QuanLiCongDanThanhPho
             {
                 Thue thue = thueDAO.LayThongTin(MaCCCD);
                 Congdan? cd = cdDAO.LayThongTin(MaCCCD);
-                Hokhau? hk = hkDAO.LayThongTin(cd.MaHk);
-
-                txtMaSoThue.Text = thue.MaThue;
-                txtTen.Text = cd.Ten;
-                txtCCCD.Text = cd.Cccd;
-                txtSdt.Text = cd.Sdt;
-                txtDiaChi.Text = hk.DiaChi;
+                if (cd != null)
+                {
+                    string? maHk = cd.MaHk;
+                    if (maHk != null)
+                    {
+                        Hokhau? hk = hkDAO.LayThongTin(maHk);
+                        txtDiaChi.Text = hk.DiaChi;
+                    }
+                    txtMaSoThue.Text = maHk;
+                    txtTen.Text = cd.Ten;
+                    txtCCCD.Text = cd.Cccd;
+                    txtSdt.Text = cd.Sdt;
+                }
                 txtSoTienCanNop.Text = thue.SoTienCanNop;
                 txtSoTienDaNop.Text = thue.SoTienDaNop;
                 if (thue.NgayCap != null)

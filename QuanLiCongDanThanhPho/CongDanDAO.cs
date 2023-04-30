@@ -17,13 +17,22 @@ namespace QuanLiCongDanThanhPho
         {
             db.Congdans.Add(cD);
             db.SaveChanges();
-            Cccd cCCD = new Cccd()
+
+            try
             {
-                MaCccd = cD.Cccd
-            };
-            CCCDDAO cCCDDAO = new CCCDDAO();
-            cCCDDAO.ThemCCCD(cCCD);
-            MessageBox.Show("Thêm công dân thành công");
+                Cccd cCCD = new Cccd()
+                {
+                    MaCccd = cD.Cccd
+                };
+                CCCDDAO cCCDDAO = new CCCDDAO();
+                cCCDDAO.ThemCCCD(cCCD);
+            }
+            catch
+            (Exception ex)
+            {
+                MessageBox.Show("Không không bao gồm CCCD " + ex);
+            }
+   
         }
         public bool XoaCongDan(Congdan cD)
         {
