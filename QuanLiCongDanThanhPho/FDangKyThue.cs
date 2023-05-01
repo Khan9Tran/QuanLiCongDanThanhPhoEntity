@@ -4,6 +4,7 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyThue : Form
     {
+        private ThueDAO? thueDAO;
         public FDangKyThue()
         {
             Init();
@@ -20,6 +21,7 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
             StackForm.Add(this);
+            thueDAO = new ThueDAO();
         }
 
         public void LoadThongTin(string cCCD) 
@@ -27,9 +29,12 @@ namespace QuanLiCongDanThanhPho
             if (cCCD != null)
             {
                 CongDanDAO congDanDAO = new CongDanDAO();
-                Congdan congDan = congDanDAO.LayThongTin(cCCD);
-                txtMaSoThue.Text = congDan.Cccd;
-                txtCCCD.Text = congDan.Cccd;
+                Congdan? congDan = congDanDAO.LayThongTin(cCCD);
+                if (congDan != null)
+                {
+                    txtMaSoThue.Text = congDan.Cccd;
+                    txtCCCD.Text = congDan.Cccd;
+                }
                 txtSoTienDaNop.Text = "0";
             }
         }
@@ -83,8 +88,14 @@ namespace QuanLiCongDanThanhPho
                     SoTienCanNop = txtSoTienCanNop.Text,
                     SoTienDaNop = txtSoTienDaNop.Text
                 };
-                ThueDAO congDanNopThue = new ThueDAO();
-                congDanNopThue.ThemThue(thue);
+                if (thueDAO.ThemThue(thue))
+                {
+                    MessageBox.Show("Thành công");
+                }
+                else 
+                {
+                    MessageBox.Show("Thất bại");
+                }
             }
         }
     }

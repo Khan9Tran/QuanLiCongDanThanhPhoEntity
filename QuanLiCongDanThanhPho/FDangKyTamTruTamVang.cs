@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyTamTruTamVang : Form
     {
-        private TamTruTamVangDAO tTTVDAO;
+        private TamTruTamVangDAO? tTTVDAO;
+        private CongDanDAO? congDanDAO;
+
         public FDangKyTamTruTamVang()
         {
             Init();
@@ -21,6 +14,7 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
             tTTVDAO = new TamTruTamVangDAO();
+            congDanDAO = new CongDanDAO();  
             StackForm.Add(this);
         }
         public FDangKyTamTruTamVang(string cCCD)
@@ -33,13 +27,15 @@ namespace QuanLiCongDanThanhPho
         {
             if (cCCD != null)
             {
-                CongDanDAO congDanDAO = new CongDanDAO();
-                Congdan congDan = congDanDAO.LayThongTin(cCCD);
-                txtTen.Text = congDan.Ten;
-                txtCCCD.Text = congDan.Cccd;
-                txtMaSo.Text = congDan.Cccd;
-                rdoTamVang.Checked = true;
-                txtSDT.Text = congDan.Sdt;
+                Congdan? congDan = congDanDAO.LayThongTin(cCCD);
+                if (congDan != null)
+                {
+                    txtTen.Text = congDan.Ten;
+                    txtCCCD.Text = congDan.Cccd;
+                    txtMaSo.Text = congDan.Cccd;
+                    rdoTamVang.Checked = true;
+                    txtSDT.Text = congDan.Sdt;
+                }
             }
         }
         private bool KiemTraThongTin()
@@ -90,34 +86,28 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                if (rdoTamTru.Checked == true)
-                {
-                    Congdan cDTamTru = new Congdan()
-                    {
-                        Cccd = txtCCCD.Text,
-                        Ten = txtTen.Text,
-                        Sdt = txtSDT.Text,
-                        MaHk = "00000B",
-                        QuanHeVoiChuHo = "Tạm trú tại địa phương"
-                    };
-
-                    CongDanDAO cDTamTruDAO = new CongDanDAO();
-                    try
-                    {
-
-                        cDTamTruDAO.ThemCongDan(cDTamTru);
-                    }
-                    catch (Exception ex) 
-                    {
-                        MessageBox.Show("Không thể dùng tùy chọn này");
-                        return;
-                    }
-                }
-                string trangThai = "Tạm vắng";
+                string trangThai = "";
                 if (rdoTamTru.Checked == true)
                 {
                     trangThai = "Tạm trú";
+                    if (congDanDAO.LayThongTin(txtCCCD.Text) == null)
+                    {
+                        Congdan cDTamTru = new Congdan()
+                        {
+                            Cccd = txtCCCD.Text,
+                            Ten = txtTen.Text,
+                            Sdt = txtSDT.Text,
+                            MaHk = "00000B",
+                            QuanHeVoiChuHo = "Tạm trú tại địa phương"
+                        };
+                        congDanDAO.ThemCongDan(cDTamTru);
+                    }
                 }
+                else
+                {
+                    trangThai = "Tạm vắng";
+                }
+
                 Tamtrutamvang tTTV = new Tamtrutamvang()
                 {
                     Cccd = txtCCCD.Text,
@@ -128,9 +118,10 @@ namespace QuanLiCongDanThanhPho
                     LiDo = txtLiDo.Text,
                     DiaChi = txtDiaChi.Text,
                 };
-                if (tTTVDAO.LayThongTin(tTTV.Cccd) == null)
+
+                if (tTTVDAO.ThemTamTruTamVang(tTTV))
                 {
-                    tTTVDAO.ThemTamTruTamVang(tTTV);
+                    MessageBox.Show("Thêm thành công");
                 }
                 else
                 {

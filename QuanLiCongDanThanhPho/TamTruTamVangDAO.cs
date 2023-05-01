@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.SqlServer.Server;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
     internal class TamTruTamVangDAO
     {
         QuanlitpContext db = DBConnection.Db;
+        public TamTruTamVangDAO() { }
         public List<Tamtrutamvang> LayDanhSachTamTru(string tu)
         {
             var list = from q in LayDanhSachChuaTu(tu)
@@ -32,8 +26,9 @@ namespace QuanLiCongDanThanhPho
                 db.Tamtrutamvangs.Add(tTTV);
                 db.SaveChanges();
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return false;
             }
             return true;

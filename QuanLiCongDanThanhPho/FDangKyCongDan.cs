@@ -51,7 +51,7 @@ namespace QuanLiCongDanThanhPho
                 Congdan cD = new Congdan()
                 {
                     Cccd = txtCCCD.Text,
-                    Ten = txtTen.Text, 
+                    Ten = txtTen.Text,
                     NgheNghiep = txtNgheNghiep.Text,
                     Sdt = txtSoDT.Text,
                     TonGiao = cboTonGiao.SelectedItem.ToString(),
@@ -59,65 +59,72 @@ namespace QuanLiCongDanThanhPho
                     QuanHeVoiChuHo = cboQuanHe.SelectedItem.ToString(),
                 };
 
-                cDDAO.ThemCongDan(cD);
+                if (cDDAO.ThemCongDan(cD))
+                {
 
-                string gt = "";
-                if (rdoNam.Checked)
-                {
-                    gt = "m";
-                }
-                else
-                {
-                    gt = "f";
-                }
-                Khaisinh kS = new Khaisinh()
-                {
-                    MaKs = txtCCCD.Text,
-                    Ten = txtTen.Text,
-                    GioiTinh = gt,
-                    QuocTich = (string)cboQuocTich.SelectedItem,
-                    DanToc = (string)cboDanToc.SelectedItem,
-                    NgaySinh = dtmNgaySinh.Value,
-                    NgayDangKy = dtmDKKhaiSinh.Value,
-                    NoiSinh = txtNoiSinh.Text,
-                    QueQuan = txtQueQuan.Text,
-                    Cccdcha = txtCCCDCha.Text,
-                    TenCha = txtTenCha.Text,
-                    Cccdme = txtCCCDMe.Text,
-                    TenMe = txtTenMe.Text
-                };
-                kSDAO.ThemKhaSinh(kS);
-
-                Thue thue = new Thue()
-                {
-                    MaThue = txtThue.Text,
-                    Cccd = txtCCCD.Text
-                };
-                thueDAO.ThemThue(thue);
-
-                if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")
-                {
-                    Honnhan hN = new Honnhan()
+                    MessageBox.Show("Thêm thành công");
+                    string gt = "";
+                    if (rdoNam.Checked)
                     {
-                        MaHonNhan = txtMaHonNhan.Text,
-                        Cccdnam = txtCCCD.Text,
-                        TenNam = txtTen.Text,
-                        Cccdnu = txtCCCDVoChong.Text,
-                        TenNu = txtTenVoChong.Text,
-                        NoiDangKy = "",
-                        NgayDangKy = DateTime.Now,
-                    };
-                    if (rdoNam.ToString() == "False")
-                    {
-                        hN.TenNam = txtTenVoChong.Text;
-                        hN.Cccdnam = txtCCCDVoChong.Text;
-                        hN.TenNu = txtTen.Text;
-                        hN.Cccdnu = txtCCCD.Text;
+                        gt = "m";
                     }
-                    hNDAO.ThemHonNhan(hN);
+                    else
+                    {
+                        gt = "f";
+                    }
+                    Khaisinh kS = new Khaisinh()
+                    {
+                        MaKs = txtCCCD.Text,
+                        Ten = txtTen.Text,
+                        GioiTinh = gt,
+                        QuocTich = (string)cboQuocTich.SelectedItem,
+                        DanToc = (string)cboDanToc.SelectedItem,
+                        NgaySinh = dtmNgaySinh.Value,
+                        NgayDangKy = dtmDKKhaiSinh.Value,
+                        NoiSinh = txtNoiSinh.Text,
+                        QueQuan = txtQueQuan.Text,
+                        Cccdcha = txtCCCDCha.Text,
+                        TenCha = txtTenCha.Text,
+                        Cccdme = txtCCCDMe.Text,
+                        TenMe = txtTenMe.Text
+                    };
+                    kSDAO.ThemKhaSinh(kS);
+
+                    Thue thue = new Thue()
+                    {
+                        MaThue = txtThue.Text,
+                        Cccd = txtCCCD.Text
+                    };
+                    thueDAO.ThemThue(thue);
+
+                    if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")
+                    {
+                        Honnhan hN = new Honnhan()
+                        {
+                            MaHonNhan = txtMaHonNhan.Text,
+                            Cccdnam = txtCCCD.Text,
+                            TenNam = txtTen.Text,
+                            Cccdnu = txtCCCDVoChong.Text,
+                            TenNu = txtTenVoChong.Text,
+                            NoiDangKy = "",
+                            NgayDangKy = DateTime.Now,
+                        };
+                        if (rdoNam.ToString() == "False")
+                        {
+                            hN.TenNam = txtTenVoChong.Text;
+                            hN.Cccdnam = txtCCCDVoChong.Text;
+                            hN.TenNu = txtTen.Text;
+                            hN.Cccdnu = txtCCCD.Text;
+                        }
+                        hNDAO.ThemHonNhan(hN);
+                    }
+                    if (ptcHinhDaiDien.Image != null)
+                        hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
                 }
-                if (ptcHinhDaiDien.Image != null) 
-                    hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
+               else
+               {
+                    MessageBox.Show("Thêm thất bại");
+               }    
             }
         }
 

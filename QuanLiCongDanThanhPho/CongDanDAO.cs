@@ -13,31 +13,30 @@ namespace QuanLiCongDanThanhPho
     {
         QuanlitpContext db = DBConnection.Db;
         public CongDanDAO() { }
-        public void ThemCongDan(Congdan cD)
+        public bool ThemCongDan(Congdan cD)
         {
             try
             {
                 db.Congdans.Add(cD);
                 db.SaveChanges();
 
-                Cccd cCCD = new Cccd()
-                {
-                    MaCccd = cD.Cccd
-                };
-                CCCDDAO cCCDDAO = new CCCDDAO();
-                cCCDDAO.ThemCCCD(cCCD);
             }
             catch
-            (Exception ex)
             {
-                MessageBox.Show("Không không bao gồm CCCD " + ex);
+                return false;
             }
+
+            Cccd cCCD = new Cccd()
+            {
+                MaCccd = cD.Cccd
+            };
+            CCCDDAO cCCDDAO = new CCCDDAO();
+            cCCDDAO.ThemCCCD(cCCD);
+            return true;
    
         }
         public bool XoaCongDan(Congdan cD)
         {
-            try
-            {
                 ThueDAO thueDAO = new ThueDAO();
                 KhaiSinhDAO ksDAO = new KhaiSinhDAO();
                 TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
@@ -52,7 +51,8 @@ namespace QuanLiCongDanThanhPho
                 if (hn != null)
                     hnDAO.Xoa(hn);
                 cCCCDAO.XoaCCCD(cD.Cccd);
-
+            try 
+            { 
                 db.Congdans.Remove(cD);
                 db.SaveChanges();
             }
