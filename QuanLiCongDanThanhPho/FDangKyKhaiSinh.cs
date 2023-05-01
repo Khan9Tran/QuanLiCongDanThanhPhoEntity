@@ -149,6 +149,7 @@ namespace QuanLiCongDanThanhPho
                         TenMe = txtTenMe.Text,
                     };
                     kSDAO.ThemKhaSinh(kS);
+                    MessageBox.Show("Thêm thành công");
                 }
                 else
                 {

@@ -77,7 +77,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            if (KiemTraThongTin())
+            if (KiemTraThongTin() && thueDAO.LayThongTin(txtCCCD.Text) == null)
             {
                 Thue thue = new Thue()
                 {

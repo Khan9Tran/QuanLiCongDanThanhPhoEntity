@@ -54,10 +54,6 @@ namespace QuanLiCongDanThanhPho
         {
             db.SaveChanges();
         }
-        public Boolean KiemTraTamTruTamVang(string maCCCD)
-        {
-            return db.Tamtrutamvangs.Where(q => q.Cccd == maCCCD).Any();
-        }
 
         public Tamtrutamvang? LayThongTin(string maCCCD)
         {

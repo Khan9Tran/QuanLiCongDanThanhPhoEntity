@@ -327,6 +327,7 @@
             this.Name = "FDangKyTamTruTamVang";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FDangKyTamTruTamVang";
+            this.Load += new System.EventHandler(this.FDangKyTamTruTamVang_Load);
             this.fpnlChucNang.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

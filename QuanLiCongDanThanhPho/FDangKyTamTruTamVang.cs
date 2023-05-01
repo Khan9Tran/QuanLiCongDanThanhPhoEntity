@@ -5,6 +5,7 @@ namespace QuanLiCongDanThanhPho
     {
         private TamTruTamVangDAO? tTTVDAO;
         private CongDanDAO? congDanDAO;
+        private string cCCD;
 
         public FDangKyTamTruTamVang()
         {
@@ -20,7 +21,7 @@ namespace QuanLiCongDanThanhPho
         public FDangKyTamTruTamVang(string cCCD)
         {
             Init();
-            LoadThongTin(cCCD);
+            this.cCCD = cCCD;
             
         }
         private void LoadThongTin(string cCCD)
@@ -86,53 +87,60 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                string trangThai = "";
-                if (rdoTamTru.Checked == true)
+                if (tTTVDAO.LayThongTin(txtMaSo.Text) == null)
                 {
-                    trangThai = "Tạm trú";
-                    if (congDanDAO.LayThongTin(txtCCCD.Text) == null)
+                    string trangThai = "";
+                    if (rdoTamTru.Checked == true)
                     {
-                        Congdan cDTamTru = new Congdan()
+                        trangThai = "Tạm trú";
+                        if (congDanDAO.LayThongTin(txtCCCD.Text) == null)
                         {
-                            Cccd = txtCCCD.Text,
-                            Ten = txtTen.Text,
-                            Sdt = txtSDT.Text,
-                            MaHk = "00000B",
-                            QuanHeVoiChuHo = "Tạm trú tại địa phương"
-                        };
-                        congDanDAO.ThemCongDan(cDTamTru);
+                            Congdan cDTamTru = new Congdan()
+                            {
+                                Cccd = txtCCCD.Text,
+                                Ten = txtTen.Text,
+                                Sdt = txtSDT.Text,
+                                MaHk = "00000B",
+                                QuanHeVoiChuHo = "Tạm trú tại địa phương"
+                            };
+                            congDanDAO.ThemCongDan(cDTamTru);
+                        }
                     }
-                }
-                else
-                {
-                    trangThai = "Tạm vắng";
-                }
+                    else
+                    {
+                        trangThai = "Tạm vắng";
+                    }
 
-                Tamtrutamvang tTTV = new Tamtrutamvang()
-                {
-                    Cccd = txtCCCD.Text,
-                    TrangThai = trangThai,
-                    MaTttv = txtMaSo.Text,
-                    NgayBd = dtpNgayBatDau.Value,
-                    NgayKt = dtpNgayKetThuc.Value,
-                    LiDo = txtLiDo.Text,
-                    DiaChi = txtDiaChi.Text,
-                };
+                    Tamtrutamvang tTTV = new Tamtrutamvang()
+                    {
+                        Cccd = txtCCCD.Text,
+                        TrangThai = trangThai,
+                        MaTttv = txtMaSo.Text,
+                        NgayBd = dtpNgayBatDau.Value,
+                        NgayKt = dtpNgayKetThuc.Value,
+                        LiDo = txtLiDo.Text,
+                        DiaChi = txtDiaChi.Text,
+                    };
 
-                if (tTTVDAO.ThemTamTruTamVang(tTTV))
-                {
+                    tTTVDAO.ThemTamTruTamVang(tTTV);
                     MessageBox.Show("Thêm thành công");
                 }
                 else
                 {
                     MessageBox.Show("Thêm thất bại");
-                }
+                }    
+     
             }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             ToolsForControl.ClearTextBox(Controls);
+        }
+
+        private void FDangKyTamTruTamVang_Load(object sender, EventArgs e)
+        {
+            LoadThongTin(cCCD);
         }
     }
 }
