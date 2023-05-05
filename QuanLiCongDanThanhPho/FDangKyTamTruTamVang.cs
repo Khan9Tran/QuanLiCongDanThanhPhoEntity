@@ -87,7 +87,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                if (tTTVDAO.LayThongTin(txtMaSo.Text) == null)
+                if (tTTVDAO.LayThongTin(txtCCCD.Text) == null)
                 {
                     string trangThai = "";
                     if (rdoTamTru.Checked == true)
