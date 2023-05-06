@@ -39,55 +39,6 @@ namespace QuanLiCongDanThanhPho
                 }
             }
         }
-        private bool KiemTraThongTin()
-        {
-            if (!KiemTraDuLieuNhap.isMaSo(txtMaSo.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra mã số");
-                txtMaSo.Focus();
-                return false;
-            }    
-            if (!KiemTraDuLieuNhap.isCCCD(txtCCCD.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại CCCD");
-                txtCCCD.Focus(); 
-                return false;
-            }    
-            if (!KiemTraDuLieuNhap.isTen(txtTen.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại họ và tên");
-                txtTen.Focus();
-                return false;
-            }
-            if (rdoTamTru.Checked == false && rdoTamVang.Checked == false) 
-            {
-                MessageBox.Show("Vui lòng chọn tạm trú hoặc tạm vắng");
-                return false;
-            }
-            if (txtLiDo.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập Lí do");
-                return false;
-            }    
-            if (!KiemTraDuLieuNhap.isSoDT(txtSDT.Text))
-            {
-                txtSDT.Focus();
-                MessageBox.Show("Vui lòng SDT đúng định dạng");
-                return false;
-            }   
-            if (!KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text))
-            {
-                txtDiaChi.Focus();
-                MessageBox.Show("Vui lòng kiểm tra lại địa chỉ");
-                return false;
-            }  
-            if (tTTVDAO?.LayThongTin(txtCCCD.Text) != null)
-            {
-                MessageBox.Show("Đăng ký thất bại");
-                return false;
-            }    
-            return true;
-        }
 
         private bool TaoCongDan(Congdan congdan)
         {
