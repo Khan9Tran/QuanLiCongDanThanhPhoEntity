@@ -23,27 +23,32 @@ namespace QuanLiCongDanThanhPho
                 Congdan? chong = congDanDAO.LayThongTin(hN.Cccdnam);
                 Congdan? vo = congDanDAO.LayThongTin(hN.Cccdnu);
 
-                //Nếu 2 người không sống trong khu vực thì không thể đăng ký
-                if (chong == null || vo == null)
-                {
-                    MessageBox.Show("Thông tin không tồn tại trong hệ thống");
-                }
-                else
-                {
-                    //Kiểm tra tên có khớp không
-                    if (chong != null && !isGiongNhau(chong.Ten, hN.TenNam))
-                    {
-                        return false;
-                    }
-                    if (vo != null && !isGiongNhau(vo.Ten, hN.TenNu))
-                    {
-                        return false;
-                    }
+                Khaisinh? ksChong = ksDao.LayThongTin(hN.Cccdnam);
+                Khaisinh? ksVo = ksDao.LayThongTin(hN.Cccdnu);
 
-                    //Thêm công dân chưa có vào tạm trong hệ thống
-                    db.Honnhans.Add(hN);
-                    db.SaveChanges();
+                if ((ksChong != null && ksVo != null ) && (ksChong.GioiTinh != "m" || ksVo.GioiTinh != "f"))
+                {
+                    return false;
                 }
+
+                if (LayThongTin(hN.MaHonNhan) != null || chong == null || vo == null)
+                {
+                    return false;
+                }    
+
+                //Kiểm tra tên có khớp không
+                if (!isGiongNhau(chong.Ten, hN.TenNam))
+                {
+                    return false;
+                }
+                if (!isGiongNhau(vo.Ten, hN.TenNu))
+                {
+                    return false;
+                }
+
+                //Thêm công dân chưa có vào tạm trong hệ thống
+                db.Honnhans.Add(hN);
+                db.SaveChanges();
             }
             catch
             {

@@ -52,6 +52,33 @@ namespace QuanLiCongDanThanhPho
             }    
             return false;
         }
+        public static bool KiemTraHonNhan(Honnhan honnhan)
+        {
+            CongDanDAO cdDAO = new CongDanDAO();
+            if (!isMaSo(honnhan.MaHonNhan))
+            {
+                return false;
+            }    
+            Congdan? chong = cdDAO.LayThongTin(honnhan.Cccdnam);
+            Congdan? vo = cdDAO.LayThongTin(honnhan.Cccdnu);
+
+            if (chong == null || vo == null) 
+            {
+                return false;
+            }
+
+            if (!KiemTraTenVaCCCD(chong) || !KiemTraTenVaCCCD(vo))
+            {
+                return false;
+            }
+
+            if (isEmpty(honnhan.NoiDangKy))
+            {
+                return false;
+            }    
+
+            return true;
+        }
         public static bool isTen(string Ten) 
         {
             string rule = @"^[^!@#$%^*()|+*0123456789]{3,30}$";
