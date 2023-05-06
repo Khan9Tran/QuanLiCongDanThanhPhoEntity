@@ -5,7 +5,7 @@ namespace QuanLiCongDanThanhPho
     {
         private TamTruTamVangDAO? tTTVDAO;
         private CongDanDAO? congDanDAO;
-        private string cCCD;
+        private string? cCCD;
 
         public FDangKyTamTruTamVang()
         {
@@ -28,7 +28,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (cCCD != null)
             {
-                Congdan? congDan = congDanDAO.LayThongTin(cCCD);
+                Congdan? congDan = congDanDAO?.LayThongTin(cCCD);
                 if (congDan != null)
                 {
                     txtTen.Text = congDan.Ten;
@@ -87,13 +87,13 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraThongTin())
             {
-                if (tTTVDAO.LayThongTin(txtCCCD.Text) == null)
+                if (tTTVDAO?.LayThongTin(txtCCCD.Text) == null)
                 {
                     string trangThai = "";
                     if (rdoTamTru.Checked == true)
                     {
                         trangThai = "Tạm trú";
-                        if (congDanDAO.LayThongTin(txtCCCD.Text) == null)
+                        if (congDanDAO?.LayThongTin(txtCCCD.Text) == null)
                         {
                             Congdan cDTamTru = new Congdan()
                             {

@@ -33,7 +33,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraDuLieuNhap.isCCCD(txtCongDan.Text))
             {
-                Congdan? cD = cdDAO.LayThongTin(txtCccdCha.Text);
+                Congdan? cD = cdDAO.LayThongTin(txtCongDan.Text);
                 if (cD != null)
                 {
                     FThongTinCongDan tTCD = new FThongTinCongDan(cD);
