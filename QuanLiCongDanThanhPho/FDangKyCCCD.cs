@@ -15,7 +15,10 @@ namespace QuanLiCongDanThanhPho
         private void FDangKyCCCD_Load(object sender, EventArgs e)
         {
             LoadDanhSach();
-            HeaderText();
+            if (gvDanhSachChuaCapCCCD.Rows.Count > 0)
+            {
+                HeaderText();
+            };
         }
        private bool KiemTraThongTin()
        {
