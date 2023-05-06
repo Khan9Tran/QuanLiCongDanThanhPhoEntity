@@ -64,16 +64,7 @@ namespace QuanLiCongDanThanhPho
         //Li hôn
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Honnhan hN = new Honnhan()
-            {
-                MaHonNhan = txtMaHonNhan.Text,
-                Cccdnam = txtCCCDChong.Text,
-                TenNam = txtTenChong.Text,
-                Cccdnu = txtCCCDVo.Text,
-                TenNu = txtTenVo.Text,
-                NoiDangKy = txtNoiDK.Text,
-                NgayDangKy = dtpNgayDangKy.Value,
-            };
+            Honnhan? hN = hNDAO.LayThongTin(txtCCCDChong.Text);
             if (hNDAO.Xoa(hN))
                 MessageBox.Show("Xóa thành công");
             else
@@ -135,7 +126,7 @@ namespace QuanLiCongDanThanhPho
         //Trả về tên hôn nhân thep mã số
         private string? LayTenTheoCCCD(string cCCD)
         {
-            Khaisinh ks = kSDAO.LayThongTin(cCCD);
+            Khaisinh? ks = kSDAO.LayThongTin(cCCD);
             if (ks != null)
                 return ks.Ten;
             return null;
