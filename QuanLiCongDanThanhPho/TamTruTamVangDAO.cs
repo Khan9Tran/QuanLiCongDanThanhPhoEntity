@@ -19,35 +19,32 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+
+        private Tamtrutamvang LayThongTinTheoMaSo(string maTttv)
+        {
+            var tTTV = db.Tamtrutamvangs.Where(q => q.MaTttv == maTttv).FirstOrDefault();
+            return tTTV;
+        }
         public bool ThemTamTruTamVang(Tamtrutamvang tTTV)
         {
-            try
+            if (LayThongTin(tTTV.Cccd) != null && LayThongTinTheoMaSo(tTTV.MaTttv) != null)
             {
-                db.Tamtrutamvangs.Add(tTTV);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
                 return false;
-            }
+            }    
+            db.Tamtrutamvangs.Add(tTTV);
+            db.SaveChanges();
             return true;
         }
         public bool XoaTamTruTamVang(string canCuoc)
         {
-            try
-            {
-                Tamtrutamvang? tTTV = db.Tamtrutamvangs.Where(x => x.Cccd == canCuoc).FirstOrDefault();
-                if (tTTV != null)
-                {
-                    db.Tamtrutamvangs.Remove(tTTV);
-                    db.SaveChanges();
-                }
-            }
-            catch
+            Tamtrutamvang? tTTV = LayThongTin(canCuoc);
+            if (tTTV == null)
             {
                 return false;
-            }
+            }    
+
+            db.Tamtrutamvangs.Remove(tTTV);
+            db.SaveChanges();
             return true;
         }
         public void CapNhat()

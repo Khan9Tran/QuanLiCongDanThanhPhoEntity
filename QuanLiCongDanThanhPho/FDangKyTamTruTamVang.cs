@@ -89,8 +89,12 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
-        private void CongDanNgoaiTp()
+        private bool TaoCongDan(Congdan congdan)
         {
+            if (congdan != null) 
+            {
+                return true;
+            }
             Congdan cDTamTru = new Congdan()
             {
                 Cccd = txtCCCD.Text,
@@ -99,7 +103,13 @@ namespace QuanLiCongDanThanhPho
                 MaHk = "00000B",
                 QuanHeVoiChuHo = "Tạm trú tại địa phương"
             };
-            congDanDAO?.ThemCongDan(cDTamTru);
+            if (KiemTraDuLieuNhap.KiemTraTenVaCCCD(cDTamTru))
+            {
+                congDanDAO?.ThemCongDan(cDTamTru);
+                return true;
+            }
+            else
+                return false;
         }
 
         private string TamTru()
@@ -114,39 +124,38 @@ namespace QuanLiCongDanThanhPho
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            if (KiemTraThongTin())
+            Tamtrutamvang tTTV = new Tamtrutamvang()
             {
-                Tamtrutamvang tTTV = new Tamtrutamvang()
-                {
-                    Cccd = txtCCCD.Text,
-                    MaTttv = txtMaSo.Text,
-                    NgayBd = dtpNgayBatDau.Value,
-                    NgayKt = dtpNgayKetThuc.Value,
-                    LiDo = txtLiDo.Text,
-                    DiaChi = txtDiaChi.Text,
-                };
-                Congdan? congdan = congDanDAO?.LayThongTin(txtCCCD.Text);
+                Cccd = txtCCCD.Text,
+                MaTttv = txtMaSo.Text,
+                NgayBd = dtpNgayBatDau.Value,
+                NgayKt = dtpNgayKetThuc.Value,
+                LiDo = txtLiDo.Text,
+                DiaChi = txtDiaChi.Text,
+            };
 
-                if (rdoTamTru.Checked == true)
-                {
-                    if (congdan == null)
-                    {
-                        CongDanNgoaiTp();
-                    }
-                    tTTV.TrangThai = TamTru();
-                }
-                else if (rdoTamVang.Checked == true && congdan != null)
-                {
-                    tTTV.TrangThai = TamVang();
-                }
-                else
-                {
-                    MessageBox.Show("Đăng ký thất bại!");
-                    return;
-                }
-                tTTVDAO?.ThemTamTruTamVang(tTTV);
-                MessageBox.Show("Đăng ký thành công");
+            Congdan? congdan = congDanDAO?.LayThongTin(txtCCCD.Text);
+            if (rdoTamVang.Checked == true && congdan == null)
+            {
+                MessageBox.Show("Thêm thất bại");
+                return;
+            }   
+            else if (rdoTamTru.Checked == true)
+            {
+                tTTV.TrangThai = TamTru();
             }
+            else if (rdoTamVang.Checked == true)
+            {
+                tTTV.TrangThai = TamVang();
+            }
+            if (KiemTraDuLieuNhap.isTamTruTamVang(tTTV) && KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text) && TaoCongDan(congdan) && tTTVDAO.ThemTamTruTamVang(tTTV))
+            {
+                MessageBox.Show("Thêm thành công");
+            }
+            else
+            {
+                MessageBox.Show("Thêm thất bại");
+            }    
         }
         private void btnReset_Click(object sender, EventArgs e)
         {

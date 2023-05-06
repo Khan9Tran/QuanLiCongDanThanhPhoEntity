@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCongDanThanhPho.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -57,6 +58,49 @@ namespace QuanLiCongDanThanhPho
             string rule = @"^([Nn]{1})((\u1EEE{1})|(\u1EEF{1})|([Uu]{1})|([Aa]{1}[Mm]{1}))$";
             return KiemTra(GioiTinh, rule);
         }
-
+        public static bool KiemTraTenVaCCCD(Congdan congdan)
+        {
+            if (!isCCCD(congdan.Cccd))
+            {
+                return false;
+            }
+            if (!isTen(congdan.Ten))
+            {
+                return false;
+            }    
+            return true;
+        }
+        public static bool KiemTraSoDT(Congdan congdan)
+        {
+            if (!isSoDT(congdan.Sdt))
+            {
+                return false;
+            }
+            return true;
+        }
+        public static bool isTamTruTamVang(Tamtrutamvang data)
+        {
+            if (!isMaSo(data.MaTttv))
+            {
+                return false;
+            }
+            if (data.TrangThai != "Tạm trú" && data.TrangThai != "Tạm vắng")
+            {
+                return false;
+            }
+            if (data.LiDo == "" || data.LiDo == null)
+            {
+                return false;
+            }
+            if (!isDiaChi(data.DiaChi))
+            {
+                return false;
+            }
+            if (!isCCCD(data.Cccd))
+            {
+                return false;
+            }    
+            return true;
+        }
     }
 }
