@@ -115,7 +115,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-        private void LayHinhDaiDienDangHD(string name, PictureBox ptcHinhDaiDien)
+        public void LayHinhDaiDienDangHD(string name, PictureBox ptcHinhDaiDien)
         {
             string folderPath = GetFolderPath();
             string imagePath = string.Format(@$"{folderPath}\{name}");

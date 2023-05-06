@@ -150,7 +150,7 @@ namespace QuanLiCongDanThanhPho
                 LayHonNhan();
                 LayHoKhau();
                 LayTamTruTamVang();
-                hinhCongDan.LayHinhDaiDien(txtCCCD.Text,ptcHinhDaiDien);
+                hinhCongDan.LayHinhDaiDienDangHD(txtCCCD.Text,ptcHinhDaiDien);
             }
         }
         private void TatXemCCCD()
