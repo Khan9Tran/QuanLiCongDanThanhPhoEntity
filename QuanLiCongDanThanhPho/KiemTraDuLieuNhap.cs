@@ -43,9 +43,9 @@ namespace QuanLiCongDanThanhPho
             return KiemTra(CCCD, rule);
         }
 
-        public static bool isEmpty(TextBox txtData)
+        public static bool isEmpty(string data)
         {
-            if (txtData.Text == "" || txtData.Text == null)
+            if (data == "" || data == null)
             {
                 MessageBox.Show("Không để trống dữ liệu");
                 return true;

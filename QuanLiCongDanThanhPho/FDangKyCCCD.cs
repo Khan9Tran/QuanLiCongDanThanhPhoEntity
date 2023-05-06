@@ -39,7 +39,7 @@ namespace QuanLiCongDanThanhPho
             Congdan? cD = congDanDAO.LayThongTin(txtCCCD.Text);
             Cccd? cCCD = cCCDDAO.LayThongTin(txtCCCD.Text);
 
-            if (cD != null && cD.Ten == txtTen.Text && KiemTraDuLieuNhap.KiemTraTenVaCCCD(cD) && KiemTraDuLieuNhap.isEmpty(txtDDNhanDang) == false && cCCD != null)
+            if (cD != null && cD.Ten == txtTen.Text && KiemTraDuLieuNhap.KiemTraTenVaCCCD(cD) && KiemTraDuLieuNhap.isEmpty(txtDDNhanDang.Text) == false && cCCD != null)
             {
                 cCCD.NgayCap = dtmNgayCap.Value;
                 cCCD.DacDiem = txtDDNhanDang.Text;
