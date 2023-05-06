@@ -7,13 +7,40 @@ namespace QuanLiCongDanThanhPho
         private CongDanDAO cDDAO;
         private HonNhanDAO hNDAO;
         private KhaiSinhDAO kSDAO;
-        public FDangKyKhaiSinh()
+
+        private void Init()
         {
             InitializeComponent();
             StackForm.Add(this);
             cDDAO = new CongDanDAO();
             hNDAO = new HonNhanDAO();
             kSDAO = new KhaiSinhDAO();
+        }
+
+        public FDangKyKhaiSinh()
+        {
+            Init();
+        }
+
+        public FDangKyKhaiSinh(string? cCCDThanNhan)
+        {
+            Init();
+            LoadThongTinChaMe(cCCDThanNhan);
+        }
+
+        private void LoadThongTinChaMe(string? cCCDThanNhan)
+        {
+            if (cCCDThanNhan != null)
+            {
+                Honnhan honNhan = hNDAO.LayThongTin(cCCDThanNhan);
+                if (honNhan != null)
+                {
+                    txtCccdCha.Text = honNhan.Cccdnam;
+                    txtCccdMe.Text = honNhan.Cccdnu;
+                    txtTenCha.Text = honNhan.TenNam;
+                    txtTenMe.Text = honNhan.TenNu;
+                }
+            }
         }
 
         private bool KiemTraThongTin()

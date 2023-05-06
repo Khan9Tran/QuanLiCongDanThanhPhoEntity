@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FDanhSachCongDan));
             this.gvDanhSachCongDan = new System.Windows.Forms.DataGridView();
             this.cmnusMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmnusMenuChiTiet = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,6 +51,7 @@
             this.btnThue = new System.Windows.Forms.Button();
             this.btnTamVang = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnKhaiSinh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachCongDan)).BeginInit();
             this.cmnusMenu.SuspendLayout();
             this.fpnlPhanLoai.SuspendLayout();
@@ -246,9 +248,10 @@
             this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnThem.Location = new System.Drawing.Point(3, 3);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(150, 50);
+            this.btnThem.Size = new System.Drawing.Size(107, 50);
             this.btnThem.TabIndex = 56;
             this.btnThem.Text = "Thêm ";
+            this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
@@ -289,9 +292,10 @@
             this.fpnlChucNang.Controls.Add(this.btnThue);
             this.fpnlChucNang.Controls.Add(this.btnTamVang);
             this.fpnlChucNang.Controls.Add(this.button1);
-            this.fpnlChucNang.Location = new System.Drawing.Point(861, 64);
+            this.fpnlChucNang.Controls.Add(this.btnKhaiSinh);
+            this.fpnlChucNang.Location = new System.Drawing.Point(839, 64);
             this.fpnlChucNang.Name = "fpnlChucNang";
-            this.fpnlChucNang.Size = new System.Drawing.Size(520, 62);
+            this.fpnlChucNang.Size = new System.Drawing.Size(551, 62);
             this.fpnlChucNang.TabIndex = 58;
             // 
             // btnThue
@@ -301,11 +305,12 @@
             this.btnThue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThue.Image = global::QuanLiCongDanThanhPho.Properties.Resources.personal;
             this.btnThue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThue.Location = new System.Drawing.Point(159, 3);
+            this.btnThue.Location = new System.Drawing.Point(116, 3);
             this.btnThue.Name = "btnThue";
-            this.btnThue.Size = new System.Drawing.Size(150, 50);
+            this.btnThue.Size = new System.Drawing.Size(107, 50);
             this.btnThue.TabIndex = 57;
             this.btnThue.Text = "Thuế";
+            this.btnThue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnThue.UseVisualStyleBackColor = false;
             this.btnThue.Click += new System.EventHandler(this.btnThue_Click);
             // 
@@ -316,9 +321,9 @@
             this.btnTamVang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTamVang.Image = global::QuanLiCongDanThanhPho.Properties.Resources.potential;
             this.btnTamVang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTamVang.Location = new System.Drawing.Point(315, 3);
+            this.btnTamVang.Location = new System.Drawing.Point(229, 3);
             this.btnTamVang.Name = "btnTamVang";
-            this.btnTamVang.Size = new System.Drawing.Size(150, 50);
+            this.btnTamVang.Size = new System.Drawing.Size(147, 50);
             this.btnTamVang.TabIndex = 58;
             this.btnTamVang.Text = "     Tạm vắng";
             this.btnTamVang.UseVisualStyleBackColor = false;
@@ -326,12 +331,27 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(471, 3);
+            this.button1.Location = new System.Drawing.Point(382, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(8, 8);
             this.button1.TabIndex = 59;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnKhaiSinh
+            // 
+            this.btnKhaiSinh.BackColor = System.Drawing.Color.Transparent;
+            this.btnKhaiSinh.FlatAppearance.BorderSize = 0;
+            this.btnKhaiSinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKhaiSinh.Image = ((System.Drawing.Image)(resources.GetObject("btnKhaiSinh.Image")));
+            this.btnKhaiSinh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKhaiSinh.Location = new System.Drawing.Point(396, 3);
+            this.btnKhaiSinh.Name = "btnKhaiSinh";
+            this.btnKhaiSinh.Size = new System.Drawing.Size(147, 50);
+            this.btnKhaiSinh.TabIndex = 60;
+            this.btnKhaiSinh.Text = "      Khai sinh";
+            this.btnKhaiSinh.UseVisualStyleBackColor = false;
+            this.btnKhaiSinh.Click += new System.EventHandler(this.btnKhaiSinh_Click);
             // 
             // FDanhSachCongDan
             // 
@@ -385,5 +405,6 @@
         private Button btnThue;
         private Button btnTamVang;
         private Button button1;
+        private Button btnKhaiSinh;
     }
 }
