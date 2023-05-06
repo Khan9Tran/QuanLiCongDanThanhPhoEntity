@@ -32,7 +32,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (cCCDThanNhan != null)
             {
-                Honnhan honNhan = hNDAO.LayThongTin(cCCDThanNhan);
+                Honnhan? honNhan = hNDAO.LayThongTin(cCCDThanNhan);
                 if (honNhan != null)
                 {
                     txtCccdCha.Text = honNhan.Cccdnam;

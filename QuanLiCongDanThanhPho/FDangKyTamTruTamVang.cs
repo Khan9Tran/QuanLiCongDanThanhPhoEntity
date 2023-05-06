@@ -81,58 +81,73 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Vui lòng kiểm tra lại địa chỉ");
                 return false;
             }  
+            if (tTTVDAO?.LayThongTin(txtCCCD.Text) != null)
+            {
+                MessageBox.Show("Đăng ký thất bại");
+                return false;
+            }    
             return true;
         }
+
+        private void CongDanNgoaiTp()
+        {
+            Congdan cDTamTru = new Congdan()
+            {
+                Cccd = txtCCCD.Text,
+                Ten = txtTen.Text,
+                Sdt = txtSDT.Text,
+                MaHk = "00000B",
+                QuanHeVoiChuHo = "Tạm trú tại địa phương"
+            };
+            congDanDAO?.ThemCongDan(cDTamTru);
+        }
+
+        private string TamTru()
+        {
+            return "Tạm trú";
+        }
+
+        private string TamVang()
+        {
+            return "Tạm vắng";
+        }
+
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             if (KiemTraThongTin())
             {
-                if (tTTVDAO?.LayThongTin(txtCCCD.Text) == null)
+                Tamtrutamvang tTTV = new Tamtrutamvang()
                 {
-                    string trangThai = "";
-                    if (rdoTamTru.Checked == true)
-                    {
-                        trangThai = "Tạm trú";
-                        if (congDanDAO?.LayThongTin(txtCCCD.Text) == null)
-                        {
-                            Congdan cDTamTru = new Congdan()
-                            {
-                                Cccd = txtCCCD.Text,
-                                Ten = txtTen.Text,
-                                Sdt = txtSDT.Text,
-                                MaHk = "00000B",
-                                QuanHeVoiChuHo = "Tạm trú tại địa phương"
-                            };
-                            congDanDAO.ThemCongDan(cDTamTru);
-                        }
-                    }
-                    else
-                    {
-                        trangThai = "Tạm vắng";
-                    }
+                    Cccd = txtCCCD.Text,
+                    MaTttv = txtMaSo.Text,
+                    NgayBd = dtpNgayBatDau.Value,
+                    NgayKt = dtpNgayKetThuc.Value,
+                    LiDo = txtLiDo.Text,
+                    DiaChi = txtDiaChi.Text,
+                };
+                Congdan? congdan = congDanDAO?.LayThongTin(txtCCCD.Text);
 
-                    Tamtrutamvang tTTV = new Tamtrutamvang()
+                if (rdoTamTru.Checked == true)
+                {
+                    if (congdan == null)
                     {
-                        Cccd = txtCCCD.Text,
-                        TrangThai = trangThai,
-                        MaTttv = txtMaSo.Text,
-                        NgayBd = dtpNgayBatDau.Value,
-                        NgayKt = dtpNgayKetThuc.Value,
-                        LiDo = txtLiDo.Text,
-                        DiaChi = txtDiaChi.Text,
-                    };
-
-                    tTTVDAO.ThemTamTruTamVang(tTTV);
-                    MessageBox.Show("Thêm thành công");
+                        CongDanNgoaiTp();
+                    }
+                    tTTV.TrangThai = TamTru();
+                }
+                else if (rdoTamVang.Checked == true && congdan != null)
+                {
+                    tTTV.TrangThai = TamVang();
                 }
                 else
                 {
-                    MessageBox.Show("Thêm thất bại");
-                }    
-     
+                    MessageBox.Show("Đăng ký thất bại!");
+                    return;
+                }
+                tTTVDAO?.ThemTamTruTamVang(tTTV);
+                MessageBox.Show("Đăng ký thành công");
             }
         }
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             ToolsForControl.ClearTextBox(Controls);
@@ -140,7 +155,8 @@ namespace QuanLiCongDanThanhPho
 
         private void FDangKyTamTruTamVang_Load(object sender, EventArgs e)
         {
-            LoadThongTin(cCCD);
+            if (cCCD != null)
+                LoadThongTin(cCCD);
         }
     }
 }

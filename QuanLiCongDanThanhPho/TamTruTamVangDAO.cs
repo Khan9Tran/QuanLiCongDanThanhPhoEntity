@@ -96,7 +96,7 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
-
+        
         public int LaySoLuongQuaHanTamTru()
         {
             var list = from q in LayDanhSachTheoTrangThai("Tạm trú")
