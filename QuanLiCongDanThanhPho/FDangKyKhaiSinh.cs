@@ -4,9 +4,9 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyKhaiSinh : Form
     {
-        private CongDanDAO cDDAO;
-        private HonNhanDAO hNDAO;
-        private KhaiSinhDAO kSDAO;
+        private CongDanDAO? cDDAO;
+        private HonNhanDAO? hNDAO;
+        private KhaiSinhDAO? kSDAO;
 
         private void Init()
         {
@@ -32,7 +32,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (cCCDThanNhan != null)
             {
-                Honnhan? honNhan = hNDAO.LayThongTin(cCCDThanNhan);
+                Honnhan? honNhan = hNDAO?.LayThongTin(cCCDThanNhan);
                 if (honNhan != null)
                 {
                     txtCccdCha.Text = honNhan.Cccdnam;
@@ -43,76 +43,6 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-        private bool KiemTraThongTin()
-        {
-            if (!KiemTraDuLieuNhap.isTen(txtTen.Text))
-            {
-                txtTen.Focus();
-                MessageBox.Show("Tên Không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isCCCD(txtCccd.Text))
-            {
-                txtCccd.Focus();
-                MessageBox.Show("CCCD không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isDiaChi(txtQueQuan.Text))
-            {
-                txtQueQuan.Focus();
-                MessageBox.Show("Quê quán Không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isDiaChi(txtNoiSinh.Text))
-            {
-                txtNoiSinh.Focus();
-                MessageBox.Show("Nơi sinh không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isTen(txtTenCha.Text))
-            {
-                txtTenCha.Focus();
-                MessageBox.Show("Tên cha Không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isCCCD(txtCccdCha.Text))
-            {
-                txtCccdCha.Focus();
-                MessageBox.Show("CCCD cha không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isTen(txtTenMe.Text))
-            {
-                txtTenMe.Focus();
-                MessageBox.Show("Tên mẹ Không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isCCCD(txtCccdMe.Text))
-            {
-                txtCccdMe.Focus();
-                MessageBox.Show("CCCD Me không hợp lệ");
-                return false;
-            }
-            if (rdoNam.Checked == false && rdoNu.Checked == false)
-            {
-                MessageBox.Show("Giới tính không hợp lệ");
-                return false;
-            }
-            if (cboQuocTich.SelectedItem == null)
-            {
-                cboQuocTich.Focus();
-                MessageBox.Show("Quốc tịch không hợp lệ");
-                return false;
-            }
-            if (cboDanToc.SelectedItem == null)
-            {
-                cboDanToc.Focus();
-                MessageBox.Show("Dân tộc không hợp lệ");
-                return false;
-            }
-            return true;
-
-        }
 
         private void btnReset_Click(object sender, EventArgs e)
         { 
@@ -121,8 +51,8 @@ namespace QuanLiCongDanThanhPho
 
         private bool KiemTraChaMe()
         {
-            Honnhan? chong = hNDAO.LayThongTin(txtCccdCha.Text);
-            Honnhan? vo = hNDAO.LayThongTin(txtCccdMe.Text);
+            Honnhan? chong = hNDAO?.LayThongTin(txtCccdCha.Text);
+            Honnhan? vo = hNDAO?.LayThongTin(txtCccdMe.Text);
 
             if (chong == null || vo == null)
                 return false;   
@@ -137,51 +67,47 @@ namespace QuanLiCongDanThanhPho
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            if (KiemTraThongTin())
+            Congdan congDan = new Congdan()
             {
-                if (KiemTraChaMe())
-                {
-                    Congdan congDan = new Congdan()
-                    {
-                        Ten = txtTen.Text,
-                        Cccd = txtCccd.Text,
-                        MaHk = "00000A"
-                    };
-                    cDDAO.ThemCongDan(congDan);
+                Ten = txtTen.Text,
+                Cccd = txtCccd.Text,
+                MaHk = "00000A"
+            };
 
-                    string gt = "";
-                    if (rdoNam.Checked)
-                    {
-                        gt = "m";
-                    }
-                    else
-                    {
-                        gt = "f";
-                    }
+            string gt = "";
+            if (rdoNam.Checked)
+            {
+                gt = "m";
+            }
+            else
+            {
+                gt = "f";
+            }
 
-                    Khaisinh kS = new Khaisinh()
-                    {
-                        MaKs = txtCccd.Text,
-                        Ten = txtTen.Text,
-                        GioiTinh = gt,
-                        QuocTich = (string)cboQuocTich.SelectedItem,
-                        DanToc = (string)cboDanToc.SelectedItem,
-                        NgaySinh = dtmNgaySinh.Value,
-                        NgayDangKy = dtmNgayDangKy.Value,
-                        NoiSinh = txtNoiSinh.Text,
-                        QueQuan = txtQueQuan.Text,
-                        Cccdcha = txtCccdCha.Text,
-                        TenCha = txtTenCha.Text,
-                        Cccdme = txtCccdMe.Text,
-                        TenMe = txtTenMe.Text,
-                    };
-                    kSDAO.ThemKhaSinh(kS);
-                    MessageBox.Show("Thêm thành công");
-                }
-                else
-                {
-                    MessageBox.Show("Sai thông tin");
-                }    
+            Khaisinh kS = new Khaisinh()
+            {
+                MaKs = txtCccd.Text,
+                Ten = txtTen.Text,
+                GioiTinh = gt,
+                QuocTich = (string)cboQuocTich.SelectedItem,
+                DanToc = (string)cboDanToc.SelectedItem,
+                NgaySinh = dtmNgaySinh.Value,
+                NgayDangKy = dtmNgayDangKy.Value,
+                NoiSinh = txtNoiSinh.Text,
+                QueQuan = txtQueQuan.Text,
+                Cccdcha = txtCccdCha.Text,
+                TenCha = txtTenCha.Text,
+                Cccdme = txtCccdMe.Text,
+                TenMe = txtTenMe.Text,
+            };
+
+            if (KiemTraChaMe() && KiemTraDuLieuNhap.KiemTraTenVaCCCD(congDan) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && cDDAO.ThemCongDan(congDan) && kSDAO.ThemKhaiSinh(kS))
+            {
+                MessageBox.Show("Thêm thành công");
+            }
+            else
+            {
+                MessageBox.Show("Sai thông tin");
             }
         }
 

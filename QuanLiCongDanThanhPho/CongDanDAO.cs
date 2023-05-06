@@ -15,21 +15,16 @@ namespace QuanLiCongDanThanhPho
         public CongDanDAO() { }
         public bool ThemCongDan(Congdan cD)
         {
-            try
-            {
-                db.Congdans.Add(cD);
-                db.SaveChanges();
-
-            }
-            catch
-            {
+            if (LayThongTin(cD.Cccd) != null)
                 return false;
-            }
+            db.Congdans.Add(cD);
+            db.SaveChanges();
 
             Cccd cCCD = new Cccd()
             {
                 MaCccd = cD.Cccd
             };
+
             CCCDDAO cCCDDAO = new CCCDDAO();
             cCCDDAO.ThemCCCD(cCCD);
             return true;

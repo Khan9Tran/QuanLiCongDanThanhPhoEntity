@@ -139,5 +139,26 @@ namespace QuanLiCongDanThanhPho
             }    
             return true;
         }
+
+        public static bool KiemTraKhaiSinh(Khaisinh khaiSinh)
+        {
+            if (!isDiaChi(khaiSinh.QueQuan))
+            {
+                return false;
+            }
+            if (!isDiaChi(khaiSinh.NoiSinh))
+            {
+                return false;
+            }
+            if (isEmpty(khaiSinh.QuocTich))
+            {
+                return false;
+            }
+            if (isEmpty(khaiSinh.DanToc))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

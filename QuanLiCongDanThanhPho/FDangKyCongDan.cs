@@ -88,7 +88,7 @@ namespace QuanLiCongDanThanhPho
                         Cccdme = txtCCCDMe.Text,
                         TenMe = txtTenMe.Text
                     };
-                    kSDAO.ThemKhaSinh(kS);
+                    kSDAO.ThemKhaiSinh(kS);
 
                     Thue thue = new Thue()
                     {

@@ -8,15 +8,10 @@ namespace QuanLiCongDanThanhPho
         QuanlitpContext db = DBConnection.Db;
         public bool ThemCCCD(Cccd canCuoc)
         {
-            try
-            {
-                db.Add(canCuoc);
-                db.SaveChanges();
-            }
-            catch 
-            {
+            if (LayThongTin(canCuoc.MaCccd) != null)
                 return false;
-            }
+            db.Add(canCuoc);
+            db.SaveChanges();
             return true;
         }
 

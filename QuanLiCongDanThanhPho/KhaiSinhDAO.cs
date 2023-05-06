@@ -13,17 +13,12 @@ namespace QuanLiCongDanThanhPho
             db.SaveChanges();
         }
 
-        public bool ThemKhaSinh(Khaisinh kS)
+        public bool ThemKhaiSinh(Khaisinh kS)
         {
-            try
-            {
-                db.Khaisinhs.Add(kS);
-                db.SaveChanges();
-            }
-            catch 
-            {
-                return false;
-            } 
+            if (LayThongTin(kS.MaKs) != null)
+                return false;   
+            db.Khaisinhs.Add(kS);
+            db.SaveChanges();
             return true;
             
         }
@@ -42,8 +37,8 @@ namespace QuanLiCongDanThanhPho
 
         public Khaisinh? LayThongTin(string maCCCD)
         {
-                Khaisinh? khaiSinh = db.Khaisinhs.Find(maCCCD);
-                return khaiSinh;
+            Khaisinh? khaiSinh = db.Khaisinhs.Find(maCCCD);
+            return khaiSinh;
         }
 
         public List<object> LayDanhSachVeSoNamNu()
