@@ -4,11 +4,13 @@ namespace QuanLiCongDanThanhPho
     public partial class FDangKyCCCD : Form
     {
         CCCDDAO cCCDDAO;
+        CongDanDAO congDanDAO;
 
         public FDangKyCCCD()
         {
             InitializeComponent();
             cCCDDAO = new CCCDDAO();
+            congDanDAO = new CongDanDAO();
             StackForm.Add(this);
         }
         
@@ -20,26 +22,6 @@ namespace QuanLiCongDanThanhPho
                 HeaderText();
             };
         }
-       private bool KiemTraThongTin()
-       {
-            if (txtCCCD.Text == "")
-            {
-                MessageBox.Show("CCCD không hợp lệ");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isTen(txtTen.Text))
-            {
-                MessageBox.Show("Họ và tên không hợp lệ");
-                return false;
-            }
-            if (txtDDNhanDang.Text== "")
-            {
-                MessageBox.Show("Đặc điểm nhận dạng không được để trống");
-                return false;
-            }
-            return true;
-
-       }
         private void Reset()
         {
             txtCCCD.Text = "";
@@ -54,26 +36,21 @@ namespace QuanLiCongDanThanhPho
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            CongDanDAO cDDAO = new CongDanDAO();
-            if (KiemTraThongTin())
+            Congdan? cD = congDanDAO.LayThongTin(txtCCCD.Text);
+            Cccd? cCCD = cCCDDAO.LayThongTin(txtCCCD.Text);
+
+            if (cD != null && cD.Ten == txtTen.Text && KiemTraDuLieuNhap.KiemTraTenVaCCCD(cD) && KiemTraDuLieuNhap.isEmpty(txtDDNhanDang) == false && cCCD != null)
             {
-                Congdan? cD = cDDAO.LayThongTin(txtCCCD.Text);
-                if (cD != null && cD.Ten == txtTen.Text)
-                {
-                    Cccd cCCD = new Cccd()
-                    {
-                        MaCccd = txtCCCD.Text,
-                        NgayCap = dtmNgayCap.Value,
-                        DacDiem = txtDDNhanDang.Text
-                    };
-                    cCCDDAO.CapNhatCCCD(cCCD);
-                }
-                else
-                {
-                    MessageBox.Show("CCCD và Họ tên không khớp");
-                }    
-                
+                cCCD.NgayCap = dtmNgayCap.Value;
+                cCCD.DacDiem = txtDDNhanDang.Text;
+                cCCDDAO.CapNhatCCCD();
+                MessageBox.Show("Thêm thành công");
             }
+            else
+            {
+                MessageBox.Show("CCCD và Họ tên không khớp");
+            }    
+                
             LoadDanhSach();
             
         }

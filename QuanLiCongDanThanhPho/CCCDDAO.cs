@@ -35,17 +35,16 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
-        public void CapNhatCCCD(Cccd canCuoc) 
+        public void CapNhatCCCD() 
         {
-            Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == canCuoc.MaCccd).FirstOrDefault();
-            if (cCCD != null)
-            {
-                cCCD.NgayCap = canCuoc.NgayCap;
-                cCCD.DacDiem = canCuoc.DacDiem;
-                db.SaveChanges();
-            }
+            db.SaveChanges();
         }
 
+        public Cccd? LayThongTin(string maCanCuoc)
+        {
+            Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == maCanCuoc).FirstOrDefault();
+            return cCCD;
+        }
         public List<Object> DanhSachCCCDTheoDacDiem()
         {
             var cccds = db.Cccds.Where(q => q.DacDiem == null);

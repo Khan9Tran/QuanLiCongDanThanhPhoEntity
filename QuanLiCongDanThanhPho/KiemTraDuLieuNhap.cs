@@ -43,6 +43,15 @@ namespace QuanLiCongDanThanhPho
             return KiemTra(CCCD, rule);
         }
 
+        public static bool isEmpty(TextBox txtData)
+        {
+            if (txtData.Text == "" || txtData.Text == null)
+            {
+                MessageBox.Show("Không để trống dữ liệu");
+                return true;
+            }    
+            return false;
+        }
         public static bool isTen(string Ten) 
         {
             string rule = @"^[^!@#$%^*()|+*0123456789]{3,30}$";
@@ -68,6 +77,7 @@ namespace QuanLiCongDanThanhPho
             {
                 return false;
             }    
+
             return true;
         }
         public static bool KiemTraSoDT(Congdan congdan)
