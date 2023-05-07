@@ -52,6 +52,7 @@ namespace QuanLiCongDanThanhPho
             }    
             return false;
         }
+
         public static bool KiemTraHonNhan(Honnhan honnhan)
         {
             CongDanDAO cdDAO = new CongDanDAO();
@@ -79,6 +80,7 @@ namespace QuanLiCongDanThanhPho
 
             return true;
         }
+
         public static bool isTen(string Ten) 
         {
             string rule = @"^[^!@#$%^*()|+*0123456789]{3,30}$";
@@ -94,6 +96,7 @@ namespace QuanLiCongDanThanhPho
             string rule = @"^([Nn]{1})((\u1EEE{1})|(\u1EEF{1})|([Uu]{1})|([Aa]{1}[Mm]{1}))$";
             return KiemTra(GioiTinh, rule);
         }
+
         public static bool KiemTraTenVaCCCD(Congdan congdan)
         {
             if (!isCCCD(congdan.Cccd))
@@ -107,10 +110,12 @@ namespace QuanLiCongDanThanhPho
 
             return true;
         }
+
         public static bool KiemTraCongDan(Congdan congdan)
         {
             return KiemTraTenVaCCCD(congdan) && isSoDT(congdan.Sdt) && !isEmpty(congdan.NgheNghiep) && !isEmpty(congdan.TonGiao);
         }
+
         public static bool isTamTruTamVang(Tamtrutamvang data)
         {
             if (!isMaSo(data.MaTttv))
@@ -144,6 +149,7 @@ namespace QuanLiCongDanThanhPho
         {
             return isCCCD(thue.Cccd) && isMaSo(thue.MaThue);
         }
+
         public static bool KiemTraThue(Thue thue)
         {
             return KiemTraThueDonGian(thue) && !isEmpty(thue.SoTienCanNop) && !isEmpty(thue.SoTienDaNop);
@@ -161,6 +167,7 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+
         public static bool KiemTraKhaiSinh(Khaisinh khaiSinh)
         {
             return isDiaChi(khaiSinh.QueQuan) && isDiaChi(khaiSinh.NoiSinh) && !isEmpty(khaiSinh.QuocTich) && !isEmpty(khaiSinh.DanToc);

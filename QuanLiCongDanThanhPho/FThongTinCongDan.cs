@@ -150,7 +150,7 @@ namespace QuanLiCongDanThanhPho
                 LayHonNhan();
                 LayHoKhau();
                 LayTamTruTamVang();
-                hinhCongDan.LayHinhDaiDienDangHD(txtCCCD.Text,ptcHinhDaiDien);
+                hinhCongDan.LayHinhDaiDien(txtCCCD.Text,ptcHinhDaiDien);
             }
         }
         private void TatXemCCCD()
@@ -217,11 +217,11 @@ namespace QuanLiCongDanThanhPho
                 khaiSinh.NgaySinh = dtmNgaySinh.Value;
                 khaiSinh.DanToc = txtDanToc.Text;
                 khaiSinh.QuocTich = txtQuocTich.Text;
-                if (txtGioiTinh.Text == "Nam")
+                if (txtGioiTinh.Text == "Nam" || txtGioiTinh.Text == "NAM" || txtGioiTinh.Text == "nam")
                     khaiSinh.GioiTinh = "m";
                 else
                     khaiSinh.GioiTinh = "f";
-                if (KiemTraDuLieuNhap.KiemTraKhaiSinh(khaiSinh))
+                if (KiemTraDuLieuNhap.isGioiTinh(txtGioiTinh.Text) && KiemTraDuLieuNhap.KiemTraKhaiSinh(khaiSinh))
                     ksDAO.CapNhatKhaiSinh();
             }
         }    

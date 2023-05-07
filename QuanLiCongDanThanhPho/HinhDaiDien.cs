@@ -114,37 +114,5 @@ namespace QuanLiCongDanThanhPho
                 GanHinh(jpg, ptcHinhDaiDien);
             }
         }
-
-        public void LayHinhDaiDienDangHD(string name, PictureBox ptcHinhDaiDien)
-        {
-            string folderPath = GetFolderPath();
-            string imagePath = string.Format(@$"{folderPath}\{name}");
-
-            string png = imagePath + ".png";
-            string jpg = imagePath + ".jpg";
-
-            Bitmap? bitmap = null;
-            if (File.Exists(png))
-            {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(png, true)) //Giúp k bị lỗi không thể truy cập file đang hoạt động khi xóa
-                {
-                    bitmap = new Bitmap(tempImage);
-                    ptcHinhDaiDien.Image = bitmap;
-                }
-            }
-            else if (File.Exists(jpg))
-            {
-                bitmap?.Dispose();
-                ptcHinhDaiDien.Image?.Dispose();
-
-                using (Bitmap tempImage = new Bitmap(jpg, true))
-                {
-                    GanHinh(jpg, ptcHinhDaiDien);
-                }
-            }
-        }
     }
 }

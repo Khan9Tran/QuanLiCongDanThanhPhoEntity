@@ -98,6 +98,11 @@ namespace QuanLiCongDanThanhPho
             {
                 hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
 
+                if (!thueDAO.ThemThue(thue))
+                {
+                    MessageBox.Show("Mã số thuế bị trùng. Vui lòng đăng ký thuế sau");
+                }
+
                 if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")
                 {
                     Honnhan hN = new Honnhan()
@@ -116,11 +121,7 @@ namespace QuanLiCongDanThanhPho
                         hN.Cccdnam = txtCCCDVoChong.Text;
                         hN.TenNu = txtTen.Text;
                         hN.Cccdnu = txtCCCD.Text;
-                    }
-                    if (!thueDAO.ThemThue(thue))
-                    {
-                        MessageBox.Show("Mã số thuế bị trùng. Vui lòng đăng ký thuế sau");
-                    }    
+                    }   
 
                     if (KiemTraDuLieuNhap.KiemTraHonNhan(hN) && hNDAO.ThemHonNhan(hN))
                     {

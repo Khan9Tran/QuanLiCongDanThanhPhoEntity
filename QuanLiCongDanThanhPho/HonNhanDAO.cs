@@ -31,7 +31,7 @@ namespace QuanLiCongDanThanhPho
                     return false;
                 }
 
-                if (LayThongTin(hN.MaHonNhan) != null || chong == null || vo == null)
+                if (LayThongTinTheoMaSo(hN.MaHonNhan) != null || chong == null || vo == null)
                 {
                     return false;
                 }    
