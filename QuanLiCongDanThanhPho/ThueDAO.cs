@@ -19,15 +19,12 @@ namespace QuanLiCongDanThanhPho
 
         public bool ThemThue(Thue thue)
         {
-            try
-            {
-                db.Thues.Add(thue);
-                db.SaveChanges();
-            }
-            catch(Exception ex) 
+            if (LayThongTinTheoMaSo(thue.MaThue) != null || LayThongTin(thue.Cccd) != null)
             {
                 return false;
             }
+            db.Thues.Add(thue);
+            db.SaveChanges();
             return true;
         }
 
@@ -54,6 +51,10 @@ namespace QuanLiCongDanThanhPho
             return db.Thues.Where(p => p.Cccd == maCCCD).FirstOrDefault();
         }
 
+        public Thue? LayThongTinTheoMaSo(string maSo)
+        {
+            return db.Thues.Where(p => p.MaThue == maSo).FirstOrDefault();
+        }
         public List<Thue> LayDanhSachChuaTu(string tu)
         {
             var list = (from q in db.Thues 
