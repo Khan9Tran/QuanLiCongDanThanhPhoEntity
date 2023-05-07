@@ -77,26 +77,21 @@ namespace QuanLiCongDanThanhPho
         {
             tool?.AutoReadOnly();
         }
-        private bool KiemTraThongTin()
-        {
-            if (!KiemTraDuLieuNhap.isDiaChi(txtNoiDangKy.Text))
-            {
-                MessageBox.Show("Kiểm tra lại nơi đăng ký");
-                txtNoiDangKy.Focus();
-                return false;
-            }    
-            return true;
-        }    
+        
         public void CapNhatHonNhan()
         {
             Honnhan? hN = hNDAO.LayThongTin(maCCCD);
-            if (KiemTraThongTin() && hN != null)
+            if (hN != null)
             {
                 hN.NoiDangKy = txtNoiDangKy.Text;
                 hN.NgayDangKy = dtmNgayDangKy.Value;
-                hNDAO.CapNhatHonNhan();
-                MessageBox.Show("Cập nhật thành công");
-            }
+
+                if (KiemTraDuLieuNhap.KiemTraHonNhan(hN))
+                {
+                    hNDAO.CapNhatHonNhan();
+                    MessageBox.Show("Cập nhật thành công");
+                }  
+            }   
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
