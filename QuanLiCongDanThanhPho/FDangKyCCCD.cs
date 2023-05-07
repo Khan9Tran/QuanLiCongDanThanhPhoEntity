@@ -1,17 +1,12 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDangKyCCCD : Form
+    public partial class FDangKyCCCD : FormDangKy
     {
-        CCCDDAO cCCDDAO;
-        CongDanDAO congDanDAO;
 
         public FDangKyCCCD()
         {
             InitializeComponent();
-            cCCDDAO = new CCCDDAO();
-            congDanDAO = new CongDanDAO();
-            StackForm.Add(this);
         }
         
         private void FDangKyCCCD_Load(object sender, EventArgs e)
@@ -22,11 +17,9 @@ namespace QuanLiCongDanThanhPho
                 HeaderText();
             };
         }
-        private void Reset()
+        internal override void Reset()
         {
-            txtCCCD.Text = "";
-            txtDDNhanDang.Text = "";
-            txtTen.Text = "";
+            base.Reset();
             dtmNgayCap.Value = DateTime.Now;
         }
         private void btnReset_Click(object sender, EventArgs e)
@@ -34,29 +27,33 @@ namespace QuanLiCongDanThanhPho
             Reset();
         }
 
-        private void btnDangKy_Click(object sender, EventArgs e)
+        internal override void DangKy()
         {
-            Congdan? cD = congDanDAO.LayThongTin(txtCCCD.Text);
-            Cccd? cCCD = cCCDDAO.LayThongTin(txtCCCD.Text);
+            Congdan? cD = CDDAO.LayThongTin(txtCCCD.Text);
+            Cccd? cCCD = CCCDDAO.LayThongTin(txtCCCD.Text);
 
             if (cD != null && cD.Ten == txtTen.Text && KiemTraDuLieuNhap.KiemTraTenVaCCCD(cD) && KiemTraDuLieuNhap.isEmpty(txtDDNhanDang.Text) == false && cCCD != null)
             {
                 cCCD.NgayCap = dtmNgayCap.Value;
                 cCCD.DacDiem = txtDDNhanDang.Text;
-                cCCDDAO.CapNhatCCCD();
+                CCCDDAO.CapNhatCCCD();
                 MessageBox.Show("Thêm thành công");
             }
             else
             {
                 MessageBox.Show("Thêm thất bại");
-            }    
-                
+            }
+
             LoadDanhSach();
+        }
+        private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            DangKy();
             
         }
         private void LoadDanhSach()
         {
-            gvDanhSachChuaCapCCCD.DataSource = cCCDDAO.DanhSachCCCDTheoDacDiem();
+            gvDanhSachChuaCapCCCD.DataSource = CCCDDAO.DanhSachCCCDTheoDacDiem();
             Reset();
         }
 
