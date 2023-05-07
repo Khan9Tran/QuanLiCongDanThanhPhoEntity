@@ -26,22 +26,6 @@ namespace QuanLiCongDanThanhPho
             SetTools();
         }
 
-        private bool KiemTraThongTin()
-        {
-            if (!KiemTraDuLieuNhap.isTien(txtSoTienCanNop.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại số tiền cần nộp");
-                txtSoTienCanNop.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isTien(txtSoTienDaNop.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại số tiền đã nộp");
-                txtSoTienDaNop.Focus();
-                return false;
-            }   
-            return true;
-        }
 
         private void SetTools()
         {
@@ -59,7 +43,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaCCCD != null)
             {
-                Thue thue = thueDAO.LayThongTin(MaCCCD);
+                Thue? thue = thueDAO.LayThongTin(MaCCCD);
                 Congdan? cd = cdDAO.LayThongTin(MaCCCD);
                 if (cd != null)
                 {
@@ -98,17 +82,18 @@ namespace QuanLiCongDanThanhPho
                 thue.SoTienDaNop = txtSoTienDaNop.Text;
                 thue.NgayCap = dtmNgayCapMaSoThue.Value;
                 thue.HanNop = dtmHanNopThue.Value;
-                thueDAO.CapNhatThue();
+                if (KiemTraDuLieuNhap.KiemTraThue(thue))
+                {
+                    thueDAO.CapNhatThue();
+                    MessageBox.Show("Cập nhật thành công");
+                }
             }
         }    
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
-            if (KiemTraThongTin())
-            {
-                CapNhatThue();
-                LayThongTinThue();
-                tool?.TurnOff();
-            }    
+            CapNhatThue();
+            LayThongTinThue();
+            tool?.TurnOff(); 
         }
 
         private void btnSua_Click(object sender, EventArgs e)
