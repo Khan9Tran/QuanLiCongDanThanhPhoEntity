@@ -2,29 +2,17 @@
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDangKyKhaiSinh : Form
+    public partial class FDangKyKhaiSinh : FormDangKy
     {
-        private CongDanDAO? cDDAO;
-        private HonNhanDAO? hNDAO;
-        private KhaiSinhDAO? kSDAO;
-
-        private void Init()
-        {
-            InitializeComponent();
-            StackForm.Add(this);
-            cDDAO = new CongDanDAO();
-            hNDAO = new HonNhanDAO();
-            kSDAO = new KhaiSinhDAO();
-        }
 
         public FDangKyKhaiSinh()
         {
-            Init();
+            InitializeComponent();
         }
 
         public FDangKyKhaiSinh(string? cCCDThanNhan)
         {
-            Init();
+            InitializeComponent();
             LoadThongTinChaMe(cCCDThanNhan);
         }
 
@@ -32,7 +20,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (cCCDThanNhan != null)
             {
-                Honnhan? honNhan = hNDAO?.LayThongTin(cCCDThanNhan);
+                Honnhan? honNhan = HNDAO?.LayThongTin(cCCDThanNhan);
                 if (honNhan != null)
                 {
                     txtCccdCha.Text = honNhan.Cccdnam;
@@ -46,13 +34,13 @@ namespace QuanLiCongDanThanhPho
 
         private void btnReset_Click(object sender, EventArgs e)
         { 
-            ToolsForControl.ClearTextBox(Controls);
+            base.Reset();
         }
 
         private bool KiemTraChaMe()
         {
-            Honnhan? chong = hNDAO?.LayThongTin(txtCccdCha.Text);
-            Honnhan? vo = hNDAO?.LayThongTin(txtCccdMe.Text);
+            Honnhan? chong = HNDAO?.LayThongTin(txtCccdCha.Text);
+            Honnhan? vo = HNDAO?.LayThongTin(txtCccdMe.Text);
 
             if (chong == null || vo == null)
                 return false;   
@@ -65,7 +53,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
-        private void btnDangKy_Click(object sender, EventArgs e)
+        internal override void DangKy()
         {
             Congdan congDan = new Congdan()
             {
@@ -101,7 +89,7 @@ namespace QuanLiCongDanThanhPho
                 TenMe = txtTenMe.Text,
             };
 
-            if (KiemTraChaMe() && KiemTraDuLieuNhap.KiemTraTenVaCCCD(congDan) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && cDDAO.ThemCongDan(congDan) && kSDAO.ThemKhaiSinh(kS))
+            if (KiemTraChaMe() && KiemTraDuLieuNhap.KiemTraTenVaCCCD(congDan) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && CDDAO.ThemCongDan(congDan) && KSDAO.ThemKhaiSinh(kS))
             {
                 MessageBox.Show("Thêm thành công");
             }
@@ -109,6 +97,10 @@ namespace QuanLiCongDanThanhPho
             {
                 MessageBox.Show("Sai thông tin");
             }
+        }
+        private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            DangKy();
         }
 
 

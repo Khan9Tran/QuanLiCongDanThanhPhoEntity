@@ -1,10 +1,8 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDangKyTamTruTamVang : Form
+    public partial class FDangKyTamTruTamVang : FormDangKy
     {
-        private TamTruTamVangDAO? tTTVDAO;
-        private CongDanDAO? congDanDAO;
         private string? cCCD;
 
         public FDangKyTamTruTamVang()
@@ -14,9 +12,6 @@ namespace QuanLiCongDanThanhPho
         public void Init()
         {
             InitializeComponent();
-            tTTVDAO = new TamTruTamVangDAO();
-            congDanDAO = new CongDanDAO();  
-            StackForm.Add(this);
         }
         public FDangKyTamTruTamVang(string cCCD)
         {
@@ -28,7 +23,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (cCCD != null)
             {
-                Congdan? congDan = congDanDAO?.LayThongTin(cCCD);
+                Congdan? congDan = CDDAO?.LayThongTin(cCCD);
                 if (congDan != null)
                 {
                     txtTen.Text = congDan.Ten;
@@ -56,7 +51,7 @@ namespace QuanLiCongDanThanhPho
             };
             if (KiemTraDuLieuNhap.KiemTraTenVaCCCD(cDTamTru))
             {
-                congDanDAO?.ThemCongDan(cDTamTru);
+                CDDAO?.ThemCongDan(cDTamTru);
                 return true;
             }
             else
@@ -73,7 +68,7 @@ namespace QuanLiCongDanThanhPho
             return "Tạm vắng";
         }
 
-        private void btnDangKy_Click(object sender, EventArgs e)
+        internal override void DangKy()
         {
             Tamtrutamvang tTTV = new Tamtrutamvang()
             {
@@ -85,12 +80,12 @@ namespace QuanLiCongDanThanhPho
                 DiaChi = txtDiaChi.Text,
             };
 
-            Congdan? congdan = congDanDAO?.LayThongTin(txtCCCD.Text);
+            Congdan? congdan = CDDAO?.LayThongTin(txtCCCD.Text);
             if (rdoTamVang.Checked == true && congdan == null)
             {
                 MessageBox.Show("Thêm thất bại");
                 return;
-            }   
+            }
             else if (rdoTamTru.Checked == true)
             {
                 tTTV.TrangThai = TamTru();
@@ -99,18 +94,22 @@ namespace QuanLiCongDanThanhPho
             {
                 tTTV.TrangThai = TamVang();
             }
-            if (KiemTraDuLieuNhap.isTamTruTamVang(tTTV) && KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text) && TaoCongDan(congdan) && tTTVDAO.ThemTamTruTamVang(tTTV))
+            if (KiemTraDuLieuNhap.isTamTruTamVang(tTTV) && KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text) && TaoCongDan(congdan) && TTTVDAO.ThemTamTruTamVang(tTTV))
             {
                 MessageBox.Show("Thêm thành công");
             }
             else
             {
                 MessageBox.Show("Thêm thất bại");
-            }    
+            }
+        }
+        private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            DangKy(); 
         }
         private void btnReset_Click(object sender, EventArgs e)
         {
-            ToolsForControl.ClearTextBox(Controls);
+            base.Reset();
         }
 
         private void FDangKyTamTruTamVang_Load(object sender, EventArgs e)

@@ -1,16 +1,14 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThemNguoiVaoHo : Form
+    public partial class FThemNguoiVaoHo : FormDangKy
     {
         private CongDanDAO cDDAO;
         public FThemNguoiVaoHo()
         {
             InitializeComponent();
-            cDDAO = new CongDanDAO();
             lblThongTin.Hide();
             gvNguoiChuaCoHoKhau.Hide();
-            StackForm.Add(this);
         }
 
         private void LoadDanhSachChuaHoKhau()
@@ -41,7 +39,12 @@ namespace QuanLiCongDanThanhPho
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            Congdan congDan = new Congdan() 
+            DangKy();
+        }
+
+        internal override void DangKy()
+        {
+            Congdan congDan = new Congdan()
             {
                 Cccd = txtCCCD.Text,
                 Ten = txtTen.Text,
@@ -57,7 +60,6 @@ namespace QuanLiCongDanThanhPho
             else
                 MessageBox.Show("Thêm thất bại");
         }
-
         private void gvNguoiChuaCoHoKhau_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int dong = e.RowIndex;
@@ -65,13 +67,14 @@ namespace QuanLiCongDanThanhPho
             txtTen.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[1].Value.ToString();
         }
 
-        private void Reset()
+        internal override void Reset()
         {
-            ToolsForControl.ClearTextBox(Controls);
+            base.Reset();
             gvNguoiChuaCoHoKhau.Hide();
             lblThongTin.Hide();
             LoadDanhSachChuaHoKhau();
         }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();

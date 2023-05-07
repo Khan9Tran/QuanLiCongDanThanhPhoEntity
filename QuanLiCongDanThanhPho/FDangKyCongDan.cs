@@ -3,30 +3,19 @@ using QuanLiCongDanThanhPho.Model;
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDangKyCongDan : Form
+    public partial class FDangKyCongDan : FormDangKy
     {
-        private CongDanDAO cDDAO;
-        private KhaiSinhDAO kSDAO;
-        private ThueDAO thueDAO;
-        private HonNhanDAO hNDAO;
-        private HoKhauDAO hKDAO;
         private HinhDaiDien hinhCongDan;
 
         public FDangKyCongDan()
         {
             InitializeComponent();
-            StackForm.Add(this);
-            cDDAO = new CongDanDAO();
-            kSDAO = new KhaiSinhDAO();
-            thueDAO = new ThueDAO();
-            hNDAO = new HonNhanDAO();
-            hKDAO = new HoKhauDAO();
             hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
 
         private bool ThemHoKhau()
         {
-            if (hKDAO.LayThongTin(txtHoKhau.Text) == null)
+            if (HKDAO.LayThongTin(txtHoKhau.Text) == null)
             {
                 Hokhau hK = new Hokhau()
                 {
@@ -36,7 +25,7 @@ namespace QuanLiCongDanThanhPho
                 };
                 if (KiemTraDuLieuNhap.KiemTraHoKhau(hK) && cboQuanHe.SelectedItem.ToString() == "Chủ hộ")
                 {
-                    hKDAO.ThemHoKhau(hK);
+                    HKDAO.ThemHoKhau(hK);
                     return true;
                 }
                 else
@@ -47,7 +36,7 @@ namespace QuanLiCongDanThanhPho
             return true; 
         }
 
-        private void ThemCongDan()
+        internal override void DangKy()
         {
             Congdan cD = new Congdan()
             {
@@ -94,11 +83,11 @@ namespace QuanLiCongDanThanhPho
             };
 
             if (KiemTraDuLieuNhap.KiemTraCongDan(cD) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && KiemTraDuLieuNhap.KiemTraThueDonGian(thue) 
-                && ptcHinhDaiDien.Image != null && ThemHoKhau() && cDDAO.ThemCongDan(cD) && kSDAO.ThemKhaiSinh(kS))
+                && ptcHinhDaiDien.Image != null && ThemHoKhau() && CDDAO.ThemCongDan(cD) && KSDAO.ThemKhaiSinh(kS))
             {
                 hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
 
-                if (!thueDAO.ThemThue(thue))
+                if (!ThueDAO.ThemThue(thue))
                 {
                     MessageBox.Show("Mã số thuế bị trùng. Vui lòng đăng ký thuế sau");
                 }
@@ -123,7 +112,7 @@ namespace QuanLiCongDanThanhPho
                         hN.Cccdnu = txtCCCD.Text;
                     }   
 
-                    if (KiemTraDuLieuNhap.KiemTraHonNhan(hN) && hNDAO.ThemHonNhan(hN))
+                    if (KiemTraDuLieuNhap.KiemTraHonNhan(hN) && HNDAO.ThemHonNhan(hN))
                     {
                         MessageBox.Show("Thêm thành công");
                     }
@@ -146,18 +135,23 @@ namespace QuanLiCongDanThanhPho
 
            
         }
-       
+
+        internal override void Reset()
+        {
+            base.Reset();
+            dtmDKKhaiSinh.Value = DateTime.Now;
+            dtmNgaySinh.Value = DateTime.Now;
+
+        }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            ToolsForControl.ClearTextBox(Controls);
-            dtmDKKhaiSinh.Value = DateTime.Now;
-            dtmNgaySinh.Value = DateTime.Now;
+            Reset();
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            ThemCongDan();
+            DangKy();
         }
   
 

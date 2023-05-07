@@ -2,9 +2,8 @@
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FDangKyThue : Form
+    public partial class FDangKyThue : FormDangKy
     {
-        private ThueDAO? thueDAO;
         public FDangKyThue()
         {
             Init();
@@ -20,8 +19,6 @@ namespace QuanLiCongDanThanhPho
         public void Init()
         {
             InitializeComponent();
-            StackForm.Add(this);
-            thueDAO = new ThueDAO();
         }
 
         public void LoadThongTin(string cCCD)
@@ -39,14 +36,18 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        internal override void Reset()
         {
-            ToolsForControl.ClearTextBox(Controls);
+            base.Reset();
             dtpNgayCapMa.Value = DateTime.Now;
             dtpHanNop.Value = DateTime.Now;
         }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
 
-        private void btnDangKy_Click(object sender, EventArgs e)
+        internal override void DangKy()
         {
             Thue thue = new Thue()
             {
@@ -58,7 +59,7 @@ namespace QuanLiCongDanThanhPho
                 SoTienDaNop = txtSoTienDaNop.Text
             };
 
-            if (KiemTraDuLieuNhap.KiemTraThue(thue) && thueDAO.ThemThue(thue))
+            if (KiemTraDuLieuNhap.KiemTraThue(thue) && ThueDAO.ThemThue(thue))
             {
                 MessageBox.Show("Đăng ký thành công");
             }
@@ -66,6 +67,10 @@ namespace QuanLiCongDanThanhPho
             {
                 MessageBox.Show("Đăng ký thất bại");
             }
+        }
+        private void btnDangKy_Click(object sender, EventArgs e)
+        {
+            DangKy();
         }
     }
 }
