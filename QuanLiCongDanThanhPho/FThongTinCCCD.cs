@@ -22,6 +22,11 @@ namespace QuanLiCongDanThanhPho
             hKDAO = new HoKhauDAO();
             hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
+        
+        private string DateTimeFormat()
+        {
+            return "dd/MM/yyyy";
+        }
         private void HienThiThongTin()
         {
             lblCCCD.Text = congDan.Cccd;
@@ -32,8 +37,10 @@ namespace QuanLiCongDanThanhPho
             {
                 if (ks.GioiTinh == "m")
                     lblGioiTinh.Text = "Nam";
-                else lblGioiTinh.Text = "Nữ";
-                lblNgaySinh.Text = ks.NgaySinh.ToString("dd/MM/yyyy");
+                else 
+                    lblGioiTinh.Text = "Nữ";
+
+                lblNgaySinh.Text = ks.NgaySinh.ToString(DateTimeFormat());
                 lblQueQuan.Text = ks.QueQuan;
                 lblQuocTich.Text = ks.QuocTich;
             }
@@ -45,7 +52,7 @@ namespace QuanLiCongDanThanhPho
             Cccd? cCCD = CccdDAO.LayThongTin(new Cccd() { MaCccd = congDan.Cccd });
             if (cCCD != null)
             {
-                lblNgayCap.Text = ((DateTime)cCCD.NgayCap).ToString("dd/MM/yyyy");
+                lblNgayCap.Text = ((DateTime)cCCD.NgayCap).ToString(DateTimeFormat());
                 lblDDNhanDang.Text = cCCD.DacDiem;
             }
         }

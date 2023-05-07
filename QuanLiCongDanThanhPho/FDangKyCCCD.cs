@@ -48,7 +48,7 @@ namespace QuanLiCongDanThanhPho
             }
             else
             {
-                MessageBox.Show("CCCD và Họ tên không khớp");
+                MessageBox.Show("Thêm thất bại");
             }    
                 
             LoadDanhSach();

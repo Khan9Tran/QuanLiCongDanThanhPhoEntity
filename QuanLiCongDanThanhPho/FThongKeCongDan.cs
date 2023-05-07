@@ -13,7 +13,6 @@
             kSDAO = new KhaiSinhDAO();
         }
 
-
         private void FThongKeCongDancs_Load(object sender, EventArgs e)
         {
             gvSoLuongNamNu.DataSource = kSDAO.LayDanhSachVeSoNamNu();
