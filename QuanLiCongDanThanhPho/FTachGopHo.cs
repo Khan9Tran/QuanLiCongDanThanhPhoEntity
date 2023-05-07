@@ -7,7 +7,7 @@ namespace QuanLiCongDanThanhPho
         private CongDanDAO? cDDAO;
         private HoKhauDAO? hKDAO;
         private bool isTach = false;
-        private Congdan? cD;
+        private string cCCD;
         public void init()
         {
             InitializeComponent();
@@ -29,126 +29,93 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTach_Click(object sender, EventArgs e)
         {
-            if (KiemTraThongTin())
-                try
+            int index = gvHoTach.CurrentCell.RowIndex;
+            if (index >= 0 && gvHoTach.Rows[index].Cells[0] != null)
+            {
+                string tmp = (string)gvHoTach.Rows[index].Cells[0].Value;
+                if (KiemTraDuLieuNhap.isCCCD(tmp))
                 {
-
-                    int index = gvHoTach.CurrentCell.RowIndex;
-                    if (index >= 0 && gvHoTach.Rows[index].Cells[0] != null)
-                    {
-                        cD = new Congdan()
-                        {
-                            Cccd = (string)gvHoTach.Rows[index].Cells[0].Value
-                        };
-                        isTach = true;
-                    }
+                    cCCD = tmp;
+                    isTach = true;
                 }
-                catch
-                {
-                    MessageBox.Show("Vui lòng kiểm tra lại thông tin");
-                }
+            }
         }
 
-        private bool KiemTraThongTin()
-        {
-            if (txtMaHoTach.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập mã hộ cần tách");
-                txtMaHoTach.Focus();
-                return false;
-            }
-            if (txtMaHoGop.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập mã hộ mới hoặc hộ muốn gộp vào");
-                txtMaHoGop.Focus();
-                return false;
-            }
-            return true;
 
-        }
-
-        private void TaoHoMoi()
+        private bool TaoHoMoi()
         {
             //Kiểm tra 
             Hokhau hK = new Hokhau()
             {
                 MaHk = txtMaHoGop.Text,
                 DiaChi = "unknow, unknow, unknow,uknow",
-                CccdchuHo = cD?.Cccd,
+                CccdchuHo = cCCD,
             };
-            hKDAO?.ThemHoKhau(hK);
-            cD.QuanHeVoiChuHo = "Chủ hộ";
-            cD.MaHk = txtMaHoGop.Text;
-            cDDAO?.ThayDoiHoKhau(cD);
-            LoadHoTach();
-            LoadHoGop();
-            XoaHoThua();
-        }
-        private bool isHoKhau(string maHoKhau)
-        {
-            Hokhau? hK = hKDAO?.LayThongTin(txtMaHoGop.Text);
-            if (hK == null)
-                return false;
-            return true;
-        }
-        private void btnTaoHoMoi_Click(object sender, EventArgs e)
-        { 
-            if (KiemTraThongTin() && isTach == true)
+
+            if (hKDAO.ThemHoKhau(hK))
             {
-                //Kiểm tra 
-                if (isHoKhau(txtMaHoGop.Text))
-                {
-                    MessageBox.Show("Hộ đã tồn tại");
-                }
-                else if (cD.MaHk == txtMaHoGop.Text)
-                {
-                    MessageBox.Show("Đây là một hộ duy nhất!");
-                }
-                else
-                {
-                    TaoHoMoi();
-                }
-                isTach = false;
+                Congdan? cD = cDDAO.LayThongTin(cCCD);
+
+                cD.QuanHeVoiChuHo = "Chủ hộ";
+                cD.MaHk = txtMaHoGop.Text;
+
+                cDDAO?.ThayDoiHoKhau(cD);
+
+                LoadHoTach();
+                LoadHoGop();
+                XoaHoThua();
+                return true;
+            }   
+            return false;
+        }
+
+        private void btnTaoHoMoi_Click(object sender, EventArgs e)
+        {
+            if (KiemTraDuLieuNhap.KiemTraHaiHo(txtMaHoGop.Text, txtMaHoTach.Text) && isTach == true && TaoHoMoi())
+            {
+                MessageBox.Show("Tạo hộ mới thành công");
             }
+            else
+            {
+                MessageBox.Show("Tạo hộ mới thất bại");
+            }
+
+            isTach = false;
         }
 
         //Thực hiện xóa hộ nếu không còn thành viên
         private void XoaHoThua()
-        {
-
+        { 
             Hokhau? hK = hKDAO?.LayThongTin(txtMaHoTach.Text);
-
             if (hK != null && gvHoTach.Rows.Count == 0)
             {
                 hKDAO?.XoaHoKhau(hK);
             }
         }
-        public void ThemVaoHo()
-        {
-            cD.MaHk = txtMaHoGop.Text;
-            cDDAO?.NhapHoKhau(cD);   
+        public bool ThemVaoHo()
+        { 
+            if (cDDAO?.NhapHoKhau(cCCD, txtMaHoGop.Text) == false)
+                return false;
+
             LoadHoTach();
             LoadHoGop();
             XoaHoThua();
+
+            return true;
         }
         private void btnGopHo_Click(object sender, EventArgs e)
         {   
-            if (KiemTraThongTin() && isTach == true)
+            if (KiemTraDuLieuNhap.KiemTraHaiHo(txtMaHoGop.Text, txtMaHoTach.Text) && isTach == true && ThemVaoHo())
             {
-                if (!isHoKhau(txtMaHoGop.Text))
-                {
-                    MessageBox.Show("Hộ không tồn tại");
-                }
-                else if (cD.MaHk == txtMaHoGop.Text)
-                {
-                    MessageBox.Show("Đây là một hộ duy nhất!");
-                }
-                else
-                {
-                    ThemVaoHo();
-                }
-                isTach = false;
+
+                MessageBox.Show("Gộp thành viên thành công");
             }
+            else
+            {
+                MessageBox.Show("Gộp thất bại");
+            }
+
+            isTach = false;
         }
 
         private void LoadHoTach()

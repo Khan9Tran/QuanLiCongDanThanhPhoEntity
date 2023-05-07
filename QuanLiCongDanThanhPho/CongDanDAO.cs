@@ -72,23 +72,19 @@ namespace QuanLiCongDanThanhPho
 
             return false;
         }
-        public bool NhapHoKhau(Congdan cD)
+        public bool NhapHoKhau(string cCCD, string maHK)
         {
-            try
+            Congdan? congDan = LayThongTin(cCCD);
+
+            if (congDan != null)
             {
-                Congdan? congDan = db.Congdans.Find(cD.Cccd);
-                if (congDan != null)
-                {
-                    congDan.MaHk = cD.MaHk;
-                    congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
-                    db.SaveChanges();
-                }
+                congDan.MaHk = maHK;
+                congDan.QuanHeVoiChuHo = "Vừa nhập hộ";
+                db.SaveChanges();
+                return true;
             }
-            catch
-            {
-                return false;
-            }
-            return true;
+            
+            return false;
         }
         public List<Congdan> LayDanhSach()
         {
