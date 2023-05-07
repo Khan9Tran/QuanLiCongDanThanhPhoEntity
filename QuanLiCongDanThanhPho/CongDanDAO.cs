@@ -32,29 +32,27 @@ namespace QuanLiCongDanThanhPho
         }
         public bool XoaCongDan(Congdan cD)
         {
-                ThueDAO thueDAO = new ThueDAO();
-                KhaiSinhDAO ksDAO = new KhaiSinhDAO();
-                TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
-                HonNhanDAO hnDAO = new HonNhanDAO();
-                CCCDDAO cCCCDAO = new CCCDDAO();
-                Honnhan? hn = hnDAO.LayThongTin(cD.Cccd);
-
-                thueDAO.XoaThue(cD.Cccd);
-                ksDAO.XoaKhaiSinh(cD.Cccd);
-                tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
-
-                if (hn != null)
-                    hnDAO.Xoa(hn);
-                cCCCDAO.XoaCCCD(cD.Cccd);
-            try 
-            { 
-                db.Congdans.Remove(cD);
-                db.SaveChanges();
-            }
-            catch
-            {
+            Congdan tmp = LayThongTin(cD.Cccd);
+            if (tmp == null) 
                 return false;
-            }
+
+            ThueDAO thueDAO = new ThueDAO();
+            KhaiSinhDAO ksDAO = new KhaiSinhDAO();
+            TamTruTamVangDAO tTTTVDAO = new TamTruTamVangDAO();
+            HonNhanDAO hnDAO = new HonNhanDAO();
+            CCCDDAO cCCCDAO = new CCCDDAO();
+            Honnhan? hn = hnDAO.LayThongTin(cD.Cccd);
+
+            thueDAO.XoaThue(cD.Cccd);
+            ksDAO.XoaKhaiSinh(cD.Cccd);
+            tTTTVDAO.XoaTamTruTamVang(cD.Cccd);
+            if (hn != null)
+                hnDAO.Xoa(hn);
+
+            cCCCDAO.XoaCCCD(cD.Cccd);
+
+            db.Congdans.Remove(cD);
+            db.SaveChanges();
             return true;
         }
         public void CapNhatCongDan()

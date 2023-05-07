@@ -30,19 +30,14 @@ namespace QuanLiCongDanThanhPho
 
         public bool XoaThue(string canCuoc)
         {
-            try
-            {
-                Thue? thue = LayThongTin(canCuoc);
-                if (thue != null)
-                {
-                    db.Thues.Remove(thue);
-                    db.SaveChanges();
-                }
-            }
-            catch
+            Thue? thue = LayThongTin(canCuoc);
+            if (thue == null)
             {
                 return false;
             }
+
+            db.Thues.Remove(thue);
+            db.SaveChanges();
             return true;
         }
 

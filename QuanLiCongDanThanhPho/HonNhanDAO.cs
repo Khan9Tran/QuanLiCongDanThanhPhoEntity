@@ -66,23 +66,12 @@ namespace QuanLiCongDanThanhPho
         //Xóa hôn nhân
         public bool Xoa(Honnhan honNhan)
         {
-            try
-            {
-                if (honNhan != null)
-                {
-                    Honnhan? hN = db.Honnhans.Find(honNhan.MaHonNhan);
-                    if (hN != null)
-                    {
-                        db.Honnhans.Remove(hN);
-                        db.SaveChanges();
-                        return true;
-                    }
-                }
-            }
-            catch
-            {
+            Honnhan? hN = db.Honnhans.Find(honNhan.MaHonNhan);
+            if (hN == null)
                 return false;
-            }
+
+            db.Honnhans.Remove(hN);
+            db.SaveChanges();
             return true;
         }    
 

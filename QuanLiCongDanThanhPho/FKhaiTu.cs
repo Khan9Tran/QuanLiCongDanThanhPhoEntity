@@ -12,29 +12,11 @@ namespace QuanLiCongDanThanhPho
         }
         CongDanDAO congDanDAO;
 
-        private bool KiemTraThongTin()
-        {
-            Congdan? cD = congDanDAO.LayThongTin(txtCCCD.Text);
-            if (!KiemTraDuLieuNhap.isCCCD(txtCCCD.Text) || cD.Cccd == null)
-            {
-                MessageBox.Show("CCCD không chính xác");
-                txtCCCD.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isTen(txtTen.Text) || cD.Ten != txtTen.Text)
-            {
-                MessageBox.Show("Tên nhập không chính xác");
-                txtTen.Focus();
-                return false;
-
-            }
-            return true;
-        }
-
         private void XoaCongDan()
         {
             Congdan? cD = congDanDAO.LayThongTin(txtCCCD.Text);
-            if (cD != null && congDanDAO.XoaCongDan(cD))
+
+            if (cD!= null && cD.Ten == txtTen.Text && congDanDAO.XoaCongDan(cD))
             {
                 MessageBox.Show("Đã khai tử");
             }    
@@ -45,11 +27,8 @@ namespace QuanLiCongDanThanhPho
         }
 
         private void btnDangKy_Click(object sender, EventArgs e)
-        {
-            if (KiemTraThongTin())
-            {
-                XoaCongDan();
-            }
+        {   
+            XoaCongDan();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
