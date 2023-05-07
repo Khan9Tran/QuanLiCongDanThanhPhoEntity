@@ -52,7 +52,8 @@ namespace QuanLiCongDanThanhPho
         private void CapNhatHoKhau()
         {
             Hokhau? hoKhau = hkDAO.LayThongTin(maHoKhau);
-            if (txtDiaChi.Text != "" && hoKhau != null)
+
+            if (KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text) && hoKhau != null)
             {
                 hoKhau.DiaChi = txtDiaChi.Text;
                 hkDAO.CapNhatHoKhau();

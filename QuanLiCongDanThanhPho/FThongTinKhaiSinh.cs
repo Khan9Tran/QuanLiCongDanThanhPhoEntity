@@ -54,40 +54,6 @@ namespace QuanLiCongDanThanhPho
             tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
 
-        private bool KiemTraThongTin()
-        {
-            if (!KiemTraDuLieuNhap.isGioiTinh(txtGioiTinh.Text))
-            {
-                MessageBox.Show("Giới tính sai địng dạng");
-                txtGioiTinh.Focus();
-                return false;
-            }
-            if (txtQuocTich.Text == "")
-            {
-                MessageBox.Show("Quốc tịch không được để trống");
-                txtQuocTich.Focus();
-                return false;
-            }
-            if (txtDanToc.Text == "")
-            {
-                MessageBox.Show("Dân tộc không được để trống");
-                txtDanToc.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isDiaChi(txtQueQuan.Text))
-            {
-                MessageBox.Show("Quê quán sai địng dạng");
-                txtQueQuan.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isDiaChi(txtNoiSinh.Text))
-            {
-                MessageBox.Show("Nơi sinh sai địng dạng");
-                txtNoiSinh.Focus();
-                return false;
-            }
-            return true;
-        }
         private void btnThongTinMe_Click(object sender, EventArgs e)
         {
             OpenThanNhan(txtCccdMe);
@@ -158,24 +124,24 @@ namespace QuanLiCongDanThanhPho
         }
 
         private void CapNhatKhaiSinh()
-        {
-            if (KiemTraThongTin())
+        {   if (MaCCCD != null)
             {
-                if (MaCCCD != null)
+                Khaisinh? kS = ksDAO.LayThongTin(MaCCCD);
+                if (kS != null)
                 {
-                    Khaisinh? kS = ksDAO.LayThongTin(MaCCCD);
-                    if (kS != null)
+                    kS.NoiSinh = txtNoiSinh.Text;
+                    kS.QueQuan = txtQueQuan.Text;
+                    kS.NgaySinh = dtmNgaySinh.Value;
+                    kS.DanToc = txtDanToc.Text;
+                    kS.QuocTich = txtQuocTich.Text;
+                    if (txtGioiTinh.Text == "nam")
+                        kS.GioiTinh = "m";
+                    else
+                        kS.GioiTinh = "f";
+                    kS.NgayDangKy = dtmNgayDangKy.Value;
+
+                    if (KiemTraDuLieuNhap.KiemTraKhaiSinh(kS))
                     {
-                        kS.NoiSinh = txtNoiSinh.Text;
-                        kS.QueQuan = txtQueQuan.Text;
-                        kS.NgaySinh = dtmNgaySinh.Value;
-                        kS.DanToc = txtDanToc.Text;
-                        kS.QuocTich = txtQuocTich.Text;
-                        if (txtGioiTinh.Text == "nam")
-                            kS.GioiTinh = "m";
-                        else
-                            kS.GioiTinh = "f";
-                        kS.NgayDangKy = dtmNgayDangKy.Value;
                         ksDAO.CapNhatKhaiSinh();
                         tool?.TurnOff();
                         LayThongTinKhaiKhaiSinh();
