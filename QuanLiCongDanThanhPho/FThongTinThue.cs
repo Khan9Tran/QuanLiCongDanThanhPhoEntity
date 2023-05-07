@@ -53,6 +53,7 @@ namespace QuanLiCongDanThanhPho
                         Hokhau? hk = hkDAO.LayThongTin(maHk);
                         txtDiaChi.Text = hk.DiaChi;
                     }
+
                     txtMaSoThue.Text = maHk;
                     txtTen.Text = cd.Ten;
                     txtCCCD.Text = cd.Cccd;

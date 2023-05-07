@@ -200,71 +200,7 @@ namespace QuanLiCongDanThanhPho
             tTThue.ShowDialog();
         }
 
-        private bool KiemTraThongTin()
-        {
-            if (!KiemTraDuLieuNhap.isTen(txtHoVaTen.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại họ và tên");
-                txtHoVaTen.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isGioiTinh(txtGioiTinh.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại giới tính");
-                txtGioiTinh.Focus();
-                return false;
-            }
-            if (txtNgheNghiep.Text == "")
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại nghề nghiệp");
-                txtNgheNghiep.Focus();
-                return false;
-            }
-            if (txtQuocTich.Text == "")
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại quốc tịch");
-                txtQuocTich.Focus();
-                return false;
-            }
-            if (txtDanToc.Text == "")
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại dân tộc");
-                txtDanToc.Focus();
-                return false;
-            }
-            if (txtTonGiao.Text == "")
-            {
-                MessageBox.Show("Tôn giáo không được để trống");
-                txtTonGiao.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại địa chỉ");
-                txtDiaChi.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isDiaChi(txtQueQuan.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại quê quán");
-                txtQueQuan.Focus();
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isSoDT(txtSDT.Text))
-            {
-                MessageBox.Show("Vui lòng kiểm tra lại số điện thoại");
-                txtSDT.Focus();
-                return false;
-            }      
-            if (txtQuanHeVoiChuHo.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập mối quan hệ với chủ hộ");
-                txtQuanHeVoiChuHo.Focus();
-                return false;
-            }    
-            return true;
-        }
-
+        
         private void btnHonNhan_Click(object sender, EventArgs e)
         {
             FThongTinHonNhan tTHN = new FThongTinHonNhan(congDan.Cccd);
@@ -285,7 +221,8 @@ namespace QuanLiCongDanThanhPho
                     khaiSinh.GioiTinh = "m";
                 else
                     khaiSinh.GioiTinh = "f";
-                ksDAO.CapNhatKhaiSinh();
+                if (KiemTraDuLieuNhap.KiemTraKhaiSinh(khaiSinh))
+                    ksDAO.CapNhatKhaiSinh();
             }
         }    
 
@@ -296,7 +233,8 @@ namespace QuanLiCongDanThanhPho
             congDan.NgheNghiep = txtNgheNghiep.Text;
             congDan.TonGiao = txtTonGiao.Text;
             congDan.QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text;
-            cdDAO.CapNhatCongDan();
+            if (KiemTraDuLieuNhap.KiemTraCongDan(congDan))
+                cdDAO.CapNhatCongDan();
         }
 
         //Thay đổi chủ hộ ở table hộ khẩu nếu có
@@ -320,7 +258,8 @@ namespace QuanLiCongDanThanhPho
                     }
                 }
                 hoKhau.DiaChi = txtDiaChi.Text;
-                hkDAO.CapNhatHoKhau();
+                if (KiemTraDuLieuNhap.KiemTraHoKhau(hoKhau))
+                    hkDAO.CapNhatHoKhau();
             }
         }
         private void btnSua_Click(object sender, EventArgs e)
@@ -339,21 +278,19 @@ namespace QuanLiCongDanThanhPho
                         hn.TenNam = txtHoVaTen.Text;
                     else
                         hn.TenNu = txtHoVaTen.Text;
-                    hnDAO.CapNhatHonNhan();
+                    if (KiemTraDuLieuNhap.KiemTraHonNhan(hn))
+                        hnDAO.CapNhatHonNhan();
                 }
             }
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {  
-            if (KiemTraThongTin())
-            {
-                CapNhatHoKhau();
-                CapNhatKhaiSinh();
-                CapNhatHonNhan();
-                CapNhatCongDan();
-                tool?.AutoReadOnly();
-            }    
+            CapNhatHoKhau();
+            CapNhatKhaiSinh();
+            CapNhatHonNhan();
+            CapNhatCongDan();
+            tool?.AutoReadOnly();  
         }
 
         private void btnReLoad_Click(object sender, EventArgs e)
