@@ -1,25 +1,17 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 
+
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinCCCD : MoveForm
+    public partial class FThongTinCCCD : FormThongTin
     {
-        private Congdan congDan;
-        private KhaiSinhDAO kSDAO;
-        private CCCDDAO CccdDAO;
-        private HoKhauDAO hKDAO;
-
 
         private HinhDaiDien hinhCongDan;
 
         public FThongTinCCCD(Congdan congDan)
         {
             InitializeComponent();
-            StackForm.Add(this);
-            this.congDan = congDan;
-            kSDAO = new KhaiSinhDAO();
-            CccdDAO = new CCCDDAO();
-            hKDAO = new HoKhauDAO();
+            CongDan = congDan;
             hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
         
@@ -29,10 +21,10 @@ namespace QuanLiCongDanThanhPho
         }
         private void HienThiThongTin()
         {
-            lblCCCD.Text = congDan.Cccd;
-            lblTen.Text = congDan.Ten.ToUpper();
+            lblCCCD.Text = CongDan.Cccd;
+            lblTen.Text = CongDan.Ten.ToUpper();
 
-            Khaisinh? ks = kSDAO.LayThongTin(lblCCCD.Text);
+            Khaisinh? ks = KSDAO.LayThongTin(lblCCCD.Text);
             if (ks != null)
             {
                 if (ks.GioiTinh == "m")
@@ -45,11 +37,11 @@ namespace QuanLiCongDanThanhPho
                 lblQuocTich.Text = ks.QuocTich;
             }
 
-            Hokhau? hk = hKDAO.LayThongTin(congDan.MaHk);
+            Hokhau? hk = HKDAO.LayThongTin(CongDan.MaHk);
             if (hk != null)
                 lblDiaChi.Text = hk.DiaChi;
 
-            Cccd? cCCD = CccdDAO.LayThongTin(new Cccd() { MaCccd = congDan.Cccd });
+            Cccd? cCCD = CCCDDAO.LayThongTin(new Cccd() { MaCccd = CongDan.Cccd });
             if (cCCD != null)
             {
                 lblNgayCap.Text = ((DateTime)cCCD.NgayCap).ToString(DateTimeFormat());

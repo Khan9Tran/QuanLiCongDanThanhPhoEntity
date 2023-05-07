@@ -1,27 +1,14 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinKhaiSinh : MoveForm
+    public partial class FThongTinKhaiSinh : FormThongTin
     {
-        private string? maCCCD;
-        private KhaiSinhDAO ksDAO;
-        private CongDanDAO cdDAO;
-
-        private ToolsForControl? tool;
-
-
-        public string? MaCCCD { get => maCCCD; set => maCCCD = value; }
 
         public FThongTinKhaiSinh(string maCCCD)
         {
             MaCCCD = maCCCD;
 
             InitializeComponent();
-            StackForm.Add(this);
-
-            ksDAO = new KhaiSinhDAO();
-            cdDAO = new CongDanDAO();
-
             SetTools();
         }
         private void btnThongTinCha_Click(object sender, EventArgs e)
@@ -33,7 +20,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (KiemTraDuLieuNhap.isCCCD(txtCongDan.Text))
             {
-                Congdan? cD = cdDAO.LayThongTin(txtCongDan.Text);
+                Congdan? cD = CDDAO.LayThongTin(txtCongDan.Text);
                 if (cD != null)
                 {
                     FThongTinCongDan tTCD = new FThongTinCongDan(cD);
@@ -51,7 +38,7 @@ namespace QuanLiCongDanThanhPho
             {
                 btnXacNhan, dtmNgaySinh, dtmNgayDangKy
             };
-            tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
+            Tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
 
         private void btnThongTinMe_Click(object sender, EventArgs e)
@@ -66,7 +53,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void LoadQuocTich(string cCCD, TextBox quocTich)
         {
-            Khaisinh? ks = ksDAO.LayThongTin(cCCD);
+            Khaisinh? ks = KSDAO.LayThongTin(cCCD);
             if (ks != null)
             {
                 quocTich.Text = ks.QuocTich;
@@ -74,9 +61,9 @@ namespace QuanLiCongDanThanhPho
         }
         public void LayThongTinKhaiKhaiSinh()
         {
-            if (maCCCD != null)
+            if (MaCCCD != null)
             {
-                Khaisinh? ks = ksDAO.LayThongTin(maCCCD);
+                Khaisinh? ks = KSDAO.LayThongTin(MaCCCD);
                 if (ks != null)
                 {
 
@@ -126,7 +113,7 @@ namespace QuanLiCongDanThanhPho
         private void CapNhatKhaiSinh()
         {   if (MaCCCD != null)
             {
-                Khaisinh? kS = ksDAO.LayThongTin(MaCCCD);
+                Khaisinh? kS = KSDAO.LayThongTin(MaCCCD);
                 if (kS != null)
                 {
                     kS.NoiSinh = txtNoiSinh.Text;
@@ -142,8 +129,8 @@ namespace QuanLiCongDanThanhPho
 
                     if (KiemTraDuLieuNhap.KiemTraKhaiSinh(kS))
                     {
-                        ksDAO.CapNhatKhaiSinh();
-                        tool?.TurnOff();
+                        KSDAO.CapNhatKhaiSinh();
+                        Tool?.TurnOff();
                         LayThongTinKhaiKhaiSinh();
                         MessageBox.Show("Cập nhật thành công");
                     }
@@ -158,12 +145,12 @@ namespace QuanLiCongDanThanhPho
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            tool?.AutoReadOnly();
+            Tool?.AutoReadOnly();
         }
 
         private void btnReLoad_Click(object sender, EventArgs e)
         {
-            tool?.TurnOff();
+            Tool?.TurnOff();
             LayThongTinKhaiKhaiSinh();
         }
     }

@@ -2,16 +2,8 @@
 
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinThue : MoveForm
+    public partial class FThongTinThue : FormThongTin
     {
-        private string? maCCCD;
-        private ToolsForControl? tool;
-
-        private ThueDAO thueDAO;
-        private CongDanDAO cdDAO;
-        private HoKhauDAO hkDAO;
-
-        public string? MaCCCD { get => maCCCD; set => maCCCD = value; }
 
         public FThongTinThue(string maCCCD)
         {
@@ -19,15 +11,11 @@ namespace QuanLiCongDanThanhPho
             StackForm.Add(this);
 
             MaCCCD = maCCCD;
-            thueDAO = new ThueDAO();
-            cdDAO = new CongDanDAO();
-            hkDAO = new HoKhauDAO();
-
             SetTools();
         }
 
 
-        private void SetTools()
+        internal override void SetTools()
         {
             List<TextBox> listTxt = new List<TextBox>()
             {txtSoTienCanNop, txtSoTienDaNop};
@@ -36,21 +24,21 @@ namespace QuanLiCongDanThanhPho
             {
                 dtmHanNopThue, dtmNgayCapMaSoThue, btnXacNhan
             };
-            tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
+            Tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
 
         private void LayThongTinThue()
         {
             if (MaCCCD != null)
             {
-                Thue? thue = thueDAO.LayThongTin(MaCCCD);
-                Congdan? cd = cdDAO.LayThongTin(MaCCCD);
+                Thue? thue = ThueDAO.LayThongTin(MaCCCD);
+                Congdan? cd = CDDAO.LayThongTin(MaCCCD);
                 if (cd != null)
                 {
                     string? maHk = cd.MaHk;
                     if (maHk != null)
                     {
-                        Hokhau? hk = hkDAO.LayThongTin(maHk);
+                        Hokhau? hk = HKDAO.LayThongTin(maHk);
                         txtDiaChi.Text = hk.DiaChi;
                     }
 
@@ -74,7 +62,7 @@ namespace QuanLiCongDanThanhPho
 
         private void CapNhatThue()
         {
-            Thue? thue = thueDAO.LayThongTin(MaCCCD);
+            Thue? thue = ThueDAO.LayThongTin(MaCCCD);
 
             if (txtMaSoThue.Text != "" && thue != null)
             {
@@ -85,7 +73,7 @@ namespace QuanLiCongDanThanhPho
                 thue.HanNop = dtmHanNopThue.Value;
                 if (KiemTraDuLieuNhap.KiemTraThue(thue))
                 {
-                    thueDAO.CapNhatThue();
+                    ThueDAO.CapNhatThue();
                     MessageBox.Show("Cập nhật thành công");
                 }
             }
@@ -94,17 +82,17 @@ namespace QuanLiCongDanThanhPho
         {
             CapNhatThue();
             LayThongTinThue();
-            tool?.TurnOff(); 
+            Tool?.TurnOff(); 
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-                tool?.AutoReadOnly();
+                Tool?.AutoReadOnly();
         }
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinThue();
-            tool?.TurnOff();
+            Tool?.TurnOff();
         }
     }
 }

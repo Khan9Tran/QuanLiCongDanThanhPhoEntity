@@ -1,24 +1,13 @@
 ﻿using QuanLiCongDanThanhPho.Model;
 namespace QuanLiCongDanThanhPho
 {
-    public partial class FThongTinHoKhau : MoveForm
+    public partial class FThongTinHoKhau : FormThongTin
     {
-        private string? maHoKhau;
-        private HoKhauDAO hkDAO;
-        private CongDanDAO cdDAO;
-
-        private ToolsForControl? tool; 
-
-        public string? MaHoKhau { get => maHoKhau; set => maHoKhau = value; }
 
         public FThongTinHoKhau(string maHoKhau)
         {
-            MaHoKhau = maHoKhau;
             InitializeComponent();
-            StackForm.Add(this);
-
-            hkDAO = new HoKhauDAO();
-            cdDAO = new CongDanDAO();
+            MaHoKhau = maHoKhau;
 
             SetTools();
         }
@@ -26,23 +15,23 @@ namespace QuanLiCongDanThanhPho
         {
             if (MaHoKhau != null)
             {
-                Hokhau? hk = hkDAO.LayThongTin(MaHoKhau);
+                Hokhau? hk = HKDAO.LayThongTin(MaHoKhau);
                 if (hk != null)
                 {
                     txtCCCDChuHo.Text = hk.CccdchuHo;
                     txtMaHoKhau.Text = hk.MaHk;
                     txtDiaChi.Text = hk.DiaChi;
 
-                    if (maHoKhau != null)
+                    if (MaHoKhau != null)
                     {
                         //---Thong tin chu ho---//
-                        Congdan? chuHo = cdDAO.LayThongTin(hk.CccdchuHo);
+                        Congdan? chuHo = CDDAO.LayThongTin(hk.CccdchuHo);
                         if (chuHo != null)
                             txtTenChuHo.Text = chuHo.Ten.ToString();
 
                         //---Quan he voi chu ho---//
 
-                        var dsNguoiTrongHo = cdDAO.LayDanhSachTheoHoKhau(maHoKhau);
+                        var dsNguoiTrongHo = CDDAO.LayDanhSachTheoHoKhau(MaHoKhau);
                         gvQuanHeVoiChuHo.DataSource = dsNguoiTrongHo;
                         lblTong.Text = "Tổng thành viên: " + dsNguoiTrongHo.Count.ToString();
                     }
@@ -51,12 +40,12 @@ namespace QuanLiCongDanThanhPho
         }
         private void CapNhatHoKhau()
         {
-            Hokhau? hoKhau = hkDAO.LayThongTin(maHoKhau);
+            Hokhau? hoKhau = HKDAO.LayThongTin(MaHoKhau);
 
             if (KiemTraDuLieuNhap.isDiaChi(txtDiaChi.Text) && hoKhau != null)
             {
                 hoKhau.DiaChi = txtDiaChi.Text;
-                hkDAO.CapNhatHoKhau();
+                HKDAO.CapNhatHoKhau();
                 MessageBox.Show("Cập nhật thành công");
             }
         }
@@ -79,7 +68,7 @@ namespace QuanLiCongDanThanhPho
             gvQuanHeVoiChuHo.Columns[8].Visible = false;
         }
 
-        private void SetTools()
+        internal override void SetTools()
         {
             List<TextBox> listTxt = new List<TextBox>()
             {txtDiaChi};
@@ -88,7 +77,7 @@ namespace QuanLiCongDanThanhPho
             {
                 btnXacNhan
             };
-            tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
+            Tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
      
         private void gvQuanHeVoiChuHo_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -98,7 +87,7 @@ namespace QuanLiCongDanThanhPho
                 string maCCCD = (string)gvQuanHeVoiChuHo.CurrentRow.Cells[0].Value;
                 if (maCCCD != "")
                 {
-                    Congdan? cD = cdDAO.LayThongTin(maCCCD);
+                    Congdan? cD = CDDAO.LayThongTin(maCCCD);
                     if (cD != null)
                     {
                         FThongTinCongDan ttCD = new FThongTinCongDan(cD);
@@ -110,22 +99,22 @@ namespace QuanLiCongDanThanhPho
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            tool?.AutoReadOnly();
+            Tool?.AutoReadOnly();
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             CapNhatHoKhau();
             LayThongTinHoKhau();
-            tool?.TurnOff();
+            Tool?.TurnOff();
         }
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LayThongTinHoKhau();
-            if (tool != null)
+            if (Tool != null)
             {
-                tool.State = ToolsForControl.Turn.on;
-                tool?.TurnOff();
+                Tool.State = ToolsForControl.Turn.on;
+                Tool?.TurnOff();
             }
         }
     }
