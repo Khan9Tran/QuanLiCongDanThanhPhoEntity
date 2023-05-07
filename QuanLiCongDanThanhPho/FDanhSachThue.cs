@@ -147,9 +147,10 @@ namespace QuanLiCongDanThanhPho
 
         private void btnCongDanCanTaoThue_Click(object sender, EventArgs e)
         {
-            FDanhSachCongDan ds = new FDanhSachCongDan();
+            FDanhSachCongDan dscd = new FDanhSachCongDan(thueDAO.DuTuoiDongThue().ToList<Object>());
+            FDanhSach ds = new FDanhSach();
             (StackForm.TrangChu)?.ChildForm.Open(ds);
-            ds.Ds = thueDAO.DuTuoiDongThue().ToList<Object>();
+            ds.ChildForm.Open(dscd);
 
         }
         private bool ThanhToan()

@@ -15,7 +15,18 @@ namespace QuanLiCongDanThanhPho
             docThan,
             tuoiTac,
         }
+        public FDanhSachCongDan(List<Object> ds)
+        {
+            init();
+            Ds = ds;
+        }
+
         public FDanhSachCongDan()
+        {
+            init();
+        }
+
+        private void init()
         {
             InitializeComponent();
             cdDao = new CongDanDAO();
@@ -24,7 +35,6 @@ namespace QuanLiCongDanThanhPho
             btnThue.Enabled = false;
             btnKhaiSinh.Enabled = true;
         }
-
         //Tìm kiếm công dân theo các điều kiện
         private void txtTimKiem_TextChanged(object sender, EventArgs e)
         {
