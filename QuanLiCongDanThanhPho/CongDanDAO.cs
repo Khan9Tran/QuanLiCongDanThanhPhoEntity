@@ -61,22 +61,16 @@ namespace QuanLiCongDanThanhPho
         }
         public bool ThayDoiHoKhau(Congdan cD)
         {
-            try
+            Congdan? congDan = LayThongTin(cD.Cccd);
+            if (congDan != null)
             {
-                Congdan? congDan = db.Congdans.Find(cD.Cccd);
-                if (congDan != null)
-                {
-                    congDan.MaHk = cD.MaHk;
-                    congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
-                    db.SaveChanges();
-                }
+                congDan.MaHk = cD.MaHk;
+                congDan.QuanHeVoiChuHo = cD.QuanHeVoiChuHo;
+                db.SaveChanges();
+                return true;
             }
-            catch
-            {
-                return false;
-            }
-            MessageBox.Show("Thay đổi hộ khẩu thành công");
-            return true;
+
+            return false;
         }
         public bool NhapHoKhau(Congdan cD)
         {

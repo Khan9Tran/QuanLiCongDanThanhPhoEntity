@@ -48,9 +48,14 @@ namespace QuanLiCongDanThanhPho
                 MaHk = txtMaHo.Text,
                 QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text
             };
-            CongDanDAO cDDAO = new CongDanDAO();
-            cDDAO.ThayDoiHoKhau(congDan);
-            LoadDanhSachChuaHoKhau();
+
+            if (cDDAO.ThayDoiHoKhau(congDan))
+            {
+                MessageBox.Show("Thêm thành công");
+                Reset();
+            }
+            else
+                MessageBox.Show("Thêm thất bại");
         }
 
         private void gvNguoiChuaCoHoKhau_CellClick(object sender, DataGridViewCellEventArgs e)
