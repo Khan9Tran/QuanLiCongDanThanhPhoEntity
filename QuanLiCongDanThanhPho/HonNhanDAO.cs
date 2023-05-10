@@ -8,7 +8,11 @@ namespace QuanLiCongDanThanhPho
         //Kiểm tra tên nhập vào có trùng khớp với trong hệ thống không
         public bool isGiongNhau(string? a, string? b)
         {
-            if (a != b) return false;
+            if (a != b)
+            {
+                return false;
+                MessageBox.Show("Tên không khớp");
+            }
             return true;
         }
 
@@ -36,6 +40,7 @@ namespace QuanLiCongDanThanhPho
 
                 if (LayThongTinTheoMaSo(hN.MaHonNhan) != null || hnChong != null || hnVo != null)
                 {
+                    MessageBox.Show("Vui lòng kiểm tra tình trạng hôn nhân");
                     return false;
                 }    
 
