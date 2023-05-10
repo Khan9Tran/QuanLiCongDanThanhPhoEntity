@@ -8,16 +8,10 @@ namespace QuanLiCongDanThanhPho
         QuanlitpContext db = DBConnection.Db;
         public HoKhauDAO() { }
         public bool ThemHoKhau(Hokhau hK)
-        {   try
-            {
-                db.Hokhaus.Add(hK);
-                db.SaveChanges();
-            }
-            catch
-            (Exception ex)
-            {
+        {   if (LayThongTin(hK.MaHk) != null)
                 return false;
-            }
+            db.Hokhaus.Add(hK);
+            db.SaveChanges();
             return true;
         }
 

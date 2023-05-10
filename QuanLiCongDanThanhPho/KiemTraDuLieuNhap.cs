@@ -152,7 +152,8 @@ namespace QuanLiCongDanThanhPho
 
         public static bool KiemTraThue(Thue thue)
         {
-            return KiemTraThueDonGian(thue) && !isEmpty(thue.SoTienCanNop) && !isEmpty(thue.SoTienDaNop);
+            return KiemTraThueDonGian(thue) && !isEmpty(thue.SoTienCanNop) && !isEmpty(thue.SoTienDaNop)
+                && isTien(thue.SoTienDaNop) && isTien(thue.SoTienCanNop);
         }
 
         public static bool KiemTraHaiHo(string maHk1, string maHk2)

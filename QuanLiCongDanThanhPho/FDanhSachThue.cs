@@ -157,13 +157,19 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtDongThue.Text.Length == 0) return false;
             if (KiemTraDuLieuNhap.isTien(txtDongThue.Text))
-            {
-                int tienNhap = int.Parse(txtDongThue.Text);
-                Thue? thue = thueDAO.LayThongTin(CCCDDAO.GetCCCD(gvThue, 1));
-                if (thue != null && thue.ThanhToan(tienNhap))
+            {   try
                 {
-                    thueDAO.CapNhatThue();
-                    return true;
+                    int tienNhap = int.Parse(txtDongThue.Text);
+                    Thue? thue = thueDAO.LayThongTin(CCCDDAO.GetCCCD(gvThue, 1));
+                    if (thue != null && thue.ThanhToan(tienNhap))
+                    {
+                        thueDAO.CapNhatThue();
+                        return true;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Số tiền quá lớn");
                 }
             }
             return false;

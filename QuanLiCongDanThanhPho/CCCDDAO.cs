@@ -17,16 +17,16 @@ namespace QuanLiCongDanThanhPho
 
         public bool XoaCCCD(string maCanCuoc) 
         {
-            try
+           
+            Cccd? cCCD = LayThongTin(maCanCuoc);
+
+            if (cCCD == null)
             {
-                Cccd? cCCD = db.Cccds.Where(p => p.MaCccd == maCanCuoc).FirstOrDefault();
-                if (cCCD != null)
-                {
-                    db.Remove(cCCD);
-                    db.SaveChanges();
-                }
+                return false;
             }
-            catch { return false; }
+
+            db.Remove(cCCD);
+            db.SaveChanges();
             return true;
         }
 

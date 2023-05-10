@@ -82,11 +82,11 @@
             this.gvHoGop.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvHoGop.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvHoGop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvHoGop.Location = new System.Drawing.Point(303, 434);
+            this.gvHoGop.Location = new System.Drawing.Point(296, 434);
             this.gvHoGop.Name = "gvHoGop";
             this.gvHoGop.RowHeadersWidth = 51;
             this.gvHoGop.RowTemplate.Height = 29;
-            this.gvHoGop.Size = new System.Drawing.Size(670, 230);
+            this.gvHoGop.Size = new System.Drawing.Size(677, 230);
             this.gvHoGop.TabIndex = 7;
             // 
             // btnTach

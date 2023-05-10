@@ -29,15 +29,24 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTach_Click(object sender, EventArgs e)
         {
-            int index = gvHoTach.CurrentCell.RowIndex;
-            if (index >= 0 && gvHoTach.Rows[index].Cells[0] != null)
+            try
             {
-                string tmp = (string)gvHoTach.Rows[index].Cells[0].Value;
-                if (KiemTraDuLieuNhap.isCCCD(tmp))
+                int index = gvHoTach.CurrentCell.RowIndex;
+
+
+                if (index >= 0 && gvHoTach.Rows[index].Cells[0] != null)
                 {
-                    cCCD = tmp;
-                    isTach = true;
+                    string tmp = (string)gvHoTach.Rows[index].Cells[0].Value;
+                    if (KiemTraDuLieuNhap.isCCCD(tmp))
+                    {
+                        cCCD = tmp;
+                        isTach = true;
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Không tồn tại hộ này");
             }
         }
 
@@ -93,7 +102,9 @@ namespace QuanLiCongDanThanhPho
             }
         }
         public bool ThemVaoHo()
-        { 
+        {
+            if (hKDAO.LayThongTin(txtMaHoGop.Text) == null)
+                return false;
             if (cDDAO?.NhapHoKhau(cCCD, txtMaHoGop.Text) == false)
                 return false;
 

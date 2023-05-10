@@ -26,12 +26,15 @@ namespace QuanLiCongDanThanhPho
                 Khaisinh? ksChong = ksDao.LayThongTin(hN.Cccdnam);
                 Khaisinh? ksVo = ksDao.LayThongTin(hN.Cccdnu);
 
+                Honnhan hnChong = LayThongTin(hN.Cccdnam);
+                Honnhan hnVo = LayThongTin(hN.Cccdnu);
+
                 if ((ksChong != null && ksVo != null ) && (ksChong.GioiTinh != "m" || ksVo.GioiTinh != "f"))
                 {
                     return false;
                 }
 
-                if (LayThongTinTheoMaSo(hN.MaHonNhan) != null || chong == null || vo == null)
+                if (LayThongTinTheoMaSo(hN.MaHonNhan) != null || hnChong != null || hnVo != null)
                 {
                     return false;
                 }    

@@ -3,7 +3,6 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThemNguoiVaoHo : FormDangKy
     {
-        private CongDanDAO cDDAO;
         public FThemNguoiVaoHo()
         {
             InitializeComponent();
@@ -13,7 +12,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LoadDanhSachChuaHoKhau()
         {
-            gvNguoiChuaCoHoKhau.DataSource = cDDAO.LayDanhSachTheoHoKhau("00000A");
+            gvNguoiChuaCoHoKhau.DataSource = CDDAO.LayDanhSachTheoHoKhau("00000A");
             HeaderText();
         }
 
@@ -52,7 +51,7 @@ namespace QuanLiCongDanThanhPho
                 QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text
             };
 
-            if (cDDAO.ThayDoiHoKhau(congDan))
+            if (HKDAO.LayThongTin(txtMaHo.Text) != null && CDDAO.ThayDoiHoKhau(congDan))
             {
                 MessageBox.Show("Thêm thành công");
                 Reset();
@@ -63,10 +62,12 @@ namespace QuanLiCongDanThanhPho
         private void gvNguoiChuaCoHoKhau_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int dong = e.RowIndex;
-            txtCCCD.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[0].Value.ToString();
-            txtTen.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[1].Value.ToString();
+            if (dong >= 0)
+            {
+                txtCCCD.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[0].Value.ToString();
+                txtTen.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[1].Value.ToString();
+            }
         }
-
         internal override void Reset()
         {
             base.Reset();

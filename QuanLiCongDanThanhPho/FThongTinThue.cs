@@ -64,7 +64,7 @@ namespace QuanLiCongDanThanhPho
         {
             Thue? thue = ThueDAO.LayThongTin(MaCCCD);
 
-            if (txtMaSoThue.Text != "" && thue != null)
+            if (txtMaSoThue.Text != "" && thue != null && KiemTraDuLieuNhap.isTien(txtSoTienCanNop.Text)  && KiemTraDuLieuNhap.isTien(txtSoTienDaNop.Text))
             {
                 thue.Cccd = txtCCCD.Text;
                 thue.SoTienCanNop = txtSoTienCanNop.Text;
@@ -76,7 +76,15 @@ namespace QuanLiCongDanThanhPho
                     ThueDAO.CapNhatThue();
                     MessageBox.Show("Cập nhật thành công");
                 }
+                else
+                {
+                    MessageBox.Show("Cập nhật thất bại");
+                }
             }
+            else
+            {
+                MessageBox.Show("Thông tin nhập sai");
+            }    
         }    
         private void btnXacNhan_Click(object sender, EventArgs e)
         {

@@ -57,12 +57,12 @@
             this.gvSoLuongNamNu.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvSoLuongNamNu.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvSoLuongNamNu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvSoLuongNamNu.Location = new System.Drawing.Point(41, 130);
+            this.gvSoLuongNamNu.Location = new System.Drawing.Point(41, 132);
             this.gvSoLuongNamNu.Name = "gvSoLuongNamNu";
             this.gvSoLuongNamNu.RowHeadersVisible = false;
             this.gvSoLuongNamNu.RowHeadersWidth = 51;
             this.gvSoLuongNamNu.RowTemplate.Height = 29;
-            this.gvSoLuongNamNu.Size = new System.Drawing.Size(315, 134);
+            this.gvSoLuongNamNu.Size = new System.Drawing.Size(315, 208);
             this.gvSoLuongNamNu.TabIndex = 23;
             // 
             // lblTiLeNamNu
@@ -95,7 +95,7 @@
             // lblNhomTuoi
             // 
             this.lblNhomTuoi.AutoSize = true;
-            this.lblNhomTuoi.Location = new System.Drawing.Point(41, 289);
+            this.lblNhomTuoi.Location = new System.Drawing.Point(41, 343);
             this.lblNhomTuoi.Name = "lblNhomTuoi";
             this.lblNhomTuoi.Size = new System.Drawing.Size(193, 28);
             this.lblNhomTuoi.TabIndex = 28;
@@ -107,7 +107,7 @@
             this.gvNhomTuoi.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvNhomTuoi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvNhomTuoi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvNhomTuoi.Location = new System.Drawing.Point(41, 320);
+            this.gvNhomTuoi.Location = new System.Drawing.Point(41, 404);
             this.gvNhomTuoi.Name = "gvNhomTuoi";
             this.gvNhomTuoi.RowHeadersVisible = false;
             this.gvNhomTuoi.RowHeadersWidth = 51;

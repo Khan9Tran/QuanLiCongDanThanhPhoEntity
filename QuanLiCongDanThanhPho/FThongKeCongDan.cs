@@ -29,11 +29,11 @@
             gvNgheNghiep.Columns[0].HeaderText = "Nghề nghiệp";
             gvNgheNghiep.Columns[1].HeaderText = "Số lượng";
 
-            gvSoLuongNamNu.Columns[0].HeaderText = "Giới tính";
+            gvSoLuongNamNu.Columns[0].HeaderText = "GT m:(Nam), f:(Nữ) ";
             gvSoLuongNamNu.Columns[1].HeaderText = "Số lượng";
 
             gvNhomTuoi.Columns[0].HeaderText = "Nhóm tuổi";
-            gvNhomTuoi.Columns[0].HeaderText = "Số lượng";
+            gvNhomTuoi.Columns[1].HeaderText = "Số lượng";
         }
     }
 }
