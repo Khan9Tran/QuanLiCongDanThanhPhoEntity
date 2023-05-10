@@ -61,6 +61,7 @@
             // 
             // btnLoc
             // 
+            this.btnLoc.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnLoc.FlatAppearance.BorderSize = 0;
             this.btnLoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.dots__2_;
@@ -68,16 +69,17 @@
             this.btnLoc.Name = "btnLoc";
             this.btnLoc.Size = new System.Drawing.Size(32, 40);
             this.btnLoc.TabIndex = 60;
-            this.btnLoc.UseVisualStyleBackColor = true;
+            this.btnLoc.UseVisualStyleBackColor = false;
             this.btnLoc.Click += new System.EventHandler(this.btnLoc_Click);
             // 
             // btnCongDan
             // 
-            this.btnCongDan.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCongDan.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnCongDan.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnCongDan.FlatAppearance.BorderSize = 0;
             this.btnCongDan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCongDan.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnCongDan.ForeColor = System.Drawing.Color.Black;
+            this.btnCongDan.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCongDan.ForeColor = System.Drawing.Color.White;
             this.btnCongDan.Location = new System.Drawing.Point(41, 3);
             this.btnCongDan.Name = "btnCongDan";
             this.btnCongDan.Size = new System.Drawing.Size(125, 40);
@@ -88,11 +90,12 @@
             // 
             // btnThue
             // 
-            this.btnThue.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnThue.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnThue.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnThue.FlatAppearance.BorderSize = 0;
             this.btnThue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThue.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnThue.ForeColor = System.Drawing.Color.Black;
+            this.btnThue.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnThue.ForeColor = System.Drawing.Color.White;
             this.btnThue.Location = new System.Drawing.Point(172, 3);
             this.btnThue.Name = "btnThue";
             this.btnThue.Size = new System.Drawing.Size(125, 40);
@@ -103,11 +106,12 @@
             // 
             // btnHoKhau
             // 
-            this.btnHoKhau.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnHoKhau.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnHoKhau.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnHoKhau.FlatAppearance.BorderSize = 0;
             this.btnHoKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHoKhau.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnHoKhau.ForeColor = System.Drawing.Color.Black;
+            this.btnHoKhau.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnHoKhau.ForeColor = System.Drawing.Color.White;
             this.btnHoKhau.Location = new System.Drawing.Point(303, 3);
             this.btnHoKhau.Name = "btnHoKhau";
             this.btnHoKhau.Size = new System.Drawing.Size(125, 40);
@@ -118,11 +122,12 @@
             // 
             // btnTTTV
             // 
-            this.btnTTTV.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnTTTV.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnTTTV.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnTTTV.FlatAppearance.BorderSize = 0;
             this.btnTTTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTTTV.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnTTTV.ForeColor = System.Drawing.Color.Black;
+            this.btnTTTV.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTTTV.ForeColor = System.Drawing.Color.White;
             this.btnTTTV.Location = new System.Drawing.Point(434, 3);
             this.btnTTTV.Name = "btnTTTV";
             this.btnTTTV.Size = new System.Drawing.Size(223, 40);

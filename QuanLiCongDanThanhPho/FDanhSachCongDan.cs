@@ -15,6 +15,42 @@ namespace QuanLiCongDanThanhPho
             docThan,
             tuoiTac,
         }
+
+        private void ChangeBtnColor(Loc type)
+        {
+            btnDocThan.BackColor = Color.RoyalBlue;
+            btnNam.BackColor = Color.RoyalBlue;
+            btnNu.BackColor = Color.RoyalBlue;
+            btnKetHon.BackColor = Color.RoyalBlue;
+            btnTuoiTac.BackColor = Color.RoyalBlue;
+            btnDocThan.BackColor = Color.RoyalBlue;
+            btnTatCa.BackColor = Color.RoyalBlue;
+
+            if (type == Loc.tatCa)
+            {
+                btnTatCa.BackColor = Color.DarkBlue;
+            }    
+            else if (type == Loc.nam)
+            {
+                btnNam.BackColor = Color.DarkBlue;
+            }    
+            else if (type == Loc.tuoiTac)
+            {
+                btnTuoiTac.BackColor = Color.DarkBlue;
+            }    
+            else if (type == Loc.ketHon)
+            {
+                btnKetHon.BackColor = Color.DarkBlue;
+            }    
+            else if (type == Loc.nu)
+            {
+                btnNu.BackColor = Color.DarkBlue;
+            }    
+            else if (type == Loc.docThan)
+            {
+                btnDocThan.BackColor = Color.DarkBlue;
+            }    
+        }
         public FDanhSachCongDan(List<Object> ds)
         {
             init();
@@ -118,36 +154,42 @@ namespace QuanLiCongDanThanhPho
         //Lọc giới tính: Nam
         private void btnNam_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.nam);
             TimKiem(Loc.nam);
         }
 
         //Show tất cả
         private void btnTatCa_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.tatCa);
             TimKiem(Loc.tatCa);
         }
 
         //Lọc giới tính: nữ
         private void btnNu_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.nu);
             TimKiem(Loc.nu);
         }
 
         //Lọc người chưa kết hôn
         private void btnDocThan_Click(object sender, EventArgs e)
-        {
+        {   
+            ChangeBtnColor(Loc.docThan);
             TimKiem(Loc.docThan);
         }
 
         //Lọc người đã kết hôn
         private void btnKetHon_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.ketHon);
             TimKiem(Loc.ketHon);
         }
 
         //Sắp xếp theo tuổi tác
         private void btnTuoiTac_Click(object sender, EventArgs e)
-        {
+        {   
+            ChangeBtnColor(Loc.tuoiTac);
             TimKiem(Loc.tuoiTac);
         }
         

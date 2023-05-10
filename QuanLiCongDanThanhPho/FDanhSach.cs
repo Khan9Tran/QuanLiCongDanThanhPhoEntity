@@ -15,6 +15,37 @@ namespace QuanLiCongDanThanhPho
         private OpenChildForm childForm;
         public OpenChildForm ChildForm { get => childForm; set => childForm = value; }
 
+        enum Type
+        {
+            CongDan,
+            Thue,
+            TamTruTamVang,
+            HoKhau
+        }
+        private void ChangeBtnColor(Type type)
+        {
+            btnHoKhau.BackColor = Color.RoyalBlue;
+            btnCongDan.BackColor = Color.RoyalBlue;
+            btnThue.BackColor = Color.RoyalBlue;
+            btnTTTV.BackColor = Color.RoyalBlue;
+            if (type == Type.CongDan)
+            {
+                btnCongDan.BackColor = Color.DarkBlue;
+            } 
+            else if (type == Type.Thue)
+            {
+               btnThue.BackColor = Color.DarkBlue;
+            }  
+            else if (type == Type.TamTruTamVang)
+            {
+                btnTTTV.BackColor = Color.DarkBlue;
+            }
+            else if (type == Type.HoKhau)
+            {
+                btnHoKhau.BackColor = Color.DarkBlue;
+            } 
+                
+        }
         public FDanhSach()
         {
             InitializeComponent();
@@ -45,21 +76,25 @@ namespace QuanLiCongDanThanhPho
 
         private void btnCongDan_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Type.CongDan);
             childForm.Open(new FDanhSachCongDan());
         }
 
         private void btnThue_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Type.Thue);
             childForm.Open(new FDanhSachThue());
         }
 
         private void btnHoKhau_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Type.HoKhau);
             childForm.Open(new FDanhSachHoKhau());
         }
 
         private void btnTTTV_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Type.TamTruTamVang);
             childForm.Open(new FDanhSachTamTruTamVang());
         }
     }

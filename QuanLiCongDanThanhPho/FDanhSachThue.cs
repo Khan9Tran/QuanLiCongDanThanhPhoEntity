@@ -12,7 +12,7 @@ namespace QuanLiCongDanThanhPho
 
             thueDAO = new ThueDAO();
             cDDAO = new CongDanDAO();
-            ListData = new Paging(nudPage, 10);
+            ListData = new Paging(nudPage, 15);
         }
 
         private enum Loc
@@ -21,7 +21,25 @@ namespace QuanLiCongDanThanhPho
             daNop,
             treHan
         }
+        private void ChangeBtnColor(Loc type)
+        {
+            btnTienDaNop.BackColor = Color.RoyalBlue;
+            btnTreHan.BackColor = Color.RoyalBlue;
+            btnTatCa.BackColor = Color.RoyalBlue;
 
+            if (type == Loc.tatCa)
+            {
+                btnTatCa.BackColor = Color.DarkBlue;
+            }
+            else if (type == Loc.daNop)
+            {
+                btnTienDaNop.BackColor = Color.DarkBlue;
+            }
+            else if (type == Loc.treHan)
+            {
+                btnTreHan.BackColor = Color.DarkBlue;
+            }
+        }
         private void TimKiem(dynamic type)
         {
             LuaChon = type;
@@ -45,7 +63,8 @@ namespace QuanLiCongDanThanhPho
 
         // Danh sach thuế của tất cả công dân
         private void btnTatCa_Click(object sender, EventArgs e)
-        {
+        {   
+            ChangeBtnColor(Loc.tatCa);
             TimKiem(Loc.tatCa);
         }
 
@@ -91,6 +110,7 @@ namespace QuanLiCongDanThanhPho
         // Sắp xếp danh sách tăng dần theo số tiền đã nộp
         private void btnTienDaNop_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.daNop);
             TimKiem(Loc.daNop);
         }
 
@@ -131,6 +151,7 @@ namespace QuanLiCongDanThanhPho
         // Lọc danh sách những người đóng tiền trẽ hạn/ chưa đủ tiền khi quá thời gian
         private void btnTreHan_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.treHan);
             TimKiem(Loc.treHan);
         }
 

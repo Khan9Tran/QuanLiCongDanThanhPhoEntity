@@ -21,7 +21,7 @@
             if (flpnPhanLoai.Width > 50)
                 flpnPhanLoai.Width = 45;
             else
-                flpnPhanLoai.Width = 1000;
+                flpnPhanLoai.Width = 900;
         }
         internal virtual void HeaderText()
         {

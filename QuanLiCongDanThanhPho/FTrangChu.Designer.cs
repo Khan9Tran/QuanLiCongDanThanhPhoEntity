@@ -81,7 +81,7 @@
             this.btnMenuShow.BackColor = System.Drawing.Color.Transparent;
             this.btnMenuShow.FlatAppearance.BorderSize = 0;
             this.btnMenuShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuShow.Image = global::QuanLiCongDanThanhPho.Properties.Resources.menu__8_;
+            this.btnMenuShow.Image = global::QuanLiCongDanThanhPho.Properties.Resources.menu__9_;
             this.btnMenuShow.Location = new System.Drawing.Point(7, 3);
             this.btnMenuShow.Name = "btnMenuShow";
             this.btnMenuShow.Size = new System.Drawing.Size(65, 65);
@@ -91,21 +91,22 @@
             // 
             // pnlDanhMuc
             // 
-            this.pnlDanhMuc.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlDanhMuc.BackColor = System.Drawing.Color.RoyalBlue;
             this.pnlDanhMuc.Controls.Add(this.lblDanhMuc);
             this.pnlDanhMuc.Location = new System.Drawing.Point(0, 69);
             this.pnlDanhMuc.Name = "pnlDanhMuc";
             this.pnlDanhMuc.Size = new System.Drawing.Size(290, 80);
             this.pnlDanhMuc.TabIndex = 0;
+            this.pnlDanhMuc.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDanhMuc_Paint);
             // 
             // lblDanhMuc
             // 
             this.lblDanhMuc.AutoSize = true;
-            this.lblDanhMuc.BackColor = System.Drawing.Color.Transparent;
+            this.lblDanhMuc.BackColor = System.Drawing.Color.RoyalBlue;
             this.lblDanhMuc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblDanhMuc.Font = new System.Drawing.Font("Segoe UI Semibold", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDanhMuc.ForeColor = System.Drawing.Color.Black;
-            this.lblDanhMuc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.user_list;
+            this.lblDanhMuc.ForeColor = System.Drawing.Color.White;
+            this.lblDanhMuc.Image = global::QuanLiCongDanThanhPho.Properties.Resources.user__6_;
             this.lblDanhMuc.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.lblDanhMuc.Location = new System.Drawing.Point(12, 17);
             this.lblDanhMuc.Name = "lblDanhMuc";
@@ -125,6 +126,7 @@
             this.lblCongDan.TabIndex = 0;
             this.lblCongDan.Text = "DANH MỤC";
             this.lblCongDan.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblCongDan.Click += new System.EventHandler(this.lblCongDan_Click);
             // 
             // cmnusDangKy
             // 
@@ -141,6 +143,7 @@
             this.cmnusDangKy.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.cmnusDangKy.ShowImageMargin = false;
             this.cmnusDangKy.Size = new System.Drawing.Size(245, 164);
+            this.cmnusDangKy.Opening += new System.ComponentModel.CancelEventHandler(this.cmnusDangKy_Opening);
             // 
             // cmnusDangKyItemTamTruTamVang
             // 
@@ -179,6 +182,7 @@
             this.cmnusDangKyItemCongDan.Name = "cmnusDangKyItemCongDan";
             this.cmnusDangKyItemCongDan.Size = new System.Drawing.Size(244, 32);
             this.cmnusDangKyItemCongDan.Text = "Công Dân";
+            this.cmnusDangKyItemCongDan.Click += new System.EventHandler(this.cmnusDangKyItemCongDan_Click_1);
             // 
             // ItemCongDanChuyenDen
             // 
@@ -204,12 +208,13 @@
             // pnlHienThiForm
             // 
             this.pnlHienThiForm.AutoSize = true;
-            this.pnlHienThiForm.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlHienThiForm.BackColor = System.Drawing.Color.White;
             this.pnlHienThiForm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pnlHienThiForm.Location = new System.Drawing.Point(88, 81);
             this.pnlHienThiForm.Name = "pnlHienThiForm";
             this.pnlHienThiForm.Size = new System.Drawing.Size(1532, 782);
             this.pnlHienThiForm.TabIndex = 2;
+            this.pnlHienThiForm.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHienThiForm_Paint);
             // 
             // pnlTaiKhoan
             // 
@@ -219,6 +224,7 @@
             this.pnlTaiKhoan.Name = "pnlTaiKhoan";
             this.pnlTaiKhoan.Size = new System.Drawing.Size(286, 51);
             this.pnlTaiKhoan.TabIndex = 0;
+            this.pnlTaiKhoan.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTaiKhoan_Paint);
             // 
             // ptcHinhDaiDien
             // 
@@ -244,6 +250,7 @@
             this.cmnusTaiKhoan.Name = "cmnusTaiKhoan";
             this.cmnusTaiKhoan.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.cmnusTaiKhoan.Size = new System.Drawing.Size(212, 128);
+            this.cmnusTaiKhoan.Opening += new System.ComponentModel.CancelEventHandler(this.cmnusTaiKhoan_Opening);
             this.cmnusTaiKhoan.Opened += new System.EventHandler(this.btnTaiKhoan_Click);
             // 
             // cmnusTaiKhoanItemCaNhan
@@ -306,6 +313,7 @@
             this.pnlTitleBar.Name = "pnlTitleBar";
             this.pnlTitleBar.Size = new System.Drawing.Size(1630, 75);
             this.pnlTitleBar.TabIndex = 3;
+            this.pnlTitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTitleBar_Paint);
             // 
             // lblTime
             // 
@@ -315,6 +323,7 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(0, 20);
             this.lblTime.TabIndex = 7;
+            this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // lblNgayHienTai
             // 
@@ -326,6 +335,7 @@
             this.lblNgayHienTai.Name = "lblNgayHienTai";
             this.lblNgayHienTai.Size = new System.Drawing.Size(0, 28);
             this.lblNgayHienTai.TabIndex = 6;
+            this.lblNgayHienTai.Click += new System.EventHandler(this.lblNgayHienTai_Click);
             // 
             // ptcNameApp
             // 
@@ -337,6 +347,7 @@
             this.ptcNameApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptcNameApp.TabIndex = 0;
             this.ptcNameApp.TabStop = false;
+            this.ptcNameApp.Click += new System.EventHandler(this.ptcNameApp_Click);
             // 
             // sideBar1
             // 
@@ -344,6 +355,7 @@
             this.sideBar1.Name = "sideBar1";
             this.sideBar1.Size = new System.Drawing.Size(65, 72);
             this.sideBar1.TabIndex = 5;
+            this.sideBar1.Load += new System.EventHandler(this.sideBar1_Load);
             // 
             // titleBar1
             // 
@@ -351,6 +363,7 @@
             this.titleBar1.Name = "titleBar1";
             this.titleBar1.Size = new System.Drawing.Size(48, 32);
             this.titleBar1.TabIndex = 4;
+            this.titleBar1.Load += new System.EventHandler(this.titleBar1_Load);
             // 
             // tmrThuNho
             // 
@@ -358,7 +371,7 @@
             // 
             // pnlMenu
             // 
-            this.pnlMenu.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlMenu.BackColor = System.Drawing.Color.RoyalBlue;
             this.pnlMenu.Controls.Add(this.pnlThongKe);
             this.pnlMenu.Controls.Add(this.pnlDangKy);
             this.pnlMenu.Controls.Add(this.pnlDanhMuc);
@@ -367,24 +380,26 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(80, 782);
             this.pnlMenu.TabIndex = 4;
+            this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
             // 
             // pnlThongKe
             // 
-            this.pnlThongKe.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlThongKe.BackColor = System.Drawing.Color.RoyalBlue;
             this.pnlThongKe.Controls.Add(this.lblThongKe);
             this.pnlThongKe.Location = new System.Drawing.Point(0, 224);
             this.pnlThongKe.Name = "pnlThongKe";
             this.pnlThongKe.Size = new System.Drawing.Size(290, 80);
             this.pnlThongKe.TabIndex = 1;
+            this.pnlThongKe.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlThongKe_Paint);
             // 
             // lblThongKe
             // 
             this.lblThongKe.AutoSize = true;
-            this.lblThongKe.BackColor = System.Drawing.Color.Transparent;
+            this.lblThongKe.BackColor = System.Drawing.Color.RoyalBlue;
             this.lblThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblThongKe.Font = new System.Drawing.Font("Segoe UI Semibold", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblThongKe.ForeColor = System.Drawing.Color.Black;
-            this.lblThongKe.Image = global::QuanLiCongDanThanhPho.Properties.Resources.file;
+            this.lblThongKe.ForeColor = System.Drawing.Color.White;
+            this.lblThongKe.Image = global::QuanLiCongDanThanhPho.Properties.Resources.pie_chart;
             this.lblThongKe.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.lblThongKe.Location = new System.Drawing.Point(12, 16);
             this.lblThongKe.Name = "lblThongKe";
@@ -396,21 +411,22 @@
             // 
             // pnlDangKy
             // 
-            this.pnlDangKy.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pnlDangKy.BackColor = System.Drawing.Color.RoyalBlue;
             this.pnlDangKy.Controls.Add(this.lblDangKy);
             this.pnlDangKy.Location = new System.Drawing.Point(0, 144);
             this.pnlDangKy.Name = "pnlDangKy";
             this.pnlDangKy.Size = new System.Drawing.Size(290, 80);
             this.pnlDangKy.TabIndex = 1;
+            this.pnlDangKy.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDangKy_Paint);
             // 
             // lblDangKy
             // 
             this.lblDangKy.AutoSize = true;
-            this.lblDangKy.BackColor = System.Drawing.Color.Transparent;
+            this.lblDangKy.BackColor = System.Drawing.Color.RoyalBlue;
             this.lblDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblDangKy.Font = new System.Drawing.Font("Segoe UI Semibold", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDangKy.ForeColor = System.Drawing.Color.Black;
-            this.lblDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.edit__2_;
+            this.lblDangKy.ForeColor = System.Drawing.Color.White;
+            this.lblDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.pencil;
             this.lblDangKy.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.lblDangKy.Location = new System.Drawing.Point(12, 18);
             this.lblDangKy.Name = "lblDangKy";

@@ -12,12 +12,27 @@ namespace QuanLiCongDanThanhPho
             tatCa,
             soTv
         }
+        
+        private void ChangeBtnColor(Loc type)
+        {
+            btnSoTV.BackColor = Color.DodgerBlue;
+            btnTatCa.BackColor = Color.DodgerBlue;
+
+            if (type == Loc.tatCa)
+            {
+                btnTatCa.BackColor = Color.DarkBlue;
+            }    
+            else if (type == Loc.soTv)
+            {
+                btnSoTV.BackColor = Color.DarkBlue;
+            }    
+        }
         public FDanhSachHoKhau()
         {
             InitializeComponent();
 
             hkDAO = new HoKhauDAO();
-            ListData = new Paging(nudPage, 10);
+            ListData = new Paging(nudPage, 15);
         }
 
         private void TimKiem(dynamic type)
@@ -41,6 +56,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTatCa_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.tatCa);
             TimKiem(Loc.tatCa);
         }
 
@@ -65,6 +81,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnSoTV_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.soTv);
             TimKiem(Loc.soTv);
         }
 

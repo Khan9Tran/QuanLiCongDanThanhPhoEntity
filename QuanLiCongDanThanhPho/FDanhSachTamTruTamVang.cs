@@ -12,7 +12,7 @@ namespace QuanLiCongDanThanhPho
             InitializeComponent();
 
             tttvDAO = new TamTruTamVangDAO();
-            ListData = new Paging(nudPage, 10);
+            ListData = new Paging(nudPage, 15);
         }
 
         private enum Loc 
@@ -21,6 +21,31 @@ namespace QuanLiCongDanThanhPho
             tamTru,
             tamVang,
             quaHan
+        }
+
+        private void ChangeBtnColor(Loc type)
+        {
+            btnTatCa.BackColor = Color.RoyalBlue;
+            btnQuaHan.BackColor = Color.RoyalBlue;
+            btnTT.BackColor = Color.RoyalBlue;
+            btnTV.BackColor = Color.RoyalBlue;
+
+            if (type == Loc.tatCa) 
+            {
+                btnTatCa.BackColor = Color.DarkBlue;
+            }
+            else if (type == Loc.tamTru)
+            {
+                btnTT.BackColor= Color.DarkBlue;
+            }
+            else if (type == Loc.tamVang)
+            {
+                btnTV.BackColor= Color.DarkBlue;
+            }
+            else if (type == Loc.quaHan)
+            {
+                btnQuaHan.BackColor = Color.DarkBlue;
+            }
         }
 
         private void TimKiem(dynamic type)
@@ -39,6 +64,7 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTatCa_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.tatCa);
             TimKiem(Loc.tatCa);
         }
 
@@ -107,11 +133,13 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTV_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.tamVang);
             TimKiem(Loc.tamVang);
         }
 
         private void btnTT_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.tamTru);
             TimKiem(Loc.tamTru);
         }
 
@@ -148,6 +176,7 @@ namespace QuanLiCongDanThanhPho
         //Lọc danh sách hết hạn tạm trú tạm vắng
         private void btnQuaHan_Click(object sender, EventArgs e)
         {
+            ChangeBtnColor(Loc.quaHan);
             TimKiem(Loc.quaHan);
         }
 
