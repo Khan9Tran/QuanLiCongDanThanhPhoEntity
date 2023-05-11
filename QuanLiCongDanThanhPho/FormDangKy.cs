@@ -1,6 +1,6 @@
 ﻿namespace QuanLiCongDanThanhPho
 {
-    public partial class FormDangKy : Form
+    public class FormDangKy : Form
     {
         private CongDanDAO cDDAO;
         private KhaiSinhDAO kSDAO;

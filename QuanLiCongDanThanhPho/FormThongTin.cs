@@ -1,10 +1,7 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-
 namespace QuanLiCongDanThanhPho
 {
-
-
-    public partial class FormThongTin : MoveForm
+    public class FormThongTin : MoveForm
     {
         private ThueDAO thueDAO;
         private HonNhanDAO hNDAO;
@@ -32,7 +29,7 @@ namespace QuanLiCongDanThanhPho
         public string? MaCCCD { get => maCCCD; set => maCCCD = value; }
         public string? MaHoKhau { get => maHoKhau; set => maHoKhau = value; }
         public Congdan CongDan { get => congDan; set => congDan = value; }
-        public HinhDaiDien HinhCongDan { get => hinhCongDan; set => hinhCongDan = value; }
+        public HinhDaiDien HinhCongDan { get => hinhCongDan; set => hinhCongDan = value; } 
 
 
         public FormThongTin()
@@ -50,5 +47,4 @@ namespace QuanLiCongDanThanhPho
         internal virtual void SetTools() { }
 
     }
-
 }
