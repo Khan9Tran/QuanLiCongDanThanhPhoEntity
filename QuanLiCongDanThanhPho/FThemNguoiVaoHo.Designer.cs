@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtMaHo = new System.Windows.Forms.TextBox();
             this.lblMaHo = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
@@ -68,7 +70,7 @@
             this.btnThem.BackColor = System.Drawing.Color.Transparent;
             this.btnThem.FlatAppearance.BorderSize = 0;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThem.Image = global::QuanLiCongDanThanhPho.Properties.Resources.confirm;
+            this.btnThem.Image = global::QuanLiCongDanThanhPho.Properties.Resources.accept;
             this.btnThem.Location = new System.Drawing.Point(1388, 155);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(50, 50);
@@ -119,7 +121,7 @@
             this.btnTim.BackColor = System.Drawing.Color.Transparent;
             this.btnTim.FlatAppearance.BorderSize = 0;
             this.btnTim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTim.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search;
+            this.btnTim.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
             this.btnTim.Location = new System.Drawing.Point(1388, 262);
             this.btnTim.Name = "btnTim";
             this.btnTim.Size = new System.Drawing.Size(50, 50);
@@ -152,7 +154,7 @@
             this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
+            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
             this.btnReset.Location = new System.Drawing.Point(1388, 211);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(50, 50);
@@ -164,9 +166,27 @@
             // 
             this.gvNguoiChuaCoHoKhau.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvNguoiChuaCoHoKhau.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvNguoiChuaCoHoKhau.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gvNguoiChuaCoHoKhau.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvNguoiChuaCoHoKhau.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gvNguoiChuaCoHoKhau.EnableHeadersVisualStyles = false;
             this.gvNguoiChuaCoHoKhau.Location = new System.Drawing.Point(802, 183);
             this.gvNguoiChuaCoHoKhau.Name = "gvNguoiChuaCoHoKhau";
+            this.gvNguoiChuaCoHoKhau.RowHeadersVisible = false;
             this.gvNguoiChuaCoHoKhau.RowHeadersWidth = 51;
             this.gvNguoiChuaCoHoKhau.RowTemplate.Height = 29;
             this.gvNguoiChuaCoHoKhau.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
