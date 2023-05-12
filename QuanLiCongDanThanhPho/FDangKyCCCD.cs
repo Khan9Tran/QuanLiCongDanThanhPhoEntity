@@ -12,10 +12,6 @@ namespace QuanLiCongDanThanhPho
         private void FDangKyCCCD_Load(object sender, EventArgs e)
         {
             LoadDanhSach();
-            if (gvDanhSachChuaCapCCCD.Rows.Count > 0)
-            {
-                HeaderText();
-            };
         }
         internal override void Reset()
         {
@@ -55,6 +51,10 @@ namespace QuanLiCongDanThanhPho
         {
             gvDanhSachChuaCapCCCD.DataSource = CCCDDAO.DanhSachCCCDTheoDacDiem();
             Reset();
+            if (gvDanhSachChuaCapCCCD.Rows.Count > 0)
+            {
+                HeaderText();
+            };
         }
 
         private void HeaderText()

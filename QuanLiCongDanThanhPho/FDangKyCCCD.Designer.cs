@@ -253,6 +253,7 @@
             this.Name = "FDangKyCCCD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FDangKyCCCD";
+            this.Load += new System.EventHandler(this.FDangKyCCCD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachChuaCapCCCD)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
