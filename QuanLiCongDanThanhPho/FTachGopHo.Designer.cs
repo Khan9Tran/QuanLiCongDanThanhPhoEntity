@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblMaHoTach = new System.Windows.Forms.Label();
             this.lblMaHoGop = new System.Windows.Forms.Label();
             this.gvHoTach = new System.Windows.Forms.DataGridView();
@@ -68,9 +72,27 @@
             // 
             this.gvHoTach.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvHoTach.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvHoTach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gvHoTach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvHoTach.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gvHoTach.EnableHeadersVisualStyles = false;
             this.gvHoTach.Location = new System.Drawing.Point(296, 84);
             this.gvHoTach.Name = "gvHoTach";
+            this.gvHoTach.RowHeadersVisible = false;
             this.gvHoTach.RowHeadersWidth = 51;
             this.gvHoTach.RowTemplate.Height = 29;
             this.gvHoTach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -81,9 +103,27 @@
             // 
             this.gvHoGop.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvHoGop.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvHoGop.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gvHoGop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvHoGop.DefaultCellStyle = dataGridViewCellStyle4;
+            this.gvHoGop.EnableHeadersVisualStyles = false;
             this.gvHoGop.Location = new System.Drawing.Point(296, 434);
             this.gvHoGop.Name = "gvHoGop";
+            this.gvHoGop.RowHeadersVisible = false;
             this.gvHoGop.RowHeadersWidth = 51;
             this.gvHoGop.RowTemplate.Height = 29;
             this.gvHoGop.Size = new System.Drawing.Size(677, 230);
@@ -94,7 +134,7 @@
             this.btnTach.BackColor = System.Drawing.Color.Transparent;
             this.btnTach.FlatAppearance.BorderSize = 0;
             this.btnTach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTach.Image = global::QuanLiCongDanThanhPho.Properties.Resources.split__1_;
+            this.btnTach.Image = global::QuanLiCongDanThanhPho.Properties.Resources.division;
             this.btnTach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTach.Location = new System.Drawing.Point(3, 59);
             this.btnTach.Name = "btnTach";
@@ -109,7 +149,7 @@
             this.btnGopHo.BackColor = System.Drawing.Color.Transparent;
             this.btnGopHo.FlatAppearance.BorderSize = 0;
             this.btnGopHo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGopHo.Image = global::QuanLiCongDanThanhPho.Properties.Resources.merge;
+            this.btnGopHo.Image = global::QuanLiCongDanThanhPho.Properties.Resources.merge__1_;
             this.btnGopHo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGopHo.Location = new System.Drawing.Point(3, 115);
             this.btnGopHo.Name = "btnGopHo";
@@ -124,7 +164,7 @@
             this.btnTaoHoMoi.BackColor = System.Drawing.Color.Transparent;
             this.btnTaoHoMoi.FlatAppearance.BorderSize = 0;
             this.btnTaoHoMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTaoHoMoi.Image = global::QuanLiCongDanThanhPho.Properties.Resources.page;
+            this.btnTaoHoMoi.Image = global::QuanLiCongDanThanhPho.Properties.Resources.plus__1_;
             this.btnTaoHoMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTaoHoMoi.Location = new System.Drawing.Point(3, 3);
             this.btnTaoHoMoi.Name = "btnTaoHoMoi";
@@ -136,22 +176,22 @@
             // 
             // txtMaHoTach
             // 
-            this.txtMaHoTach.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtMaHoTach.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMaHoTach.BackColor = System.Drawing.Color.White;
+            this.txtMaHoTach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMaHoTach.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMaHoTach.Location = new System.Drawing.Point(296, 25);
             this.txtMaHoTach.Name = "txtMaHoTach";
-            this.txtMaHoTach.Size = new System.Drawing.Size(677, 27);
+            this.txtMaHoTach.Size = new System.Drawing.Size(677, 34);
             this.txtMaHoTach.TabIndex = 20;
             // 
             // txtMaHoGop
             // 
-            this.txtMaHoGop.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtMaHoGop.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMaHoGop.BackColor = System.Drawing.Color.White;
+            this.txtMaHoGop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMaHoGop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMaHoGop.Location = new System.Drawing.Point(303, 375);
             this.txtMaHoGop.Name = "txtMaHoGop";
-            this.txtMaHoGop.Size = new System.Drawing.Size(670, 27);
+            this.txtMaHoGop.Size = new System.Drawing.Size(670, 34);
             this.txtMaHoGop.TabIndex = 21;
             // 
             // btnMaHoTach
@@ -161,8 +201,8 @@
             this.btnMaHoTach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaHoTach.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMaHoTach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(53)))), ((int)(((byte)(60)))));
-            this.btnMaHoTach.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search;
-            this.btnMaHoTach.Location = new System.Drawing.Point(990, 14);
+            this.btnMaHoTach.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
+            this.btnMaHoTach.Location = new System.Drawing.Point(990, 16);
             this.btnMaHoTach.Name = "btnMaHoTach";
             this.btnMaHoTach.Size = new System.Drawing.Size(50, 50);
             this.btnMaHoTach.TabIndex = 54;
@@ -176,7 +216,7 @@
             this.btnMaHoGop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaHoGop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMaHoGop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(53)))), ((int)(((byte)(60)))));
-            this.btnMaHoGop.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search;
+            this.btnMaHoGop.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
             this.btnMaHoGop.Location = new System.Drawing.Point(990, 364);
             this.btnMaHoGop.Name = "btnMaHoGop";
             this.btnMaHoGop.Size = new System.Drawing.Size(50, 50);
@@ -190,7 +230,7 @@
             this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
+            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.Location = new System.Drawing.Point(3, 171);
             this.btnReset.Name = "btnReset";
@@ -202,13 +242,14 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowLayoutPanel1.Controls.Add(this.btnTaoHoMoi);
             this.flowLayoutPanel1.Controls.Add(this.btnTach);
             this.flowLayoutPanel1.Controls.Add(this.btnGopHo);
             this.flowLayoutPanel1.Controls.Add(this.btnReset);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(1192, 25);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(158, 418);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(158, 235);
             this.flowLayoutPanel1.TabIndex = 94;
             // 
             // FTachGopHo

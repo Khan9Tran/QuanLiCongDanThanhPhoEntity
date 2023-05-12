@@ -37,7 +37,7 @@
             // 
             // btnTachGop
             // 
-            this.btnTachGop.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnTachGop.BackColor = System.Drawing.Color.White;
             this.btnTachGop.FlatAppearance.BorderSize = 0;
             this.btnTachGop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTachGop.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -51,13 +51,13 @@
             // 
             // btnThem
             // 
-            this.btnThem.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnThem.BackColor = System.Drawing.Color.Transparent;
             this.btnThem.FlatAppearance.BorderSize = 0;
             this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThem.Image = global::QuanLiCongDanThanhPho.Properties.Resources.add_user__1_;
-            this.btnThem.Location = new System.Drawing.Point(1381, 17);
+            this.btnThem.Image = global::QuanLiCongDanThanhPho.Properties.Resources.add_button__1_;
+            this.btnThem.Location = new System.Drawing.Point(1383, 11);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(50, 50);
+            this.btnThem.Size = new System.Drawing.Size(60, 60);
             this.btnThem.TabIndex = 11;
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
@@ -66,6 +66,7 @@
             // 
             this.pnlLuaChon.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlLuaChon.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLuaChon.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.pnlLuaChon.Location = new System.Drawing.Point(0, 0);
             this.pnlLuaChon.Name = "pnlLuaChon";
             this.pnlLuaChon.Size = new System.Drawing.Size(1532, 647);
@@ -73,7 +74,7 @@
             // 
             // pnlBarDuoi
             // 
-            this.pnlBarDuoi.BackColor = System.Drawing.Color.Gainsboro;
+            this.pnlBarDuoi.BackColor = System.Drawing.Color.RoyalBlue;
             this.pnlBarDuoi.Controls.Add(this.btnThem);
             this.pnlBarDuoi.Controls.Add(this.btnTachGop);
             this.pnlBarDuoi.Dock = System.Windows.Forms.DockStyle.Bottom;
