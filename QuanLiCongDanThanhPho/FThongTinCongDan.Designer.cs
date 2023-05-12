@@ -98,7 +98,7 @@
             // 
             // pnlTittleBar
             // 
-            this.pnlTittleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            this.pnlTittleBar.BackColor = System.Drawing.Color.RoyalBlue;
             this.pnlTittleBar.Controls.Add(this.lblTittleBar);
             this.pnlTittleBar.Location = new System.Drawing.Point(4, 40);
             this.pnlTittleBar.Name = "pnlTittleBar";
@@ -247,7 +247,7 @@
             this.lblSoDT.AutoSize = true;
             this.lblSoDT.BackColor = System.Drawing.Color.Transparent;
             this.lblSoDT.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSoDT.Image = global::QuanLiCongDanThanhPho.Properties.Resources.call;
+            this.lblSoDT.Image = global::QuanLiCongDanThanhPho.Properties.Resources.telephone;
             this.lblSoDT.Location = new System.Drawing.Point(30, 550);
             this.lblSoDT.Name = "lblSoDT";
             this.lblSoDT.Size = new System.Drawing.Size(56, 32);
@@ -306,10 +306,10 @@
             this.btnThongTinCCCD.BackColor = System.Drawing.Color.Transparent;
             this.btnThongTinCCCD.FlatAppearance.BorderSize = 0;
             this.btnThongTinCCCD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThongTinCCCD.Image = global::QuanLiCongDanThanhPho.Properties.Resources.view;
-            this.btnThongTinCCCD.Location = new System.Drawing.Point(739, 99);
+            this.btnThongTinCCCD.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
+            this.btnThongTinCCCD.Location = new System.Drawing.Point(733, 99);
             this.btnThongTinCCCD.Name = "btnThongTinCCCD";
-            this.btnThongTinCCCD.Size = new System.Drawing.Size(50, 27);
+            this.btnThongTinCCCD.Size = new System.Drawing.Size(50, 34);
             this.btnThongTinCCCD.TabIndex = 102;
             this.btnThongTinCCCD.UseVisualStyleBackColor = false;
             this.btnThongTinCCCD.Click += new System.EventHandler(this.btnThongTinCCCD_Click);
@@ -337,12 +337,14 @@
             // 
             // fpnlChucNang
             // 
+            this.fpnlChucNang.BackColor = System.Drawing.SystemColors.Window;
+            this.fpnlChucNang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fpnlChucNang.Controls.Add(this.btnXacNhan);
             this.fpnlChucNang.Controls.Add(this.btnSua);
             this.fpnlChucNang.Controls.Add(this.btnReLoad);
-            this.fpnlChucNang.Location = new System.Drawing.Point(716, 144);
+            this.fpnlChucNang.Location = new System.Drawing.Point(705, 200);
             this.fpnlChucNang.Name = "fpnlChucNang";
-            this.fpnlChucNang.Size = new System.Drawing.Size(65, 284);
+            this.fpnlChucNang.Size = new System.Drawing.Size(65, 227);
             this.fpnlChucNang.TabIndex = 99;
             // 
             // btnXacNhan
@@ -353,10 +355,10 @@
             this.btnXacNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXacNhan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnXacNhan.ForeColor = System.Drawing.Color.White;
-            this.btnXacNhan.Image = global::QuanLiCongDanThanhPho.Properties.Resources.confirm;
+            this.btnXacNhan.Image = global::QuanLiCongDanThanhPho.Properties.Resources.check__2_;
             this.btnXacNhan.Location = new System.Drawing.Point(3, 3);
             this.btnXacNhan.Name = "btnXacNhan";
-            this.btnXacNhan.Size = new System.Drawing.Size(50, 50);
+            this.btnXacNhan.Size = new System.Drawing.Size(61, 74);
             this.btnXacNhan.TabIndex = 109;
             this.btnXacNhan.UseVisualStyleBackColor = false;
             this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
@@ -366,10 +368,10 @@
             this.btnSua.BackColor = System.Drawing.Color.Transparent;
             this.btnSua.FlatAppearance.BorderSize = 0;
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSua.Image = global::QuanLiCongDanThanhPho.Properties.Resources.edit__2_;
-            this.btnSua.Location = new System.Drawing.Point(3, 59);
+            this.btnSua.Image = global::QuanLiCongDanThanhPho.Properties.Resources.edit__3_;
+            this.btnSua.Location = new System.Drawing.Point(3, 83);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(50, 50);
+            this.btnSua.Size = new System.Drawing.Size(61, 65);
             this.btnSua.TabIndex = 100;
             this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
@@ -381,10 +383,10 @@
             this.btnReLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReLoad.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnReLoad.ForeColor = System.Drawing.Color.White;
-            this.btnReLoad.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
-            this.btnReLoad.Location = new System.Drawing.Point(3, 115);
+            this.btnReLoad.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
+            this.btnReLoad.Location = new System.Drawing.Point(3, 154);
             this.btnReLoad.Name = "btnReLoad";
-            this.btnReLoad.Size = new System.Drawing.Size(50, 50);
+            this.btnReLoad.Size = new System.Drawing.Size(61, 78);
             this.btnReLoad.TabIndex = 110;
             this.btnReLoad.UseVisualStyleBackColor = false;
             this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
@@ -394,7 +396,7 @@
             this.btnHonNhan.BackColor = System.Drawing.Color.Transparent;
             this.btnHonNhan.FlatAppearance.BorderSize = 0;
             this.btnHonNhan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHonNhan.Image = global::QuanLiCongDanThanhPho.Properties.Resources.view;
+            this.btnHonNhan.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
             this.btnHonNhan.Location = new System.Drawing.Point(742, 699);
             this.btnHonNhan.Name = "btnHonNhan";
             this.btnHonNhan.Size = new System.Drawing.Size(50, 35);
@@ -407,7 +409,7 @@
             this.btnThue.BackColor = System.Drawing.Color.Transparent;
             this.btnThue.FlatAppearance.BorderSize = 0;
             this.btnThue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThue.Image = global::QuanLiCongDanThanhPho.Properties.Resources.view;
+            this.btnThue.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
             this.btnThue.Location = new System.Drawing.Point(748, 600);
             this.btnThue.Name = "btnThue";
             this.btnThue.Size = new System.Drawing.Size(50, 35);
@@ -420,7 +422,7 @@
             this.btnHoKhau.BackColor = System.Drawing.Color.Transparent;
             this.btnHoKhau.FlatAppearance.BorderSize = 0;
             this.btnHoKhau.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHoKhau.Image = global::QuanLiCongDanThanhPho.Properties.Resources.view;
+            this.btnHoKhau.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
             this.btnHoKhau.Location = new System.Drawing.Point(399, 596);
             this.btnHoKhau.Name = "btnHoKhau";
             this.btnHoKhau.Size = new System.Drawing.Size(50, 35);
@@ -451,9 +453,11 @@
             // 
             // btnKhaiSinh
             // 
-            this.btnKhaiSinh.BackColor = System.Drawing.Color.White;
+            this.btnKhaiSinh.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnKhaiSinh.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnKhaiSinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKhaiSinh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnKhaiSinh.ForeColor = System.Drawing.Color.Black;
+            this.btnKhaiSinh.ForeColor = System.Drawing.Color.White;
             this.btnKhaiSinh.Location = new System.Drawing.Point(474, 140);
             this.btnKhaiSinh.Name = "btnKhaiSinh";
             this.btnKhaiSinh.Size = new System.Drawing.Size(176, 47);
@@ -585,24 +589,24 @@
             // 
             // txtCCCD
             // 
-            this.txtCCCD.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtCCCD.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtCCCD.BackColor = System.Drawing.Color.White;
+            this.txtCCCD.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCCCD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCCCD.Location = new System.Drawing.Point(212, 99);
             this.txtCCCD.Name = "txtCCCD";
             this.txtCCCD.ReadOnly = true;
-            this.txtCCCD.Size = new System.Drawing.Size(521, 27);
+            this.txtCCCD.Size = new System.Drawing.Size(515, 34);
             this.txtCCCD.TabIndex = 35;
             // 
             // txtHoVaTen
             // 
-            this.txtHoVaTen.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtHoVaTen.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHoVaTen.BackColor = System.Drawing.Color.White;
+            this.txtHoVaTen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtHoVaTen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtHoVaTen.Location = new System.Drawing.Point(212, 51);
             this.txtHoVaTen.Name = "txtHoVaTen";
             this.txtHoVaTen.ReadOnly = true;
-            this.txtHoVaTen.Size = new System.Drawing.Size(569, 27);
+            this.txtHoVaTen.Size = new System.Drawing.Size(569, 34);
             this.txtHoVaTen.TabIndex = 34;
             // 
             // lblMaThue
@@ -654,7 +658,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.BackColor = System.Drawing.Color.DarkBlue;
             this.ClientSize = new System.Drawing.Size(838, 579);
             this.Controls.Add(this.titleBarWhite);
             this.Controls.Add(this.sideBarWhite);

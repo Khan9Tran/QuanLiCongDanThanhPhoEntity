@@ -146,6 +146,7 @@ namespace QuanLiCongDanThanhPho
                 btnThongTinCCCD.Enabled = false;
             }
         }
+
         private void FThongTinCongDan_Load(object sender, EventArgs e)
         {
             LayThongTinCongDan();
@@ -156,6 +157,7 @@ namespace QuanLiCongDanThanhPho
         {
             return maHK != maTamTru && maHK != maChuaCoHK;
         }
+
         private void btnHoKhau_Click(object sender, EventArgs e)
         {
             Congdan? cd = CDDAO.LayThongTin(CongDan.Cccd);

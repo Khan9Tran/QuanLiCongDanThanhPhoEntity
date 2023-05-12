@@ -5,7 +5,6 @@ namespace QuanLiCongDanThanhPho
 {
     internal class KhaiSinhDAO
     {
-        DBConnection conn = new DBConnection();
         QuanlitpContext db = new QuanlitpContext();
 
         public void CapNhatKhaiSinh()

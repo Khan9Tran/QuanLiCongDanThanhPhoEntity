@@ -5,20 +5,18 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FThongTinCCCD : FormThongTin
     {
-
-        private HinhDaiDien hinhCongDan;
-
         public FThongTinCCCD(Congdan congDan)
         {
             InitializeComponent();
             CongDan = congDan;
-            hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
+            HinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
         
         private string DateTimeFormat()
         {
             return "dd/MM/yyyy";
         }
+
         private void HienThiThongTin()
         {
             lblCCCD.Text = CongDan.Cccd;
@@ -48,10 +46,11 @@ namespace QuanLiCongDanThanhPho
                 lblDDNhanDang.Text = cCCD.DacDiem;
             }
         }
+
         private void FThongTinCCCD_Load(object sender, EventArgs e)
         {
             HienThiThongTin();
-            hinhCongDan.LayHinhDaiDien(lblCCCD.Text, ptcHinhDaiDien);
+            HinhCongDan.LayHinhDaiDien(lblCCCD.Text, ptcHinhDaiDien);
         }
 
     }

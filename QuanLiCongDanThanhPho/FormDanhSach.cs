@@ -23,9 +23,11 @@
             else
                 flpnPhanLoai.Width = 900;
         }
+
         internal virtual void HeaderText()
         {
         }
+
         internal void LoadDanhSach(DataGridView gvDanhSach)
         {
             gvDanhSach.DataSource = ListData.NgatTrang(ds);
@@ -35,6 +37,7 @@
             }    
             else HeaderText();
         }
+
         internal string DayFormat()
         {
             return "dd/MM/yyyy";

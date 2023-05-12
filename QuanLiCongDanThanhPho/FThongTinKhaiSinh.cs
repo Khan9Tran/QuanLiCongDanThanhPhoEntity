@@ -29,7 +29,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-        private void SetTools()
+        internal override void SetTools()
         {
             List<TextBox> listTxt = new List<TextBox>()
             { txtGioiTinh, txtQuocTich, txtDanToc, txtQueQuan, txtNoiSinh};

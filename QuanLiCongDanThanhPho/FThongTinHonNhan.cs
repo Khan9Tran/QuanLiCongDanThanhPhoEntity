@@ -14,18 +14,20 @@ namespace QuanLiCongDanThanhPho
         }
         private void btnThongTinChong_Click(object sender, EventArgs e)
         {
-            if (txtCCCDChong.Text != "")
+            Congdan? chong = CDDAO.LayThongTin(txtCCCDChong.Text);
+            if (chong != null)
             {
-                FThongTinCongDan tTCD = new FThongTinCongDan(CDDAO.LayThongTin(txtCCCDChong.Text));
+                FThongTinCongDan tTCD = new FThongTinCongDan(chong);
                 tTCD.ShowDialog();
             }
         }
 
         private void btnThongTinVo_Click(object sender, EventArgs e)
         {
-            if (txtCCCDVo.Text != "")
+            Congdan? vo = CDDAO.LayThongTin(txtCCCDVo.Text);
+            if (vo != null)
             {
-                FThongTinCongDan tTCD = new FThongTinCongDan(CDDAO.LayThongTin(txtCCCDVo.Text));
+                FThongTinCongDan tTCD = new FThongTinCongDan(vo);
                 tTCD.ShowDialog();
             }
         }
@@ -50,7 +52,7 @@ namespace QuanLiCongDanThanhPho
             LayThongTinHonNhan();
         }
 
-        private void SetTools()
+        internal override void SetTools()
         {
             List<TextBox> listTxt = new List<TextBox>()
             { txtNoiDangKy};
@@ -59,6 +61,7 @@ namespace QuanLiCongDanThanhPho
             {
                 btnXacNhan, dtmNgayDangKy
             };
+
             Tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
         private void btnSua_Click(object sender, EventArgs e)
