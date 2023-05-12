@@ -30,9 +30,9 @@ namespace QuanLiCongDanThanhPho
                 else
                 {
                     return false;
-                }    
+                }
             }
-            return true; 
+            return true;
         }
 
         internal override void DangKy()
@@ -81,7 +81,7 @@ namespace QuanLiCongDanThanhPho
                 Cccd = txtCCCD.Text
             };
 
-            if (KiemTraDuLieuNhap.KiemTraCongDan(cD) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && KiemTraDuLieuNhap.KiemTraThueDonGian(thue) 
+            if (KiemTraDuLieuNhap.KiemTraCongDan(cD) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && KiemTraDuLieuNhap.KiemTraThueDonGian(thue)
                 && ptcHinhDaiDien.Image != null && ThemHoKhau() && CDDAO.ThemCongDan(cD) && KSDAO.ThemKhaiSinh(kS))
             {
                 hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
@@ -109,7 +109,7 @@ namespace QuanLiCongDanThanhPho
                         hN.Cccdnam = txtCCCDVoChong.Text;
                         hN.TenNu = txtTen.Text;
                         hN.Cccdnu = txtCCCD.Text;
-                    }   
+                    }
 
                     if (KiemTraDuLieuNhap.KiemTraHonNhan(hN) && HNDAO.ThemHonNhan(hN))
                     {
@@ -118,7 +118,7 @@ namespace QuanLiCongDanThanhPho
                     else
                     {
                         MessageBox.Show("Thêm thành công. Thêm hôn nhân lỗi");
-                    }    
+                    }
 
                 }
                 else
@@ -129,10 +129,10 @@ namespace QuanLiCongDanThanhPho
             else
             {
                 MessageBox.Show("Thêm thất bại");
-            }    
-            
+            }
 
-           
+
+
         }
 
         internal override void Reset()
@@ -152,7 +152,7 @@ namespace QuanLiCongDanThanhPho
         {
             DangKy();
         }
-  
+
 
         private void cboTinhTrang_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -164,7 +164,7 @@ namespace QuanLiCongDanThanhPho
                 txtCCCDVoChong.BackColor = Color.Gainsboro;
                 txtMaHonNhan.BackColor = Color.Gainsboro;
                 txtTenVoChong.BackColor = Color.Gainsboro;
-            } 
+            }
             else
             {
                 txtTenVoChong.ReadOnly = true;
@@ -173,7 +173,7 @@ namespace QuanLiCongDanThanhPho
                 txtCCCDVoChong.BackColor = Color.WhiteSmoke;
                 txtMaHonNhan.BackColor = Color.WhiteSmoke;
                 txtTenVoChong.BackColor = Color.WhiteSmoke;
-            }    
+            }
         }
 
         private void btnThemHinh_Click(object sender, EventArgs e)
@@ -181,6 +181,6 @@ namespace QuanLiCongDanThanhPho
             hinhCongDan.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien);
         }
 
-        
+
     }
 }

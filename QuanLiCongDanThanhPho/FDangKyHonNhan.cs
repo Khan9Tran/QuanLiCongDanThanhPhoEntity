@@ -7,7 +7,7 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
         }
-        
+
         //Thêm hôn nhân mới
         private void btnDangKy_Click(object sender, EventArgs e)
         {
@@ -108,7 +108,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (txtMaHonNhan.Text.Length > 0)
             {
-                LoadHonNhan();  
+                LoadHonNhan();
             }
 
         }

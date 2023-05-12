@@ -33,7 +33,7 @@ namespace QuanLiCongDanThanhPho
 
 
         private void btnReset_Click(object sender, EventArgs e)
-        { 
+        {
             base.Reset();
         }
 
@@ -43,12 +43,12 @@ namespace QuanLiCongDanThanhPho
             Honnhan? vo = HNDAO?.LayThongTin(txtCccdMe.Text);
 
             if (chong == null || vo == null)
-                return false;   
-            if (chong.MaHonNhan != vo.MaHonNhan) 
+                return false;
+            if (chong.MaHonNhan != vo.MaHonNhan)
                 return false;
             if (txtTenCha.Text != chong.TenNam)
                 return false;
-            if (txtTenMe.Text  != vo.TenNu)
+            if (txtTenMe.Text != vo.TenNu)
                 return false;
             return true;
         }
