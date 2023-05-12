@@ -63,7 +63,7 @@ namespace QuanLiCongDanThanhPho
             foreach (var ctr in needReadOnly)
             {
                 ctr.ReadOnly = false;
-                ctr.BackColor = Color.SteelBlue;
+                ctr.BackColor = Color.FromArgb(167, 205, 231);
             }
             foreach (var ctr in needUnEnabled)
             {
