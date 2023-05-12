@@ -57,7 +57,7 @@ namespace QuanLiCongDanThanhPho
             if (ks != null)
             {
                 quocTich.Text = ks.QuocTich;
-            }    
+            }
         }
         public void LayThongTinKhaiKhaiSinh()
         {
@@ -111,7 +111,8 @@ namespace QuanLiCongDanThanhPho
         }
 
         private void CapNhatKhaiSinh()
-        {   if (MaCCCD != null)
+        {
+            if (MaCCCD != null)
             {
                 Khaisinh? kS = KSDAO.LayThongTin(MaCCCD);
                 if (kS != null)
@@ -135,7 +136,7 @@ namespace QuanLiCongDanThanhPho
                         MessageBox.Show("Cập nhật thành công");
                     }
                 }
-            }    
+            }
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
