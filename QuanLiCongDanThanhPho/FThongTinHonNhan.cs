@@ -46,7 +46,7 @@ namespace QuanLiCongDanThanhPho
                     dtmNgayDangKy.Value = hn.NgayDangKy.Value;
                 }
             }
-        }    
+        }
         private void FThongTinHonNhan_Load(object sender, EventArgs e)
         {
             LayThongTinHonNhan();
@@ -68,7 +68,7 @@ namespace QuanLiCongDanThanhPho
         {
             Tool?.AutoReadOnly();
         }
-        
+
         public void CapNhatHonNhan()
         {
             Honnhan? hN = HNDAO.LayThongTin(MaCCCD);
@@ -81,8 +81,8 @@ namespace QuanLiCongDanThanhPho
                 {
                     HNDAO.CapNhatHonNhan();
                     MessageBox.Show("Cập nhật thành công");
-                }  
-            }   
+                }
+            }
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
