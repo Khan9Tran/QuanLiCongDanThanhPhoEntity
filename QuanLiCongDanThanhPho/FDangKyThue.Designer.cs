@@ -43,6 +43,7 @@
             this.fpnlChucNang = new System.Windows.Forms.FlowLayoutPanel();
             this.lblSoTienDaNop = new System.Windows.Forms.Label();
             this.txtSoTienDaNop = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.fpnlChucNang.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,12 +54,14 @@
             this.txtSoTienCanNop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSoTienCanNop.Location = new System.Drawing.Point(643, 343);
             this.txtSoTienCanNop.Name = "txtSoTienCanNop";
-            this.txtSoTienCanNop.Size = new System.Drawing.Size(292, 27);
+            this.txtSoTienCanNop.Size = new System.Drawing.Size(442, 27);
             this.txtSoTienCanNop.TabIndex = 31;
             // 
             // lblSoTien
             // 
             this.lblSoTien.AutoSize = true;
+            this.lblSoTien.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblSoTien.ForeColor = System.Drawing.Color.White;
             this.lblSoTien.Location = new System.Drawing.Point(424, 344);
             this.lblSoTien.Name = "lblSoTien";
             this.lblSoTien.Size = new System.Drawing.Size(159, 28);
@@ -78,6 +81,8 @@
             // lblMaThue
             // 
             this.lblMaThue.AutoSize = true;
+            this.lblMaThue.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblMaThue.ForeColor = System.Drawing.Color.White;
             this.lblMaThue.Location = new System.Drawing.Point(424, 184);
             this.lblMaThue.Name = "lblMaThue";
             this.lblMaThue.Size = new System.Drawing.Size(91, 28);
@@ -97,6 +102,8 @@
             // lblCCCD
             // 
             this.lblCCCD.AutoSize = true;
+            this.lblCCCD.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblCCCD.ForeColor = System.Drawing.Color.White;
             this.lblCCCD.Location = new System.Drawing.Point(424, 264);
             this.lblCCCD.Name = "lblCCCD";
             this.lblCCCD.Size = new System.Drawing.Size(61, 28);
@@ -106,6 +113,8 @@
             // lblNgayCapMa
             // 
             this.lblNgayCapMa.AutoSize = true;
+            this.lblNgayCapMa.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblNgayCapMa.ForeColor = System.Drawing.Color.White;
             this.lblNgayCapMa.Location = new System.Drawing.Point(423, 504);
             this.lblNgayCapMa.Name = "lblNgayCapMa";
             this.lblNgayCapMa.Size = new System.Drawing.Size(136, 28);
@@ -135,6 +144,8 @@
             // lblHanNop
             // 
             this.lblHanNop.AutoSize = true;
+            this.lblHanNop.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblHanNop.ForeColor = System.Drawing.Color.White;
             this.lblHanNop.Location = new System.Drawing.Point(423, 584);
             this.lblHanNop.Name = "lblHanNop";
             this.lblHanNop.Size = new System.Drawing.Size(92, 28);
@@ -147,7 +158,7 @@
             this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
+            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.Location = new System.Drawing.Point(3, 3);
             this.btnReset.Name = "btnReset";
@@ -164,7 +175,7 @@
             this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDangKy.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnDangKy.ForeColor = System.Drawing.Color.Black;
-            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.confirm;
+            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.check__2_;
             this.btnDangKy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDangKy.Location = new System.Drawing.Point(155, 3);
             this.btnDangKy.Name = "btnDangKy";
@@ -186,6 +197,8 @@
             // lblSoTienDaNop
             // 
             this.lblSoTienDaNop.AutoSize = true;
+            this.lblSoTienDaNop.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblSoTienDaNop.ForeColor = System.Drawing.Color.White;
             this.lblSoTienDaNop.Location = new System.Drawing.Point(424, 424);
             this.lblSoTienDaNop.Name = "lblSoTienDaNop";
             this.lblSoTienDaNop.Size = new System.Drawing.Size(150, 28);
@@ -199,8 +212,17 @@
             this.txtSoTienDaNop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSoTienDaNop.Location = new System.Drawing.Point(643, 424);
             this.txtSoTienDaNop.Name = "txtSoTienDaNop";
-            this.txtSoTienDaNop.Size = new System.Drawing.Size(292, 27);
+            this.txtSoTienDaNop.Size = new System.Drawing.Size(442, 27);
             this.txtSoTienDaNop.TabIndex = 96;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.ForeColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(371, -10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(250, 647);
+            this.panel1.TabIndex = 97;
             // 
             // FDangKyThue
             // 
@@ -220,6 +242,7 @@
             this.Controls.Add(this.lblSoTien);
             this.Controls.Add(this.txtMaSoThue);
             this.Controls.Add(this.lblMaThue);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -249,5 +272,6 @@
         private FlowLayoutPanel fpnlChucNang;
         private Label lblSoTienDaNop;
         private TextBox txtSoTienDaNop;
+        private Panel panel1;
     }
 }
