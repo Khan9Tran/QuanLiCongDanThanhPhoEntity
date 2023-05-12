@@ -74,7 +74,7 @@
             // 
             // pnlBarDuoi
             // 
-            this.pnlBarDuoi.BackColor = System.Drawing.Color.RoyalBlue;
+            this.pnlBarDuoi.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pnlBarDuoi.Controls.Add(this.btnThem);
             this.pnlBarDuoi.Controls.Add(this.btnTachGop);
             this.pnlBarDuoi.Dock = System.Windows.Forms.DockStyle.Bottom;
