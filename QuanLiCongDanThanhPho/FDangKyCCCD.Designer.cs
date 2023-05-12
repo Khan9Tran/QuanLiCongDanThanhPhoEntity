@@ -73,7 +73,7 @@
             this.txtCCCD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCCCD.Location = new System.Drawing.Point(525, 195);
             this.txtCCCD.Name = "txtCCCD";
-            this.txtCCCD.Size = new System.Drawing.Size(348, 27);
+            this.txtCCCD.Size = new System.Drawing.Size(534, 27);
             this.txtCCCD.TabIndex = 24;
             // 
             // lblCCCD
@@ -129,7 +129,7 @@
             this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
+            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
             this.btnReset.Location = new System.Drawing.Point(59, 3);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(50, 50);
@@ -144,11 +144,11 @@
             this.gvDanhSachChuaCapCCCD.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvDanhSachChuaCapCCCD.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.gvDanhSachChuaCapCCCD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gvDanhSachChuaCapCCCD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -156,16 +156,18 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tomato;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gvDanhSachChuaCapCCCD.DefaultCellStyle = dataGridViewCellStyle2;
+            this.gvDanhSachChuaCapCCCD.EnableHeadersVisualStyles = false;
             this.gvDanhSachChuaCapCCCD.GridColor = System.Drawing.Color.Gainsboro;
             this.gvDanhSachChuaCapCCCD.Location = new System.Drawing.Point(311, 482);
             this.gvDanhSachChuaCapCCCD.MultiSelect = false;
             this.gvDanhSachChuaCapCCCD.Name = "gvDanhSachChuaCapCCCD";
             this.gvDanhSachChuaCapCCCD.ReadOnly = true;
             this.gvDanhSachChuaCapCCCD.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.gvDanhSachChuaCapCCCD.RowHeadersVisible = false;
             this.gvDanhSachChuaCapCCCD.RowHeadersWidth = 51;
             this.gvDanhSachChuaCapCCCD.RowTemplate.Height = 29;
             this.gvDanhSachChuaCapCCCD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -189,7 +191,7 @@
             this.btnDangKy.BackColor = System.Drawing.Color.Transparent;
             this.btnDangKy.FlatAppearance.BorderSize = 0;
             this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.confirm;
+            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.check__2_;
             this.btnDangKy.Location = new System.Drawing.Point(3, 3);
             this.btnDangKy.Name = "btnDangKy";
             this.btnDangKy.Size = new System.Drawing.Size(50, 50);
