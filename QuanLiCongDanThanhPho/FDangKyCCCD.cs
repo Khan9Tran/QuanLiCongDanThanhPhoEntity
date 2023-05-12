@@ -8,7 +8,7 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
         }
-        
+
         private void FDangKyCCCD_Load(object sender, EventArgs e)
         {
             LoadDanhSach();
@@ -49,7 +49,7 @@ namespace QuanLiCongDanThanhPho
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             DangKy();
-            
+
         }
         private void LoadDanhSach()
         {
