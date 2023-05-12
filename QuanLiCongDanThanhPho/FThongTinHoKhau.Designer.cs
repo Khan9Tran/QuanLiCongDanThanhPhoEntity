@@ -122,7 +122,7 @@
             btnXacNhan.FlatStyle = FlatStyle.Flat;
             btnXacNhan.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             btnXacNhan.ForeColor = Color.White;
-            btnXacNhan.Image = Properties.Resources.check__2_;
+            btnXacNhan.Image = Properties.Resources.accept;
             btnXacNhan.Location = new Point(3, 3);
             btnXacNhan.Name = "btnXacNhan";
             btnXacNhan.Size = new Size(50, 50);

@@ -15,7 +15,7 @@ namespace QuanLiCongDanThanhPho
             CongDan = congdan;
             HinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
-        
+
         private void btnKhaiSinh_Click(object sender, EventArgs e)
         {
             FThongTinKhaiSinh tTKS = new FThongTinKhaiSinh(CongDan.Cccd);
@@ -23,7 +23,7 @@ namespace QuanLiCongDanThanhPho
         }
 
         internal override void SetTools()
-        { 
+        {
             List<TextBox> listTxt = new List<TextBox>()
             { txtNgheNghiep, txtHoVaTen, txtSDT, txtTonGiao, txtDanToc, txtQueQuan,
                 txtQuocTich, txtDiaChi, txtGioiTinh, txtQuanHeVoiChuHo};
@@ -49,7 +49,7 @@ namespace QuanLiCongDanThanhPho
                 txtTonGiao.Text = CongDan.TonGiao;
                 txtNgheNghiep.Text = CongDan.NgheNghiep;
                 txtQuanHeVoiChuHo.Text = CongDan.QuanHeVoiChuHo;
-            }   
+            }
         }
 
         private void LayKhaiSinh()
@@ -108,7 +108,7 @@ namespace QuanLiCongDanThanhPho
 
         private void LayTamTruTamVang()
         {
-           Tamtrutamvang? tttv = TTTVDAO.LayThongTin(CongDan.Cccd);
+            Tamtrutamvang? tttv = TTTVDAO.LayThongTin(CongDan.Cccd);
             if (tttv == null)
                 txtGhiChu.Text = "Không có ghi chú";
             else
@@ -129,7 +129,7 @@ namespace QuanLiCongDanThanhPho
                 LayHonNhan();
                 LayHoKhau();
                 LayTamTruTamVang();
-                HinhCongDan.LayHinhDaiDien(txtCCCD.Text,ptcHinhDaiDien);
+                HinhCongDan.LayHinhDaiDien(txtCCCD.Text, ptcHinhDaiDien);
             }
         }
         private void TatXemCCCD()
@@ -181,7 +181,7 @@ namespace QuanLiCongDanThanhPho
             tTThue.ShowDialog();
         }
 
-        
+
         private void btnHonNhan_Click(object sender, EventArgs e)
         {
             FThongTinHonNhan tTHN = new FThongTinHonNhan(CongDan.Cccd);
@@ -205,7 +205,7 @@ namespace QuanLiCongDanThanhPho
                 if (KiemTraDuLieuNhap.isGioiTinh(txtGioiTinh.Text) && KiemTraDuLieuNhap.KiemTraKhaiSinh(khaiSinh))
                     KSDAO.CapNhatKhaiSinh();
             }
-        }    
+        }
 
         private void CapNhatCongDan()
         {
@@ -266,12 +266,12 @@ namespace QuanLiCongDanThanhPho
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
-        {  
+        {
             CapNhatHoKhau();
             CapNhatKhaiSinh();
             CapNhatHonNhan();
             CapNhatCongDan();
-            Tool?.AutoReadOnly();  
+            Tool?.AutoReadOnly();
         }
 
         private void btnReLoad_Click(object sender, EventArgs e)

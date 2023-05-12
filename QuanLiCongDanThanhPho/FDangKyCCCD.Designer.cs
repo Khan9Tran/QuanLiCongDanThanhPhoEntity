@@ -28,213 +28,236 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txtTen = new System.Windows.Forms.TextBox();
-            this.lblTen = new System.Windows.Forms.Label();
-            this.txtCCCD = new System.Windows.Forms.TextBox();
-            this.lblCCCD = new System.Windows.Forms.Label();
-            this.dtmNgayCap = new System.Windows.Forms.DateTimePicker();
-            this.lblNgayCap = new System.Windows.Forms.Label();
-            this.txtDDNhanDang = new System.Windows.Forms.TextBox();
-            this.lblDDNhanDang = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.gvDanhSachChuaCapCCCD = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnDangKy = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachChuaCapCCCD)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            txtTen = new TextBox();
+            lblTen = new Label();
+            txtCCCD = new TextBox();
+            lblCCCD = new Label();
+            dtmNgayCap = new DateTimePicker();
+            lblNgayCap = new Label();
+            txtDDNhanDang = new TextBox();
+            lblDDNhanDang = new Label();
+            btnReset = new Button();
+            gvDanhSachChuaCapCCCD = new DataGridView();
+            label1 = new Label();
+            btnDangKy = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            ((System.ComponentModel.ISupportInitialize)gvDanhSachChuaCapCCCD).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // txtTen
             // 
-            this.txtTen.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtTen.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTen.Location = new System.Drawing.Point(525, 128);
-            this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(534, 27);
-            this.txtTen.TabIndex = 22;
+            txtTen.BackColor = Color.White;
+            txtTen.BorderStyle = BorderStyle.None;
+            txtTen.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtTen.Location = new Point(15, 129);
+            txtTen.Name = "txtTen";
+            txtTen.Size = new Size(534, 27);
+            txtTen.TabIndex = 22;
             // 
             // lblTen
             // 
-            this.lblTen.AutoSize = true;
-            this.lblTen.Location = new System.Drawing.Point(311, 127);
-            this.lblTen.Name = "lblTen";
-            this.lblTen.Size = new System.Drawing.Size(104, 28);
-            this.lblTen.TabIndex = 21;
-            this.lblTen.Text = "Họ và tên";
+            lblTen.AutoSize = true;
+            lblTen.Location = new Point(311, 127);
+            lblTen.Name = "lblTen";
+            lblTen.Size = new Size(104, 28);
+            lblTen.TabIndex = 21;
+            lblTen.Text = "Họ và tên";
             // 
             // txtCCCD
             // 
-            this.txtCCCD.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtCCCD.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCCCD.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCCCD.Location = new System.Drawing.Point(525, 195);
-            this.txtCCCD.Name = "txtCCCD";
-            this.txtCCCD.Size = new System.Drawing.Size(348, 27);
-            this.txtCCCD.TabIndex = 24;
+            txtCCCD.BackColor = Color.White;
+            txtCCCD.BorderStyle = BorderStyle.None;
+            txtCCCD.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCCCD.Location = new Point(15, 196);
+            txtCCCD.Name = "txtCCCD";
+            txtCCCD.Size = new Size(348, 27);
+            txtCCCD.TabIndex = 24;
             // 
             // lblCCCD
             // 
-            this.lblCCCD.AutoSize = true;
-            this.lblCCCD.Location = new System.Drawing.Point(311, 194);
-            this.lblCCCD.Name = "lblCCCD";
-            this.lblCCCD.Size = new System.Drawing.Size(61, 28);
-            this.lblCCCD.TabIndex = 23;
-            this.lblCCCD.Text = "CCCD";
+            lblCCCD.AutoSize = true;
+            lblCCCD.Location = new Point(311, 194);
+            lblCCCD.Name = "lblCCCD";
+            lblCCCD.Size = new Size(61, 28);
+            lblCCCD.TabIndex = 23;
+            lblCCCD.Text = "CCCD";
             // 
             // dtmNgayCap
             // 
-            this.dtmNgayCap.CustomFormat = "dd/MM/yyyy";
-            this.dtmNgayCap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtmNgayCap.Location = new System.Drawing.Point(525, 337);
-            this.dtmNgayCap.Name = "dtmNgayCap";
-            this.dtmNgayCap.Size = new System.Drawing.Size(341, 34);
-            this.dtmNgayCap.TabIndex = 39;
-            this.dtmNgayCap.Value = new System.DateTime(2023, 3, 7, 0, 0, 0, 0);
+            dtmNgayCap.CustomFormat = "dd/MM/yyyy";
+            dtmNgayCap.Format = DateTimePickerFormat.Custom;
+            dtmNgayCap.Location = new Point(15, 334);
+            dtmNgayCap.Name = "dtmNgayCap";
+            dtmNgayCap.Size = new Size(341, 34);
+            dtmNgayCap.TabIndex = 39;
+            dtmNgayCap.Value = new DateTime(2023, 3, 7, 0, 0, 0, 0);
             // 
             // lblNgayCap
             // 
-            this.lblNgayCap.AutoSize = true;
-            this.lblNgayCap.Location = new System.Drawing.Point(311, 337);
-            this.lblNgayCap.Name = "lblNgayCap";
-            this.lblNgayCap.Size = new System.Drawing.Size(101, 28);
-            this.lblNgayCap.TabIndex = 38;
-            this.lblNgayCap.Text = "Ngày cấp";
+            lblNgayCap.AutoSize = true;
+            lblNgayCap.Location = new Point(311, 337);
+            lblNgayCap.Name = "lblNgayCap";
+            lblNgayCap.Size = new Size(101, 28);
+            lblNgayCap.TabIndex = 38;
+            lblNgayCap.Text = "Ngày cấp";
             // 
             // txtDDNhanDang
             // 
-            this.txtDDNhanDang.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtDDNhanDang.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDDNhanDang.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDDNhanDang.Location = new System.Drawing.Point(525, 269);
-            this.txtDDNhanDang.Name = "txtDDNhanDang";
-            this.txtDDNhanDang.Size = new System.Drawing.Size(534, 27);
-            this.txtDDNhanDang.TabIndex = 41;
+            txtDDNhanDang.BackColor = Color.White;
+            txtDDNhanDang.BorderStyle = BorderStyle.None;
+            txtDDNhanDang.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDDNhanDang.Location = new Point(15, 270);
+            txtDDNhanDang.Name = "txtDDNhanDang";
+            txtDDNhanDang.Size = new Size(534, 27);
+            txtDDNhanDang.TabIndex = 41;
             // 
             // lblDDNhanDang
             // 
-            this.lblDDNhanDang.AutoSize = true;
-            this.lblDDNhanDang.Location = new System.Drawing.Point(311, 268);
-            this.lblDDNhanDang.Name = "lblDDNhanDang";
-            this.lblDDNhanDang.Size = new System.Drawing.Size(208, 28);
-            this.lblDDNhanDang.TabIndex = 40;
-            this.lblDDNhanDang.Text = "Đặc điểm nhận dạng";
+            lblDDNhanDang.AutoSize = true;
+            lblDDNhanDang.Location = new Point(311, 268);
+            lblDDNhanDang.Name = "lblDDNhanDang";
+            lblDDNhanDang.Size = new Size(208, 28);
+            lblDDNhanDang.TabIndex = 40;
+            lblDDNhanDang.Text = "Đặc điểm nhận dạng";
             // 
             // btnReset
             // 
-            this.btnReset.BackColor = System.Drawing.Color.Transparent;
-            this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
-            this.btnReset.Location = new System.Drawing.Point(59, 3);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(50, 50);
-            this.btnReset.TabIndex = 92;
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            btnReset.BackColor = Color.Transparent;
+            btnReset.DialogResult = DialogResult.OK;
+            btnReset.FlatAppearance.BorderSize = 0;
+            btnReset.FlatStyle = FlatStyle.Flat;
+            btnReset.Image = Properties.Resources.undo__1_;
+            btnReset.Location = new Point(59, 3);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(50, 50);
+            btnReset.TabIndex = 92;
+            btnReset.UseVisualStyleBackColor = false;
+            btnReset.Click += btnReset_Click;
             // 
             // gvDanhSachChuaCapCCCD
             // 
-            this.gvDanhSachChuaCapCCCD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gvDanhSachChuaCapCCCD.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.gvDanhSachChuaCapCCCD.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gvDanhSachChuaCapCCCD.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenVertical;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(43)))), ((int)(((byte)(60)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvDanhSachChuaCapCCCD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gvDanhSachChuaCapCCCD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvDanhSachChuaCapCCCD.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gvDanhSachChuaCapCCCD.GridColor = System.Drawing.Color.Gainsboro;
-            this.gvDanhSachChuaCapCCCD.Location = new System.Drawing.Point(311, 482);
-            this.gvDanhSachChuaCapCCCD.MultiSelect = false;
-            this.gvDanhSachChuaCapCCCD.Name = "gvDanhSachChuaCapCCCD";
-            this.gvDanhSachChuaCapCCCD.ReadOnly = true;
-            this.gvDanhSachChuaCapCCCD.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.gvDanhSachChuaCapCCCD.RowHeadersWidth = 51;
-            this.gvDanhSachChuaCapCCCD.RowTemplate.Height = 29;
-            this.gvDanhSachChuaCapCCCD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvDanhSachChuaCapCCCD.Size = new System.Drawing.Size(748, 218);
-            this.gvDanhSachChuaCapCCCD.TabIndex = 93;
-            this.gvDanhSachChuaCapCCCD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvDanhSachChuaCapCCCD_CellClick);
+            gvDanhSachChuaCapCCCD.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gvDanhSachChuaCapCCCD.BackgroundColor = Color.WhiteSmoke;
+            gvDanhSachChuaCapCCCD.BorderStyle = BorderStyle.None;
+            gvDanhSachChuaCapCCCD.CellBorderStyle = DataGridViewCellBorderStyle.SunkenVertical;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(44, 43, 60);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            gvDanhSachChuaCapCCCD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            gvDanhSachChuaCapCCCD.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            gvDanhSachChuaCapCCCD.DefaultCellStyle = dataGridViewCellStyle2;
+            gvDanhSachChuaCapCCCD.GridColor = Color.Gainsboro;
+            gvDanhSachChuaCapCCCD.Location = new Point(311, 482);
+            gvDanhSachChuaCapCCCD.MultiSelect = false;
+            gvDanhSachChuaCapCCCD.Name = "gvDanhSachChuaCapCCCD";
+            gvDanhSachChuaCapCCCD.ReadOnly = true;
+            gvDanhSachChuaCapCCCD.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            gvDanhSachChuaCapCCCD.RowHeadersWidth = 51;
+            gvDanhSachChuaCapCCCD.RowTemplate.Height = 29;
+            gvDanhSachChuaCapCCCD.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gvDanhSachChuaCapCCCD.Size = new Size(748, 218);
+            gvDanhSachChuaCapCCCD.TabIndex = 93;
+            gvDanhSachChuaCapCCCD.CellClick += gvDanhSachChuaCapCCCD_CellClick;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(311, 433);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(525, 28);
-            this.label1.TabIndex = 94;
-            this.label1.Text = "Danh sách công dân địa phương chưa được cấp CCCD:";
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(311, 433);
+            label1.Name = "label1";
+            label1.Size = new Size(525, 28);
+            label1.TabIndex = 94;
+            label1.Text = "Danh sách công dân địa phương chưa được cấp CCCD:";
             // 
             // btnDangKy
             // 
-            this.btnDangKy.BackColor = System.Drawing.Color.Transparent;
-            this.btnDangKy.FlatAppearance.BorderSize = 0;
-            this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.confirm;
-            this.btnDangKy.Location = new System.Drawing.Point(3, 3);
-            this.btnDangKy.Name = "btnDangKy";
-            this.btnDangKy.Size = new System.Drawing.Size(50, 50);
-            this.btnDangKy.TabIndex = 95;
-            this.btnDangKy.UseVisualStyleBackColor = false;
-            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
+            btnDangKy.BackColor = Color.Transparent;
+            btnDangKy.FlatAppearance.BorderSize = 0;
+            btnDangKy.FlatStyle = FlatStyle.Flat;
+            btnDangKy.Image = Properties.Resources.accept;
+            btnDangKy.Location = new Point(3, 3);
+            btnDangKy.Name = "btnDangKy";
+            btnDangKy.Size = new Size(50, 50);
+            btnDangKy.TabIndex = 95;
+            btnDangKy.UseVisualStyleBackColor = false;
+            btnDangKy.Click += btnDangKy_Click;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Controls.Add(this.btnDangKy);
-            this.flowLayoutPanel1.Controls.Add(this.btnReset);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1344, 668);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(137, 59);
-            this.flowLayoutPanel1.TabIndex = 96;
+            flowLayoutPanel1.BackColor = Color.WhiteSmoke;
+            flowLayoutPanel1.Controls.Add(btnDangKy);
+            flowLayoutPanel1.Controls.Add(btnReset);
+            flowLayoutPanel1.Location = new Point(1344, 668);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(119, 59);
+            flowLayoutPanel1.TabIndex = 96;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(txtTen);
+            panel1.Controls.Add(txtCCCD);
+            panel1.Controls.Add(txtDDNhanDang);
+            panel1.Controls.Add(dtmNgayCap);
+            panel1.Location = new Point(525, -2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(568, 379);
+            panel1.TabIndex = 97;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Location = new Point(1329, -2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(141, 755);
+            panel2.TabIndex = 98;
             // 
             // FDangKyCCCD
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1532, 752);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.gvDanhSachChuaCapCCCD);
-            this.Controls.Add(this.txtDDNhanDang);
-            this.Controls.Add(this.lblDDNhanDang);
-            this.Controls.Add(this.dtmNgayCap);
-            this.Controls.Add(this.lblNgayCap);
-            this.Controls.Add(this.txtCCCD);
-            this.Controls.Add(this.lblCCCD);
-            this.Controls.Add(this.txtTen);
-            this.Controls.Add(this.lblTen);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FDangKyCCCD";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FDangKyCCCD";
-            this.Load += new System.EventHandler(this.FDangKyCCCD_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachChuaCapCCCD)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(12F, 28F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(1532, 752);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(label1);
+            Controls.Add(gvDanhSachChuaCapCCCD);
+            Controls.Add(lblDDNhanDang);
+            Controls.Add(lblNgayCap);
+            Controls.Add(lblCCCD);
+            Controls.Add(lblTen);
+            Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4);
+            Name = "FDangKyCCCD";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "FDangKyCCCD";
+            Load += FDangKyCCCD_Load;
+            ((System.ComponentModel.ISupportInitialize)gvDanhSachChuaCapCCCD).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -252,5 +275,7 @@
         private Label label1;
         private Button btnDangKy;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Panel panel1;
+        private Panel panel2;
     }
 }
