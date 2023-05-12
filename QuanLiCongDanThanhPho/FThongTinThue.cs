@@ -64,7 +64,7 @@ namespace QuanLiCongDanThanhPho
         {
             Thue? thue = ThueDAO.LayThongTin(MaCCCD);
 
-            if (txtMaSoThue.Text != "" && thue != null && KiemTraDuLieuNhap.isTien(txtSoTienCanNop.Text)  && KiemTraDuLieuNhap.isTien(txtSoTienDaNop.Text))
+            if (txtMaSoThue.Text != "" && thue != null && KiemTraDuLieuNhap.isTien(txtSoTienCanNop.Text) && KiemTraDuLieuNhap.isTien(txtSoTienDaNop.Text))
             {
                 thue.Cccd = txtCCCD.Text;
                 thue.SoTienCanNop = txtSoTienCanNop.Text;
@@ -84,18 +84,18 @@ namespace QuanLiCongDanThanhPho
             else
             {
                 MessageBox.Show("Thông tin nhập sai");
-            }    
-        }    
+            }
+        }
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
             CapNhatThue();
             LayThongTinThue();
-            Tool?.TurnOff(); 
+            Tool?.TurnOff();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-                Tool?.AutoReadOnly();
+            Tool?.AutoReadOnly();
         }
         private void btnReLoad_Click(object sender, EventArgs e)
         {
