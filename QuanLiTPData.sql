@@ -559,8 +559,110 @@ QuyenTruyCap int,
 DisplayName NVARCHAR(30)
 );
 
-INSERT INTO ACCOUNT(UserName, StrPassword, QuyenTruyCap, DisplayName) VALUES ('admin', 'admin', 1, N'Tài khoản DEMO');
 
+INSERT INTO HOKHAU(MaHK,DiaChi,CCCDChuHo) VALUES('100000',N'300 Xô Viết Nghệ Tĩnh, Phường 26, Quận Bình Thạnh, Thành phố Hồ Chí Minh', '133456683328');
+INSERT INTO HOKHAU(MaHK,DiaChi,CCCDChuHo) VALUES('200000',N'600 Nguyễn Tri Phương, Phường 16, Quận Bình Thạnh, Thành phố Hồ Chí Minh', '133456246279');
+INSERT INTO HOKHAU(MaHK,DiaChi,CCCDChuHo) VALUES('300000',N'172 Trần Quang Cơ, Phú Thạnh, Tân Phú, Thành phố Hồ Chí Minh', '133456215469');
+INSERT INTO HOKHAU(MaHK,DiaChi,CCCDChuHo) VALUES('400000',N'365 Điện Biên Phủ, Phường 6, Quận 3, Thành phố Hồ Chí Minh', '133456365976');
+
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456683328' , N'Trần Thanh Thảo', N'Buôn bán', '0391869327', N'Chúa', '100000', N'Chủ Hộ');
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133458470357' , N'Hoàng Mạnh Kha', N'Buôn bán', '0391883627', N'Chúa', '100000', N'Chồng');
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456321658' , N'Hoàng Thị Tuyền', N'Buôn bán', '0393588307', N'Không', '100000', N'Con gái');
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('123456210444' , N'Hoàng Văn Khải', N'Bác sĩ', '0394808699', N'Chúa', '100000', N'Con trai');
+
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456246279' , N'Nhâm Mạnh Dũng', N'Kinh doanh', '0391974607', N'Không', '200000', N'Chủ Hộ');
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456245893' , N'Nhâm Mạnh Toàn', N'Kinh doanh', '0391915687', N'Không', '200000', N'Con trai');
+
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456215469' , N'Trần Thảo Huyền', N'Kế toán', '0391108362', N'Chúa', '300000', N'Chủ Hộ');
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456215422' , N'Trần Hoàng Hảo', N'Học sinh', '0391108360', N'Chúa', '300000', N'Con trai');
+
+INSERT INTO CONGDAN(CCCD,Ten,NgheNghiep,SDT,TonGiao,MaHK,QuanHeVoiChuHo) VALUES ('133456365976' , N'Trương Thị Nhung', N'Y Tá', '0391135416', N'Chúa', '400000', N'Chủ Hộ');
+
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456683328', N'Thẹo 2cm sóng mũi', '1970-05-02');
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133458470357', N'Thẹo 2cm đuôi mắt trái', '1973-06-01');
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456321658', N'Thẹo 1cm đuôi mắt phải', '1997-01-05');
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('123456210444', N'Nốt ruồi 1cm đuôi mắt trái', '1997-01-10');
+
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456246279', N'Nốt ruồi 2cm đuôi mắt phải', '1992-07-05');
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456245893', N'Thẹo 1.5cm giữa trán', '2008-01-05');
+
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456215469', N'Thẹo 2cm đuôi mắt trái', '1994-12-05');
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456215422', N'Thẹo 1cm đuôi mắt trái', '2020-12-05');
+
+INSERT INTO CCCD(MaCCCD, DacDiem, NgayCap) VALUES('133456365976', N'Thẹo 1cm dưới cằm', '1995-07-04');
+
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456683328' , N'Trần Thanh Thảo', '1965-12-06','1965-12-06', 'f', N'Kinh', N'Việt Nam', N'10 Đinh Bộ Lĩnh, Phường 24, Quận Bình Thạnh, Hồ Chí Minh', N'10 Đinh Bộ Lĩnh, Phường 24, Quận Bình Thạnh, Hồ Chí Minh', '123457884830', N'Hồ Hoàng Việt', '123455126924', N'Nguyễn Thu Hiền');
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133458470357' , N'Hoàng Mạnh Kha', '1967-03-05','1967-03-05', 'm', N'Kinh', N'Việt Nam', N'6 Nguyễn Du, Phường Trần Hưng Đạo, Quận Hai Bà Trưng, Hà Nội', N'6 Nguyễn Du, Phường Trần Hưng Đạo, Quận Hai Bà Trưng, Hà Nội', '123451375791', N'Trần Thái Kiên', '123455407177', N'Huỳnh Bảo Trúc');
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456321658' , N'Hoàng Thị Tuyền', '1990-01-07','1990-01-07', 'f', N'Kinh', N'Việt Nam', N'6 Nguyễn Du, Phường Trần Hưng Đạo, Quận Hai Bà Trưng, Hà Nội', N'6 Nguyễn Du, Phường Trần Hưng Đạo, Quận Hai Bà Trưng, Hà Nội', '133458470357', N'Hoàng Mạnh Kha', '133456683328', N'Trần Thanh Thảo');
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('123456210444' , N'Hoàng Văn Khải', '1990-01-07','1991-01-07', 'm', N'Kinh', N'Việt Nam', N'6 Nguyễn Du, Phường Trần Hưng Đạo, Quận Hai Bà Trưng, Hà Nội', N'6 Nguyễn Du, Phường Trần Hưng Đạo, Quận Hai Bà Trưng, Hà Nội', '133458470357', N'Hoàng Mạnh Kha', '133456683328', N'Trần Thanh Thảo');
+
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456246279' , N'Nhâm Mạnh Dũng', '1991-05-03','1991-06-03', 'm', N'Kinh', N'Việt Nam', N'u37 Xuân Thủy, Thảo Điền, Quận 2, Hồ Chí Minh', N'37 Xuân Thủy, Thảo Điền, Quận 2, Hồ Chí Minh', '123458021443', N'Hà Thái Sơn', '123456826257', N'Nguyễn Nhi');
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456245893' , N'Nhâm Mạnh Toàn', '2008-01-05','2008-03-02', 'm', N'Kinh', N'Việt Nam', N'37 Xuân Thủy, Thảo Điền, Quận 2, Hồ Chí Minh', N'37 Xuân Thủy, Thảo Điền, Quận 2, Hồ Chí Minh', '133456246279', N'Nhâm Mạnh Dũng', '133456215469', N'Trần Thảo Huyền');
+
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456215469' , N'Trần Thảo Huyền', '1992-06-03','1992-06-03', 'f', N'Kinh', N'Việt Nam', N'636 Tân Kỳ Tân Quý, Phường Sơn Kỳ, Quận Tân Phú, Hồ Chí Minh', N'636 Tân Kỳ Tân Quý, Phường Sơn Kỳ, Quận Tân Phú, Hồ Chí Minh', '123458842061', N'Đinh Tấn Trung', '123453945901', N'Nguyễn Ngọc Hân');
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456215422' , N'Trần Hoàng Hảo', '2003-06-03','2003-06-03', 'm', N'Kinh', N'Việt Nam', N'636 Tân Kỳ Tân Quý, Phường Sơn Kỳ, Quận Tân Phú, Hồ Chí Minh', N'636 Tân Kỳ Tân Quý, Phường Sơn Kỳ, Quận Tân Phú, Hồ Chí Minh', '123456210444' , N'Hoàng Văn Khải', '133456215469' , N'Trần Thảo Huyền');
+
+INSERT INTO KHAISINH(MaKS, Ten, NgaySinh, NgayDangKy , GioiTinh, DanToc, QuocTich, NoiSinh, QueQuan, CCCDCha, TenCha, CCCDMe, TenMe) VALUES('133456365976' , N'Trương Thị Nhung', '1993-03-02','1993-03-02', 'f', N'Kinh', N'Việt Nam', N'21 Nguyễn Công Trứ, Phường 19, Bình Thạnh, Thành phố Hồ Chí Minh', N'21 Nguyễn Công Trứ, Phường 19, Bình Thạnh, Thành phố Hồ Chí Minh', '123457884830', N'Hồ Hoàng Việt', '123455126924', N'Nguyễn Thu Hiền');
+
+
+INSERT INTO HONNHAN(MaHonNhan, CCCDNam, TenNam, CCCDNu, TenNu, NoiDangKy, NgayDangKy) VALUES('100000','133458470357' , N'Hoàng Mạnh Kha','133456683328' , N'Trần Thanh Thảo' ,N'535 Xô Viết Nghệ Tĩnh, Phường 25, Quận Bình Thạnh, Hồ Chí Minh','2002-01-06');
+
+
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123451348090' , N'Hoàng Việt Pháp', '0485768923', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123451348090');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000004','123451348090',N'Tạ Quang Bửu, khu phố 6, phường Linh Trung, Thủ Đức' ,'2022-01-06', '2023-01-06', N'Tạm trú', N'Học đại học' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123456249932' , N'Nguyễn Thụy Trinh', '0798318513', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123456249932');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000005','123456249932',N'Tạ Quang Bửu, khu phố 6, phường Linh Trung, Thủ Đức' ,'2022-01-06', '2022-01-06', N'Tạm trú', N'Học đại học' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123457670847' , N'Hoàng Khoa', '0188538875', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123457670847');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000006','123457670847',N'Tạ Quang Bửu, khu phố 6, phường Linh Trung, Thủ Đức' ,'2022-01-06', '2022-01-06', N'Tạm trú', N'Học đại học' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123453204795' , N'Khải Xuân Khánh', '0655539366', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123453204795');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000007','123453204795',N'Tạ Quang Bửu, khu phố 6, phường Linh Trung, Thủ Đức' ,'2022-06-06', '2023-06-06', N'Tạm trú', N'Học đại học' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123453963421' , N'Công Thành Danh', '0865354134', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123453963421');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000008','123453963421',N'Tạ Quang Bửu, khu phố 6, phường Linh Trung, Thủ Đức' ,'2022-06-06', '2026-06-06', N'Tạm trú', N'Học đại học' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123455135207' , N'Hồng Phúc', '0958783457', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123455135207');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000009','123455135207',N'729 Xô Viết Nghệ Tĩnh, Phường 26, Quận Bình Thạnh, Thành phố Hồ Chí Minh' ,'2023-01-05', '2023-07-05', N'Tạm trú', N'Làm việc' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123456395795' , N'Tạ Quang Vinh', '0596354937', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123456395795');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000010','123456395795',N'729 Xô Viết Nghệ Tĩnh, Phường 26, Quận Bình Thạnh, Thành phố Hồ Chí Minh' ,'2022-06-12', '2023-06-12', N'Tạm trú', N'Làm việc' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123454084962' , N'Trương Minh Quang', '0797150197', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123454084962');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000011','123454084962',N'115 Trần Phú, Phường 5, Thành phố Vũng Tầu, Thành phố Hồ Chí Minh' ,'2022-01-12', '2022-02-12', N'Tạm trú', N'Du lịch' );
+
+INSERT INTO CONGDAN(CCCD,Ten, SDT, MaHK, QuanHeVoiChuHo) VALUES ('123452972794' , N'Hoàng Duy Thắng', '0586105398', '00000B', N'Tạm trú tại địa phương');
+INSERT INTO CCCD(MaCCCD) VALUES('123452972794');
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('000012','123452972794',N'79a Trần Quang Cơ, Phú Thạnh, Tân Phú, Thành phố Hồ Chí Minh' ,'2023-05-06', '2023-06-06', N'Tạm trú', N'Du lịch' );
+
+
+
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900001','123453959542',N'Mạc Đĩnh Chi, khu phố Tân Hòa, phường Đông Hòa, thành phố Dĩ An' ,'2022-01-06', '2023-01-06', N'Tạm vắng', N'Học đại học' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900002','123456738708',N'Mạc Đĩnh Chi, khu phố Tân Hòa, phường Đông Hòa, thành phố Dĩ An' ,'2022-01-06', '2023-01-06', N'Tạm vắng', N'Học đại học' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900003','123456134058',N'Mạc Đĩnh Chi, khu phố Tân Hòa, phường Đông Hòa, thành phố Dĩ An' ,'2022-05-06', '2023-05-06', N'Tạm vắng', N'Học đại học' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900004','123454316404',N'Mạc Đĩnh Chi, khu phố Tân Hòa, phường Đông Hòa, thành phố Dĩ An' ,'2022-12-06', '2023-12-06', N'Tạm vắng', N'Học đại học' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900005','123453504171',N'Mạc Đĩnh Chi, khu phố Tân Hòa, phường Đông Hòa, thành phố Dĩ An' ,'2022-11-06', '2023-11-06', N'Tạm vắng', N'Học đại học' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900006','123456070668',N'1 P. Tôn Thất Tùng, Kim Liên, Đống Đa, Hà Nội' ,'2021-05-06', '2024-05-06', N'Tạm vắng', N'Học thạc sĩ' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900007','123456468063',N'1 P. Tôn Thất Tùng, Kim Liên, Đống Đa, Hà Nội' ,'2023-04-12', '2023-09-12', N'Tạm vắng', N'Chữa bệnh' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900008','123459230024',N'P. Huỳnh Thúc Kháng, Láng Thượng, Đống Đa, Hà Nội' ,'2023-03-10', '2023-06-10', N'Tạm vắng', N'Công tác' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900009','123458458935',N'72 Đ. Nguyễn Trãi, Thượng Đình, Thanh Xuân, Hà Nội' ,'2023-05-05', '2023-09-05', N'Tạm vắng', N'Công tác' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900010','123451815150',N'7 P. Thiền Quang, Nguyễn Du, Hai Bà Trưng, Hà Nội' ,'2022-12-10', '2023-12-10', N'Tạm vắng', N'Công tác' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900011','123453227638',N'5 Trường Sa, Ngũ Hành Sơn, Đà Nẵng, Việt Nam' ,'2023-03-15', '2023-06-15', N'Tạm vắng', N'Du lịch' );
+INSERT INTO TAMTRUTAMVANG(MaTTTV, CCCD, DiaChi, NgayBD, NgayKT, TrangThai, LiDo) VALUES('900012','123456905692',N'5 Trường Sa, Ngũ Hành Sơn, Đà Nẵng, Việt Nam' ,'2023-03-15', '2023-06-15', N'Tạm vắng', N'Du lịch' );
+
+
+INSERT INTO ACCOUNT(UserName, StrPassword, QuyenTruyCap, DisplayName) VALUES ('admin', 'admin', 1, N'Tài khoản DEMO');
+INSERT INTO ACCOUNT(UserName, StrPassword, QuyenTruyCap, DisplayName) VALUES ('123451636916', 'tester', 0, N'Tài khoản DEMO');
 
 SELECT *FROM CONGDAN
 SELECT *FROM CCCD
