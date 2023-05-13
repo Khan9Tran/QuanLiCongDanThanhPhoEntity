@@ -107,6 +107,7 @@ namespace QuanLiCongDanThanhPho
             pnlMenu.BringToFront();
             LoadTaiKhoan();
             tmrNgayHienTai.Start();
+            hinhAdmin.LayHinhDaiDien("hinhnen", ptcHinhNen);
         }
 
         private void btnMenuShow_Click(object sender, EventArgs e)
@@ -207,84 +208,10 @@ namespace QuanLiCongDanThanhPho
             lblTime.Text = DateTime.Now.ToLongTimeString();
         }
 
-        private void pnlHienThiForm_Paint(object sender, PaintEventArgs e)
+        private void btnHinhNen_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pnlDanhMuc_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblCongDan_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmnusDangKy_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void cmnusDangKyItemCongDan_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlTaiKhoan_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void cmnusTaiKhoan_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void pnlTitleBar_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblTime_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblNgayHienTai_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ptcNameApp_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void sideBar1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void titleBar1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlMenu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnlThongKe_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnlDangKy_Paint(object sender, PaintEventArgs e)
-        {
-
+            hinhAdmin.ThemHinhDaiDien(ofdHinhNen, ptcHinhNen);
+            hinhAdmin.SaveHinhDaiDien("hinhnen", ofdHinhNen, ptcHinhNen);
         }
     }
 }

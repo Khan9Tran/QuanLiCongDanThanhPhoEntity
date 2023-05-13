@@ -43,6 +43,8 @@
             this.ItemCongDanKhaiTu = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemKhaiSinh = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlHienThiForm = new System.Windows.Forms.Panel();
+            this.btnHinhNen = new System.Windows.Forms.Button();
+            this.ptcHinhNen = new System.Windows.Forms.PictureBox();
             this.pnlTaiKhoan = new System.Windows.Forms.Panel();
             this.ptcHinhDaiDien = new System.Windows.Forms.PictureBox();
             this.cmnusTaiKhoan = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -64,8 +66,12 @@
             this.lblDangKy = new System.Windows.Forms.Label();
             this.tmrPhongTo = new System.Windows.Forms.Timer(this.components);
             this.tmrNgayHienTai = new System.Windows.Forms.Timer(this.components);
+            this.ofdHinhNen = new System.Windows.Forms.OpenFileDialog();
+            this.sfdHinhNen = new System.Windows.Forms.SaveFileDialog();
             this.pnlDanhMuc.SuspendLayout();
             this.cmnusDangKy.SuspendLayout();
+            this.pnlHienThiForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptcHinhNen)).BeginInit();
             this.pnlTaiKhoan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptcHinhDaiDien)).BeginInit();
             this.cmnusTaiKhoan.SuspendLayout();
@@ -97,7 +103,6 @@
             this.pnlDanhMuc.Name = "pnlDanhMuc";
             this.pnlDanhMuc.Size = new System.Drawing.Size(290, 80);
             this.pnlDanhMuc.TabIndex = 0;
-            this.pnlDanhMuc.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDanhMuc_Paint);
             // 
             // lblDanhMuc
             // 
@@ -126,7 +131,6 @@
             this.lblCongDan.TabIndex = 0;
             this.lblCongDan.Text = "DANH MỤC";
             this.lblCongDan.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblCongDan.Click += new System.EventHandler(this.lblCongDan_Click);
             // 
             // cmnusDangKy
             // 
@@ -143,7 +147,6 @@
             this.cmnusDangKy.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.cmnusDangKy.ShowImageMargin = false;
             this.cmnusDangKy.Size = new System.Drawing.Size(245, 164);
-            this.cmnusDangKy.Opening += new System.ComponentModel.CancelEventHandler(this.cmnusDangKy_Opening);
             // 
             // cmnusDangKyItemTamTruTamVang
             // 
@@ -182,7 +185,6 @@
             this.cmnusDangKyItemCongDan.Name = "cmnusDangKyItemCongDan";
             this.cmnusDangKyItemCongDan.Size = new System.Drawing.Size(244, 32);
             this.cmnusDangKyItemCongDan.Text = "Công Dân";
-            this.cmnusDangKyItemCongDan.Click += new System.EventHandler(this.cmnusDangKyItemCongDan_Click_1);
             // 
             // ItemCongDanChuyenDen
             // 
@@ -209,12 +211,37 @@
             // 
             this.pnlHienThiForm.AutoSize = true;
             this.pnlHienThiForm.BackColor = System.Drawing.Color.White;
+            this.pnlHienThiForm.Controls.Add(this.btnHinhNen);
+            this.pnlHienThiForm.Controls.Add(this.ptcHinhNen);
             this.pnlHienThiForm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.pnlHienThiForm.Location = new System.Drawing.Point(88, 81);
             this.pnlHienThiForm.Name = "pnlHienThiForm";
-            this.pnlHienThiForm.Size = new System.Drawing.Size(1532, 782);
+            this.pnlHienThiForm.Size = new System.Drawing.Size(1545, 785);
             this.pnlHienThiForm.TabIndex = 2;
-            this.pnlHienThiForm.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHienThiForm_Paint);
+            // 
+            // btnHinhNen
+            // 
+            this.btnHinhNen.BackColor = System.Drawing.Color.Transparent;
+            this.btnHinhNen.FlatAppearance.BorderSize = 0;
+            this.btnHinhNen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHinhNen.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btnHinhNen.Image = global::QuanLiCongDanThanhPho.Properties.Resources.share;
+            this.btnHinhNen.Location = new System.Drawing.Point(1500, 3);
+            this.btnHinhNen.Name = "btnHinhNen";
+            this.btnHinhNen.Size = new System.Drawing.Size(32, 32);
+            this.btnHinhNen.TabIndex = 0;
+            this.btnHinhNen.UseVisualStyleBackColor = false;
+            this.btnHinhNen.Click += new System.EventHandler(this.btnHinhNen_Click);
+            // 
+            // ptcHinhNen
+            // 
+            this.ptcHinhNen.BackColor = System.Drawing.Color.Transparent;
+            this.ptcHinhNen.Location = new System.Drawing.Point(-2, 0);
+            this.ptcHinhNen.Name = "ptcHinhNen";
+            this.ptcHinhNen.Size = new System.Drawing.Size(1544, 782);
+            this.ptcHinhNen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptcHinhNen.TabIndex = 1;
+            this.ptcHinhNen.TabStop = false;
             // 
             // pnlTaiKhoan
             // 
@@ -224,7 +251,6 @@
             this.pnlTaiKhoan.Name = "pnlTaiKhoan";
             this.pnlTaiKhoan.Size = new System.Drawing.Size(286, 51);
             this.pnlTaiKhoan.TabIndex = 0;
-            this.pnlTaiKhoan.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTaiKhoan_Paint);
             // 
             // ptcHinhDaiDien
             // 
@@ -250,7 +276,6 @@
             this.cmnusTaiKhoan.Name = "cmnusTaiKhoan";
             this.cmnusTaiKhoan.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.cmnusTaiKhoan.Size = new System.Drawing.Size(212, 128);
-            this.cmnusTaiKhoan.Opening += new System.ComponentModel.CancelEventHandler(this.cmnusTaiKhoan_Opening);
             this.cmnusTaiKhoan.Opened += new System.EventHandler(this.btnTaiKhoan_Click);
             // 
             // cmnusTaiKhoanItemCaNhan
@@ -313,7 +338,6 @@
             this.pnlTitleBar.Name = "pnlTitleBar";
             this.pnlTitleBar.Size = new System.Drawing.Size(1630, 75);
             this.pnlTitleBar.TabIndex = 3;
-            this.pnlTitleBar.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlTitleBar_Paint);
             // 
             // lblTime
             // 
@@ -323,7 +347,6 @@
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(0, 20);
             this.lblTime.TabIndex = 7;
-            this.lblTime.Click += new System.EventHandler(this.lblTime_Click);
             // 
             // lblNgayHienTai
             // 
@@ -335,7 +358,6 @@
             this.lblNgayHienTai.Name = "lblNgayHienTai";
             this.lblNgayHienTai.Size = new System.Drawing.Size(0, 28);
             this.lblNgayHienTai.TabIndex = 6;
-            this.lblNgayHienTai.Click += new System.EventHandler(this.lblNgayHienTai_Click);
             // 
             // ptcNameApp
             // 
@@ -347,7 +369,6 @@
             this.ptcNameApp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptcNameApp.TabIndex = 0;
             this.ptcNameApp.TabStop = false;
-            this.ptcNameApp.Click += new System.EventHandler(this.ptcNameApp_Click);
             // 
             // sideBar1
             // 
@@ -355,7 +376,6 @@
             this.sideBar1.Name = "sideBar1";
             this.sideBar1.Size = new System.Drawing.Size(65, 72);
             this.sideBar1.TabIndex = 5;
-            this.sideBar1.Load += new System.EventHandler(this.sideBar1_Load);
             // 
             // titleBar1
             // 
@@ -363,7 +383,6 @@
             this.titleBar1.Name = "titleBar1";
             this.titleBar1.Size = new System.Drawing.Size(48, 32);
             this.titleBar1.TabIndex = 4;
-            this.titleBar1.Load += new System.EventHandler(this.titleBar1_Load);
             // 
             // tmrThuNho
             // 
@@ -380,7 +399,6 @@
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(80, 782);
             this.pnlMenu.TabIndex = 4;
-            this.pnlMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMenu_Paint);
             // 
             // pnlThongKe
             // 
@@ -390,7 +408,6 @@
             this.pnlThongKe.Name = "pnlThongKe";
             this.pnlThongKe.Size = new System.Drawing.Size(290, 80);
             this.pnlThongKe.TabIndex = 1;
-            this.pnlThongKe.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlThongKe_Paint);
             // 
             // lblThongKe
             // 
@@ -417,7 +434,6 @@
             this.pnlDangKy.Name = "pnlDangKy";
             this.pnlDangKy.Size = new System.Drawing.Size(290, 80);
             this.pnlDangKy.TabIndex = 1;
-            this.pnlDangKy.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDangKy_Paint);
             // 
             // lblDangKy
             // 
@@ -462,6 +478,8 @@
             this.pnlDanhMuc.ResumeLayout(false);
             this.pnlDanhMuc.PerformLayout();
             this.cmnusDangKy.ResumeLayout(false);
+            this.pnlHienThiForm.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptcHinhNen)).EndInit();
             this.pnlTaiKhoan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptcHinhDaiDien)).EndInit();
             this.cmnusTaiKhoan.ResumeLayout(false);
@@ -514,5 +532,9 @@
         private System.Windows.Forms.Timer tmrNgayHienTai;
         private Label lblNgayHienTai;
         private Label lblTime;
+        private Button btnHinhNen;
+        private PictureBox ptcHinhNen;
+        private OpenFileDialog ofdHinhNen;
+        private SaveFileDialog sfdHinhNen;
     }
 }
