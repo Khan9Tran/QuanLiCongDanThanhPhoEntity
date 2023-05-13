@@ -203,12 +203,12 @@
             // 
             // txtMaHonNhan
             // 
-            this.txtMaHonNhan.BackColor = System.Drawing.Color.Gainsboro;
-            this.txtMaHonNhan.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtMaHonNhan.BackColor = System.Drawing.Color.White;
+            this.txtMaHonNhan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMaHonNhan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtMaHonNhan.Location = new System.Drawing.Point(305, 116);
             this.txtMaHonNhan.Name = "txtMaHonNhan";
-            this.txtMaHonNhan.Size = new System.Drawing.Size(244, 27);
+            this.txtMaHonNhan.Size = new System.Drawing.Size(244, 34);
             this.txtMaHonNhan.TabIndex = 58;
             this.txtMaHonNhan.TextChanged += new System.EventHandler(this.txtMaHonNhan_TextChanged);
             // 
