@@ -15,6 +15,7 @@
         
         private enum Type {
             congDan,
+            ngheNghiep,
             thue,
             phanBoDanCu
         };
@@ -25,8 +26,10 @@
                 childForm.Open(new FThongKeCongDan());
             else if ((Type)cmbLuaChon.SelectedIndex== Type.phanBoDanCu)
                 childForm.Open(new FThongKePhanBo());
-            else if ((Type)(Type)cmbLuaChon.SelectedIndex == Type.thue)
+            else if ((Type)cmbLuaChon.SelectedIndex == Type.thue)
                 childForm.Open(new FThongKeThue());
+            else if ((Type)cmbLuaChon.SelectedIndex == Type.ngheNghiep)
+                childForm.Open(new FThongKeNgheNghiep());
         }
     }
 }

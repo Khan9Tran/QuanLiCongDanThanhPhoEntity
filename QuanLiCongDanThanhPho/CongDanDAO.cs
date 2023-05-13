@@ -199,6 +199,7 @@ namespace QuanLiCongDanThanhPho
                     Quan = g.Key,
                     SoLuongNguoi = g.Count()
                 })
+                .OrderByDescending(x => x.SoLuongNguoi)
                 .Cast<object>()
                 .ToList();
 
@@ -214,6 +215,7 @@ namespace QuanLiCongDanThanhPho
                                 NgheNghiep = q.Key,
                                 SoLuong = q.Count()
                             })
+                            .OrderByDescending(x => x.SoLuong)
                             .Cast<object>()
                             .ToList();
             return result;

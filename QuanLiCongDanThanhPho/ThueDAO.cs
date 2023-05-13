@@ -4,7 +4,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using QuanLiCongDanThanhPho.Model;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
 namespace QuanLiCongDanThanhPho
 {
     internal class ThueDAO
@@ -117,6 +120,68 @@ namespace QuanLiCongDanThanhPho
 
             var listChuaDongThue =(from q in  listCongDanDuTuoi select q).Except(list).ToList();
             return listChuaDongThue.ToList();
+        }
+
+        public DataTable LayDanhSachTienDongThueCacQuan()
+        {
+            CongDanDAO cDDAO = new CongDanDAO();
+            DiaChi dc = new DiaChi();
+            //var cacQuan = cDDAO.LayDanhSachDC();
+            DataTable result = new DataTable();
+            result.Columns.Add("Quận", typeof(string));
+            result.Columns.Add("Tiền đã thu", typeof(int));
+
+            var congDan = (
+                from cd in db.Congdans
+                join hk in db.Hokhaus on cd.MaHk equals hk.MaHk
+                where hk.DiaChi != "Tạm trú" && hk.DiaChi != "Tạm vắng"
+                select new
+                {
+                    Cccd = cd.Cccd,
+                    DiaChi = hk.DiaChi
+                }
+            ).Concat(
+                from tt in db.Tamtrutamvangs
+                select new
+                {
+                    Cccd = tt.Cccd,
+                    DiaChi = tt.DiaChi
+                }
+            );
+
+            var cacQuan = congDan.AsEnumerable()
+                .Select(d => dc.DinhDang(d.DiaChi))
+                .Select(d => new
+                {
+                    Quan = dc.QuanHuyen,
+                    SoLuongNguoi = 1
+                })
+                .GroupBy(x => x.Quan)
+                .Select(g => new
+                {
+                    Quan = g.Key,
+                    SoLuongNguoi = g.Count()
+                })
+                .OrderByDescending(x => x.SoLuongNguoi)
+                .ToList();
+
+
+            foreach (var row in cacQuan) {
+                var query = (from q in db.Thues
+                             join c in congDan on q.Cccd equals c.Cccd
+                             where c.DiaChi.Contains(row.Quan)
+                             group q by c.DiaChi into g
+                             select new
+                             {
+                                 Quan = row.Quan,
+                                 TienDaThu = g.Sum(x => Convert.ToInt32(x.SoTienDaNop))
+                             }).ToList();
+                foreach (var row1 in query)
+                {
+                    result.Rows.Add(row1.Quan, row1.TienDaThu);
+                }
+            }
+            return result;
         }
     }
 }

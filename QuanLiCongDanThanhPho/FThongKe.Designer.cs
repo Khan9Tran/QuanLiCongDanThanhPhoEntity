@@ -50,6 +50,7 @@
             this.cmbLuaChon.FormattingEnabled = true;
             this.cmbLuaChon.Items.AddRange(new object[] {
             "Công dân",
+            "Nghề nghiệp",
             "Thuế",
             "Phân bố dân cư"});
             this.cmbLuaChon.Location = new System.Drawing.Point(146, 37);
