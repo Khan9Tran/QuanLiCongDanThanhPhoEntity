@@ -17,7 +17,7 @@ namespace QuanLiCongDanThanhPho
         {
             Init();
             this.cCCD = cCCD;
-            
+
         }
         private void LoadThongTin(string cCCD)
         {
@@ -37,7 +37,7 @@ namespace QuanLiCongDanThanhPho
 
         private bool TaoCongDan(Congdan congdan)
         {
-            if (congdan != null) 
+            if (congdan != null)
             {
                 return true;
             }
@@ -105,7 +105,7 @@ namespace QuanLiCongDanThanhPho
         }
         private void btnDangKy_Click(object sender, EventArgs e)
         {
-            DangKy(); 
+            DangKy();
         }
         private void btnReset_Click(object sender, EventArgs e)
         {

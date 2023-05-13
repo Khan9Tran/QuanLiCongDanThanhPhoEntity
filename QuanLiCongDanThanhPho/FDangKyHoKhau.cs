@@ -1,6 +1,6 @@
 ﻿namespace QuanLiCongDanThanhPho
 {
-    public partial class FDangKyHoKhau : Form
+    public partial class FDangKyHoKhau : FormDangKy
     {
         private OpenChildForm childForm;
         private string maHoTach;
