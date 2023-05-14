@@ -77,7 +77,7 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Mật khẩu không chính xác.");
                 return false;
             }
-            return true && KiemTraDuLieuNhap.KiemTraPass(txtMatKhau.Text, txtMatKhauMoi.Text, txtMatKhauMoiNhapLai.Text);
+            return KiemTraDuLieuNhap.KiemTraPass(txtMatKhau.Text, txtMatKhauMoi.Text, txtMatKhauMoiNhapLai.Text);
         }
         private void btnDangKy_Click(object sender, EventArgs e)
         {

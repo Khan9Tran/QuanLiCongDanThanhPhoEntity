@@ -45,7 +45,7 @@ namespace QuanLiCongDanThanhPho
             {
                 return false;
             }  
-            return true && KiemTraDuLieuNhap.KiemTraPass("", txtMatKhau.Text, txtNhapLai.Text);
+            return KiemTraDuLieuNhap.KiemTraPass("", txtMatKhau.Text, txtNhapLai.Text);
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)

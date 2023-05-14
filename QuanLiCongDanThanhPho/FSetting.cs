@@ -20,7 +20,7 @@ namespace QuanLiCongDanThanhPho
                 return false;
             }
 
-            return true && KiemTraDuLieuNhap.KiemTraPass(txtMatKhauHienTai.Text, txtMatKhauMoi.Text, txtNhapLai.Text);
+            return KiemTraDuLieuNhap.KiemTraPass(txtMatKhauHienTai.Text, txtMatKhauMoi.Text, txtNhapLai.Text);
         }
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
