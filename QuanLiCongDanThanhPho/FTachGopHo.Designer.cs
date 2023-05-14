@@ -28,257 +28,269 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.lblMaHoTach = new System.Windows.Forms.Label();
-            this.lblMaHoGop = new System.Windows.Forms.Label();
-            this.gvHoTach = new System.Windows.Forms.DataGridView();
-            this.gvHoGop = new System.Windows.Forms.DataGridView();
-            this.btnTach = new System.Windows.Forms.Button();
-            this.btnGopHo = new System.Windows.Forms.Button();
-            this.btnTaoHoMoi = new System.Windows.Forms.Button();
-            this.txtMaHoTach = new System.Windows.Forms.TextBox();
-            this.txtMaHoGop = new System.Windows.Forms.TextBox();
-            this.btnMaHoTach = new System.Windows.Forms.Button();
-            this.btnMaHoGop = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.gvHoTach)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvHoGop)).BeginInit();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            lblMaHoTach = new Label();
+            lblMaHoGop = new Label();
+            gvHoTach = new DataGridView();
+            gvHoGop = new DataGridView();
+            btnTach = new Button();
+            btnGopHo = new Button();
+            btnTaoHoMoi = new Button();
+            txtMaHoTach = new TextBox();
+            txtMaHoGop = new TextBox();
+            btnMaHoTach = new Button();
+            btnMaHoGop = new Button();
+            btnReset = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            panel1 = new Panel();
+            ((System.ComponentModel.ISupportInitialize)gvHoTach).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gvHoGop).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // lblMaHoTach
             // 
-            this.lblMaHoTach.AutoSize = true;
-            this.lblMaHoTach.Location = new System.Drawing.Point(71, 25);
-            this.lblMaHoTach.Name = "lblMaHoTach";
-            this.lblMaHoTach.Size = new System.Drawing.Size(119, 28);
-            this.lblMaHoTach.TabIndex = 4;
-            this.lblMaHoTach.Text = "Mã hộ tách";
+            lblMaHoTach.AutoSize = true;
+            lblMaHoTach.Location = new Point(71, 25);
+            lblMaHoTach.Name = "lblMaHoTach";
+            lblMaHoTach.Size = new Size(119, 28);
+            lblMaHoTach.TabIndex = 4;
+            lblMaHoTach.Text = "Mã hộ tách";
             // 
             // lblMaHoGop
             // 
-            this.lblMaHoGop.AutoSize = true;
-            this.lblMaHoGop.Location = new System.Drawing.Point(71, 375);
-            this.lblMaHoGop.Name = "lblMaHoGop";
-            this.lblMaHoGop.Size = new System.Drawing.Size(207, 28);
-            this.lblMaHoGop.TabIndex = 5;
-            this.lblMaHoGop.Text = "Mã hộ gộp/ Tạo mới";
+            lblMaHoGop.AutoSize = true;
+            lblMaHoGop.Location = new Point(71, 375);
+            lblMaHoGop.Name = "lblMaHoGop";
+            lblMaHoGop.Size = new Size(207, 28);
+            lblMaHoGop.TabIndex = 5;
+            lblMaHoGop.Text = "Mã hộ gộp/ Tạo mới";
             // 
             // gvHoTach
             // 
-            this.gvHoTach.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.gvHoTach.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvHoTach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.gvHoTach.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvHoTach.DefaultCellStyle = dataGridViewCellStyle2;
-            this.gvHoTach.EnableHeadersVisualStyles = false;
-            this.gvHoTach.Location = new System.Drawing.Point(296, 84);
-            this.gvHoTach.Name = "gvHoTach";
-            this.gvHoTach.RowHeadersVisible = false;
-            this.gvHoTach.RowHeadersWidth = 51;
-            this.gvHoTach.RowTemplate.Height = 29;
-            this.gvHoTach.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvHoTach.Size = new System.Drawing.Size(677, 230);
-            this.gvHoTach.TabIndex = 6;
+            gvHoTach.BackgroundColor = Color.WhiteSmoke;
+            gvHoTach.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            gvHoTach.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            gvHoTach.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = SystemColors.Window;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.Tomato;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            gvHoTach.DefaultCellStyle = dataGridViewCellStyle6;
+            gvHoTach.EnableHeadersVisualStyles = false;
+            gvHoTach.Location = new Point(296, 84);
+            gvHoTach.Name = "gvHoTach";
+            gvHoTach.RowHeadersVisible = false;
+            gvHoTach.RowHeadersWidth = 51;
+            gvHoTach.RowTemplate.Height = 29;
+            gvHoTach.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gvHoTach.Size = new Size(677, 230);
+            gvHoTach.TabIndex = 6;
             // 
             // gvHoGop
             // 
-            this.gvHoGop.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.gvHoGop.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvHoGop.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.gvHoGop.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvHoGop.DefaultCellStyle = dataGridViewCellStyle4;
-            this.gvHoGop.EnableHeadersVisualStyles = false;
-            this.gvHoGop.Location = new System.Drawing.Point(296, 434);
-            this.gvHoGop.Name = "gvHoGop";
-            this.gvHoGop.RowHeadersVisible = false;
-            this.gvHoGop.RowHeadersWidth = 51;
-            this.gvHoGop.RowTemplate.Height = 29;
-            this.gvHoGop.Size = new System.Drawing.Size(677, 230);
-            this.gvHoGop.TabIndex = 7;
+            gvHoGop.BackgroundColor = Color.WhiteSmoke;
+            gvHoGop.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.RoyalBlue;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            gvHoGop.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            gvHoGop.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = SystemColors.Window;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.Tomato;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            gvHoGop.DefaultCellStyle = dataGridViewCellStyle8;
+            gvHoGop.EnableHeadersVisualStyles = false;
+            gvHoGop.Location = new Point(296, 434);
+            gvHoGop.Name = "gvHoGop";
+            gvHoGop.RowHeadersVisible = false;
+            gvHoGop.RowHeadersWidth = 51;
+            gvHoGop.RowTemplate.Height = 29;
+            gvHoGop.Size = new Size(677, 230);
+            gvHoGop.TabIndex = 7;
             // 
             // btnTach
             // 
-            this.btnTach.BackColor = System.Drawing.Color.Transparent;
-            this.btnTach.FlatAppearance.BorderSize = 0;
-            this.btnTach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTach.Image = global::QuanLiCongDanThanhPho.Properties.Resources.division;
-            this.btnTach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTach.Location = new System.Drawing.Point(3, 59);
-            this.btnTach.Name = "btnTach";
-            this.btnTach.Size = new System.Drawing.Size(170, 50);
-            this.btnTach.TabIndex = 10;
-            this.btnTach.Text = "Tách";
-            this.btnTach.UseVisualStyleBackColor = false;
-            this.btnTach.Click += new System.EventHandler(this.btnTach_Click);
+            btnTach.BackColor = Color.Transparent;
+            btnTach.FlatAppearance.BorderSize = 0;
+            btnTach.FlatStyle = FlatStyle.Flat;
+            btnTach.Image = Properties.Resources.division;
+            btnTach.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTach.Location = new Point(3, 59);
+            btnTach.Name = "btnTach";
+            btnTach.Size = new Size(170, 50);
+            btnTach.TabIndex = 10;
+            btnTach.Text = "Tách";
+            btnTach.UseVisualStyleBackColor = false;
+            btnTach.Click += btnTach_Click;
             // 
             // btnGopHo
             // 
-            this.btnGopHo.BackColor = System.Drawing.Color.Transparent;
-            this.btnGopHo.FlatAppearance.BorderSize = 0;
-            this.btnGopHo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGopHo.Image = global::QuanLiCongDanThanhPho.Properties.Resources.merge__1_;
-            this.btnGopHo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGopHo.Location = new System.Drawing.Point(3, 115);
-            this.btnGopHo.Name = "btnGopHo";
-            this.btnGopHo.Size = new System.Drawing.Size(170, 50);
-            this.btnGopHo.TabIndex = 11;
-            this.btnGopHo.Text = "Gộp";
-            this.btnGopHo.UseVisualStyleBackColor = false;
-            this.btnGopHo.Click += new System.EventHandler(this.btnGopHo_Click);
+            btnGopHo.BackColor = Color.Transparent;
+            btnGopHo.FlatAppearance.BorderSize = 0;
+            btnGopHo.FlatStyle = FlatStyle.Flat;
+            btnGopHo.Image = Properties.Resources.merge__1_;
+            btnGopHo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGopHo.Location = new Point(3, 115);
+            btnGopHo.Name = "btnGopHo";
+            btnGopHo.Size = new Size(170, 50);
+            btnGopHo.TabIndex = 11;
+            btnGopHo.Text = "Gộp";
+            btnGopHo.UseVisualStyleBackColor = false;
+            btnGopHo.Click += btnGopHo_Click;
             // 
             // btnTaoHoMoi
             // 
-            this.btnTaoHoMoi.BackColor = System.Drawing.Color.Transparent;
-            this.btnTaoHoMoi.FlatAppearance.BorderSize = 0;
-            this.btnTaoHoMoi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTaoHoMoi.Image = global::QuanLiCongDanThanhPho.Properties.Resources.plus__1_;
-            this.btnTaoHoMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoHoMoi.Location = new System.Drawing.Point(3, 3);
-            this.btnTaoHoMoi.Name = "btnTaoHoMoi";
-            this.btnTaoHoMoi.Size = new System.Drawing.Size(170, 50);
-            this.btnTaoHoMoi.TabIndex = 12;
-            this.btnTaoHoMoi.Text = "Tạo mới";
-            this.btnTaoHoMoi.UseVisualStyleBackColor = false;
-            this.btnTaoHoMoi.Click += new System.EventHandler(this.btnTaoHoMoi_Click);
+            btnTaoHoMoi.BackColor = Color.Transparent;
+            btnTaoHoMoi.FlatAppearance.BorderSize = 0;
+            btnTaoHoMoi.FlatStyle = FlatStyle.Flat;
+            btnTaoHoMoi.Image = Properties.Resources.plus__1_;
+            btnTaoHoMoi.ImageAlign = ContentAlignment.MiddleLeft;
+            btnTaoHoMoi.Location = new Point(3, 3);
+            btnTaoHoMoi.Name = "btnTaoHoMoi";
+            btnTaoHoMoi.Size = new Size(170, 50);
+            btnTaoHoMoi.TabIndex = 12;
+            btnTaoHoMoi.Text = "Tạo mới";
+            btnTaoHoMoi.UseVisualStyleBackColor = false;
+            btnTaoHoMoi.Click += btnTaoHoMoi_Click;
             // 
             // txtMaHoTach
             // 
-            this.txtMaHoTach.BackColor = System.Drawing.Color.White;
-            this.txtMaHoTach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaHoTach.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMaHoTach.Location = new System.Drawing.Point(296, 25);
-            this.txtMaHoTach.Name = "txtMaHoTach";
-            this.txtMaHoTach.Size = new System.Drawing.Size(677, 34);
-            this.txtMaHoTach.TabIndex = 20;
+            txtMaHoTach.BackColor = Color.White;
+            txtMaHoTach.BorderStyle = BorderStyle.FixedSingle;
+            txtMaHoTach.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtMaHoTach.Location = new Point(296, 25);
+            txtMaHoTach.Name = "txtMaHoTach";
+            txtMaHoTach.Size = new Size(677, 34);
+            txtMaHoTach.TabIndex = 20;
             // 
             // txtMaHoGop
             // 
-            this.txtMaHoGop.BackColor = System.Drawing.Color.White;
-            this.txtMaHoGop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMaHoGop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMaHoGop.Location = new System.Drawing.Point(303, 375);
-            this.txtMaHoGop.Name = "txtMaHoGop";
-            this.txtMaHoGop.Size = new System.Drawing.Size(670, 34);
-            this.txtMaHoGop.TabIndex = 21;
+            txtMaHoGop.BackColor = Color.White;
+            txtMaHoGop.BorderStyle = BorderStyle.FixedSingle;
+            txtMaHoGop.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtMaHoGop.Location = new Point(303, 375);
+            txtMaHoGop.Name = "txtMaHoGop";
+            txtMaHoGop.Size = new Size(670, 34);
+            txtMaHoGop.TabIndex = 21;
             // 
             // btnMaHoTach
             // 
-            this.btnMaHoTach.BackColor = System.Drawing.Color.Transparent;
-            this.btnMaHoTach.FlatAppearance.BorderSize = 0;
-            this.btnMaHoTach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaHoTach.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnMaHoTach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(53)))), ((int)(((byte)(60)))));
-            this.btnMaHoTach.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
-            this.btnMaHoTach.Location = new System.Drawing.Point(990, 16);
-            this.btnMaHoTach.Name = "btnMaHoTach";
-            this.btnMaHoTach.Size = new System.Drawing.Size(50, 50);
-            this.btnMaHoTach.TabIndex = 54;
-            this.btnMaHoTach.UseVisualStyleBackColor = false;
-            this.btnMaHoTach.Click += new System.EventHandler(this.btnMaHoTach_Click);
+            btnMaHoTach.BackColor = Color.Transparent;
+            btnMaHoTach.FlatAppearance.BorderSize = 0;
+            btnMaHoTach.FlatStyle = FlatStyle.Flat;
+            btnMaHoTach.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMaHoTach.ForeColor = Color.FromArgb(44, 53, 60);
+            btnMaHoTach.Image = Properties.Resources.search__1_;
+            btnMaHoTach.Location = new Point(990, 16);
+            btnMaHoTach.Name = "btnMaHoTach";
+            btnMaHoTach.Size = new Size(50, 50);
+            btnMaHoTach.TabIndex = 54;
+            btnMaHoTach.UseVisualStyleBackColor = false;
+            btnMaHoTach.Click += btnMaHoTach_Click;
             // 
             // btnMaHoGop
             // 
-            this.btnMaHoGop.BackColor = System.Drawing.Color.Transparent;
-            this.btnMaHoGop.FlatAppearance.BorderSize = 0;
-            this.btnMaHoGop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaHoGop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnMaHoGop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(53)))), ((int)(((byte)(60)))));
-            this.btnMaHoGop.Image = global::QuanLiCongDanThanhPho.Properties.Resources.search__1_;
-            this.btnMaHoGop.Location = new System.Drawing.Point(990, 364);
-            this.btnMaHoGop.Name = "btnMaHoGop";
-            this.btnMaHoGop.Size = new System.Drawing.Size(50, 50);
-            this.btnMaHoGop.TabIndex = 55;
-            this.btnMaHoGop.UseVisualStyleBackColor = false;
-            this.btnMaHoGop.Click += new System.EventHandler(this.btnMaHoGop_Click);
+            btnMaHoGop.BackColor = Color.Transparent;
+            btnMaHoGop.FlatAppearance.BorderSize = 0;
+            btnMaHoGop.FlatStyle = FlatStyle.Flat;
+            btnMaHoGop.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMaHoGop.ForeColor = Color.FromArgb(44, 53, 60);
+            btnMaHoGop.Image = Properties.Resources.search__1_;
+            btnMaHoGop.Location = new Point(990, 364);
+            btnMaHoGop.Name = "btnMaHoGop";
+            btnMaHoGop.Size = new Size(50, 50);
+            btnMaHoGop.TabIndex = 55;
+            btnMaHoGop.UseVisualStyleBackColor = false;
+            btnMaHoGop.Click += btnMaHoGop_Click;
             // 
             // btnReset
             // 
-            this.btnReset.BackColor = System.Drawing.Color.Transparent;
-            this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(3, 171);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(170, 50);
-            this.btnReset.TabIndex = 93;
-            this.btnReset.Text = "Tải lại";
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            btnReset.BackColor = Color.Transparent;
+            btnReset.DialogResult = DialogResult.OK;
+            btnReset.FlatAppearance.BorderSize = 0;
+            btnReset.FlatStyle = FlatStyle.Flat;
+            btnReset.Image = Properties.Resources.undo__1_;
+            btnReset.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReset.Location = new Point(3, 171);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(170, 50);
+            btnReset.TabIndex = 93;
+            btnReset.Text = "Tải lại";
+            btnReset.UseVisualStyleBackColor = false;
+            btnReset.Click += btnReset_Click;
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Controls.Add(this.btnTaoHoMoi);
-            this.flowLayoutPanel1.Controls.Add(this.btnTach);
-            this.flowLayoutPanel1.Controls.Add(this.btnGopHo);
-            this.flowLayoutPanel1.Controls.Add(this.btnReset);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1192, 25);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(158, 235);
-            this.flowLayoutPanel1.TabIndex = 94;
+            flowLayoutPanel1.BackColor = Color.WhiteSmoke;
+            flowLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
+            flowLayoutPanel1.Controls.Add(btnTaoHoMoi);
+            flowLayoutPanel1.Controls.Add(btnTach);
+            flowLayoutPanel1.Controls.Add(btnGopHo);
+            flowLayoutPanel1.Controls.Add(btnReset);
+            flowLayoutPanel1.Location = new Point(50, 96);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(158, 235);
+            flowLayoutPanel1.TabIndex = 94;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = SystemColors.ActiveCaption;
+            panel1.Controls.Add(flowLayoutPanel1);
+            panel1.Location = new Point(1125, -17);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(250, 853);
+            panel1.TabIndex = 96;
             // 
             // FTachGopHo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1532, 695);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.btnMaHoGop);
-            this.Controls.Add(this.btnMaHoTach);
-            this.Controls.Add(this.txtMaHoGop);
-            this.Controls.Add(this.txtMaHoTach);
-            this.Controls.Add(this.gvHoGop);
-            this.Controls.Add(this.gvHoTach);
-            this.Controls.Add(this.lblMaHoGop);
-            this.Controls.Add(this.lblMaHoTach);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FTachGopHo";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FTachGopHo";
-            ((System.ComponentModel.ISupportInitialize)(this.gvHoTach)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvHoGop)).EndInit();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(12F, 28F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(1532, 695);
+            Controls.Add(panel1);
+            Controls.Add(btnMaHoGop);
+            Controls.Add(btnMaHoTach);
+            Controls.Add(txtMaHoGop);
+            Controls.Add(txtMaHoTach);
+            Controls.Add(gvHoGop);
+            Controls.Add(gvHoTach);
+            Controls.Add(lblMaHoGop);
+            Controls.Add(lblMaHoTach);
+            Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4);
+            Name = "FTachGopHo";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "FTachGopHo";
+            ((System.ComponentModel.ISupportInitialize)gvHoTach).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gvHoGop).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -296,5 +308,6 @@
         private Button btnMaHoGop;
         private Button btnReset;
         private FlowLayoutPanel flowLayoutPanel1;
+        private Panel panel1;
     }
 }
