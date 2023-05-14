@@ -77,7 +77,7 @@ namespace QuanLiCongDanThanhPho
             TamTruTamVangDAO tTTV = new TamTruTamVangDAO ();
             if (tTTV.LayThongTin(account.UserName) != null)
             {
-                MessageBox.Show("Thông tin TT/TTV của bạn đã được duyệt");
+                MessageBox.Show("Thông tin TT/TV của bạn đã được duyệt");
             }
             else
             {
