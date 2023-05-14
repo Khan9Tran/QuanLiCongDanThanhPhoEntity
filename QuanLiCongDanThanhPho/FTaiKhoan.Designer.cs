@@ -127,7 +127,7 @@
             this.btnThemHinh.Enabled = false;
             this.btnThemHinh.FlatAppearance.BorderSize = 0;
             this.btnThemHinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThemHinh.Image = global::QuanLiCongDanThanhPho.Properties.Resources.upload;
+            this.btnThemHinh.Image = global::QuanLiCongDanThanhPho.Properties.Resources.cloud_computing;
             this.btnThemHinh.Location = new System.Drawing.Point(362, 370);
             this.btnThemHinh.Name = "btnThemHinh";
             this.btnThemHinh.Size = new System.Drawing.Size(32, 32);
@@ -270,7 +270,7 @@
             this.btnReset.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.reset;
+            this.btnReset.Image = global::QuanLiCongDanThanhPho.Properties.Resources.undo__1_;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.Location = new System.Drawing.Point(3, 3);
             this.btnReset.Name = "btnReset";
@@ -287,7 +287,7 @@
             this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDangKy.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnDangKy.ForeColor = System.Drawing.Color.Black;
-            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.confirm;
+            this.btnDangKy.Image = global::QuanLiCongDanThanhPho.Properties.Resources.check__2_;
             this.btnDangKy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDangKy.Location = new System.Drawing.Point(159, 3);
             this.btnDangKy.Name = "btnDangKy";
@@ -312,7 +312,7 @@
             this.btnSua.BackColor = System.Drawing.Color.Transparent;
             this.btnSua.FlatAppearance.BorderSize = 0;
             this.btnSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSua.Image = global::QuanLiCongDanThanhPho.Properties.Resources.edit__2_;
+            this.btnSua.Image = global::QuanLiCongDanThanhPho.Properties.Resources.edit__3_;
             this.btnSua.Location = new System.Drawing.Point(619, 428);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(50, 50);

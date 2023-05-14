@@ -42,6 +42,7 @@
             this.ItemCongDanChuyenDen = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemCongDanKhaiTu = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemKhaiSinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmnusDangKyItemTKCongDan = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlHienThiForm = new System.Windows.Forms.Panel();
             this.btnHinhNen = new System.Windows.Forms.Button();
             this.ptcHinhNen = new System.Windows.Forms.PictureBox();
@@ -68,7 +69,6 @@
             this.tmrNgayHienTai = new System.Windows.Forms.Timer(this.components);
             this.ofdHinhNen = new System.Windows.Forms.OpenFileDialog();
             this.sfdHinhNen = new System.Windows.Forms.SaveFileDialog();
-            this.cmnusDangKyItemTKCongDan = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDanhMuc.SuspendLayout();
             this.cmnusDangKy.SuspendLayout();
             this.pnlHienThiForm.SuspendLayout();
@@ -148,7 +148,7 @@
             this.cmnusDangKy.Name = "cmnusDangKy";
             this.cmnusDangKy.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.cmnusDangKy.ShowImageMargin = false;
-            this.cmnusDangKy.Size = new System.Drawing.Size(245, 224);
+            this.cmnusDangKy.Size = new System.Drawing.Size(245, 196);
             // 
             // cmnusDangKyItemTamTruTamVang
             // 
@@ -191,23 +191,30 @@
             // ItemCongDanChuyenDen
             // 
             this.ItemCongDanChuyenDen.Name = "ItemCongDanChuyenDen";
-            this.ItemCongDanChuyenDen.Size = new System.Drawing.Size(224, 32);
+            this.ItemCongDanChuyenDen.Size = new System.Drawing.Size(210, 32);
             this.ItemCongDanChuyenDen.Text = "Chuyển đến";
             this.ItemCongDanChuyenDen.Click += new System.EventHandler(this.cmnusDangKyItemCongDan_Click);
             // 
             // ItemCongDanKhaiTu
             // 
             this.ItemCongDanKhaiTu.Name = "ItemCongDanKhaiTu";
-            this.ItemCongDanKhaiTu.Size = new System.Drawing.Size(224, 32);
+            this.ItemCongDanKhaiTu.Size = new System.Drawing.Size(210, 32);
             this.ItemCongDanKhaiTu.Text = "Khai Tử";
             this.ItemCongDanKhaiTu.Click += new System.EventHandler(this.ItemCongDanChuyenDi_Click);
             // 
             // ItemKhaiSinh
             // 
             this.ItemKhaiSinh.Name = "ItemKhaiSinh";
-            this.ItemKhaiSinh.Size = new System.Drawing.Size(224, 32);
+            this.ItemKhaiSinh.Size = new System.Drawing.Size(210, 32);
             this.ItemKhaiSinh.Text = "Khai sinh";
             this.ItemKhaiSinh.Click += new System.EventHandler(this.cmnusDangKyItemKhaiSinh_Click);
+            // 
+            // cmnusDangKyItemTKCongDan
+            // 
+            this.cmnusDangKyItemTKCongDan.Name = "cmnusDangKyItemTKCongDan";
+            this.cmnusDangKyItemTKCongDan.Size = new System.Drawing.Size(244, 32);
+            this.cmnusDangKyItemTKCongDan.Text = "Tài khoản công dân";
+            this.cmnusDangKyItemTKCongDan.Click += new System.EventHandler(this.cmnusDangKyItemTKCongDan_Click);
             // 
             // pnlHienThiForm
             // 
@@ -227,8 +234,8 @@
             this.btnHinhNen.FlatAppearance.BorderSize = 0;
             this.btnHinhNen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHinhNen.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnHinhNen.Image = global::QuanLiCongDanThanhPho.Properties.Resources.share;
-            this.btnHinhNen.Location = new System.Drawing.Point(1500, 3);
+            this.btnHinhNen.Image = global::QuanLiCongDanThanhPho.Properties.Resources.photo;
+            this.btnHinhNen.Location = new System.Drawing.Point(1504, 3);
             this.btnHinhNen.Name = "btnHinhNen";
             this.btnHinhNen.Size = new System.Drawing.Size(32, 32);
             this.btnHinhNen.TabIndex = 0;
@@ -462,13 +469,6 @@
             // 
             this.tmrNgayHienTai.Interval = 1000;
             this.tmrNgayHienTai.Tick += new System.EventHandler(this.tmrNgayHienTai_Tick);
-            // 
-            // cmnusDangKyItemTKCongDan
-            // 
-            this.cmnusDangKyItemTKCongDan.Name = "cmnusDangKyItemTKCongDan";
-            this.cmnusDangKyItemTKCongDan.Size = new System.Drawing.Size(244, 32);
-            this.cmnusDangKyItemTKCongDan.Text = "Tài khoản công dân";
-            this.cmnusDangKyItemTKCongDan.Click += new System.EventHandler(this.cmnusDangKyItemTKCongDan_Click);
             // 
             // FTrangChu
             // 
