@@ -74,8 +74,16 @@ namespace QuanLiCongDanThanhPho
 
         private void btnTTTV_Click(object sender, EventArgs e)
         {
-            pnlLoad.Visible = true;
-            loadForm.Open(new FXinPhepTTTV());
+            TamTruTamVangDAO tTTV = new TamTruTamVangDAO ();
+            if (tTTV.LayThongTin(account.UserName) != null)
+            {
+                MessageBox.Show("Thông tin TT/TTV của bạn đã được duyệt");
+            }
+            else
+            {
+                pnlLoad.Visible = true;
+                loadForm.Open(new FXinPhepTTTV(account));
+            }
         }
 
         private void btnCCCD_Click(object sender, EventArgs e)

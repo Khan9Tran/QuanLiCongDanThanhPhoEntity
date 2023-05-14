@@ -159,7 +159,7 @@ namespace QuanLiCongDanThanhPho
             {
                 return false;
             }
-            if (data.TrangThai != "Tạm trú" && data.TrangThai != "Tạm vắng")
+            if (data.TrangThai != "Tạm trú" && data.TrangThai != "Tạm vắng" && data.TrangThai != "CDTT" && data.TrangThai != "CDTV")
             {
                 MessageBox.Show("Trạng thái tạm trú/ tạm vắng sai");
                 return false;

@@ -218,22 +218,21 @@ namespace QuanLiCongDanThanhPho
 
         private void btnDuyet_Click(object sender, EventArgs e)
         {
-            if (gvTVTT.Rows.Count > 1)
+            if (gvTVTT.Rows.Count > 0)
             {
                 string maCCCD = CCCDDAO.GetCCCD(gvTVTT, 1);
 
                 Tamtrutamvang tTTV = tttvDAO.LayThongTin(maCCCD);
                 if (tTTV != null)
                 {
-                    if (tTTV.TrangThai != "CDTV")
+                    if (tTTV.TrangThai == "CDTV" || tTTV.TrangThai == "CDTT")
                     {
-                        tTTV.TrangThai = "Tạm vắng";
+                        if (tTTV.TrangThai == "CDTV")
+                            tTTV.TrangThai = "Tạm vắng";
+                        else
+                            tTTV.TrangThai = "Tạm trú";
                         tttvDAO.CapNhat();
-                    }
-                    if (tTTV.TrangThai != "CDTT")
-                    {
-                        tTTV.TrangThai = "Tạm trú";
-                        tttvDAO.CapNhat();
+                        MessageBox.Show("Đã duyệt");
                     }
 
                 }

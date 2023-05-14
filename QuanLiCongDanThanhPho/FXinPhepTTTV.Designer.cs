@@ -28,26 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDay = new System.Windows.Forms.TextBox();
             this.lblNgayBD = new System.Windows.Forms.Label();
             this.btnXacNhan = new System.Windows.Forms.Button();
             this.rdoTamTru = new System.Windows.Forms.RadioButton();
             this.rdoTamVang = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtLiDo = new System.Windows.Forms.TextBox();
+            this.dtpNgayDangKy = new System.Windows.Forms.DateTimePicker();
             this.lblGhiChu = new System.Windows.Forms.Label();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.lblDiaChi = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtDay
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(384, 384);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 34);
-            this.textBox1.TabIndex = 0;
+            this.txtDay.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtDay.Location = new System.Drawing.Point(384, 384);
+            this.txtDay.Name = "txtDay";
+            this.txtDay.Size = new System.Drawing.Size(125, 34);
+            this.txtDay.TabIndex = 0;
             // 
             // lblNgayBD
             // 
@@ -69,6 +71,7 @@
             this.btnXacNhan.Size = new System.Drawing.Size(34, 34);
             this.btnXacNhan.TabIndex = 2;
             this.btnXacNhan.UseVisualStyleBackColor = true;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // rdoTamTru
             // 
@@ -117,50 +120,72 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Lí do";
             // 
-            // textBox2
+            // txtLiDo
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(187, 501);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(322, 34);
-            this.textBox2.TabIndex = 8;
+            this.txtLiDo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLiDo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtLiDo.Location = new System.Drawing.Point(187, 501);
+            this.txtLiDo.Name = "txtLiDo";
+            this.txtLiDo.Size = new System.Drawing.Size(322, 34);
+            this.txtLiDo.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // dtpNgayDangKy
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(384, 272);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(125, 27);
-            this.dateTimePicker1.TabIndex = 9;
-            this.dateTimePicker1.Value = new System.DateTime(2023, 5, 14, 0, 0, 0, 0);
+            this.dtpNgayDangKy.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgayDangKy.Enabled = false;
+            this.dtpNgayDangKy.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNgayDangKy.Location = new System.Drawing.Point(384, 272);
+            this.dtpNgayDangKy.Name = "dtpNgayDangKy";
+            this.dtpNgayDangKy.Size = new System.Drawing.Size(125, 27);
+            this.dtpNgayDangKy.TabIndex = 9;
+            this.dtpNgayDangKy.Value = new System.DateTime(2023, 5, 14, 0, 0, 0, 0);
             // 
             // lblGhiChu
             // 
             this.lblGhiChu.AutoSize = true;
             this.lblGhiChu.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.lblGhiChu.Location = new System.Drawing.Point(71, 559);
+            this.lblGhiChu.Location = new System.Drawing.Point(116, 727);
             this.lblGhiChu.Name = "lblGhiChu";
             this.lblGhiChu.Size = new System.Drawing.Size(380, 17);
             this.lblGhiChu.TabIndex = 10;
             this.lblGhiChu.Text = "*Mã tạm trú/ tạm vắng nến được duyệt sẽ tạo theo CCCD của bạn";
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtDiaChi.Location = new System.Drawing.Point(71, 628);
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(440, 34);
+            this.txtDiaChi.TabIndex = 11;
+            // 
+            // lblDiaChi
+            // 
+            this.lblDiaChi.AutoSize = true;
+            this.lblDiaChi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblDiaChi.Location = new System.Drawing.Point(69, 578);
+            this.lblDiaChi.Name = "lblDiaChi";
+            this.lblDiaChi.Size = new System.Drawing.Size(112, 28);
+            this.lblDiaChi.TabIndex = 12;
+            this.lblDiaChi.Text = "Nơi TT/TV";
             // 
             // FXinPhepTTTV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 753);
+            this.Controls.Add(this.lblDiaChi);
+            this.Controls.Add(this.txtDiaChi);
             this.Controls.Add(this.lblGhiChu);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.dtpNgayDangKy);
+            this.Controls.Add(this.txtLiDo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rdoTamVang);
             this.Controls.Add(this.rdoTamTru);
             this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.lblNgayBD);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FXinPhepTTTV";
             this.Text = "FXinPhepTTTV";
@@ -171,15 +196,17 @@
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox txtDay;
         private Label lblNgayBD;
         private Button btnXacNhan;
         private RadioButton rdoTamTru;
         private RadioButton rdoTamVang;
         private Label label1;
         private Label label2;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
+        private TextBox txtLiDo;
+        private DateTimePicker dtpNgayDangKy;
         private Label lblGhiChu;
+        private TextBox txtDiaChi;
+        private Label lblDiaChi;
     }
 }
