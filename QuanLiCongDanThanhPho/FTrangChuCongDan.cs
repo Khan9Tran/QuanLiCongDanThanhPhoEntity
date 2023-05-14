@@ -34,7 +34,8 @@ namespace QuanLiCongDanThanhPho
         private void btnThongTin_Click(object sender, EventArgs e)
         {;
             pnlLoad.Visible = true;
-            loadForm.Open(new FXemCongDan());
+            CongDanDAO cdDAO = new CongDanDAO();
+            loadForm.Open(new FXemCongDan(cdDAO.LayThongTin(account.UserName)));
         }
 
         private void btnSetting_Click(object sender, EventArgs e)
@@ -68,7 +69,7 @@ namespace QuanLiCongDanThanhPho
         private void btnThue_Click(object sender, EventArgs e)
         {
             pnlLoad.Visible = true;
-            loadForm.Open(new FThanhToanThue());
+            loadForm.Open(new FThanhToanThue(account.UserName));
         }
 
         private void btnTTTV_Click(object sender, EventArgs e)

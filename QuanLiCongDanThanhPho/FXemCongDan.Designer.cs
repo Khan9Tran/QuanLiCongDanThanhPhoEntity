@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picHinhDaiDien = new System.Windows.Forms.PictureBox();
             this.txtCCCD = new System.Windows.Forms.TextBox();
             this.txtTen = new System.Windows.Forms.TextBox();
             this.dtpNgaySinh = new System.Windows.Forms.DateTimePicker();
@@ -39,8 +39,8 @@
             this.txtMaHoKhau = new System.Windows.Forms.TextBox();
             this.txtMaThue = new System.Windows.Forms.TextBox();
             this.txtMaHonNhan = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.picNam = new System.Windows.Forms.PictureBox();
+            this.picNu = new System.Windows.Forms.PictureBox();
             this.ptcSDT = new System.Windows.Forms.PictureBox();
             this.ptcDC = new System.Windows.Forms.PictureBox();
             this.lblCCCD = new System.Windows.Forms.Label();
@@ -50,21 +50,22 @@
             this.lblMaHonNhan = new System.Windows.Forms.Label();
             this.lblMaThue = new System.Windows.Forms.Label();
             this.lblMaHoKhau = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHinhDaiDien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptcSDT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptcDC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptcNgaySinh)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picHinhDaiDien
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(309, 43);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(185, 230);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.picHinhDaiDien.Location = new System.Drawing.Point(309, 43);
+            this.picHinhDaiDien.Name = "picHinhDaiDien";
+            this.picHinhDaiDien.Size = new System.Drawing.Size(185, 230);
+            this.picHinhDaiDien.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picHinhDaiDien.TabIndex = 0;
+            this.picHinhDaiDien.TabStop = false;
             // 
             // txtCCCD
             // 
@@ -159,23 +160,23 @@
             this.txtMaHonNhan.Size = new System.Drawing.Size(254, 27);
             this.txtMaHonNhan.TabIndex = 10;
             // 
-            // pictureBox2
+            // picNam
             // 
-            this.pictureBox2.Image = global::QuanLiCongDanThanhPho.Properties.Resources.male;
-            this.pictureBox2.Location = new System.Drawing.Point(352, 278);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox2.TabIndex = 11;
-            this.pictureBox2.TabStop = false;
+            this.picNam.Image = global::QuanLiCongDanThanhPho.Properties.Resources.male;
+            this.picNam.Location = new System.Drawing.Point(352, 278);
+            this.picNam.Name = "picNam";
+            this.picNam.Size = new System.Drawing.Size(32, 32);
+            this.picNam.TabIndex = 11;
+            this.picNam.TabStop = false;
             // 
-            // pictureBox3
+            // picNu
             // 
-            this.pictureBox3.Image = global::QuanLiCongDanThanhPho.Properties.Resources.female;
-            this.pictureBox3.Location = new System.Drawing.Point(408, 278);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox3.TabIndex = 12;
-            this.pictureBox3.TabStop = false;
+            this.picNu.Image = global::QuanLiCongDanThanhPho.Properties.Resources.female;
+            this.picNu.Location = new System.Drawing.Point(408, 278);
+            this.picNu.Name = "picNu";
+            this.picNu.Size = new System.Drawing.Size(32, 32);
+            this.picNu.TabIndex = 12;
+            this.picNu.TabStop = false;
             // 
             // ptcSDT
             // 
@@ -290,8 +291,8 @@
             this.Controls.Add(this.lblCCCD);
             this.Controls.Add(this.ptcDC);
             this.Controls.Add(this.ptcSDT);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.picNu);
+            this.Controls.Add(this.picNam);
             this.Controls.Add(this.txtMaHonNhan);
             this.Controls.Add(this.txtMaThue);
             this.Controls.Add(this.txtMaHoKhau);
@@ -302,13 +303,14 @@
             this.Controls.Add(this.dtpNgaySinh);
             this.Controls.Add(this.txtTen);
             this.Controls.Add(this.txtCCCD);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picHinhDaiDien);
             this.ForeColor = System.Drawing.Color.DimGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FXemCongDan";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.Load += new System.EventHandler(this.FXemCongDan_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picHinhDaiDien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picNu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptcSDT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptcDC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptcNgaySinh)).EndInit();
@@ -319,7 +321,7 @@
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox picHinhDaiDien;
         private TextBox txtCCCD;
         private TextBox txtTen;
         private DateTimePicker dtpNgaySinh;
@@ -330,8 +332,8 @@
         private TextBox txtMaHoKhau;
         private TextBox txtMaThue;
         private TextBox txtMaHonNhan;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox3;
+        private PictureBox picNam;
+        private PictureBox picNu;
         private PictureBox ptcSDT;
         private PictureBox ptcDC;
         private Label lblCCCD;
