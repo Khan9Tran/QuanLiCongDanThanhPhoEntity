@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.lblTienNo = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblLabel = new System.Windows.Forms.Label();
+            this.txtDongThue = new System.Windows.Forms.TextBox();
+            this.btnToanBo = new System.Windows.Forms.Button();
             this.btnXacNhan = new System.Windows.Forms.Button();
             this.lblDonVi = new System.Windows.Forms.Label();
             this.lblHanChot = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpThoiHan = new System.Windows.Forms.DateTimePicker();
             this.lblMaThue = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -50,39 +50,40 @@
             this.lblTienNo.TabIndex = 0;
             this.lblTienNo.Text = "Số tiền nợ";
             // 
-            // label2
+            // lblLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.DimGray;
-            this.label2.Location = new System.Drawing.Point(55, 406);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(303, 28);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Nhập số tiền muốn thanh toán";
+            this.lblLabel.AutoSize = true;
+            this.lblLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.lblLabel.Location = new System.Drawing.Point(55, 406);
+            this.lblLabel.Name = "lblLabel";
+            this.lblLabel.Size = new System.Drawing.Size(303, 28);
+            this.lblLabel.TabIndex = 1;
+            this.lblLabel.Text = "Nhập số tiền muốn thanh toán";
             // 
-            // textBox1
+            // txtDongThue
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(55, 487);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(348, 34);
-            this.textBox1.TabIndex = 2;
+            this.txtDongThue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDongThue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtDongThue.Location = new System.Drawing.Point(55, 487);
+            this.txtDongThue.Name = "txtDongThue";
+            this.txtDongThue.Size = new System.Drawing.Size(348, 34);
+            this.txtDongThue.TabIndex = 2;
             // 
-            // button1
+            // btnToanBo
             // 
-            this.button1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(55, 553);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 50);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Toàn bộ";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnToanBo.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnToanBo.FlatAppearance.BorderSize = 0;
+            this.btnToanBo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToanBo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnToanBo.ForeColor = System.Drawing.Color.White;
+            this.btnToanBo.Location = new System.Drawing.Point(55, 553);
+            this.btnToanBo.Name = "btnToanBo";
+            this.btnToanBo.Size = new System.Drawing.Size(150, 50);
+            this.btnToanBo.TabIndex = 3;
+            this.btnToanBo.Text = "Toàn bộ";
+            this.btnToanBo.UseVisualStyleBackColor = false;
+            this.btnToanBo.Click += new System.EventHandler(this.btnToanBo_Click);
             // 
             // btnXacNhan
             // 
@@ -97,6 +98,7 @@
             this.btnXacNhan.Size = new System.Drawing.Size(34, 34);
             this.btnXacNhan.TabIndex = 4;
             this.btnXacNhan.UseVisualStyleBackColor = false;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // lblDonVi
             // 
@@ -120,15 +122,15 @@
             this.lblHanChot.TabIndex = 6;
             this.lblHanChot.Text = "Thời hạn";
             // 
-            // dateTimePicker1
+            // dtpThoiHan
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(251, 279);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(152, 27);
-            this.dateTimePicker1.TabIndex = 7;
-            this.dateTimePicker1.Value = new System.DateTime(2023, 5, 14, 0, 0, 0, 0);
+            this.dtpThoiHan.CustomFormat = "dd/MM/yyyy";
+            this.dtpThoiHan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpThoiHan.Location = new System.Drawing.Point(251, 279);
+            this.dtpThoiHan.Name = "dtpThoiHan";
+            this.dtpThoiHan.Size = new System.Drawing.Size(152, 27);
+            this.dtpThoiHan.TabIndex = 7;
+            this.dtpThoiHan.Value = new System.DateTime(2023, 5, 14, 0, 0, 0, 0);
             // 
             // lblMaThue
             // 
@@ -148,17 +150,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 753);
             this.Controls.Add(this.lblMaThue);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtpThoiHan);
             this.Controls.Add(this.lblHanChot);
             this.Controls.Add(this.lblDonVi);
             this.Controls.Add(this.btnXacNhan);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnToanBo);
+            this.Controls.Add(this.txtDongThue);
+            this.Controls.Add(this.lblLabel);
             this.Controls.Add(this.lblTienNo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FThanhToanThue";
             this.Text = "FormThanhToanThue";
+            this.Load += new System.EventHandler(this.FThanhToanThue_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -167,13 +170,13 @@
         #endregion
 
         private Label lblTienNo;
-        private Label label2;
-        private TextBox textBox1;
-        private Button button1;
+        private Label lblLabel;
+        private TextBox txtDongThue;
+        private Button btnToanBo;
         private Button btnXacNhan;
         private Label lblDonVi;
         private Label lblHanChot;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpThoiHan;
         private Label lblMaThue;
     }
 }
