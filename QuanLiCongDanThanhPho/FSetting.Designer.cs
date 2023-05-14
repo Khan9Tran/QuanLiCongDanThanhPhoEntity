@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtMatKhauHienTai = new System.Windows.Forms.TextBox();
-            this.MatKhauMoi = new System.Windows.Forms.TextBox();
+            this.txtMatKhauMoi = new System.Windows.Forms.TextBox();
             this.txtNhapLai = new System.Windows.Forms.TextBox();
             this.btnXacNhan = new System.Windows.Forms.Button();
             this.lblMkHT = new System.Windows.Forms.Label();
@@ -48,16 +48,16 @@
             this.txtMatKhauHienTai.TabIndex = 0;
             this.txtMatKhauHienTai.UseSystemPasswordChar = true;
             // 
-            // MatKhauMoi
+            // txtMatKhauMoi
             // 
-            this.MatKhauMoi.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.MatKhauMoi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MatKhauMoi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.MatKhauMoi.Location = new System.Drawing.Point(188, 391);
-            this.MatKhauMoi.Name = "MatKhauMoi";
-            this.MatKhauMoi.Size = new System.Drawing.Size(283, 34);
-            this.MatKhauMoi.TabIndex = 1;
-            this.MatKhauMoi.UseSystemPasswordChar = true;
+            this.txtMatKhauMoi.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.txtMatKhauMoi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMatKhauMoi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtMatKhauMoi.Location = new System.Drawing.Point(188, 391);
+            this.txtMatKhauMoi.Name = "txtMatKhauMoi";
+            this.txtMatKhauMoi.Size = new System.Drawing.Size(283, 34);
+            this.txtMatKhauMoi.TabIndex = 1;
+            this.txtMatKhauMoi.UseSystemPasswordChar = true;
             // 
             // txtNhapLai
             // 
@@ -80,6 +80,7 @@
             this.btnXacNhan.Size = new System.Drawing.Size(35, 35);
             this.btnXacNhan.TabIndex = 3;
             this.btnXacNhan.UseVisualStyleBackColor = true;
+            this.btnXacNhan.Click += new System.EventHandler(this.btnXacNhan_Click);
             // 
             // lblMkHT
             // 
@@ -124,7 +125,7 @@
             this.Controls.Add(this.lblMkHT);
             this.Controls.Add(this.btnXacNhan);
             this.Controls.Add(this.txtNhapLai);
-            this.Controls.Add(this.MatKhauMoi);
+            this.Controls.Add(this.txtMatKhauMoi);
             this.Controls.Add(this.txtMatKhauHienTai);
             this.ForeColor = System.Drawing.Color.DimGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -138,7 +139,7 @@
         #endregion
 
         private TextBox txtMatKhauHienTai;
-        private TextBox MatKhauMoi;
+        private TextBox txtMatKhauMoi;
         private TextBox txtNhapLai;
         private Button btnXacNhan;
         private Label lblMkHT;

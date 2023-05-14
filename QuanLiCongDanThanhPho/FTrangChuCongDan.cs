@@ -46,7 +46,7 @@ namespace QuanLiCongDanThanhPho
         private void cmusItemDoiMK_Click(object sender, EventArgs e)
         {
             pnlLoad.Visible = true;
-            loadForm.Open(new FSetting());
+            loadForm.Open(new FSetting(account));
         }
 
         private void btnBack_Click(object sender, EventArgs e)

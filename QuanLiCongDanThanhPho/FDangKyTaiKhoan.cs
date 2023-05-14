@@ -36,9 +36,18 @@ namespace QuanLiCongDanThanhPho
         private bool KiemTra()
         {
             Congdan? cd = cdDAO.LayThongTin(txtCCCD.Text);
-            if (cd == null || !KiemTraDuLieuNhap.KiemTraTenVaCCCD(cd))
+            Congdan congDanTmp = new Congdan()
+            {
+                Cccd = txtCCCD.Text,
+                Ten = txtTenHienThi.Text,
+            };
+            if (cd == null || !KiemTraDuLieuNhap.KiemTraTenVaCCCD(congDanTmp))
             {
                 return false;
+            }  
+            if (txtMatKhau.Text.Length < 6)
+            {
+                MessageBox.Show("Mật khẩu phải từ 6 kí tự");
             }    
             if (!KiemTraDuLieuNhap.isPass(txtMatKhau.Text))
             {
@@ -81,7 +90,6 @@ namespace QuanLiCongDanThanhPho
             {
                 accountDAO.CapNhatDisplayName(acc);
                 accountDAO.CapNhatMatKhau(acc);
-                MessageBox.Show("Cập nhật thành công");
             }    
         }
     }
