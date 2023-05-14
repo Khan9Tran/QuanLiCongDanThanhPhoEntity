@@ -68,6 +68,7 @@
             this.tmrNgayHienTai = new System.Windows.Forms.Timer(this.components);
             this.ofdHinhNen = new System.Windows.Forms.OpenFileDialog();
             this.sfdHinhNen = new System.Windows.Forms.SaveFileDialog();
+            this.cmnusDangKyItemTKCongDan = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDanhMuc.SuspendLayout();
             this.cmnusDangKy.SuspendLayout();
             this.pnlHienThiForm.SuspendLayout();
@@ -142,11 +143,12 @@
             this.cmnusDangKyItemHonNhan,
             this.cmnusDangKyItemCCCD,
             this.cmnusDangKyItemHoKhau,
-            this.cmnusDangKyItemCongDan});
+            this.cmnusDangKyItemCongDan,
+            this.cmnusDangKyItemTKCongDan});
             this.cmnusDangKy.Name = "cmnusDangKy";
             this.cmnusDangKy.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.cmnusDangKy.ShowImageMargin = false;
-            this.cmnusDangKy.Size = new System.Drawing.Size(245, 164);
+            this.cmnusDangKy.Size = new System.Drawing.Size(245, 224);
             // 
             // cmnusDangKyItemTamTruTamVang
             // 
@@ -189,21 +191,21 @@
             // ItemCongDanChuyenDen
             // 
             this.ItemCongDanChuyenDen.Name = "ItemCongDanChuyenDen";
-            this.ItemCongDanChuyenDen.Size = new System.Drawing.Size(210, 32);
+            this.ItemCongDanChuyenDen.Size = new System.Drawing.Size(224, 32);
             this.ItemCongDanChuyenDen.Text = "Chuyển đến";
             this.ItemCongDanChuyenDen.Click += new System.EventHandler(this.cmnusDangKyItemCongDan_Click);
             // 
             // ItemCongDanKhaiTu
             // 
             this.ItemCongDanKhaiTu.Name = "ItemCongDanKhaiTu";
-            this.ItemCongDanKhaiTu.Size = new System.Drawing.Size(210, 32);
+            this.ItemCongDanKhaiTu.Size = new System.Drawing.Size(224, 32);
             this.ItemCongDanKhaiTu.Text = "Khai Tử";
             this.ItemCongDanKhaiTu.Click += new System.EventHandler(this.ItemCongDanChuyenDi_Click);
             // 
             // ItemKhaiSinh
             // 
             this.ItemKhaiSinh.Name = "ItemKhaiSinh";
-            this.ItemKhaiSinh.Size = new System.Drawing.Size(210, 32);
+            this.ItemKhaiSinh.Size = new System.Drawing.Size(224, 32);
             this.ItemKhaiSinh.Text = "Khai sinh";
             this.ItemKhaiSinh.Click += new System.EventHandler(this.cmnusDangKyItemKhaiSinh_Click);
             // 
@@ -461,6 +463,13 @@
             this.tmrNgayHienTai.Interval = 1000;
             this.tmrNgayHienTai.Tick += new System.EventHandler(this.tmrNgayHienTai_Tick);
             // 
+            // cmnusDangKyItemTKCongDan
+            // 
+            this.cmnusDangKyItemTKCongDan.Name = "cmnusDangKyItemTKCongDan";
+            this.cmnusDangKyItemTKCongDan.Size = new System.Drawing.Size(244, 32);
+            this.cmnusDangKyItemTKCongDan.Text = "Tài khoản công dân";
+            this.cmnusDangKyItemTKCongDan.Click += new System.EventHandler(this.cmnusDangKyItemTKCongDan_Click);
+            // 
             // FTrangChu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -536,5 +545,6 @@
         private PictureBox ptcHinhNen;
         private OpenFileDialog ofdHinhNen;
         private SaveFileDialog sfdHinhNen;
+        private ToolStripMenuItem cmnusDangKyItemTKCongDan;
     }
 }

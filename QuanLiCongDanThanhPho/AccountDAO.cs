@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using QuanLiCongDanThanhPho.Model;
+﻿using QuanLiCongDanThanhPho.Model;
 using System.Data;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Security.Principal;
-using System.Windows.Forms;
+
 
 namespace QuanLiCongDanThanhPho
 {
@@ -30,27 +21,31 @@ namespace QuanLiCongDanThanhPho
                 Account? acccount = db.Accounts.Find(acc.UserName);
                 acccount.StrPassword = acc.StrPassword;
                 db.SaveChanges();
-                MessageBox.Show("Doi mat khau thanh cong");
+                MessageBox.Show("Đổi mật khẩu thành công");
             }
             catch
             {
-                MessageBox.Show("Doi mat khau thanh cong");
+                MessageBox.Show("Đổi mật khẩu thất bại");
             }
         }
         public void CapNhatDisplayName(Account acc)
         {
-            Account acccount = db.Accounts.Find(acc.UserName);
+            Account? acccount = db.Accounts.Find(acc.UserName);
             acccount.DisplayName = acc.DisplayName;
             db.SaveChanges();
-            MessageBox.Show("Doi ten hien thi thanh cong");
+            MessageBox.Show("Đổi tên hiển thị thành công");
         }
-        public Account LayThongTinTaiKhoan(Account acc)
+        public Account? LayThongTinTaiKhoan(Account acc)
         {
             return db.Accounts.Where(p => p.UserName == acc.UserName).FirstOrDefault();
         }
-        public void CapNhatThongTin(Account acc)
-        {
 
+        public bool DangKy(Account acc)
+        {
+            db.Accounts.Add(acc);
+            db.SaveChanges();
+            MessageBox.Show("Đăng ký thành công");
+            return true;
         }
         public bool DangNhap(Account acc)
         {

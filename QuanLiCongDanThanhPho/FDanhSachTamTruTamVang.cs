@@ -20,7 +20,8 @@ namespace QuanLiCongDanThanhPho
             tatCa,
             tamTru,
             tamVang,
-            quaHan
+            quaHan,
+            choDuyet
         }
 
         private void ChangeBtnColor(Loc type)
@@ -45,6 +46,10 @@ namespace QuanLiCongDanThanhPho
             else if (type == Loc.quaHan)
             {
                 btnQuaHan.BackColor = Color.DarkBlue;
+            }
+            else if (type == Loc.choDuyet) 
+            {
+                btnChoDuyet.BackColor = Color.DarkBlue;
             }
         }
 
@@ -80,6 +85,8 @@ namespace QuanLiCongDanThanhPho
                 Ds = tttvDAO.LayDanhSachTamVang(txtTimKiem.Text).ToList<Object>();
             else if (LuaChon == Loc.quaHan)
                 Ds = tttvDAO.LayDanhSachQuaHan(txtTimKiem.Text).ToList<Object>();
+            else if (LuaChon == Loc.choDuyet)
+                Ds = tttvDAO.LayDanhSachChoDuyet(txtTimKiem.Text).ToList<Object>();
             nudPage.Value = 1;
             LoadDanhSach(gvTVTT);
         }
@@ -207,6 +214,36 @@ namespace QuanLiCongDanThanhPho
         private void namToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             GiaHan(1, LoaiGiaHan.nam);
+        }
+
+        private void btnDuyet_Click(object sender, EventArgs e)
+        {
+            if (gvTVTT.Rows.Count > 1)
+            {
+                string maCCCD = CCCDDAO.GetCCCD(gvTVTT, 1);
+
+                Tamtrutamvang tTTV = tttvDAO.LayThongTin(maCCCD);
+                if (tTTV != null)
+                {
+                    if (tTTV.TrangThai != "CDTV")
+                    {
+                        tTTV.TrangThai = "Tạm vắng";
+                        tttvDAO.CapNhat();
+                    }
+                    if (tTTV.TrangThai != "CDTT")
+                    {
+                        tTTV.TrangThai = "Tạm trú";
+                        tttvDAO.CapNhat();
+                    }
+
+                }
+            }
+        }
+
+        private void btnChoDuyet_Click(object sender, EventArgs e)
+        {
+            ChangeBtnColor(Loc.choDuyet);
+            TimKiem(Loc.choDuyet);
         }
     }
 }

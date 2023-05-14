@@ -39,6 +39,7 @@
             this.btnTV = new System.Windows.Forms.Button();
             this.btnTT = new System.Windows.Forms.Button();
             this.btnQuaHan = new System.Windows.Forms.Button();
+            this.btnChoDuyet = new System.Windows.Forms.Button();
             this.picTimKiem = new System.Windows.Forms.PictureBox();
             this.btnThem = new System.Windows.Forms.Button();
             this.cmnusMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -49,6 +50,7 @@
             this.thangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.namToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nudPage = new System.Windows.Forms.NumericUpDown();
+            this.btnDuyet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvTVTT)).BeginInit();
             this.flpnlPhanLoai.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picTimKiem)).BeginInit();
@@ -110,9 +112,10 @@
             this.flpnlPhanLoai.Controls.Add(this.btnTV);
             this.flpnlPhanLoai.Controls.Add(this.btnTT);
             this.flpnlPhanLoai.Controls.Add(this.btnQuaHan);
+            this.flpnlPhanLoai.Controls.Add(this.btnChoDuyet);
             this.flpnlPhanLoai.Location = new System.Drawing.Point(25, 82);
             this.flpnlPhanLoai.Name = "flpnlPhanLoai";
-            this.flpnlPhanLoai.Size = new System.Drawing.Size(699, 47);
+            this.flpnlPhanLoai.Size = new System.Drawing.Size(782, 47);
             this.flpnlPhanLoai.TabIndex = 58;
             // 
             // btnLoc
@@ -191,6 +194,22 @@
             this.btnQuaHan.Text = "Quá hạn";
             this.btnQuaHan.UseVisualStyleBackColor = false;
             this.btnQuaHan.Click += new System.EventHandler(this.btnQuaHan_Click);
+            // 
+            // btnChoDuyet
+            // 
+            this.btnChoDuyet.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnChoDuyet.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnChoDuyet.FlatAppearance.BorderSize = 0;
+            this.btnChoDuyet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChoDuyet.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnChoDuyet.ForeColor = System.Drawing.Color.White;
+            this.btnChoDuyet.Location = new System.Drawing.Point(603, 3);
+            this.btnChoDuyet.Name = "btnChoDuyet";
+            this.btnChoDuyet.Size = new System.Drawing.Size(144, 40);
+            this.btnChoDuyet.TabIndex = 63;
+            this.btnChoDuyet.Text = "Chờ duyệt";
+            this.btnChoDuyet.UseVisualStyleBackColor = false;
+            this.btnChoDuyet.Click += new System.EventHandler(this.btnChoDuyet_Click);
             // 
             // picTimKiem
             // 
@@ -299,6 +318,24 @@
             0});
             this.nudPage.ValueChanged += new System.EventHandler(this.nudPage_ValueChanged);
             // 
+            // btnDuyet
+            // 
+            this.btnDuyet.BackColor = System.Drawing.Color.Transparent;
+            this.btnDuyet.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnDuyet.FlatAppearance.BorderSize = 0;
+            this.btnDuyet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDuyet.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnDuyet.ForeColor = System.Drawing.Color.Black;
+            this.btnDuyet.Image = global::QuanLiCongDanThanhPho.Properties.Resources.check__2_;
+            this.btnDuyet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDuyet.Location = new System.Drawing.Point(1016, 90);
+            this.btnDuyet.Name = "btnDuyet";
+            this.btnDuyet.Size = new System.Drawing.Size(146, 40);
+            this.btnDuyet.TabIndex = 64;
+            this.btnDuyet.Text = "Duyệt";
+            this.btnDuyet.UseVisualStyleBackColor = false;
+            this.btnDuyet.Click += new System.EventHandler(this.btnDuyet_Click);
+            // 
             // FDanhSachTamTruTamVang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -310,6 +347,7 @@
             this.Controls.Add(this.picTimKiem);
             this.Controls.Add(this.flpnlPhanLoai);
             this.Controls.Add(this.txtTimKiem);
+            this.Controls.Add(this.btnDuyet);
             this.Controls.Add(this.gvTVTT);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -347,5 +385,7 @@
         private ToolStripMenuItem tuanToolStripMenuItem;
         private ToolStripMenuItem thangToolStripMenuItem;
         private ToolStripMenuItem namToolStripMenuItem1;
+        private Button btnChoDuyet;
+        private Button btnDuyet;
     }
 }

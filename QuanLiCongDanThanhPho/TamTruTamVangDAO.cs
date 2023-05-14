@@ -19,6 +19,13 @@ namespace QuanLiCongDanThanhPho
                        select q;
             return list.ToList();
         }
+        public List<Tamtrutamvang> LayDanhSachChoDuyet(string tu)
+        {
+            var list = from q in LayDanhSachChuaTu(tu)
+                       where q.TrangThai == "CDTT" || q.TrangThai == "CDTV"
+                       select q;
+            return list.ToList();
+        }
 
         private Tamtrutamvang LayThongTinTheoMaSo(string maTttv)
         {
