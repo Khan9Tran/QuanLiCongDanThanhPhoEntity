@@ -208,7 +208,31 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+        public static bool KiemTraPass(string matKhauHienTai, string matKhauMoi, string nhapLaiMatKhau)
+        {
+            if (matKhauMoi != nhapLaiMatKhau)
+            {
+                MessageBox.Show("Mật khẩu không khớp");
+                return false;
+            }
+            if (matKhauHienTai == matKhauMoi)
+            {
+                MessageBox.Show("Mật khẩu mới phải khác mật khẩu cũ");
+                return false;
+            }
+            if (matKhauMoi.Length < 6)
+            {
+                MessageBox.Show("Mật khẩu phải từ 6 kí tự");
+                return false;
+            }
+            if (!KiemTraDuLieuNhap.isPass(matKhauMoi))
+            {
 
+                MessageBox.Show("Mật khẩu phải chứa ít nhất một chữ viết hoa, một chữ thường, một số và một kí tự đặt biệt");
+                return false;
+            }
+            return true;
+        }
         public static bool KiemTraKhaiSinh(Khaisinh khaiSinh)
         {
             return isDiaChi(khaiSinh.QueQuan) && isDiaChi(khaiSinh.NoiSinh) && !isEmpty(khaiSinh.QuocTich) && !isEmpty(khaiSinh.DanToc);

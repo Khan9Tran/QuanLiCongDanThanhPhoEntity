@@ -19,28 +19,8 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Mật khẩu không chính xác.");
                 return false;
             }
-            if (txtMatKhauMoi.Text != txtNhapLai.Text)
-            {
-                MessageBox.Show("Mật khẩu mới không khớp");
-                return false;
-            }
-            if (txtMatKhauMoi.Text == txtMatKhauHienTai.Text)
-            {
-                MessageBox.Show("Mật khẩu mới phải khác mật khẩu cũ");
-                return false;
-            }
-            if (txtMatKhauMoi.Text.Length < 6)
-            {
-                MessageBox.Show("Mật khẩu phải từ 6 kí tự");
-                return false;
-            }
-            if (!KiemTraDuLieuNhap.isPass(txtMatKhauMoi.Text))
-            {
 
-                MessageBox.Show("Mật khẩu phải chứa ít nhất một chữ viết hoa, một chữ thường, một số và một kí tự đặt biệt");
-                return false;
-            }
-            return true;
+            return true && KiemTraDuLieuNhap.KiemTraPass(txtMatKhauHienTai.Text, txtMatKhauMoi.Text, txtNhapLai.Text);
         }
         private void btnXacNhan_Click(object sender, EventArgs e)
         {

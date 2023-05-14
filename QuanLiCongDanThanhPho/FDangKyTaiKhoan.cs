@@ -45,22 +45,7 @@ namespace QuanLiCongDanThanhPho
             {
                 return false;
             }  
-            if (txtMatKhau.Text.Length < 6)
-            {
-                MessageBox.Show("Mật khẩu phải từ 6 kí tự");
-            }    
-            if (!KiemTraDuLieuNhap.isPass(txtMatKhau.Text))
-            {
-
-                MessageBox.Show("Mật khẩu phải chứa ít nhất một chữ viết hoa, một chữ thường, một số và một kí tự đặt biệt");
-                return false;
-            }
-            if (txtMatKhau.Text != txtNhapLai.Text)
-            {
-                MessageBox.Show("Mật khẩu  không khớp");
-                return false;
-            }
-            return true;
+            return true && KiemTraDuLieuNhap.KiemTraPass("", txtMatKhau.Text, txtNhapLai.Text);
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
