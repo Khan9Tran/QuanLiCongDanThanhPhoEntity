@@ -12,6 +12,12 @@ namespace QuanLiCongDanThanhPho
             hinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
 
+        enum LuaChon
+        {
+            docThan,
+            ketHon,
+        }
+
         private bool ThemHoKhau()
         {
             if (HKDAO.LayThongTin(txtHoKhau.Text) == null)
@@ -22,13 +28,13 @@ namespace QuanLiCongDanThanhPho
                     DiaChi = txtDiaChi.Text,
                     CccdchuHo = txtCCCD.Text,
                 };
-                if (KiemTraDuLieuNhap.KiemTraHoKhau(hK) && cboQuanHe.SelectedItem.ToString() == "Chủ hộ")
+                if (KiemTraDuLieuNhap.KiemTraHoKhau(hK) && cboQuanHe.SelectedItem.ToString() == "Chủ hộ" && HKDAO.ThemHoKhau(hK))
                 {
-                    HKDAO.ThemHoKhau(hK);
                     return true;
                 }
                 else
                 {
+                    MessageBox.Show("Tạo hộ khẩu lỗi");
                     return false;
                 }
             }
@@ -82,7 +88,7 @@ namespace QuanLiCongDanThanhPho
             };
 
             if (KiemTraDuLieuNhap.KiemTraCongDan(cD) && KiemTraDuLieuNhap.KiemTraKhaiSinh(kS) && KiemTraDuLieuNhap.KiemTraThueDonGian(thue)
-                && ptcHinhDaiDien.Image != null && ThemHoKhau() && CDDAO.ThemCongDan(cD) && KSDAO.ThemKhaiSinh(kS))
+                && KiemTraDuLieuNhap.isHinh(ptcHinhDaiDien) && ThemHoKhau() && CDDAO.ThemCongDan(cD) && KSDAO.ThemKhaiSinh(kS))
             {
                 hinhCongDan.SaveHinhDaiDien(txtCCCD.Text, ofdHinhDaiDien, ptcHinhDaiDien);
 
@@ -91,7 +97,7 @@ namespace QuanLiCongDanThanhPho
                     MessageBox.Show("Mã số thuế bị trùng. Vui lòng đăng ký thuế sau");
                 }
 
-                if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")
+                if (cboTinhTrang.SelectedIndex == (int)LuaChon.ketHon)
                 {
                     Honnhan hN = new Honnhan()
                     {
@@ -156,7 +162,7 @@ namespace QuanLiCongDanThanhPho
 
         private void cboTinhTrang_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cboTinhTrang.SelectedItem.ToString() == "Kết hôn")
+            if (cboTinhTrang.SelectedIndex == (int)LuaChon.ketHon)
             {
                 txtTenVoChong.ReadOnly = false;
                 txtMaHonNhan.ReadOnly = false;
