@@ -474,6 +474,7 @@
             this.btnDangKy.Size = new System.Drawing.Size(50, 50);
             this.btnDangKy.TabIndex = 88;
             this.btnDangKy.UseVisualStyleBackColor = false;
+            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
             // 
             // ptcHinhDaiDien
             // 
@@ -618,6 +619,7 @@
             this.cboTinhTrang.Name = "cboTinhTrang";
             this.cboTinhTrang.Size = new System.Drawing.Size(180, 36);
             this.cboTinhTrang.TabIndex = 104;
+            this.cboTinhTrang.SelectedValueChanged += new System.EventHandler(this.cboTinhTrang_SelectedValueChanged);
             // 
             // btnThemHinh
             // 
@@ -630,6 +632,7 @@
             this.btnThemHinh.Size = new System.Drawing.Size(32, 32);
             this.btnThemHinh.TabIndex = 105;
             this.btnThemHinh.UseVisualStyleBackColor = false;
+            this.btnThemHinh.Click += new System.EventHandler(this.btnThemHinh_Click);
             // 
             // cboQuanHe
             // 
@@ -675,6 +678,7 @@
             this.btnReset.Size = new System.Drawing.Size(50, 50);
             this.btnReset.TabIndex = 107;
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // ofdHinhDaiDien
             // 

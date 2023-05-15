@@ -233,6 +233,18 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+
+        public static bool isHinh(PictureBox ptc)
+        {
+            if (ptc.Image == null)
+            {
+                MessageBox.Show("Vui lòng thêm hình đại diện");
+                return false;
+            }
+            return true;
+
+        }
+
         public static bool KiemTraKhaiSinh(Khaisinh khaiSinh)
         {
             return isDiaChi(khaiSinh.QueQuan) && isDiaChi(khaiSinh.NoiSinh) && !isEmpty(khaiSinh.QuocTich) && !isEmpty(khaiSinh.DanToc);
