@@ -146,41 +146,34 @@ namespace QuanLiCongDanThanhPho
             HienThiThongTin();
         }
 
-        private void btnXemMK_Click(object sender, EventArgs e)
+        //Cho phép hiển thị mật khẩu
+        private void UseSystemPassChar(TextBox textBox)
         {
-            if (txtMatKhau.UseSystemPasswordChar == true)
+            if (textBox.UseSystemPasswordChar == true)
             {
-                txtMatKhau.UseSystemPasswordChar = false;
+                textBox.UseSystemPasswordChar = false;
             }
             else
             {
-                txtMatKhau.UseSystemPasswordChar = true;
+                textBox.UseSystemPasswordChar = true;
             }
+        }
+
+        private void btnXemMK_Click(object sender, EventArgs e)
+        {
+            UseSystemPassChar(txtMatKhau);    
         }
 
         private void btnXemMKMoi_Click(object sender, EventArgs e)
         {
-            if (txtMatKhauMoi.UseSystemPasswordChar == true)
-            {
-                txtMatKhauMoi.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                txtMatKhauMoi.UseSystemPasswordChar = true;
-            }
+            UseSystemPassChar(txtMatKhauMoi);
         }
 
         private void btnXemMKNhapLai_Click(object sender, EventArgs e)
         {
-            if (txtMatKhauMoiNhapLai.UseSystemPasswordChar == true)
-            {
-                txtMatKhauMoiNhapLai.UseSystemPasswordChar = false;
-            }
-            else
-            {
-                txtMatKhauMoiNhapLai.UseSystemPasswordChar = true;
-            }
+            UseSystemPassChar(txtMatKhauMoiNhapLai);
         }
+
         private void btnThemHinh_Click(object sender, EventArgs e)
         {
             if (hinhAdmin.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien))

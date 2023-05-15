@@ -74,7 +74,7 @@ namespace QuanLiCongDanThanhPho
                 LoadHoGop();
                 XoaHoThua();
                 return true;
-            }   
+            }
             return false;
         }
 
@@ -94,7 +94,7 @@ namespace QuanLiCongDanThanhPho
 
         //Thực hiện xóa hộ nếu không còn thành viên
         private void XoaHoThua()
-        { 
+        {
             Hokhau? hK = hKDAO?.LayThongTin(txtMaHoTach.Text);
             if (hK != null && gvHoTach.Rows.Count == 0)
             {
@@ -115,7 +115,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
         private void btnGopHo_Click(object sender, EventArgs e)
-        {   
+        {
             if (KiemTraDuLieuNhap.KiemTraHaiHo(txtMaHoGop.Text, txtMaHoTach.Text) && isTach == true && ThemVaoHo())
             {
 
@@ -131,8 +131,8 @@ namespace QuanLiCongDanThanhPho
 
         private void LoadHoTach()
         {
-             gvHoTach.DataSource = cDDAO?.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
-             HeaderTach();
+            gvHoTach.DataSource = cDDAO?.LayDanhSachTheoHoKhau(txtMaHoTach.Text);
+            HeaderTach();
         }
 
         private void LoadHoGop()
@@ -148,7 +148,7 @@ namespace QuanLiCongDanThanhPho
         private void HeaderTach()
         {
 
-            for (int i = 0; i < gvHoTach.Columns.Count - 2; i++) 
+            for (int i = 0; i < gvHoTach.Columns.Count - 2; i++)
             {
                 gvHoTach.Columns[i].HeaderText = HeaderText[i];
             }
@@ -170,7 +170,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
         private void btnMaHoTach_Click(object sender, EventArgs e)
-        { 
+        {
             if (txtMaHoTach.Text != "")
                 LoadHoTach();
         }
