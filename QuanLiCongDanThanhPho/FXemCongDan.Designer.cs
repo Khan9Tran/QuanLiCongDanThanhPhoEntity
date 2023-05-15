@@ -174,6 +174,7 @@
             this.txtMaHonNhan.ForeColor = System.Drawing.Color.DimGray;
             this.txtMaHonNhan.Location = new System.Drawing.Point(238, 714);
             this.txtMaHonNhan.Name = "txtMaHonNhan";
+            this.txtMaHonNhan.ReadOnly = true;
             this.txtMaHonNhan.Size = new System.Drawing.Size(254, 27);
             this.txtMaHonNhan.TabIndex = 10;
             // 
