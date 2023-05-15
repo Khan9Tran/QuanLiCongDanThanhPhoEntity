@@ -6,6 +6,7 @@ namespace QuanLiCongDanThanhPho
         public FDangKyHonNhan()
         {
             InitializeComponent();
+            HinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
 
         //Thêm hôn nhân mới
@@ -74,6 +75,8 @@ namespace QuanLiCongDanThanhPho
         {
             base.Reset();
             dtpNgayDangKy.Value = DateTime.Now;
+            ptcHinhChong.Image = null;
+            ptcHinhVo.Image = null;
             ChoPhepDangKy();
         }
 
@@ -81,7 +84,6 @@ namespace QuanLiCongDanThanhPho
         {
             Reset();
         }
-
 
         //Tải thông tin hôn nhân lên
         private void LoadHonNhan()
@@ -95,22 +97,19 @@ namespace QuanLiCongDanThanhPho
                 txtTenVo.Text = hn.TenNu;
                 txtNoiDK.Text = hn.NoiDangKy;
                 dtpNgayDangKy.Value = hn.NgayDangKy.Value;
-
+                HinhCongDan.LayHinhDaiDien(txtCCCDChong.Text, ptcHinhChong);
+                HinhCongDan.LayHinhDaiDien(txtCCCDVo.Text, ptcHinhVo);
                 if (hn.Cccdnam != null)
                     ChoPhepLiHon();
                 else
                     ChoPhepDangKy();
             }
-        }
-
-        //Tìm kiếm theo mã số
-        private void txtMaHonNhan_TextChanged(object sender, EventArgs e)
-        {
-            if (txtMaHonNhan.Text.Length > 0)
+            else
             {
-                LoadHonNhan();
+                string temp = txtMaHonNhan.Text;
+                Reset();
+                txtMaHonNhan.Text = temp;
             }
-
         }
 
         //Trả về tên hôn nhân thep mã số
@@ -131,6 +130,12 @@ namespace QuanLiCongDanThanhPho
         private void btnTimVo_Click(object sender, EventArgs e)
         {
             txtTenVo.Text = LayTenTheoCCCD(txtCCCDVo.Text);
+        }
+
+        private void btnTimHonNhan_Click(object sender, EventArgs e)
+        {
+            if (txtMaHonNhan.Text.Length > 0)
+                LoadHonNhan();
         }
     }
 }
