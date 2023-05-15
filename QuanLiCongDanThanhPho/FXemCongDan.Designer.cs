@@ -74,8 +74,10 @@
             this.txtCCCD.ForeColor = System.Drawing.Color.DimGray;
             this.txtCCCD.Location = new System.Drawing.Point(79, 42);
             this.txtCCCD.Name = "txtCCCD";
+            this.txtCCCD.ReadOnly = true;
             this.txtCCCD.Size = new System.Drawing.Size(203, 34);
             this.txtCCCD.TabIndex = 1;
+            this.txtCCCD.TextChanged += new System.EventHandler(this.txtCCCD_TextChanged);
             // 
             // txtTen
             // 
@@ -84,12 +86,15 @@
             this.txtTen.ForeColor = System.Drawing.Color.DimGray;
             this.txtTen.Location = new System.Drawing.Point(12, 109);
             this.txtTen.Name = "txtTen";
+            this.txtTen.ReadOnly = true;
             this.txtTen.Size = new System.Drawing.Size(270, 34);
             this.txtTen.TabIndex = 2;
+            this.txtTen.TextChanged += new System.EventHandler(this.txtTen_TextChanged);
             // 
             // dtpNgaySinh
             // 
             this.dtpNgaySinh.CustomFormat = "dd/MM/yyyy";
+            this.dtpNgaySinh.Enabled = false;
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpNgaySinh.Location = new System.Drawing.Point(95, 176);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
@@ -103,8 +108,10 @@
             this.txtSDT.ForeColor = System.Drawing.Color.DimGray;
             this.txtSDT.Location = new System.Drawing.Point(95, 245);
             this.txtSDT.Name = "txtSDT";
+            this.txtSDT.ReadOnly = true;
             this.txtSDT.Size = new System.Drawing.Size(187, 27);
             this.txtSDT.TabIndex = 4;
+            this.txtSDT.TextChanged += new System.EventHandler(this.txtSDT_TextChanged);
             // 
             // txtDiaChi
             // 
@@ -112,8 +119,10 @@
             this.txtDiaChi.ForeColor = System.Drawing.Color.DimGray;
             this.txtDiaChi.Location = new System.Drawing.Point(95, 512);
             this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.ReadOnly = true;
             this.txtDiaChi.Size = new System.Drawing.Size(397, 27);
             this.txtDiaChi.TabIndex = 5;
+            this.txtDiaChi.TextChanged += new System.EventHandler(this.txtDiaChi_TextChanged);
             // 
             // txtQuocTich
             // 
@@ -121,8 +130,10 @@
             this.txtQuocTich.ForeColor = System.Drawing.Color.DimGray;
             this.txtQuocTich.Location = new System.Drawing.Point(238, 340);
             this.txtQuocTich.Name = "txtQuocTich";
+            this.txtQuocTich.ReadOnly = true;
             this.txtQuocTich.Size = new System.Drawing.Size(256, 27);
             this.txtQuocTich.TabIndex = 6;
+            this.txtQuocTich.TextChanged += new System.EventHandler(this.txtQuocTich_TextChanged);
             // 
             // txtDanToc
             // 
@@ -130,8 +141,10 @@
             this.txtDanToc.ForeColor = System.Drawing.Color.DimGray;
             this.txtDanToc.Location = new System.Drawing.Point(238, 428);
             this.txtDanToc.Name = "txtDanToc";
+            this.txtDanToc.ReadOnly = true;
             this.txtDanToc.Size = new System.Drawing.Size(256, 27);
             this.txtDanToc.TabIndex = 7;
+            this.txtDanToc.TextChanged += new System.EventHandler(this.txtDanToc_TextChanged);
             // 
             // txtMaHoKhau
             // 
@@ -139,8 +152,10 @@
             this.txtMaHoKhau.ForeColor = System.Drawing.Color.DimGray;
             this.txtMaHoKhau.Location = new System.Drawing.Point(238, 585);
             this.txtMaHoKhau.Name = "txtMaHoKhau";
+            this.txtMaHoKhau.ReadOnly = true;
             this.txtMaHoKhau.Size = new System.Drawing.Size(254, 27);
             this.txtMaHoKhau.TabIndex = 8;
+            this.txtMaHoKhau.TextChanged += new System.EventHandler(this.txtMaHoKhau_TextChanged);
             // 
             // txtMaThue
             // 
@@ -148,8 +163,10 @@
             this.txtMaThue.ForeColor = System.Drawing.Color.DimGray;
             this.txtMaThue.Location = new System.Drawing.Point(238, 649);
             this.txtMaThue.Name = "txtMaThue";
+            this.txtMaThue.ReadOnly = true;
             this.txtMaThue.Size = new System.Drawing.Size(254, 27);
             this.txtMaThue.TabIndex = 9;
+            this.txtMaThue.TextChanged += new System.EventHandler(this.txtMaThue_TextChanged);
             // 
             // txtMaHonNhan
             // 

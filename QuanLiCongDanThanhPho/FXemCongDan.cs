@@ -103,5 +103,45 @@ namespace QuanLiCongDanThanhPho
                 LayThue();
             }
         }
+
+        private void txtCCCD_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDiaChi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaHoKhau_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaThue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTen_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSDT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtQuocTich_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDanToc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
