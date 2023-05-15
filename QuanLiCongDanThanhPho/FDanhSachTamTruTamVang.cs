@@ -30,6 +30,7 @@ namespace QuanLiCongDanThanhPho
             btnQuaHan.BackColor = Color.RoyalBlue;
             btnTT.BackColor = Color.RoyalBlue;
             btnTV.BackColor = Color.RoyalBlue;
+            btnChoDuyet.BackColor = Color.RoyalBlue;
 
             if (type == Loc.tatCa) 
             {
