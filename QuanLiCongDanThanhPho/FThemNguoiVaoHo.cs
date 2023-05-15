@@ -50,8 +50,8 @@ namespace QuanLiCongDanThanhPho
                 MaHk = txtMaHo.Text,
                 QuanHeVoiChuHo = txtQuanHeVoiChuHo.Text
             };
-
-            if (HKDAO.LayThongTin(txtMaHo.Text) != null && CDDAO.ThayDoiHoKhau(congDan))
+            Congdan? cD = CDDAO.LayThongTin(txtCCCD.Text);
+            if (KiemTraDuLieuNhap.KiemTraTenVaCCCD(congDan) && cD != null && cD.Ten == txtTen.Text && HKDAO.LayThongTin(txtMaHo.Text) != null && CDDAO.ThayDoiHoKhau(congDan))
             {
                 MessageBox.Show("Thêm thành công");
                 Reset();
