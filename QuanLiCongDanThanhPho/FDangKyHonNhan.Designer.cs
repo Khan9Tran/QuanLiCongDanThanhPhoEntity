@@ -230,6 +230,7 @@
             this.btnReset.TabIndex = 59;
             this.btnReset.Text = "Tải lại";
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnDangKy
             // 
@@ -259,6 +260,7 @@
             this.btnDelete.TabIndex = 61;
             this.btnDelete.Text = "Li hôn";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // fpnlChucNang
             // 
