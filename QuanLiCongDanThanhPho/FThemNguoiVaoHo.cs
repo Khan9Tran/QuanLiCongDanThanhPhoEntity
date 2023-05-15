@@ -44,7 +44,15 @@ namespace QuanLiCongDanThanhPho
         internal override void DangKy()
         {
             Congdan? congDan = CDDAO.LayThongTin(txtCCCD.Text);
-            if (congDan != null && congDan.Ten == txtTen.Text && congDan.MaHk != txtMaHo.Text && HKDAO.LayThongTin(txtMaHo.Text) != null)
+            if (congDan == null)
+            {
+                MessageBox.Show("Công dân không tồn tại");
+            }    
+            else if (congDan.Ten != txtTen.Text)
+            {
+                MessageBox.Show("Tên không khớp với CCCD");
+            }    
+            else if (KiemTraDuLieuNhap.KiemTraHaiHo(txtMaHo.Text, congDan.MaHk) && HKDAO.LayThongTin(txtMaHo.Text) != null)
             {
                 congDan.MaHk = txtMaHo.Text;
                 if (CDDAO.ThayDoiHoKhau(congDan))
