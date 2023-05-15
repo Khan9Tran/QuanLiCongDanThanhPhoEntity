@@ -1,13 +1,4 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -68,8 +59,14 @@ namespace QuanLiCongDanThanhPho
 
         private void btnThue_Click(object sender, EventArgs e)
         {
-            pnlLoad.Visible = true;
-            loadForm.Open(new FThanhToanThue(account.UserName));
+            ThueDAO thueDAO = new ThueDAO();
+            if (thueDAO.LayThongTin(account.UserName) != null)
+            {
+                loadForm.Open(new FThanhToanThue(account.UserName));
+                pnlLoad.Visible = true;
+            }
+            else
+                MessageBox.Show("Chưa có thuế. Cần liên hệ trực tiếp cơ quan để tạo");
         }
 
         private void btnTTTV_Click(object sender, EventArgs e)

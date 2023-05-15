@@ -1,14 +1,4 @@
 ﻿using QuanLiCongDanThanhPho.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -31,6 +21,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (thue != null )
             {
+                lblMaThue.Text = thue.MaThue;
                 lblTienNo.Text = $"Số tiền nợ {thue.SoTienCanNop} VNĐ";
                 if (thue.HanNop != null)
                     dtpThoiHan.Value = thue.HanNop.Value;
