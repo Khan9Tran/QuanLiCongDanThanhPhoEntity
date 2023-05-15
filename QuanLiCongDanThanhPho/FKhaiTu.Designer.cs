@@ -84,6 +84,7 @@
             this.txtTen.Name = "txtTen";
             this.txtTen.Size = new System.Drawing.Size(534, 34);
             this.txtTen.TabIndex = 22;
+            this.txtTen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // fpnlChucNang
             // 

@@ -1,4 +1,5 @@
 ﻿using QuanLiCongDanThanhPho.Model;
+using static QuanLiCongDanThanhPho.ToolsForControl;
 
 namespace QuanLiCongDanThanhPho
 {
@@ -98,11 +99,58 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Sai thông tin");
             }
         }
+
         private void btnDangKy_Click(object sender, EventArgs e)
         {
             DangKy();
         }
 
+        private int turn = 0;
 
+        private void TuDongNhap()
+        {
+            Khaisinh? chong = KSDAO.LayThongTin(txtCccdCha.Text);
+            Khaisinh? vo = KSDAO.LayThongTin(txtCccdMe.Text);
+            if (turn == 0 && chong == null)
+            {
+                turn = 1;
+                if (vo == null) turn = 2;
+            }
+            switch (turn)
+            {
+                case 0:
+                    txtQueQuan.Text = chong.QueQuan;
+                    txtNoiSinh.Text = chong.NoiSinh;
+                    cboQuocTich.SelectedItem = chong.QuocTich;
+                    cboDanToc.SelectedItem = chong.DanToc;
+                    if (vo != null)
+                    {
+                        turn += 1;
+                    }
+                    else
+                    {
+                        turn += 2;
+                    }
+                    break;
+                case 1:
+                    txtQueQuan.Text = vo.QueQuan;
+                    txtNoiSinh.Text = vo.NoiSinh;
+                    cboQuocTich.SelectedItem = vo.QuocTich;
+                    cboDanToc.SelectedItem = vo.DanToc;
+                    turn++;
+                    break;
+                case 2:
+                    txtQueQuan.Text = "";
+                    txtNoiSinh.Text = "";
+                    cboQuocTich.SelectedItem = "";
+                    cboDanToc.SelectedItem = "";
+                    turn = 0;
+                    break;
+            }
+        }
+        private void btnAuto_Click(object sender, EventArgs e)
+        {
+            TuDongNhap();
+        }
     }
 }

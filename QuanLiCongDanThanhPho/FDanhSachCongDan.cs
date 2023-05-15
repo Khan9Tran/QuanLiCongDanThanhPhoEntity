@@ -228,6 +228,8 @@ namespace QuanLiCongDanThanhPho
                 Congdan? cd = cdDao.LayThongTin(maCCCD);
                 if (cd != null)
                 {
+                    HinhDaiDien hinhDaiDien = new HinhDaiDien(HinhDaiDien.Type.congDan);
+                    hinhDaiDien.DeleteDirectory(hinhDaiDien.GetFolderPath(), cd.Cccd);
                     cdDao.XoaCongDan(cd);
                     txtTimKiem_TextChanged(txtTimKiem, null);
                 }
