@@ -125,11 +125,13 @@ namespace QuanLiCongDanThanhPho
         private void btnTimChong_Click(object sender, EventArgs e)
         {
             txtTenChong.Text = LayTenTheoCCCD(txtCCCDChong.Text);
+            HinhCongDan.LayHinhDaiDien(txtCCCDChong.Text, ptcHinhChong);
         }
 
         private void btnTimVo_Click(object sender, EventArgs e)
         {
             txtTenVo.Text = LayTenTheoCCCD(txtCCCDVo.Text);
+            HinhCongDan.LayHinhDaiDien(txtCCCDVo.Text, ptcHinhVo);
         }
 
         private void btnTimHonNhan_Click(object sender, EventArgs e)
