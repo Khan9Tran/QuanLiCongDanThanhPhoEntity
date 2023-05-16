@@ -24,6 +24,7 @@ namespace QuanLiCongDanThanhPho
         {
             if (LayThongTinTheoMaSo(thue.MaThue) != null || LayThongTin(thue.Cccd) != null)
             {
+                MessageBox.Show("Kiểm tra lại CCCD và mã thuế");
                 return false;
             }
             db.Thues.Add(thue);
