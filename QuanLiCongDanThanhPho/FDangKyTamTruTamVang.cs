@@ -81,9 +81,14 @@ namespace QuanLiCongDanThanhPho
             };
 
             Congdan? congdan = CDDAO?.LayThongTin(txtCCCD.Text);
+            if (TTTVDAO.LayThongTin(txtCCCD.Text) != null)
+            {
+                MessageBox.Show("Công dân đã đăng ký TTTV trước đó");
+                return;
+            }    
             if (rdoTamVang.Checked == true && congdan == null)
             {
-                MessageBox.Show("Thêm thất bại");
+                MessageBox.Show("Công dân không tồn tại ở địa phương");
                 return;
             }
             else if (rdoTamTru.Checked == true)
