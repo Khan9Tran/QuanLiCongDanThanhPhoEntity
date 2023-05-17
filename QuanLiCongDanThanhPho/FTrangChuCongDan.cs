@@ -78,7 +78,7 @@ namespace QuanLiCongDanThanhPho
                 MessageBox.Show("Thông tin TT/TV của bạn đang chờ duyệt");
             }
             else
-            if (tamtrutamvang != null && tamtrutamvang.TrangThai != "CDTV" && tamtrutamvang.TrangThai == "CDTT")
+            if (tamtrutamvang != null && tamtrutamvang.TrangThai != "CDTV" && tamtrutamvang.TrangThai != "CDTT")
             {
                 MessageBox.Show("Thông tin TT/TV của bạn đã được duyệt");
             }    
