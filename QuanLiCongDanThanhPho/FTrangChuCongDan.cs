@@ -72,10 +72,16 @@ namespace QuanLiCongDanThanhPho
         private void btnTTTV_Click(object sender, EventArgs e)
         {
             TamTruTamVangDAO tTTV = new TamTruTamVangDAO ();
-            if (tTTV.LayThongTin(account.UserName) != null)
+            Tamtrutamvang? tamtrutamvang = tTTV.LayThongTin(account.UserName);
+            if (tamtrutamvang != null && (tamtrutamvang.TrangThai == "CDTV" || tamtrutamvang.TrangThai == "CDTT"))
+            {
+                MessageBox.Show("Thông tin TT/TV của bạn đang chờ duyệt");
+            }
+            else
+            if (tamtrutamvang != null && tamtrutamvang.TrangThai != "CDTV" && tamtrutamvang.TrangThai != "CDTT")
             {
                 MessageBox.Show("Thông tin TT/TV của bạn đã được duyệt");
-            }
+            }    
             else
             {
                 pnlLoad.Visible = true;
