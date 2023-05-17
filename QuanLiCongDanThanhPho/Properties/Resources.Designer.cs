@@ -73,29 +73,9 @@ namespace QuanLiCongDanThanhPho.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_button {
-            get {
-                object obj = ResourceManager.GetObject("add-button", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap add_button__1_ {
             get {
                 object obj = ResourceManager.GetObject("add-button (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap add_button__1_1 {
-            get {
-                object obj = ResourceManager.GetObject("add-button (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,16 +103,6 @@ namespace QuanLiCongDanThanhPho.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_user__1_ {
-            get {
-                object obj = ResourceManager.GetObject("add-user (1)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap add_user__2_ {
             get {
                 object obj = ResourceManager.GetObject("add-user (2)", resourceCulture);
@@ -153,29 +123,9 @@ namespace QuanLiCongDanThanhPho.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap barchart {
-            get {
-                object obj = ResourceManager.GetObject("barchart", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap cake {
             get {
                 object obj = ResourceManager.GetObject("cake", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap call {
-            get {
-                object obj = ResourceManager.GetObject("call", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,16 +146,6 @@ namespace QuanLiCongDanThanhPho.Properties {
         internal static System.Drawing.Bitmap cloud_computing {
             get {
                 object obj = ResourceManager.GetObject("cloud-computing", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap confirm {
-            get {
-                object obj = ResourceManager.GetObject("confirm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -436,36 +376,6 @@ namespace QuanLiCongDanThanhPho.Properties {
         internal static System.Drawing.Bitmap mặt_trước_thẻ_cccd {
             get {
                 object obj = ResourceManager.GetObject("mặt trước thẻ cccd", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap menu__5_ {
-            get {
-                object obj = ResourceManager.GetObject("menu (5)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap menu__6_ {
-            get {
-                object obj = ResourceManager.GetObject("menu (6)", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap menu__8_ {
-            get {
-                object obj = ResourceManager.GetObject("menu (8)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
