@@ -25,14 +25,22 @@ namespace QuanLiCongDanThanhPho
             {
                 currentChildForm.Hide();
             }
-            currentChildForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
-            pnlLoad.Controls.Add(childForm);
-            pnlLoad.Tag = childForm;
-            childForm.BringToFront();
-            childForm.Show();
+            //Bắt lỗi không có form cha để tải
+            try
+            {
+                currentChildForm = childForm;
+                childForm.TopLevel = false;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.Dock = DockStyle.Fill;
+                pnlLoad.Controls.Add(childForm);
+                pnlLoad.Tag = childForm;
+                childForm.BringToFront();
+                childForm.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Ấn Back thêm 1 lần nữa");
+            }
         }
     }
 }

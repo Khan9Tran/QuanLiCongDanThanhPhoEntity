@@ -24,24 +24,12 @@
                 RemoveForm();
                 if (forms.Count > 0)
                 {
-                    if (forms[forms.Count - 1].Name == "FDangKyCongDan" ||
-                        forms[forms.Count - 1].Name == "FDangHoKhau" ||
-                        forms[forms.Count - 1].Name == "FDangKyThue" ||
-                        forms[forms.Count - 1].Name == "FDangKyHonNhan" ||
-                        forms[forms.Count - 1].Name == "FDangKyTamTruTamVang" ||
-                        forms[forms.Count - 1].Name == "FDangKyKhaiSinh" ||
-                        forms[forms.Count - 1].Name == "FDangKyCCCD" ||
-                        forms[forms.Count - 1].Name == "FDanhSach"
-                        )
-                    {
-                        trangChu?.ChildForm.Open(forms[forms.Count - 1]);
-                    }
-                    else if (forms[forms.Count - 1].Name == "FDanhSachCongDan" ||
+                   if (forms[forms.Count - 1].Name == "FDanhSachCongDan" ||
                             forms[forms.Count - 1].Name == "FDanhSachThue" ||
                             forms[forms.Count - 1].Name == "FDanhSachTamTruTamVang" ||
                             forms[forms.Count - 1].Name == "FDanhSachHoKhau"
                             )
-                    {
+                   {
                         for (int i = forms.Count - 2; i >= 0; i--)
                         {
                             if (forms[i].Name == "FDanhSach")

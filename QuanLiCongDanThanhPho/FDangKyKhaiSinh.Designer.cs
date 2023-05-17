@@ -57,13 +57,13 @@
             this.btnDangKy = new System.Windows.Forms.Button();
             this.cboQuocTich = new System.Windows.Forms.ComboBox();
             this.cboDanToc = new System.Windows.Forms.ComboBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlChuaChucNang = new System.Windows.Forms.Panel();
             this.btnAuto = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlChuaLbl = new System.Windows.Forms.Panel();
+            this.pnlChuaLbl2 = new System.Windows.Forms.Panel();
+            this.pnlChuaChucNang.SuspendLayout();
+            this.pnlChuaLbl.SuspendLayout();
+            this.pnlChuaLbl2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtNoiSinh
@@ -399,16 +399,16 @@
             this.cboDanToc.Size = new System.Drawing.Size(226, 36);
             this.cboDanToc.TabIndex = 100;
             // 
-            // panel2
+            // pnlChuaChucNang
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.btnAuto);
-            this.panel2.Controls.Add(this.btnDangKy);
-            this.panel2.Controls.Add(this.btnReset);
-            this.panel2.Location = new System.Drawing.Point(1417, 1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(82, 755);
-            this.panel2.TabIndex = 109;
+            this.pnlChuaChucNang.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlChuaChucNang.Controls.Add(this.btnAuto);
+            this.pnlChuaChucNang.Controls.Add(this.btnDangKy);
+            this.pnlChuaChucNang.Controls.Add(this.btnReset);
+            this.pnlChuaChucNang.Location = new System.Drawing.Point(1417, 1);
+            this.pnlChuaChucNang.Name = "pnlChuaChucNang";
+            this.pnlChuaChucNang.Size = new System.Drawing.Size(82, 755);
+            this.pnlChuaChucNang.TabIndex = 109;
             // 
             // btnAuto
             // 
@@ -424,34 +424,34 @@
             this.btnAuto.UseVisualStyleBackColor = false;
             this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
             // 
-            // panel1
+            // pnlChuaLbl
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.lblTen);
-            this.panel1.Controls.Add(this.lblMaDinhDanh);
-            this.panel1.Controls.Add(this.lblQueQuan);
-            this.panel1.Controls.Add(this.lblNoiSinh);
-            this.panel1.Controls.Add(this.lblTenCha);
-            this.panel1.Controls.Add(this.lblCccdCha);
-            this.panel1.Controls.Add(this.lblTenMe);
-            this.panel1.Controls.Add(this.lblCccdMe);
-            this.panel1.Controls.Add(this.lblNgayDangKy);
-            this.panel1.Location = new System.Drawing.Point(155, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(184, 706);
-            this.panel1.TabIndex = 110;
+            this.pnlChuaLbl.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlChuaLbl.Controls.Add(this.lblTen);
+            this.pnlChuaLbl.Controls.Add(this.lblMaDinhDanh);
+            this.pnlChuaLbl.Controls.Add(this.lblQueQuan);
+            this.pnlChuaLbl.Controls.Add(this.lblNoiSinh);
+            this.pnlChuaLbl.Controls.Add(this.lblTenCha);
+            this.pnlChuaLbl.Controls.Add(this.lblCccdCha);
+            this.pnlChuaLbl.Controls.Add(this.lblTenMe);
+            this.pnlChuaLbl.Controls.Add(this.lblCccdMe);
+            this.pnlChuaLbl.Controls.Add(this.lblNgayDangKy);
+            this.pnlChuaLbl.Location = new System.Drawing.Point(155, 0);
+            this.pnlChuaLbl.Name = "pnlChuaLbl";
+            this.pnlChuaLbl.Size = new System.Drawing.Size(184, 706);
+            this.pnlChuaLbl.TabIndex = 110;
             // 
-            // panel3
+            // pnlChuaLbl2
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel3.Controls.Add(this.lblNgaySinh);
-            this.panel3.Controls.Add(this.lblDanToc);
-            this.panel3.Controls.Add(this.lblQuocTich);
-            this.panel3.Controls.Add(this.lblGioiTinh);
-            this.panel3.Location = new System.Drawing.Point(865, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(137, 329);
-            this.panel3.TabIndex = 111;
+            this.pnlChuaLbl2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlChuaLbl2.Controls.Add(this.lblNgaySinh);
+            this.pnlChuaLbl2.Controls.Add(this.lblDanToc);
+            this.pnlChuaLbl2.Controls.Add(this.lblQuocTich);
+            this.pnlChuaLbl2.Controls.Add(this.lblGioiTinh);
+            this.pnlChuaLbl2.Location = new System.Drawing.Point(865, 0);
+            this.pnlChuaLbl2.Name = "pnlChuaLbl2";
+            this.pnlChuaLbl2.Size = new System.Drawing.Size(137, 329);
+            this.pnlChuaLbl2.TabIndex = 111;
             // 
             // FDangKyKhaiSinh
             // 
@@ -459,9 +459,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1532, 752);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlChuaLbl2);
+            this.Controls.Add(this.pnlChuaLbl);
+            this.Controls.Add(this.pnlChuaChucNang);
             this.Controls.Add(this.cboDanToc);
             this.Controls.Add(this.cboQuocTich);
             this.Controls.Add(this.txtQueQuan);
@@ -482,11 +482,11 @@
             this.Name = "FDangKyKhaiSinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FDangKyKhaiSinh";
-            this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlChuaChucNang.ResumeLayout(false);
+            this.pnlChuaLbl.ResumeLayout(false);
+            this.pnlChuaLbl.PerformLayout();
+            this.pnlChuaLbl2.ResumeLayout(false);
+            this.pnlChuaLbl2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,9 +522,9 @@
         private Button btnDangKy;
         private ComboBox cboQuocTich;
         private ComboBox cboDanToc;
-        private Panel panel2;
-        private Panel panel1;
-        private Panel panel3;
+        private Panel pnlChuaChucNang;
+        private Panel pnlChuaLbl;
+        private Panel pnlChuaLbl2;
         private Button btnAuto;
     }
 }

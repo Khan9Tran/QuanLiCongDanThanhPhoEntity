@@ -83,9 +83,9 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.ofdHinhDaiDien = new System.Windows.Forms.OpenFileDialog();
             this.sfdHinhDaiDien = new System.Windows.Forms.SaveFileDialog();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlLoadChucNang = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ptcHinhDaiDien)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.pnlLoadChucNang.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTen
@@ -684,15 +684,15 @@
             // 
             this.ofdHinhDaiDien.FileName = "openFileDialog1";
             // 
-            // panel2
+            // pnlLoadChucNang
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.btnDangKy);
-            this.panel2.Controls.Add(this.btnReset);
-            this.panel2.Location = new System.Drawing.Point(1329, -2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(141, 755);
-            this.panel2.TabIndex = 108;
+            this.pnlLoadChucNang.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlLoadChucNang.Controls.Add(this.btnDangKy);
+            this.pnlLoadChucNang.Controls.Add(this.btnReset);
+            this.pnlLoadChucNang.Location = new System.Drawing.Point(1329, -2);
+            this.pnlLoadChucNang.Name = "pnlLoadChucNang";
+            this.pnlLoadChucNang.Size = new System.Drawing.Size(141, 755);
+            this.pnlLoadChucNang.TabIndex = 108;
             // 
             // FDangKyCongDan
             // 
@@ -700,7 +700,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1532, 782);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlLoadChucNang);
             this.Controls.Add(this.cboQuanHe);
             this.Controls.Add(this.btnThemHinh);
             this.Controls.Add(this.cboTinhTrang);
@@ -758,7 +758,7 @@
             this.Name = "FDangKyCongDan";
             this.Text = "FDangKyCongDan";
             ((System.ComponentModel.ISupportInitialize)(this.ptcHinhDaiDien)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.pnlLoadChucNang.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -821,6 +821,6 @@
         private Button btnReset;
         private OpenFileDialog ofdHinhDaiDien;
         private SaveFileDialog sfdHinhDaiDien;
-        private Panel panel2;
+        private Panel pnlLoadChucNang;
     }
 }

@@ -18,6 +18,7 @@ namespace QuanLiCongDanThanhPho
             ketHon,
         }
 
+        //Thêm hộ khẩu mới nếu công dân đăng kí là chủ hộ
         private bool ThemHoKhau()
         {
             if (HKDAO.LayThongTin(txtHoKhau.Text) == null)
@@ -41,6 +42,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
+        //Đăng ký thông tin cho công dân bao gồm thông tin cơ bản của về công dân, khai sinh, thuế, hộ khẩu, hôn nhân nếu có
         internal override void DangKy()
         {
             Congdan cD = new Congdan()
@@ -141,6 +143,7 @@ namespace QuanLiCongDanThanhPho
 
         }
 
+        //Clear các TextBox, đặt lại các DateTimePicker
         internal override void Reset()
         {
             base.Reset();
@@ -159,29 +162,21 @@ namespace QuanLiCongDanThanhPho
             DangKy();
         }
 
-
+        //Chỉnh lại trạng thái(đọc/ghi) của TextBox theo tình trạng hôn nhân
         private void cboTinhTrang_SelectedValueChanged(object sender, EventArgs e)
         {
+            List<TextBox> textBoxs = new List<TextBox>() { txtTenVoChong, txtMaHonNhan, txtCCCDVoChong };
             if (cboTinhTrang.SelectedIndex == (int)LuaChon.ketHon)
             {
-                txtTenVoChong.ReadOnly = false;
-                txtMaHonNhan.ReadOnly = false;
-                txtCCCDVoChong.ReadOnly = false;
-                txtCCCDVoChong.BackColor = Color.Gainsboro;
-                txtMaHonNhan.BackColor = Color.Gainsboro;
-                txtTenVoChong.BackColor = Color.Gainsboro;
+                ToolsForControl.ReadOnly(textBoxs, false, Color.Gainsboro);
             }
             else
             {
-                txtTenVoChong.ReadOnly = true;
-                txtMaHonNhan.ReadOnly = true;
-                txtCCCDVoChong.ReadOnly = true;
-                txtCCCDVoChong.BackColor = Color.WhiteSmoke;
-                txtMaHonNhan.BackColor = Color.WhiteSmoke;
-                txtTenVoChong.BackColor = Color.WhiteSmoke;
+                ToolsForControl.ReadOnly(textBoxs, true, Color.WhiteSmoke);
             }
         }
 
+        //Thêm hình đại diện của công dân
         private void btnThemHinh_Click(object sender, EventArgs e)
         {
             hinhCongDan.ThemHinhDaiDien(ofdHinhDaiDien, ptcHinhDaiDien);

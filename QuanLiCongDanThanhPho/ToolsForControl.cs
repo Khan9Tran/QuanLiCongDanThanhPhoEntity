@@ -70,6 +70,15 @@ namespace QuanLiCongDanThanhPho
                 ctr.Enabled = true;
             }
             state = Turn.on;
-        }    
+        }
+
+        public static void ReadOnly(List<TextBox> textBoxs, bool trangThai, Color color)
+        {
+            foreach (var textBox in textBoxs)
+            {
+                textBox.ReadOnly = trangThai;
+                textBox.BackColor = color;
+            }
+        }
     }
 }

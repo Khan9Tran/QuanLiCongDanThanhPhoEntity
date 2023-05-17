@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtTen = new System.Windows.Forms.TextBox();
             this.lblTen = new System.Windows.Forms.Label();
             this.txtCCCD = new System.Windows.Forms.TextBox();
@@ -43,11 +43,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnDangKy = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlChuaTxt = new System.Windows.Forms.Panel();
+            this.pnlChuaChucNang = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachChuaCapCCCD)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnlChuaTxt.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtTen
@@ -146,23 +146,23 @@
             this.gvDanhSachChuaCapCCCD.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gvDanhSachChuaCapCCCD.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gvDanhSachChuaCapCCCD.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvDanhSachChuaCapCCCD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvDanhSachChuaCapCCCD.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gvDanhSachChuaCapCCCD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tomato;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvDanhSachChuaCapCCCD.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Tomato;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvDanhSachChuaCapCCCD.DefaultCellStyle = dataGridViewCellStyle4;
             this.gvDanhSachChuaCapCCCD.EnableHeadersVisualStyles = false;
             this.gvDanhSachChuaCapCCCD.GridColor = System.Drawing.Color.Gainsboro;
             this.gvDanhSachChuaCapCCCD.Location = new System.Drawing.Point(311, 482);
@@ -212,25 +212,25 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(119, 59);
             this.flowLayoutPanel1.TabIndex = 96;
             // 
-            // panel1
+            // pnlChuaTxt
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.txtTen);
-            this.panel1.Controls.Add(this.txtCCCD);
-            this.panel1.Controls.Add(this.txtDDNhanDang);
-            this.panel1.Controls.Add(this.dtmNgayCap);
-            this.panel1.Location = new System.Drawing.Point(525, -2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(568, 379);
-            this.panel1.TabIndex = 97;
+            this.pnlChuaTxt.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlChuaTxt.Controls.Add(this.txtTen);
+            this.pnlChuaTxt.Controls.Add(this.txtCCCD);
+            this.pnlChuaTxt.Controls.Add(this.txtDDNhanDang);
+            this.pnlChuaTxt.Controls.Add(this.dtmNgayCap);
+            this.pnlChuaTxt.Location = new System.Drawing.Point(525, -2);
+            this.pnlChuaTxt.Name = "pnlChuaTxt";
+            this.pnlChuaTxt.Size = new System.Drawing.Size(568, 379);
+            this.pnlChuaTxt.TabIndex = 97;
             // 
-            // panel2
+            // pnlChuaChucNang
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(1329, -2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(141, 755);
-            this.panel2.TabIndex = 98;
+            this.pnlChuaChucNang.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlChuaChucNang.Location = new System.Drawing.Point(1329, -2);
+            this.pnlChuaChucNang.Name = "pnlChuaChucNang";
+            this.pnlChuaChucNang.Size = new System.Drawing.Size(141, 755);
+            this.pnlChuaChucNang.TabIndex = 98;
             // 
             // FDangKyCCCD
             // 
@@ -239,8 +239,8 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1532, 752);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlChuaChucNang);
+            this.Controls.Add(this.pnlChuaTxt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gvDanhSachChuaCapCCCD);
             this.Controls.Add(this.lblDDNhanDang);
@@ -256,8 +256,8 @@
             this.Load += new System.EventHandler(this.FDangKyCCCD_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvDanhSachChuaCapCCCD)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlChuaTxt.ResumeLayout(false);
+            this.pnlChuaTxt.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +278,7 @@
         private Label label1;
         private Button btnDangKy;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel1;
-        private Panel panel2;
+        private Panel pnlChuaTxt;
+        private Panel pnlChuaChucNang;
     }
 }
