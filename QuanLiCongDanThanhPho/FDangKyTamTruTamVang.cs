@@ -35,10 +35,15 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-        private bool TaoCongDan(Congdan congdan)
+        private bool TaoCongDan(Congdan congDan)
         {
-            if (congdan != null)
+            if (congDan != null)
             {
+                if (congDan.Ten != txtTen.Text)
+                {
+                    MessageBox.Show("Nhập sai tên");
+                    return false;
+                }
                 return true;
             }
             Congdan cDTamTru = new Congdan()
@@ -81,9 +86,9 @@ namespace QuanLiCongDanThanhPho
             };
 
             Congdan? congdan = CDDAO?.LayThongTin(txtCCCD.Text);
-            if (TTTVDAO.LayThongTin(txtCCCD.Text) != null)
+            if (TTTVDAO.LayThongTin(txtCCCD.Text) != null || TTTVDAO.LayThongTinTheoMaSo(txtMaSo.Text) != null)
             {
-                MessageBox.Show("Công dân đã đăng ký TTTV trước đó");
+                MessageBox.Show("Công dân đã đăng ký TTTV trước đó/ hoặc mã số trùng");
                 return;
             }    
             if (rdoTamVang.Checked == true && congdan == null)

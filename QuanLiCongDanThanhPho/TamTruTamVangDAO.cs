@@ -27,7 +27,7 @@ namespace QuanLiCongDanThanhPho
             return list.ToList();
         }
 
-        private Tamtrutamvang LayThongTinTheoMaSo(string maTttv)
+        public Tamtrutamvang LayThongTinTheoMaSo(string maTttv)
         {
             var tTTV = db.Tamtrutamvangs.Where(q => q.MaTttv == maTttv).FirstOrDefault();
             return tTTV;
