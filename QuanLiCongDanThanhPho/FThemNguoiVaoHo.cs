@@ -47,11 +47,11 @@ namespace QuanLiCongDanThanhPho
             if (congDan == null)
             {
                 MessageBox.Show("Công dân không tồn tại");
-            }    
+            }
             else if (congDan.Ten != txtTen.Text)
             {
                 MessageBox.Show("Tên không khớp với CCCD");
-            }    
+            }
             else if (KiemTraDuLieuNhap.KiemTraHaiHo(txtMaHo.Text, congDan.MaHk) && HKDAO.LayThongTin(txtMaHo.Text) != null)
             {
                 congDan.MaHk = txtMaHo.Text;
