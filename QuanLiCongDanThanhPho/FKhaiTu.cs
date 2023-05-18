@@ -12,6 +12,7 @@ namespace QuanLiCongDanThanhPho
         }
         CongDanDAO congDanDAO;
 
+        //Khai tử công dân
         private void XoaCongDan()
         {
             Congdan? cD = congDanDAO.LayThongTin(txtCCCD.Text);
@@ -33,6 +34,7 @@ namespace QuanLiCongDanThanhPho
             XoaCongDan();
         }
 
+        //clear các control
         private void btnReset_Click(object sender, EventArgs e)
         {
             ToolsForControl.ClearTextBox(Controls);

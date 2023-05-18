@@ -26,6 +26,7 @@ namespace QuanLiCongDanThanhPho
             txtMatKhauMoi.Clear();
         }
 
+        //Đổi chữ cho button
         private void btnDoiMK_Click(object sender, EventArgs e)
         {
             if (btnDoiMK.Text == "Đổi mật khẩu")
@@ -41,6 +42,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
+        //Hiện thông tin từ account lên textbox
         private void HienThiThongTin()
         {
             txtDisplayName.Text = account.DisplayName;
@@ -48,6 +50,7 @@ namespace QuanLiCongDanThanhPho
             hinhAdmin.LayHinhDaiDien(account.UserName, ptcHinhDaiDien);
         }
 
+        //Đổi mật khẩu
         private void CapNhatMatKhau(string matKhauMoi, string userName)
         {
             Account acc = new Account();
@@ -56,6 +59,7 @@ namespace QuanLiCongDanThanhPho
             accountDAO.CapNhatMatKhau(acc);
         }
 
+        //Đổi tên hiển thị
         private void CapNhatDisplayName(string newDisplayName, string userName)
         {
             account.DisplayName = newDisplayName;
@@ -70,6 +74,7 @@ namespace QuanLiCongDanThanhPho
             txtMatKhauMoiNhapLai.Clear();
         }
 
+        //Kiểm tra mật khẩu có đúng định dạng và nhập có đúng k
         private bool KiemTraPass()
         {
             if (txtMatKhau.Text != account.StrPassword)
@@ -93,6 +98,8 @@ namespace QuanLiCongDanThanhPho
         {
             Reset();
         }
+
+        //Chuyển các nút và txt không thể sửa
         private void ReadOnly()
         {
             btnThemHinh.Enabled = false;
@@ -100,6 +107,8 @@ namespace QuanLiCongDanThanhPho
             txtDisplayName.BackColor = Color.Gainsboro;
             btnCapNhat.Enabled = false;
         }
+
+        //Cho phép sửa các txt và ấn các nút
         private void UnReadOnly()
         {
             btnThemHinh.Enabled = true;
@@ -108,6 +117,7 @@ namespace QuanLiCongDanThanhPho
             btnCapNhat.Enabled = true;
         }
 
+        //Auto công việc
         private void AutoReadOnLy()
         {
             if (txtDisplayName.ReadOnly == false)

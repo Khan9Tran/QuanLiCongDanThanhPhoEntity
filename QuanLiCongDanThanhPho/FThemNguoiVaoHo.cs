@@ -10,6 +10,7 @@ namespace QuanLiCongDanThanhPho
             gvNguoiChuaCoHoKhau.Hide();
         }
 
+        //Hiển thị danh sách của những người chưa có hộ khẩu
         private void LoadDanhSachChuaHoKhau()
         {
             gvNguoiChuaCoHoKhau.DataSource = CDDAO.LayDanhSachTheoHoKhau("00000A");
@@ -41,6 +42,7 @@ namespace QuanLiCongDanThanhPho
             DangKy();
         }
 
+        //Thêm công dân vào hộ được chọn
         internal override void DangKy()
         {
             Congdan? congDan = CDDAO.LayThongTin(txtCCCD.Text);
@@ -66,6 +68,8 @@ namespace QuanLiCongDanThanhPho
             else
                 MessageBox.Show("Thêm thất bại");
         }
+
+        //Hiển thị thông tin công dân được chọn bên TextBox
         private void gvNguoiChuaCoHoKhau_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int dong = e.RowIndex;
@@ -75,6 +79,8 @@ namespace QuanLiCongDanThanhPho
                 txtTen.Text = gvNguoiChuaCoHoKhau.Rows[dong].Cells[1].Value.ToString();
             }
         }
+
+        //Clear các TextBox,...
         internal override void Reset()
         {
             base.Reset();

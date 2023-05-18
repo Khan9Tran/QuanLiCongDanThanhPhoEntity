@@ -20,6 +20,8 @@ namespace QuanLiCongDanThanhPho
         {
             init();
         }
+
+        //Load thông tin của hộ tách nếu được truyền Mã hộ khẩu của hộ tách
         public FTachGopHo(string maHoTach)
         {
             init();
@@ -27,6 +29,7 @@ namespace QuanLiCongDanThanhPho
             LoadHoTach();
         }
 
+        //Chọn công dân để tách ra khỏi hộ
         private void btnTach_Click(object sender, EventArgs e)
         {
             try
@@ -50,7 +53,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-
+        //Tạo hộ khẩu mới nếu mã hộ gộp không tồn tại
         private bool TaoHoMoi()
         {
             //Kiểm tra 
@@ -101,6 +104,8 @@ namespace QuanLiCongDanThanhPho
                 hKDAO?.XoaHoKhau(hK);
             }
         }
+
+        //Thêm người được chọn tách từ hộ tách vào hộ mới
         public bool ThemVaoHo()
         {
             if (hKDAO.LayThongTin(txtMaHoGop.Text) == null)
@@ -169,6 +174,8 @@ namespace QuanLiCongDanThanhPho
                 gvHoGop.Columns[i].Visible = false;
             }
         }
+
+        //Hiển thị danh sách thành viên trong hộ tách
         private void btnMaHoTach_Click(object sender, EventArgs e)
         {
             if (txtMaHoTach.Text != "")
@@ -180,6 +187,8 @@ namespace QuanLiCongDanThanhPho
             if (txtMaHoGop.Text != "")
                 LoadHoGop();
         }
+
+        //Clear các TextBox
         private void Reset()
         {
             txtMaHoGop.Text = "";

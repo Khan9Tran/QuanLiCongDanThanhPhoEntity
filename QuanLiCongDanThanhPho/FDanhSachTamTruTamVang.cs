@@ -23,7 +23,7 @@ namespace QuanLiCongDanThanhPho
             quaHan,
             choDuyet
         }
-
+        //Đổi màu nút nhấn
         private void ChangeBtnColor(Loc type)
         {
             btnTatCa.BackColor = Color.RoyalBlue;
@@ -97,6 +97,8 @@ namespace QuanLiCongDanThanhPho
             thang,
             nam
         }
+
+        //Tăng số ngày kết thúc tạm trú tạm vắng
         private void GiaHan(int num, dynamic type)
         {
             Tamtrutamvang? tTTTV = tttvDAO.LayThongTin(CCCDDAO.GetCCCD(gvTVTT,1));
@@ -128,6 +130,8 @@ namespace QuanLiCongDanThanhPho
 
             HightLightQuaHan();
         }
+
+        // Tô đỏ những người quá hạn tạm trú/tạm vắng
         private void HightLightQuaHan()
         {
             for (int index = 0; index < gvTVTT.Rows.Count; index++)
@@ -139,18 +143,21 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
+        // Lọc danh sách tạm vắng
         private void btnTV_Click(object sender, EventArgs e)
         {
             ChangeBtnColor(Loc.tamVang);
             TimKiem(Loc.tamVang);
         }
 
+        // Lọc danh sách tạm trú
         private void btnTT_Click(object sender, EventArgs e)
         {
             ChangeBtnColor(Loc.tamTru);
             TimKiem(Loc.tamTru);
         }
 
+        //Chuyển đến form thêm tttv
         private void btnThem_Click(object sender, EventArgs e)
         {
             FDangKyTamTruTamVang dangKyTTTV = new FDangKyTamTruTamVang();
@@ -193,30 +200,36 @@ namespace QuanLiCongDanThanhPho
             LoadDanhSach(gvTVTT);
         }
 
+        //Mở chức năng lọc
         private void btnLoc_Click(object sender, EventArgs e)
         {
             Loc_Click(flpnlPhanLoai);
         }
 
+        // Tăng thời gian tạm trú/tạm vắng thêm 3 ngày
         private void ngayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GiaHan(3, LoaiGiaHan.ngay);
         }
 
+        // Tăng thời gian tạm trú/tạm vắng thêm 7 ngày / 1 tuần
         private void tuanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GiaHan(7, LoaiGiaHan.ngay);
         }
+
+        // Tăng thời gian tạm trú/tạm vắng thêm 1 tháng
         private void thangToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GiaHan(1, LoaiGiaHan.thang);
         }
 
+        // Tăng thời gian tạm trú/tạm vắng thêm 1 năm
         private void namToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             GiaHan(1, LoaiGiaHan.nam);
         }
-
+        //Duyệt yêu cầu tạm trú tạm vắng
         private void btnDuyet_Click(object sender, EventArgs e)
         {
             if (gvTVTT.Rows.Count > 0)
@@ -239,7 +252,7 @@ namespace QuanLiCongDanThanhPho
                 }
             }
         }
-
+        //Mở danh sách công dân chờ duyệt tttv
         private void btnChoDuyet_Click(object sender, EventArgs e)
         {
             ChangeBtnColor(Loc.choDuyet);
