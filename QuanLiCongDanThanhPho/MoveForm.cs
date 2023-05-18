@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLiCongDanThanhPho
 {
+    //Dùng để di chuyển form trên màng hình. Do tắt border của form nên cần code hổ trợ di chuyển
     public class MoveForm : Form
     {
         const int WM_NCHITTEST = 0x84;

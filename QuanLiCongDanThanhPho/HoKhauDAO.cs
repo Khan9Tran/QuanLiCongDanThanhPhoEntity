@@ -5,6 +5,7 @@ namespace QuanLiCongDanThanhPho
 {
     internal class HoKhauDAO
     {
+        //Lấy kết nối
         QuanlitpContext db = DBConnection.Db;
         public HoKhauDAO() { }
         public bool ThemHoKhau(Hokhau hK)
@@ -13,6 +14,7 @@ namespace QuanLiCongDanThanhPho
             db.Hokhaus.Add(hK);
             db.SaveChanges();
             return true;
+            // "Tạo hộ khẩu mới thành công"
         }
 
         public List<Hokhau> LayDanhSach()

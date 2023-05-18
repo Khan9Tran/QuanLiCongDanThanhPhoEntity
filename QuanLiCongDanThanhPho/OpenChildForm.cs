@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLiCongDanThanhPho
 {
+    //Hổ trợ mở form con trong Panel của form cha
     public class OpenChildForm
     {
         private Form? currentChildForm;

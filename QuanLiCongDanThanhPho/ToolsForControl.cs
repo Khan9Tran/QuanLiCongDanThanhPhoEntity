@@ -2,7 +2,8 @@
 
 namespace QuanLiCongDanThanhPho
 {
-   public class ToolsForControl
+    //Dùng tự động bật tắt readonly và khả dụng cho button
+    public class ToolsForControl
    {
         private List<TextBox> needReadOnly;
         private List<Control> needUnEnabled;
@@ -21,6 +22,7 @@ namespace QuanLiCongDanThanhPho
             off
         }
 
+        //Xóa text nếu control là textbox
         public static void ClearTextBox(Control.ControlCollection Controls)
         {
             foreach (Control control in Controls)
@@ -33,6 +35,7 @@ namespace QuanLiCongDanThanhPho
         }
         public Turn State {set => state = value; }
 
+        //Tự động bật tắt readonly
         public void AutoReadOnly()
         {
             if (state == Turn.on)

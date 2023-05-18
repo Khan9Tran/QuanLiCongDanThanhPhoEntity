@@ -12,6 +12,7 @@ namespace QuanLiCongDanThanhPho
 {
     internal static class KiemTraDuLieuNhap
     {
+        //Tiến hành kiểm tra chuỗi s so với rule
         public static bool KiemTra(string s, string rule)
         {
             return Regex.IsMatch(s, rule);
@@ -26,12 +27,16 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+
+        //Kiểm tra mật khẩu: từ 6 ksi từ, có chứa số, kí tự đặc biệt
         public static bool isPass(string pass)
         {;
             string rule = @"^.*(?=.{6,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@ #$%^&+=]).*$";
             return KiemTra(pass, rule);
         }
-        public  static bool isDiaChi(string diaChi)
+
+        //Kiểm tra địa chỉ có dạng a,b,c,d
+        public static bool isDiaChi(string diaChi)
         {
             string rule = @"^([^#$%*+.@!]{1,25})[,]([^#$%*+.@!]{1,25})[,]([^#$%*+.@!]{1,25})[,]([^#$%*+.@!]{1,25})$";
             if (KiemTra(diaChi, rule) == false)
@@ -41,6 +46,8 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+
+        //Kiểm tra Số ĐT có từ 9,11 số
         public static bool isSoDT(string SoDT)
         {
             string rule = @"^\d{9,11}$";
@@ -52,6 +59,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
+        //Kiểm tra CCCD phải có 12 số
         public static bool isCCCD(string CCCD)
         {
             string rule = @"^\d{12}$";
@@ -63,6 +71,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
+        //Kiểm tra chuỗi có rỗng không
         public static bool isEmpty(string data)
         {
             if (data == "" || data == null)
@@ -73,6 +82,7 @@ namespace QuanLiCongDanThanhPho
             return false;
         }
 
+        //Kiểm tra hôn nhân có phù hợp không
         public static bool KiemTraHonNhan(Honnhan honnhan)
         {
             CongDanDAO cdDAO = new CongDanDAO();
@@ -103,6 +113,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
+        //Kiểm tra tên
         public static bool isTen(string Ten) 
         {
             string rule = @"^[^!@#$%^*()|+*0123456789]{3,30}$";
@@ -113,6 +124,8 @@ namespace QuanLiCongDanThanhPho
             }
             return true;
         }
+
+        //Kiểm tra mã số từ 5 - 15 kí tự chữ hoặc số
         public static bool isMaSo(string MaSo)
         {
             string rule = @"^[0-9a-zA-Z]{5,15}$";
