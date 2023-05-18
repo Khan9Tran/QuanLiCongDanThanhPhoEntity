@@ -9,6 +9,7 @@ namespace QuanLiCongDanThanhPho
             Init();
         }
 
+        //Load thông tin thuế của công dân nếu được truyền CCCD
         public FDangKyThue(string cCCD)
         {
             Init();
@@ -20,7 +21,7 @@ namespace QuanLiCongDanThanhPho
         {
             InitializeComponent();
         }
-
+        //Hiển thị thông tin của công dân trong TextBox
         public void LoadThongTin(string cCCD)
         {
             if (cCCD != null)
@@ -36,6 +37,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
+        //Clear các TextBox
         internal override void Reset()
         {
             base.Reset();
@@ -47,6 +49,7 @@ namespace QuanLiCongDanThanhPho
             Reset();
         }
 
+        //Đăng kí thuế cho công dân
         internal override void DangKy()
         {
             Thue thue = new Thue()

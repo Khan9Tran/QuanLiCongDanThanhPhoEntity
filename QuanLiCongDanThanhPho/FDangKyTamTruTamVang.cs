@@ -19,6 +19,8 @@ namespace QuanLiCongDanThanhPho
             this.cCCD = cCCD;
 
         }
+
+        //Hiển thị thông tin của công dân
         private void LoadThongTin(string cCCD)
         {
             if (cCCD != null)
@@ -35,6 +37,7 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
+        //Nếu là tạm trú từ nơi khác cần tạo công dân cho họ
         private bool TaoCongDan(Congdan congDan)
         {
             if (congDan != null)
@@ -73,6 +76,7 @@ namespace QuanLiCongDanThanhPho
             return "Tạm vắng";
         }
 
+        //Đăng kí tạm trú/ tạm vắng cho công dân
         internal override void DangKy()
         {
             Tamtrutamvang tTTV = new Tamtrutamvang()
