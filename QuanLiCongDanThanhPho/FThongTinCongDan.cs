@@ -16,6 +16,7 @@ namespace QuanLiCongDanThanhPho
             HinhCongDan = new HinhDaiDien(HinhDaiDien.Type.congDan);
         }
 
+        //Mở F khai sinh
         private void btnKhaiSinh_Click(object sender, EventArgs e)
         {
             FThongTinKhaiSinh tTKS = new FThongTinKhaiSinh(CongDan.Cccd);
@@ -35,6 +36,7 @@ namespace QuanLiCongDanThanhPho
             Tool = new ToolsForControl(listTxt, listControl, ToolsForControl.Turn.off);
         }
 
+        //Lấy ảnh công dân hiện lên picturebox
         private void LayCongDan()
         {
             if (CongDan != null)

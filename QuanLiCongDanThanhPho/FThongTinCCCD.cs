@@ -21,7 +21,7 @@ namespace QuanLiCongDanThanhPho
         {
             lblCCCD.Text = CongDan.Cccd;
             lblTen.Text = CongDan.Ten.ToUpper();
-
+            // Hiển thị thông tin lấy từ class công dân
             Khaisinh? ks = KSDAO.LayThongTin(lblCCCD.Text);
             if (ks != null)
             {
@@ -34,11 +34,11 @@ namespace QuanLiCongDanThanhPho
                 lblQueQuan.Text = ks.QueQuan;
                 lblQuocTich.Text = ks.QuocTich;
             }
-
+            // Hiển thị thông tin lấy từ class hộ khẩu
             Hokhau? hk = HKDAO.LayThongTin(CongDan.MaHk);
             if (hk != null)
                 lblDiaChi.Text = hk.DiaChi;
-
+            // Hiển thị thông tin láy từ class CCCD
             Cccd? cCCD = CCCDDAO.LayThongTin(new Cccd() { MaCccd = CongDan.Cccd });
             if (cCCD != null)
             {
