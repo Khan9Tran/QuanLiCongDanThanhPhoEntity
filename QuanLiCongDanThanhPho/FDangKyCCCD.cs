@@ -13,6 +13,7 @@ namespace QuanLiCongDanThanhPho
         {
             LoadDanhSach();
         }
+        //Clear các ô TextBox
         internal override void Reset()
         {
             base.Reset();
@@ -22,7 +23,7 @@ namespace QuanLiCongDanThanhPho
         {
             Reset();
         }
-
+        //Đăng ký CCCD cho các công dân chưa có đặc điểm nhận dạng
         internal override void DangKy()
         {
             Congdan? cD = CDDAO.LayThongTin(txtCCCD.Text);
@@ -47,6 +48,7 @@ namespace QuanLiCongDanThanhPho
             DangKy();
 
         }
+        //Load danh sách các công dân chưa có đặc điểm nhận dạng
         private void LoadDanhSach()
         {
             gvDanhSachChuaCapCCCD.DataSource = CCCDDAO.DanhSachCCCDTheoDacDiem();
@@ -64,6 +66,7 @@ namespace QuanLiCongDanThanhPho
             gvDanhSachChuaCapCCCD.Columns[2].HeaderText = "Ngày cấp";
             gvDanhSachChuaCapCCCD.Columns[3].HeaderText = "Đặc điểm";
         }
+        //Hàm load thông tin dòng được chọn vào TextBox CCCD và Tên
         private void gvDanhSachChuaCapCCCD_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int dong = e.RowIndex;

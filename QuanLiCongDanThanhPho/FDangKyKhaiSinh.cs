@@ -5,18 +5,20 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FDangKyKhaiSinh : FormDangKy
     {
-
+        //Hàm khởi tạo các thành phần của form
         public FDangKyKhaiSinh()
         {
             InitializeComponent();
         }
 
+        //Hiện thị thông tin của cha mẹ nếu được truyền vào mã cccd của cha hoặc mẹ
         public FDangKyKhaiSinh(string? cCCDThanNhan)
         {
             InitializeComponent();
             LoadThongTinChaMe(cCCDThanNhan);
         }
 
+        //Lấy thông tin cha mẹ để vào các TextBox
         private void LoadThongTinChaMe(string? cCCDThanNhan)
         {
             if (cCCDThanNhan != null)
@@ -32,12 +34,13 @@ namespace QuanLiCongDanThanhPho
             }
         }
 
-
+        //Clear các TextBox có trong form
         private void btnReset_Click(object sender, EventArgs e)
         {
             base.Reset();
         }
 
+        // Kiểm tra thông tin cha mẹ nhập có hợp lệ không
         private bool KiemTraChaMe()
         {
             Honnhan? chong = HNDAO?.LayThongTin(txtCccdCha.Text);
@@ -54,6 +57,7 @@ namespace QuanLiCongDanThanhPho
             return true;
         }
 
+        //Đăng ký khai sinh
         internal override void DangKy()
         {
             Congdan congDan = new Congdan()
@@ -107,6 +111,7 @@ namespace QuanLiCongDanThanhPho
 
         private int turn = 0;
 
+        //Tạo nên 3 turn lấy thông tin theo chồng/vợ/không lấy
         private void TuDongNhap()
         {
             Khaisinh? chong = KSDAO.LayThongTin(txtCccdCha.Text);
