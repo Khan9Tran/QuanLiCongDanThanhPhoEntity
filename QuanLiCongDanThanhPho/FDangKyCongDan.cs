@@ -23,19 +23,27 @@ namespace QuanLiCongDanThanhPho
         {
             if (HKDAO.LayThongTin(txtHoKhau.Text) == null)
             {
-                Hokhau hK = new Hokhau()
+                try
                 {
-                    MaHk = txtHoKhau.Text,
-                    DiaChi = txtDiaChi.Text,
-                    CccdchuHo = txtCCCD.Text,
-                };
-                if (KiemTraDuLieuNhap.KiemTraHoKhau(hK) && cboQuanHe.SelectedItem.ToString() == "Chủ hộ" && HKDAO.ThemHoKhau(hK))
-                {
-                    return true;
+                    Hokhau hK = new Hokhau()
+                    {
+                        MaHk = txtHoKhau.Text,
+                        DiaChi = txtDiaChi.Text,
+                        CccdchuHo = txtCCCD.Text,
+                    };
+                    if (KiemTraDuLieuNhap.KiemTraHoKhau(hK) && cboQuanHe.SelectedItem.ToString() == "Chủ hộ" && HKDAO.ThemHoKhau(hK))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tạo hộ khẩu lỗi");
+                        return false;
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Tạo hộ khẩu lỗi");
+                    MessageBox.Show("Vui lòng chọn quan hệ với chú hộ");
                     return false;
                 }
             }
