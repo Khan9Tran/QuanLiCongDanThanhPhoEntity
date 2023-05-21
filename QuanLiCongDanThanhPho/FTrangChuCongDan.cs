@@ -4,9 +4,7 @@ namespace QuanLiCongDanThanhPho
 {
     public partial class FTrangChuCongDan : Form
     {
-        private OpenChildForm childForm;
         private Account account;
-        private AccountDAO accountDAO;
         private FDangNhap fDangNhap;
         private HinhDaiDien hinhCongDan;
 
